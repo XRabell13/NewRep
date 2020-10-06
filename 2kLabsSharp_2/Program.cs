@@ -1,5 +1,4 @@
-
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -176,11 +175,9 @@ namespace _2KLabsSharp_2_New_
                 // Сравниваемый объект не может быть равным null
                 if (obj == null) return false;
                 // Объекты разных типов не могут быть равны
-                if (this.GetType() != obj.GetType()) return false;
-                // Если типы объектов совпадают, возвращаем true при условии,
-                // что все их поля попарно равны.
-                // Так как в System.Object не определены поля,
-                // следует считать, что поля равны
+                //  if (this.GetType() != obj.GetType()) return false;
+                if (this.ID != obj.ID) return false;//сравниваем по ID, ибо если ID разные, то и поля в чем-то различаются
+              
                 return true;
             }
 
