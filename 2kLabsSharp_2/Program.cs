@@ -20,39 +20,47 @@ using System.Threading.Tasks;
 
 namespace _2KLabsSharp_2_New_
 {
-  partial class Program
+  class Program
     {
 
-       partial class Menu
+        partial class Menu
         {
-           
+
             private Menu() { }
 
-            public static void ShowGeneral() 
+          
+
+            public static void ShowDop()
+            {
+
+                Console.WriteLine(" 11. Сравнить два обьекта.");
+                Console.WriteLine(" 22. Показать информацию о классе Train.");
+                //   Console.WriteLine(" 33. Создать обьект класса Train по умолчанию.");
+
+            }
+        }
+
+        partial class Menu
+        {
+            public static void ShowGeneral()
             {
                 Console.WriteLine("------------------------------------------------------------------");
                 Console.WriteLine(" 1. Ввести данные о поезде.");
                 Console.WriteLine(" 2. Ввести расширенные данные о поезде.");
                 Console.WriteLine(" 3. Получить данные о поезде, следующего до заданного пункта назначения.");
                 Console.WriteLine(" 4. Получить данные о поезде, следующего до заданного пункта назначения и отправляющихся после заданного часа.");
-                Console.WriteLine(" 5. Получить данные о всех поездах.");
-                Console.WriteLine(" 6. Проверка out и ref.");
-                
-                Console.WriteLine(" 7. Дополнительно.");
+              //Console.WriteLine(" 5. Получить данные о всех поездах.");
+                Console.WriteLine(" 5 Проверка out и ref.");
+
+                Console.WriteLine(" 6 Дополнительно.");
+                Console.WriteLine(" 7 Вывести общее число мест в поезде.");
+
                 Console.WriteLine(" 0. Выход.");
                 Console.WriteLine("------------------------------------------------------------------\n Ваш выбор: ");
 
             }
-
-            public static void ShowDop()
-            {
-               
-                Console.WriteLine(" 11. Сравнить два обьекта.");
-                Console.WriteLine(" 22. Показать информацию о классе Train.");
-             //   Console.WriteLine(" 33. Создать обьект класса Train по умолчанию.");
-                
-            }
         }
+
         public class Train
         {
             const string NameStation = "Минск-Пассажирский";// поле константа
@@ -68,7 +76,7 @@ namespace _2KLabsSharp_2_New_
 
            public (int general, int compartment, int reserved, int lux) CountSeats { get; set; }//compartament(купе) reserved(плацкарт) 
 
-            public Train()  // 1 конструктор
+            public Train()  // 1 конструктор без параметров
             {
                 count++;
                 // Console.WriteLine(count);
@@ -79,7 +87,7 @@ namespace _2KLabsSharp_2_New_
                 ID = Convert.ToString(endPunct.GetHashCode() + time.GetHashCode());
             }
 
-            public Train(string n, int hour, int minute, int numberTr, int g, int c, int r, int l) // 2 конструктор
+            public Train(string n, int hour, int minute, int numberTr, int g, int c, int r, int l) // 2 конструктор со всеми параметрами
             {
 
                 try
@@ -94,14 +102,14 @@ namespace _2KLabsSharp_2_New_
                 catch
                 {
                     Console.WriteLine("Введены неверные данные");
-                    //можно использовать переменную общую, которая как проверка, введно правильно или нет, если нет, то снова предалагть ввод
+                   
                 }
 
 
 
             }
 
-            public Train(string n, int hour, int minute, int numberTr) // 3 конструктор
+            public Train(string n, int hour, int minute, int numberTr) // 3 конструктор с некоторыми параметрами по умолчанию
             {
                 count++;
                 try
@@ -117,21 +125,19 @@ namespace _2KLabsSharp_2_New_
                 {
 
                     Console.WriteLine("Введены неверные данные");
-                    //можно использовать переменную общую, которая как проверка, введно правильно или нет, если нет, то снова предалагть ввод
+                   
                 }
             }
 
             //без параметров по умолчаниб вызывается всегда при запуске программы
             //Статические поля, методы, свойства относятся ко всему классу 
             //и для обращения к подобным членам класса необязательно создавать экземпляр класса. 
-            static Train()//
+            static Train()//статический конструктор, вызывается только один раз при создании обьекта
             {
                 count = 0;
-                Console.WriteLine("--------------------Первый обьект создан--------------------");
+                Console.WriteLine("--------------------Добро пожаловать--------------------");
 
             }
-
-
 
 
             // статический метод для просмотра информации о классе
@@ -144,15 +150,23 @@ namespace _2KLabsSharp_2_New_
                     "Методы: GetInfo\n" +
                     "Переопределения: ToStaring, GetHachCode, Equels.\n\n");
 
-
             }
-            public int Billet(ref int typeSeats, int numbil, out bool fl3)
+            public int Billet(ref int typeSeats, int numbil, out bool fl3)//использование ref и out
             {
                 typeSeats--;
                 fl3 = true;
                 numbil++;
                 return 1;
             }
+
+            public int AllSeats()//количестов мест в поезде
+            {
+                return CountSeats.general+CountSeats.compartment+CountSeats.reserved+CountSeats.lux;
+            }
+
+            
+            ///////////////////ПЕРЕОПРЕДЕЛЕНИЯ МЕТОДОВ/////////////////////////////////
+            
             public override string ToString()
             {
                 return "\nСтанция отправления: " + NameStation + "\nКонечная станция: " + endPunct +
@@ -192,10 +206,8 @@ namespace _2KLabsSharp_2_New_
             int h, m, number, g, c, r, l, i = 0;
             bool flag = true;
             bool fl = true, fl1=true;
-           // DateTime time1 = new DateTime(2020, 9, 27, 0, 0, 0); ;
             Train poezd = new Train();
             Train poezd1 = new Train();
-
             //string n, int hour, int minute, int numberTr
             Train[] Massiv = new Train[num];//создали уже num обьектов
 
@@ -287,12 +299,6 @@ namespace _2KLabsSharp_2_New_
 
                     case 5:
                         {
-                            for (int k = 0; Massiv[k] != null; k++)
-                                Massiv[k].ToString();
-                        } break;
-
-                    case 6: 
-                        {
                             /*  int countB;
                               int k = 0;
                              
@@ -323,11 +329,26 @@ namespace _2KLabsSharp_2_New_
 
                         }
                         break;
-                    
-                    case 7:
+
+                    case 6:
                         {
                             Menu.ShowDop();
                             fl = false;
+                        }
+                        break;
+                    case 7:
+                        {
+                            Console.WriteLine("Номер поезда: ");
+                            number = Convert.ToInt32(Console.ReadLine());
+                            for (int k = 0; Massiv[k] != null; k++)
+                                if (Massiv[k].numberTrain == number) 
+                                {
+                                    Console.WriteLine($"Количество мест в поезде {number}:");
+                                    number = Massiv[k].AllSeats();
+                                    Console.WriteLine(number);
+                                    
+                                    break;
+                                }
                         }
                         break;
 
