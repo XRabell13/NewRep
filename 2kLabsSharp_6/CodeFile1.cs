@@ -21,17 +21,11 @@ namespace _2kLabsSharp_4
         /*
          * Создать частое Транспортное агентство. 
          * Подсчитать стоимость всех транспортных средств. (суммма всех прайз)
-         * Провести сортировку автомобилей по расходу топлива. (перебирать обьекты и в массив записывать, а потом рассортировать в массива
-         * и вывести в нужном порядке из того массива)
+         * Провести сортировку автомобилей по расходу топлива. 
          * Найти транспортное в компании, соответствующий заданному диапазону параметров скорости.(вывод всех средств в цикле)
          */
 
-        /*класс-контейнер иммет гет и сет для вывода определнного обьтека из массива, или ввода
-        методы добавить и удалить... в контейнере типа массив класса Transport, чтобы в нем могли храниться 
-        все эти обьекты, наследники же.. ?
-        в классе контролере...
-        есть методы, которые принимают обьект контейнера и делают над ним всякие дейсвия... для этого точно масив внутри класса
-        быть должен, ане классовый массив*/
+        /* https://www.cyberforum.ru/csharp-beginners/thread777840.html */
         struct Str
         {
             int elem;
@@ -41,7 +35,7 @@ namespace _2kLabsSharp_4
 
        public  abstract class TransAgency
         {
-            const int n = 15;
+            protected const int n = 15;
             public Transport[] TransMas = new Transport[n];
 
             int ind;
@@ -49,6 +43,8 @@ namespace _2kLabsSharp_4
 
             public void Add(Transport TrObj)
             {
+                Console.WriteLine("\n\t\t\t\tСработал метод Add");
+
                 if (ind == 0)
                 {
                     for (int k = 0; k < n; k++)
@@ -59,46 +55,99 @@ namespace _2kLabsSharp_4
                 TransMas[ind] = TrObj;
                 ind++;
             }
-            public void Delete()
+            public void Delete(int Index)
             {
-                Console.WriteLine("Введите номер удаляемоего элементв: ");
-                Index = Convert.ToInt32(Console.ReadLine());
                 TransMas[Index] = new Transport();
-                for (int j = Index; j < TransMas.Length; j++)
+               for (int j = Index; j < ind; j++)
                 {
                     TransMas[j] = TransMas[j + 1];
-                    if (j + 1 == TransMas.Length) TransMas[j + 1] = new Transport();
+                   if (j + 1 == ind) TransMas[j + 1] = new Transport();
                 }
+                ind--;
             }
-            public void IAmPrinting(Transport someobj)
-            {
-                Console.WriteLine(someobj.ToString());
-
-            }
+         
             public void Show()
             {
+                Console.WriteLine("\n\t\t\t\tНаходимся в методе Show в CodeFiles1.cs");
 
-                for (int i = 0; i < TransMas.Length; i++)
+                for (int i = 0; i <ind; i++)
                 {
-                    Console.WriteLine(TransMas[i]);
+                    Console.WriteLine($"{ TransMas[i]}\n");
 
                 }
             }
         }
 
-        public class Controller:TransAgency
-        { 
-           public decimal Count(Transport TrObj)
+        public class Controller : TransAgency
+        {
+
+         
+
+            public decimal Summ()
             {
+                Console.WriteLine("\n\t\t\t\tСработал метод Summ");
+
                 decimal summ = 0;
-                for (int j = 0; j < TransMas.Length; j++)
+               
+                for (int j = 0; TransMas[j].GetPrice() != 0; j++)
                 {
-                  
+                    summ += TransMas[j].GetPrice();
                 }
                 return summ;
 
             }
 
+            public void SortAvto()
+            {
+                Console.WriteLine("\n\t\t\t\tСработал метод SortAvto");
+
+                int k =0, N=0;
+                for (int j = 0; TransMas[j].GetPrice() != 0; j++)
+                {
+
+                    if (TransMas[j] is Car) N++;
+                }
+
+                Transport[] Mas = new Transport[N];
+                for (int j = 0; j < Mas.Length; j++)
+                {
+                    Mas[j] = new Transport();
+                }
+                for (int j = 0; TransMas[j].GetPrice() != 0; j++)
+                {
+                 //   Console.WriteLine(TransMas[j].GetType());
+                    if (TransMas[j] is Car) { Mas[k] = TransMas[j]; k++; }
+                }
+
+                Transport temp = new Transport();
+                for (int i = 0; i < Mas.Length; i++)
+                {
+                    for (int j = i + 1; j < Mas.Length; j++)
+                    {
+                        if (Mas[i].GetConsumption() > Mas[j].GetConsumption())
+                        {
+                            temp = Mas[i];
+                            Mas[i] = Mas[j];
+                            Mas[j] = temp;
+                        }
+                    }
+                }
+                for (int j = 0; j<Mas.Length; j++)
+                {
+                    Console.WriteLine("\n{0}",Mas[j]);
+                }
+
+            }
+
+            public void DiapazonSpeed(int from, int to)
+            {
+                Console.WriteLine("\n\t\t\t\tМетод DiapazonSpeed"); 
+                for (int i = 0; i < TransMas.Length; i++)
+                {
+                    if (TransMas[i].GetMaxSpeed() > from & TransMas[i].GetMaxSpeed() < to)
+                        Console.WriteLine("\n{0}\n",TransMas[i]);
+                }
+            }
 
         }
 

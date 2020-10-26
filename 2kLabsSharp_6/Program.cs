@@ -44,10 +44,14 @@ namespace _2kLabsSharp_4
 
             int MaxSpeed { get; set; }
             int MinSpeed { get; set; }
-
+            decimal Price;
+            int Consumption;
             int WayKm { get; set; }
-
-            string IamBaseCl { get { return IamBaseCl; } set { IamBaseCl = "Hi"; } }
+            public virtual decimal GetPrice() => Price;
+            public virtual int GetConsumption() => Consumption;
+          
+            public virtual decimal GetMaxSpeed() => MaxSpeed;
+           
 
             public int MoveInWay(int wayKm, int speed) => wayKm / speed;//реализован уже и можно просто использовать
 
@@ -71,9 +75,10 @@ namespace _2kLabsSharp_4
             int maxSpeed { get; set; }
             int minSpeed { get { return minSpeed; } set { minSpeed = 1; } }//1, чтобы при делении на 0 не было ошибки
 
-            public decimal GetPrice() => Price;
-            public decimal GetConsumption() => Consumption;
-            public decimal GetMaxSpeed() => maxSpeed;
+            public override decimal GetPrice() => Price;
+            public override int GetConsumption() => Consumption;
+            public override decimal GetMaxSpeed() => maxSpeed;
+
             public override void MaxSpeeds(int speed)
             {
                 if (speed > 0 && speed < 260) maxSpeed = speed; else maxSpeed = 260;
@@ -176,9 +181,7 @@ namespace _2kLabsSharp_4
             public string NameOrganization { get; set; }   // название транспорта
             public string Marka { get; set; }  // марка транспорта
             public string Number { get; set; } // номер транспорта
-            public decimal GetPrice() => Price;
-            public decimal GetConsumption() => Consumption;
-            public decimal GetMaxSpeed() => MaxSpeed;
+          
             int MaxSpeed { get; set; }
             int MinSpeed { get { return MinSpeed; } set { MinSpeed = 1; } }//1, чтобы при делении на 0 не было ошибки
 
@@ -187,7 +190,9 @@ namespace _2kLabsSharp_4
 
             public decimal Price { get; set; }
             public int Speed { get; set; }
-
+            public override decimal GetPrice() => Price;
+            public override int GetConsumption() => Consumption;
+            public override decimal GetMaxSpeed() => MaxSpeed;
             public void Move(int speed)
             {
                 Speed = speed;
@@ -269,7 +274,7 @@ namespace _2kLabsSharp_4
 
             public override string ToString()
             {
-                return "Класс: Express\nНаименование фирмы: " + NameOrganization + "\nМарка:" + Marka + "\nНомер:" + Number + "\nMaxSpeed:" +
+                return "Класс: Train\nНаименование фирмы: " + NameOrganization + "\nМарка:" + Marka + "\nНомер:" + Number + "\nMaxSpeed:" +
                  MaxSpeed + "\nРасход топлива на 100км: " + Consumption + "л\nЦена: " + Price + "$" + "\nМетоды: Move, MaxSpeed\nПереопределения:  toString()";
             }
         }
@@ -284,15 +289,16 @@ namespace _2kLabsSharp_4
             public string NameOrganization { get; set; }   // название транспорта
             public string Marka { get; set; }  // марка транспорта
             public string Number { get; set; } // номер транспорта
-           
+            public override decimal GetPrice() => Price;
+            public override int GetConsumption() => Consumption;
+            public override decimal GetMaxSpeed() => MaxSpeed;
+
             public readonly string ID;
             public int Consumption { get; set; }
             public decimal Price { get; set; }
             int MaxSpeed { get; set; }
             int minSpeed { get { return minSpeed; } set { minSpeed = 1; } }//1, чтобы при делении на 0 не было ошибки
-            public decimal GetPrice() => Price;
-            public decimal GetConsumption() => Consumption;
-            public decimal GetMaxSpeed() => MaxSpeed;
+      
             int wayKm { get { return wayKm; } set { if (value > 0) wayKm = value; else wayKm = 1; } }//сколько проехал км
 
             public int Speed { get; set; }
@@ -334,7 +340,6 @@ namespace _2kLabsSharp_4
                 this.Price = Price;
             }
 
-
             public sealed class Engine //двигатель
             {
                 string Type { get; set; }
@@ -347,8 +352,6 @@ namespace _2kLabsSharp_4
                 }
 
             }
-
-
 
             //переопределение всех методов унаследованных от object
             public override int GetHashCode()
@@ -386,45 +389,8 @@ namespace _2kLabsSharp_4
                      "toString(), Eguals()";
             }
 
-            //сработает при закрытии программы
-            ~Car()//неявное переопределение метода finalize()
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Объект class Car №{0} уничтожен", ID);
-                Console.Beep();//звук в конце будет
-            }
+         
         }
-
-        ///// чисто демонстрационное ///////////////////////////////////////////////////////////////////////////
-        class DemonStrationVirtual
-        {
-
-            public virtual void Show() { Console.WriteLine("Используется метод из DemonStrationVirtual"); }
-
-        }
-        class DemonStrarion : DemonStrationVirtual
-        {
-            public override void Show() { Console.WriteLine("Используется переопределенный метод из DemonStration"); }
-
-        }
-        //-----------------------------------------------------------------------------------------------------
-        interface ISay { void DoSay(); }
-
-        abstract class BaseSay { public abstract void DoSay(); }
-
-        class Demonstrations : BaseSay, ISay
-        {
-            const string name = "Methode";
-            public override void DoSay() { Console.WriteLine($"\n{name}: Привет из определенного абстрактного метода!\n"); }
-            void ISay.DoSay() { Console.WriteLine($"\n{name}: Привет из интерфейсного метода!\n"); }
-
-
-        }
-        //   interface ICloneable { bool DoClone(); }
-
-        // abstract class BaseClone { public abstract bool DoClone(); }
-        //   class UserClass : BaseClone, ICloneable
-        //  {       }
 
         class Printer
         {
@@ -440,8 +406,13 @@ namespace _2kLabsSharp_4
 
         static void Main(string[] args)
         {
+            Controller C1 = new Controller();
+
 
             Car Avto1 = new Car("Avtos", "Bently", "499212");
+            Transport Avto2 = new Car("Cars", "Zafira", "327878");
+            Car Avto3 = new Car("Avtos","A1","13451",150, 14, 14999);
+            Car Avto4 = new Car("Avtos","A2","23543",170, 10, 34999);
             Car.Engine EngineAvto1 = new Car.Engine();
 
             Train Train1 = new Train("TrainsOrg", "BelMark", "12");
@@ -452,48 +423,26 @@ namespace _2kLabsSharp_4
 
             Transport[] mas = new Transport[6];
             Transport Train2 = new Train("OrgTR", "RUS", "23");
-            Transport Avto2 = new Car("Cars", "Zafira", "327878");
+          
             Transport Express2 = new Express("ExpressSpeed", "JN", "123-A");
 
             Printer Print1 = new Printer();
+     
+           // mas[0] = Avto1; mas[1] = Train1; mas[2] = Train2; mas[3] = Avto2; mas[4] = Express2; mas[5] = Express1;
 
-            Demonstrations d1 = new Demonstrations();
-            DemonStrarion d2 = new DemonStrarion();
-
-            d1.DoSay();
-            ((ISay)d1).DoSay();
-
-            d2.Show();
-
-            Console.WriteLine(d1.GetType());
-            Console.WriteLine(d2.GetType());
-
-            Console.WriteLine($"\n\nПринадлежность d1 к классу Demonstrations: {d1 is Demonstrations}");
-            Console.WriteLine($"Принадлежность d2 к классу Demonstrations: {d2 is Demonstrations}");
-            Console.WriteLine($"Принадлежность d1 к классу DemonSrarions: {d1 is DemonStrarion}");
-            Console.WriteLine($"Принадлежность d2 к классу DemoSrarions: {d2 is DemonStrarion}\n\n");
-
-            Console.WriteLine($"Принадлежность (ISay)d1 к классу Demonstrations: {(ISay)d1 is Demonstrations}");
-            Console.WriteLine($"Принадлежность (d1 as ISay) к классу Demonstrations: {(d1 as ISay) is Demonstrations}");
-
-            Console.WriteLine($"Принадлежность (ISay)d1 к интерфейсу ISay:  {(ISay)d1 is ISay}");
-            Console.WriteLine($"Принадлежность (d1 as ISay) к интерфейсу ISay: {(d1 as ISay) is ISay}\n\n");
-
-            Console.WriteLine($"d1.GetType(): {d1.GetType()}");
-            Console.WriteLine($"((ISay)d1).GetType(): {((ISay)d1).GetType()}");
-            Console.WriteLine($"(d1 as ISay).GetType(): {(d1 as ISay).GetType()}\n\n");
-
-            mas[0] = Avto1; mas[1] = Train1; mas[2] = Train2; mas[3] = Avto2; mas[4] = Express2; mas[5] = Express1;
-
-
-            for (int i = 0; i < mas.Length; i++)
-            {
-                Console.WriteLine("\n\n");
-                Print1.IAmPrinting(mas[i]);
-                
-            }
             Console.WriteLine("\n\n");
 
+            C1.Add(Avto1); C1.Add(Avto2); C1.Add(Train1); C1.Add(Train2); C1.Add(Express1); C1.Add(Express2);
+            C1.Add(Avto3); C1.Add(Avto4);//добавление элементов в массив
+
+            C1.Show();//показать все записи
+            // Console.WriteLine($"Summ: {C1.Summ()}");
+            Console.WriteLine($"Summ: {C1.Summ()}");// показать сумму
+            C1.SortAvto();//вывести список авто сортированных по количеству употребляемого топлива
+            C1.DiapazonSpeed(160, 280);// вывести транспортные средства в диапазоне от 160 до 280 км в ч
+            C1.Show();
+            C1.Delete(1); C1.Delete(2); C1.Delete(3);//удалить обьекты из массива
+            C1.Show();
         }
     }
 }
