@@ -1,0 +1,434 @@
+@font-face {
+    font-family: MarckScript; /* Гарнитура шрифта */
+    src: url(./../fonts/MarckScript-Regular.ttf); /* Путь к файлу со шрифтом */
+   }
+@font-face {
+    font-family: YesevaOne; /* Гарнитура шрифта */
+    src: url(./../fonts/YesevaOne-Regular.ttf); /* Путь к файлу со шрифтом */
+   }
+  @font-face {
+    font-family: Neucha; /* Гарнитура шрифта */
+    src: url(./../fonts/Neucha-Regular.ttf); /* Путь к файлу со шрифтом */
+   }
+    
+
+html,body{background: black;}/*убирает отступы по краям страницы везде*/
+header {
+  position:relative;
+  width: 100%;
+  background: black;/*если цветом залить будет по бокам меню всякое*/
+  /*Две нижние строки для того, чтобы не было пустого пространства сверху*/
+  top: -16px;
+  margin-bottom: -16px;
+
+}
+
+/*style="position: absolute; top: -100px; z-index: 1;"  #292727*/
+.mprovemen{
+position:relative;
+z-index:125;
+padding:9px;
+font-size:30px;
+
+	font-family: MarckScript;
+
+color:yellow;/*#fcff6a*/
+float:left;
+width:17%}
+
+/*Цвет названия сайта в меню*/
+.mprovemen a{
+color:orange;
+}
+
+nav{
+position:relative;
+width:1100px;/*975px*/
+margin:0 auto;
+}
+/*Каркасные блоки*/
+#subenaroun, #subenaroun ul,#subenaroun ul li,#subenaroun ul li a,#subenaroun #kemergin-teconique{
+border:0;
+list-style:none;
+line-height:1;
+display:block;
+position:relative;
+border-radius: 10px;/*закругленное меню*/
+
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+
+box-sizing:border-box;
+
+}
+
+#subenaroun:after, #subenaroun > ul:after{
+content:'.'; 
+display:block;
+clear:both; 
+visibility:hidden; 
+/*умньшает пространство под меню*/
+line-height:0;
+height:0; 
+}
+/*???*/
+/* #subenaroun #kemergin-teconique{
+display:none} */
+
+/*цвет и шрифт основной панели меню*/
+#subenaroun{
+font-family:sans-serif;
+background:black;
+}/*#292727*/
+
+#subenaroun > ul > li{
+float:left}
+/*цвета надписей в меню в самом начале*/
+#subenaroun > ul > li > a{
+padding:18px;
+font-size:12px;
+letter-spacing:1px;
+text-decoration:none;
+color:yellow;/*#e6e5e5*/
+font-weight:700;
+}
+/*активные цвета надписей в меню в самом начале*/
+#subenaroun > ul > li:hover > a,#subenaroun ul li.gechnique a{
+color:black;/*#fffbfb*/
+ text-shadow: red 0 0 10px; /* Свечение голубого цвета */
+}
+/*цвет активных блоков в меню*/
+#subenaroun > ul > li:hover,#subenaroun ul li.gechnique:hover,#subenaroun ul li.gechnique,#subenaroun ul li.has-sub.gechnique:hover {
+background:yellow!important;/*#0e4c79!important если убрать последнее слово, то активные блоки будут серые в мобильном меню*/
+-webkit-transition:background .5s ease;
+-ms-transition:background .5s ease;
+transition:background .5s ease;
+}
+
+#subenaroun > ul > li.has-sub > a{
+padding-right:30px}/*расположение горизонтальной черты плюса*/
+
+#subenaroun > ul > li.has-sub > a:after{
+position:absolute;
+top:22px;/*расположение вертикальной черты плюса*/
+right:11px;
+width:8px;
+height:2px;
+display:block;
+background:yellow;/*цвет вертикальной черты*/
+content:''}
+/*цвет и исчезание вертикальной черты в исходном меню*/
+#subenaroun > ul > li.has-sub > a:before{
+position:absolute;
+top:19px;
+right:14px;
+display:block;
+width:2px;
+height:8px;
+background:yellow;/*#ddd*/
+content:'';
+-webkit-transition:all .30s ease;
+-ms-transition:all .30s ease;
+transition:all .30s ease}
+/*исчезание вертикальной палочки в меню*/
+#subenaroun > ul > li.has-sub:hover > a:before{
+top:24px;
+height:0;
+}
+
+#subenaroun ul ul{
+position:absolute;
+left:-9999px}
+/*блок в развернутом меню*/
+#subenaroun ul ul li{
+height:0;
+
+
+-webkit-transition:all .30s ease;
+-ms-transition:all .30s ease;
+background:black;/*#1f1d1d*/
+transition:all .30s ease}
+/*цвет активных блоков внутри меню*/
+#subenaroun ul ul li:hover{
+	background: yellow;
+}
+
+#subenaroun li:hover > ul{
+left:auto}
+
+#subenaroun li:hover > ul > li{
+height:35px;
+
+}
+
+#subenaroun ul ul ul{
+margin-left:100%;/*вынести развернувшийся блок по максимум влево*/
+top:0;/*высота появления блока при наведении на развертывающийся элемент меню*/
+background:  orange;/*Можно заполнить цветом и не будет пусто! Во свернутом режиме в самой глубокой вкладке цвет тоже виден*/}
+/*работа с оформлением внутренних блоково и текста */
+#subenaroun ul ul li a{
+border-bottom:1px solid yellow;/*rgba(150,150,150,0.15) цвет между блоками при разворачивании меню*/
+padding:11px 15px;
+width:165px;
+font-size:12px;
+text-decoration:none;
+color:yellow;/*#e0dbdb цвет текста в разворачивании меню*/
+font-weight:400;
+}
+
+#subenaroun ul ul li:last-child > a,#subenaroun ul ul li.last-item > a{
+border-bottom:0}
+
+/*Цвет выделенного блока*/
+#subenaroun ul ul li:hover > a,#subenaroun ul ul li a:hover{
+color:red;}/*#f5f3f3*/
+
+#subenaroun ul ul li.has-sub > a:after{
+position:absolute;
+top:16px;/*расположение черты плюса вкладки*/
+right:11px;
+width:8px;
+height:2px;
+display:block;
+background:yellow;/*горизонтальная полоса во вкладке*/
+content:''}
+
+#subenaroun ul ul li.has-sub > a:before{
+position:absolute;
+top:13px;/*расположение черты плюса вкладки*/
+right:14px;
+display:block;
+width:2px;
+height:8px;
+background:yellow; /*вертикальная полоса во вкладке*/
+content:'';/*блок, куда можно что-то свое вставить... он имеет белый цвет, используется тут как плюсики*/
+-webkit-transition:all .30s ease;
+-ms-transition:all .30s ease;
+transition:all .30s ease}
+
+#subenaroun ul ul > li.has-sub:hover > a:before{/*с чертами связано*/
+top:17px;/*17px */
+height:0;/*0*/
+}
+/*Цвет внутренней вкладки меню и активной развернутой внутренней вкладки меню*/
+#subenaroun ul ul li.has-sub:hover,#subenaroun ul li.has-sub ul li.has-sub ul li:hover{
+background:orange;
+/*#2f2d2d*/
+}
+/*??? без него не работает уменьшенное меню*/
+ #subenaroun ul ul ul li.gechnique a{
+border-left:1px solid green;}
+
+ #subenaroun > ul > li.has-sub > ul > li.gechnique > a,#subenaroun > ul ul > li.has-sub > ul > li.gechnique> a{
+border-top:1px solid red}/* #2d2c2c*/
+
+/*-------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------Срабатывает при уменьшении экрана-------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------*/
+
+@media screen and (max-width:1000px){
+
+
+.mprovemen{
+position:absolute;
+top:0;
+left: 0;
+width:100%;
+height:46px;
+text-align:center;
+padding:10px 0 0 0;
+float:none;
+  }
+
+.mprovemen2{
+display:none;
+  }
+
+nav{
+width:100%;
+}
+
+#subenaroun{
+width:100%;
+  }
+
+#subenaroun ul{
+width:100%;
+display:none;
+  }
+
+#subenaroun ul li{
+width:100%;
+border-top:1px solid pink;}
+/* 
+#subenaroun ul li:hover{
+background:red;
+}
+ */
+#subenaroun ul ul li,#subenaroun li:hover > ul > li{
+height:auto}
+
+#subenaroun ul li a,#subenaroun ul ul li a{
+width:100%;
+border-bottom:0}
+
+#subenaroun > ul > li{
+float:none}
+
+#subenaroun ul ul li a{
+padding-left:25px}
+
+#subenaroun ul ul li{
+background:black!important;/*#2b2a2a цвет внутренних вкладок */
+}
+
+#subenaroun ul ul li:hover{
+background:gold!important}/*#353434 цвет активных внутренних вкладок*/
+
+#subenaroun ul ul ul li a{
+padding-left:35px}
+
+#subenaroun ul ul li a{
+color: yellow;/*#e6dfdf  цвет текста*/
+background:none}
+
+#subenaroun ul ul li:hover > a,#subenaroun ul ul li.gechnique > a{
+color:black;}/*вет активного текста*/
+
+#subenaroun ul ul,#subenaroun ul ul ul{
+position:relative;
+left:0;
+width:100%;
+margin:0;
+text-align:left;}
+
+#subenaroun > ul > li.has-sub > a:after, #subenaroun > ul > li.has-sub > a:before, #subenaroun ul ul > li.has-sub > a:after, #subenaroun ul ul > li.has-sub > a:before{
+display:none;}
+/*??*/
+#subenaroun #kemergin-teconique{
+display:block;
+padding:23px;
+color:green;/*#e0dcdc*/
+font-size:12px;
+font-weight:700;}
+
+.sponsiveweb{
+width:55px;
+height:46px;
+position:absolute;
+right:0;
+top:0;
+cursor:pointer;
+z-index: 12399994;
+}
+/*расположение верхних 3 палочек*/
+.sponsiveweb:after{
+position:absolute;
+top:22px;
+right:20px;
+display:block;
+height:4px;
+width:20px;
+border-top:2px solid orange;/*#e0e0e0*/
+border-bottom:2px solid orange;
+content:''}
+/*расположение верхней палочки*/
+.sponsiveweb:before{
+-webkit-transition:all .5s ease;
+-ms-transition:all .5s ease;
+transition:all .5s ease;
+position:absolute;
+top:16px;
+right:20px;
+display:block;
+height:2px;
+width:20px;
+background:red;/*#ddd*/
+content:''}
+/*изменение значка при нажатии*/
+.sponsiveweb.menu-opened:after{
+-webkit-transition:all .5s ease;
+-ms-transition:all .5s ease;
+transition:all .5s ease;
+top:23px;
+border:0;
+height:2px;
+width:19px;
+background:orange;/*#fff*/
+-webkit-transform:rotate(45deg);
+-moz-transform:rotate(45deg);
+-ms-transform:rotate(45deg);
+-o-transform:rotate(45deg);
+transform:rotate(45deg)}
+
+.sponsiveweb.menu-opened:before{
+top:23px;
+background:red;
+width:19px;
+-webkit-transform:rotate(-45deg);
+-moz-transform:rotate(-45deg);
+-ms-transform:rotate(-45deg);
+-o-transform:rotate(-45deg);
+transform:rotate(-45deg)}
+
+/*---------------------------------------------------------*/
+/*боковая линия от плюсов*/
+#subenaroun .submenu-sponsiveweb{
+position:absolute;
+z-index:99;
+right:0;
+top:0;
+display:block;
+border-left:1px solid yellow;/*#3e3c3c*/
+height:46px;
+width:46px;
+cursor:pointer}
+/*цвет открытых блоков с минусом*/
+#subenaroun .submenu-sponsiveweb.submenu-opened{
+background:black;}/*#312f2f*/
+
+#subenaroun ul ul .submenu-sponsiveweb{
+height:32px;
+width:32px}
+/*горизонтальная черта плюса*/
+#subenaroun .submenu-sponsiveweb:after{
+position:absolute;
+top:22px;
+right:19px;
+width:8px;
+height:2px;
+display:block;
+background:yellow;/*#d8d1d1*/
+content:''}
+
+#subenaroun ul ul .submenu-sponsiveweb:after{
+top:15px;
+right:13px}
+
+#subenaroun .submenu-sponsiveweb.submenu-opened:after{
+background:yellow;}/*цвет минуса после нажатия на плюс*/
+
+#subenaroun .submenu-sponsiveweb:before{
+position:absolute;
+top:19px;
+right:22px;
+display:block;
+width:2px;
+height:8px;
+background: yellow;/*#ddd; цвет вертикальной черты в плюсе*/
+content:''}
+
+#subenaroun ul ul .submenu-sponsiveweb:before{
+top:12px;
+right:16px}
+
+#subenaroun .submenu-sponsiveweb.submenu-opened:before{
+display:none}
+
+#subenaroun ul ul ul li.gechnique a{
+border-left:none}
+
+#subenaroun > ul > li.has-sub > ul > li.gechnique > a,#subenaroun > ul ul > li.has-sub > ul > li.gechnique > a{
+border-top:none}
+
+}

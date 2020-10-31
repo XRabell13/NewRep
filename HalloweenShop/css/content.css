@@ -1,0 +1,179 @@
+main{	
+  background: gold;
+  width:75%; 
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.2);
+ 
+}
+
+section{
+	margin: 0 auto;	
+	background: rgba(0, 0, 0, 0.5);
+	
+}
+figure img{
+  object-fit: contain;
+  width: 90%;
+  margin-top: 25px;
+  height: 230px;
+  
+} 
+figure:hover{
+	-webkit-transform: scale(1.05);
+ -moz-transform: scale(1.05);
+ -o-transform: scale(1.05);
+}
+figure{
+	 position:relative; 
+	background-color: white;
+ border-radius: 3px;
+ height: 250px;
+ display: inline-block;
+ padding: 0;
+ width: 22.5%;
+ position: relative;
+
+ color: white;
+ margin:12px;
+ text-align: center; 
+ 
+  -moz-transition: all 0.5s ease-out;
+ -o-transition: all 0.5s ease-out;
+ -webkit-transition: all 0.5s ease-out;
+}
+
+figure figcaption div {font-size: 10px; background: darkorange;}
+
+figure figcaption{
+	color: red;
+	background: orange;
+	
+	position: absolute;/*поскольку у родителя позиция фиксированная, при аюсолютной позиции его потомка расположение элементов будет изменяться относительно родителя*/
+	margin: 0 auto;
+	width: 100%;
+	
+}
+
+figure figcaption:first-child{
+	margin-top: 10px;
+	color: darkred;
+	font-size: 20px;
+	font-family: YesevaOne;
+	
+}
+figure figcaption:last-child{
+	margin-top: -10px;
+	color: darkred;
+	font-size: 15px;
+	font-family: YesevaOne;
+	border-radius: 3px;
+}
+figure:last-child{
+        margin-right: 0px;           	
+} 
+
+.image{
+	overflow:hidden;
+}
+
+#generals{
+	font-family: MarckScript;
+	font-size: 70px;
+	font-weight: 600;
+	text-align:center;
+	
+	margin-top: 10px;
+	border: 12px outset gold;
+	background-Repeat: no-repeat;
+    background-position: center center;
+    background-Attachment: cover;
+    background-Size: cover;
+	width: 80%;
+	height: 100px;
+	margin: 0 auto;
+	
+	 -moz-transition: all 0.5s ease-out;
+	 -o-transition: all 0.5s ease-out;
+     -webkit-transition: all 0.5s ease-out;
+}
+
+a{
+	text-decoration: none;
+}
+
+.topcontent_sweet {
+	color: white;
+	-webkit-text-stroke: 0.3px black;
+	
+	
+}
+.topcontent_sweet{background: url(./../images/sweet.jpg);}
+
+.topcontent_costumes {
+	color: orange;
+	-webkit-text-stroke: 0.3px darkred;
+
+	
+}
+.topcontent_costumes{background: url(./../images/costumes.jpg);}
+
+.topcontent_stickers {
+	color: red;
+	-webkit-text-stroke: 0.2px black;
+	
+	
+}
+.topcontent_stickers{background: url(./../images/stickers.jpg);}
+
+.topcontent_sweet:hover, .topcontent_costumes:hover, .topcontent_stickers:hover{
+ -webkit-transform: scale(1.05);
+ -moz-transform: scale(1.05);
+ -o-transform: scale(1.05);
+ }
+
+main h2{
+	 
+    text-shadow: #5dc8e5 0 0 10px; /* Свечение голубого цвета */
+
+	margin: 0 auto;
+	color: white;
+	text-align: center;
+	font-size: 40px;
+}
+
+ 
+
+footer{
+	
+	color: white;
+	padding: 0px;
+	margin-bottom: -100px;
+	top: -100px; 
+	background-color: rgba(0, 0, 0, 0.9);
+	padding-top:15px;
+}
+
+
+
+@media screen and (max-width:1495px){
+#generals{font-size: 40px;}
+
+
+}
+@media screen and (max-width:1480px){
+figure{width: 30%;}
+
+}
+@media screen and (max-width:1380px){
+figure{width: 45%; }
+
+}
+@media screen and (max-width:1000px){
+#generals{font-size: 40px;}
+
+}
+@media screen and (max-width:730px){
+figure{width: 92%; }
+
+}
+
