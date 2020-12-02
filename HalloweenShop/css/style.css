@@ -1,0 +1,63 @@
+.overlay {
+  position: fixed;
+  z-index: 235;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.6); /* затемнение фона */
+  display: none;
+}
+.overlay.active {
+	
+  display: block;
+}
+.overlay .flex-popap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay .flex-popap .popap {
+  position: relative;
+  border-radius: 10px;
+  background-color: #fff;  /* цвет фона всплывающего блока */
+  padding: 35px 25px;
+  margin: 0 10px;
+  max-width: 55%;
+  height: 94%;
+  overflow: auto;
+  /*цвет фона модального окна*/
+}
+
+.popap span {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.popap span:first-child{ /*для сущности крестика*/
+  font-size: 35px;
+   top: 5px;
+  right: 15px;
+}
+.close_popap
+{
+	border-radius: 100px;
+}
+ @media only screen and (max-width:1200px){
+   .overlay .flex-popap .popap { max-width: 68%; }
+  
+}
+ @media only screen and (max-width:900px){
+   .overlay .flex-popap .popap { max-width: 80%; }
+  
+}
+ @media only screen and (max-width:500px){
+   .overlay .flex-popap .popap { max-width: 85%; }
+  
+}
+
+ 

@@ -2,8 +2,8 @@
 <html>
 <head>
 
-<title> Home | HallowenShop </title>	
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.min.css" />
+<title> Costumes | HallowenShop </title>	
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css\menu.css"/>
 	<link rel="stylesheet" type="text/css" href="css\content.css"/>
@@ -31,7 +31,7 @@
 <ul>
 <li class='gechnique'><a href='home.html'>Главная</a></li>
 
-<li><a href='#'>FAQ</a></li>
+<li><a href='#'>SEO</a></li>
 
 <li><a href='#'>Акции</a>
   <ul>
@@ -61,120 +61,41 @@
 
 <li><a href='#'>Избранное &#128155;</a></li>
 <li><a href='#'>Корзина</a></li>
-<li><a onclick="show_popap('modal-R')" href='#'>Вход|Регистрация</a></li>
+<li><a href='#'>Вход|Регистрация</a></li>
 </ul>
 
 </nav>
-<div class="overlay" id="modal-R">
-  <div class="flex-popap">
-    <div class="popap">
-      <span class="close_popap">&#8855;</span>
-	 <h3>Вход</h3>
-        <form role="form" action="/requestFine" autocomplete="off" method="POST">
-         <br/> <label>Логин или E-mail</label><br/>
-          <input type="text" name="nameReq">
-          <br/><label>Пароль:</label><br/>
-          <input type="text" name="lastNameReq">
-        
-        <br/> <br/> <button type="button" class="btn">Отправить</button>
-		<br/><a href="Registration.html" >Впервые на нашем сайте? Зарегистрироваться</a>
-		</form> 
- </div>
-  </div>
-</div>
-     
-
-<!-----------------------------------------------------------Модальные окна------------------------------------------------------------------------>
-
-<div class="overlay" id="modal-1">
-  <div class="flex-popap">
-    <div class="popap">
-      <span class="close_popap">&#8855;</span>
-	 
-     <div class = "inf">
-	 
-	 <img  src="images/costumes/costumes_001.jpg" alt = "Маг" title="Маг"/>
-	 <h2>Маг</h2>
-	  <div class="product-grid" >
-	   <ul class="rating">
-                      <li class="fas fa-star"></li>
-                      <li class="fas fa-star"></li>
-                      <li class="fas fa-star"></li>
-                      <li class="fas fa-star"></li>
-                      <li class="far fa-star"></li>
-       </ul>
-	  </div>
-	 <div class="PriceAndOpis"><div><b>Цена:</b> $39.99<br><br><b>О товаре.</b>
-<br><b>Состав:</b> Полиэстер - 100%
-<br><b>Материал подкладки:</b> Хлопок - 100%
-<br><b>Цвет:</b> Черный, красный
-<br><b>Узор:</b> однотонный
-<br><b>Страна производства:</b> США
-<br><b>Застежка:</b> нет
-<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
-<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
-<br><b>Количество на складе:</b> Достаточно 
-<br><b>Артикул:</b> SE001EGLBJW3
-
-<br><br>
-Будьте ужасны и незабываемы в ночь Хеллоуина!
-
-</div></div>
-<div class="buttons" >
-
-	 <a class="add-to-cart" href="#">
-                     <i class="fas fa-shopping-cart"></i></a>
-					  <a class="add-to-cart" href="#">
-                     <i class="far fa-heart"></i></a>
-					  <a class="add-to-cart" href="#">
-                     <i class="fas fa-random"></i>
-					 
-                  </a>	 		 
-	 </div>
-	<div>
-  </div>
- </div>
-</div>  
-</div>
-</div> 	 
 
 </header>
-
-<!-----------------------------------------------------------Товары------------------------------------------------------------------------>
 
 <main>
 
 
 
-<h2 id = 'popSection'>&#127875;Популярные разделы!&#127875;</h2>
-
-<a href="#"><div class='topcontent_sweet' id='generals'>СЛАДОСТИ</div></a>
-<a href="costumes.html"><div class='topcontent_costumes' id='generals'>КОСТЮМЫ</div></a>
-<a href="#"><div class='topcontent_stickers' id='generals'>НАКЛЕЙКИ</div></a>
-
-<h2 id = 'popGoods'>&#128375;Популярные товары!&#128375;</h2>
-
 <section>
 
+<h2 id = 'popSection'>Костюмы</h2><br>
 <div class="container">
   <div class="row">
      
-	     
-	  <div class="col-md-3 col-sm-6">
-          <div class="product-grid" >
+	  
+		 <div class="col-md-3 col-sm-6">
+          <div class="product-grid">
               <div class="product-image">
                   <a href="#" class="image">
-                      <img class="pic-1" src="images/costumes/costumes_001.jpg" alt = "Маг" title="Маг" onclick="show_popap('modal-1')">
+                      <img class="pic-1" src="images/costumes/costumes_010.jpg" alt = "Египетская мумия" title="Египетская мумия" onclick="show_popap('modal-10')">
                   </a>
-                  <span class="product-new-label"><span>Скидка $10.00</span></span>
+                  <span class="product-new-label"><span>Новинка</span></span>
                   <ul class="social">
-                      <li><a  onclick="show_popap('modal-1')"><i class="fas fa-search" ></i></a></li>
+                      <li><a  onclick="show_popap('modal-10')"><i class="fas fa-search" ></i></a></li>
                       <li><a href="" ><i class="far fa-heart"></i></a></li>
                       <li><a href="" ><i class="fas fa-random"></i></a></li>
                   </ul>
               </div>
               <div class="product-content">
-                  <h3 class="title"><a href="#" >Маг</a></h3>
+                  <h3 class="title"><a href="#">Проклятая монашка</a></h3>
+                 
+                 
                   <ul class="rating">
                       <li class="fas fa-star"></li>
                       <li class="fas fa-star"></li>
@@ -183,13 +104,12 @@
                       <li class="far fa-star"></li>
                   </ul>
                   <a class="add-to-cart" href="#">
-                     <i class="fas fa-shopping-cart"></i> <span>$39.99</span>
+                     <i class="fas fa-shopping-cart"></i> <span>$59.99</span>
                   </a>
               </div>
           </div>
       </div>
-	  
-	  	  <div class="col-md-3 col-sm-6">
+	      <div class="col-md-3 col-sm-6">
           <div class="product-grid"  >
               <div class="product-image">
                   <a href="#" class="image">
@@ -220,6 +140,36 @@
           </div>
       </div>
 	  
+	  <div class="col-md-3 col-sm-6">
+          <div class="product-grid" >
+              <div class="product-image">
+                  <a href="#" class="image">
+                      <img class="pic-1" src="images/costumes/costumes_001.jpg" alt = "Маг" title="Маг" onclick="show_popap('modal-1')">
+                  </a>
+                  <span class="product-new-label"><span>Скидка $10.00</span></span>
+                  <ul class="social">
+                      <li><a  onclick="show_popap('modal-1')"><i class="fas fa-search" ></i></a></li>
+                      <li><a href="" ><i class="far fa-heart"></i></a></li>
+                      <li><a href="" ><i class="fas fa-random"></i></a></li>
+                  </ul>
+              </div>
+              <div class="product-content">
+                  <h3 class="title"><a href="#" >Маг</a></h3>
+                  <ul class="rating">
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                  </ul>
+                  <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i> <span>$39.99</span>
+                  </a>
+              </div>
+          </div>
+      </div>
+	  
+	  	 
 	  <div class="col-md-3 col-sm-6">
           <div class="product-grid"  >
               <div class="product-image">
@@ -317,7 +267,7 @@
           <div class="product-grid" >
               <div class="product-image">
                   <a href="#" class="image">
-                      <img class="pic-1" src="images/stickers/stickers_001.jpg" alt = "Наклейки" title="Наклейки" onclick="show_popap('modal-6')">
+                      <img class="pic-1" src="images/costumes/costumes_006.jpg" alt = "Демон в плаще" title="Демон в плаще" onclick="show_popap('modal-6')">
                   </a>
                  
                   <ul class="social">
@@ -327,7 +277,7 @@
                   </ul>
               </div>
               <div class="product-content">
-                  <h3 class="title"><a href="#">Наклейки(4 листа)</a></h3>
+                  <h3 class="title"><a href="#">Демон в плаще</a></h3>
                  
                  
                   <ul class="rating">
@@ -338,7 +288,7 @@
                       <li class="far fa-star"></li>
                   </ul>
                   <a class="add-to-cart" href="#">
-                     <i class="fas fa-shopping-cart"></i> <span>$6.99</span>
+                     <i class="fas fa-shopping-cart"></i> <span>$66.99</span>
                   </a>
               </div>
           </div>
@@ -347,9 +297,9 @@
           <div class="product-grid"  >
               <div class="product-image">
                   <a href="#" class="image">
-                      <img class="pic-1" src="images/stickers/stickers_002.jpg" alt = "Черные наклейки" title="Черные наклейки" onclick="show_popap('modal-7')">
+                      <img class="pic-1" src="images/costumes/costumes_007.jpg" alt = "Маньяк в черном" title="Маньяк в черном" onclick="show_popap('modal-7')">
                   </a>
-                  <span class="product-new-label"><span>Скидка $1.00</span></span>
+                  
                   <ul class="social">
                       <li><a  onclick="show_popap('modal-7')"><i class="fas fa-search"></i></a></li>
                       <li><a href="" ><i class="far fa-heart"></i></a></li>
@@ -357,18 +307,18 @@
                   </ul>
               </div>
               <div class="product-content">
-                  <h3 class="title"><a href="#">Черные наклейки(6 листов)</a></h3>
+                  <h3 class="title"><a href="#">Маньяк в черном</a></h3>
                  
                  
                   <ul class="rating">
                       <li class="fas fa-star"></li>
                       <li class="fas fa-star"></li>
                       <li class="fas fa-star"></li>
-                      <li class="far fa-star"></li>
+                      <li class="fas fa-star"></li>
                       <li class="far fa-star"></li>
                   </ul>
                   <a class="add-to-cart" href="#">
-                     <i class="fas fa-shopping-cart"></i> <span>$12.99</span>
+                     <i class="fas fa-shopping-cart"></i> <span>$52.99</span>
                   </a>
               </div>
           </div>
@@ -435,22 +385,22 @@
               </div>
           </div>
       </div>
-	  	 
-		 <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
+	  		 
+			 <div class="col-md-3 col-sm-6">
+          <div class="product-grid" >
               <div class="product-image">
                   <a href="#" class="image">
-                      <img class="pic-1" src="images/costumes/costumes_010.jpg" alt = "Египетская мумия" title="Египетская мумия" onclick="show_popap('modal-10')">
+                      <img class="pic-1" src="images/costumes/costumes_011.jpg" alt = "Монстр с черепом" title="Монстр с черепом" onclick="show_popap('modal-11')">
                   </a>
-                  <span class="product-new-label"><span>Новинка</span></span>
+        
                   <ul class="social">
-                      <li><a  onclick="show_popap('modal-10')"><i class="fas fa-search" ></i></a></li>
+                      <li><a  onclick="show_popap('modal-11')"><i class="fas fa-search" ></i></a></li>
                       <li><a href="" ><i class="far fa-heart"></i></a></li>
                       <li><a href="" ><i class="fas fa-random"></i></a></li>
                   </ul>
               </div>
               <div class="product-content">
-                  <h3 class="title"><a href="#">Проклятая монашка</a></h3>
+                  <h3 class="title"><a href="#">Монстр с черепом</a></h3>
                  
                  
                   <ul class="rating">
@@ -461,7 +411,38 @@
                       <li class="far fa-star"></li>
                   </ul>
                   <a class="add-to-cart" href="#">
-                     <i class="fas fa-shopping-cart"></i> <span>$59.99</span>
+                     <i class="fas fa-shopping-cart"></i> <span>$74.99</span>
+                  </a>
+              </div>
+          </div>
+      </div>
+	  
+	   <div class="col-md-3 col-sm-6">
+          <div class="product-grid" >
+              <div class="product-image">
+                  <a href="#" class="image">
+                      <img class="pic-1" src="images/costumes/costumes_012.jpg" alt = "Фанатик" title="Фанатик" onclick="show_popap('modal-12')">
+                  </a>
+        
+                  <ul class="social">
+                      <li><a  onclick="show_popap('modal-12')"><i class="fas fa-search" ></i></a></li>
+                      <li><a href="" ><i class="far fa-heart"></i></a></li>
+                      <li><a href="" ><i class="fas fa-random"></i></a></li>
+                  </ul>
+              </div>
+              <div class="product-content">
+                  <h3 class="title"><a href="#">Фанатик</a></h3>
+                 
+                 
+                  <ul class="rating">
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+                  </ul>
+                  <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i> <span>$69.99</span>
                   </a>
               </div>
           </div>
@@ -481,14 +462,10 @@
 </div>
 
 <footer >
-<b>ФИО: </b>Цягунович Татьяна Валерьевна<br/>
-<b>Факультет: </b>Факультет информационных технологий (ФИТ)<br/>
-<b>Специальность: </b>Программное обеспечение информационной безопасности мобильных систем(ПОИБМС)<br/>
-<b>Группа: </b>10<br/>
-<b>Год: &copy;</b>2020<br/>
+
 </footer>
 
 </body>
-	<script src="js\locwindow.js"></script>
+<script src="js\locwindow.js"></script>
 <script src="js\background_change.js"></script><!-- Обязательно должен быть снизу, ибо срабатывает после загрузки страницы. -->
 </html>

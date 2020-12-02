@@ -16,14 +16,14 @@ html,body{background: black;}/*убирает отступы по краям с�
 header {
   position:relative;
   width: 100%;
-  background: black;/*если цветом залить будет по бокам меню всякое*/
+  background: black;
   /*Две нижние строки для того, чтобы не было пустого пространства сверху*/
   top: -16px;
   margin-bottom: -16px;
 
 }
 
-/*style="position: absolute; top: -100px; z-index: 1;"  #292727*/
+
 .mprovemen{
 position:relative;
 z-index:125;
@@ -40,6 +40,8 @@ width:17%}
 .mprovemen a{
 color:orange;
 }
+
+
 
 nav{
 position:relative;
@@ -71,35 +73,32 @@ visibility:hidden;
 line-height:0;
 height:0; 
 }
-/*???*/
-/* #subenaroun #kemergin-teconique{
-display:none} */
 
 /*цвет и шрифт основной панели меню*/
 #subenaroun{
 font-family:sans-serif;
 background:black;
-}/*#292727*/
+}
 
 #subenaroun > ul > li{
 float:left}
-/*цвета надписей в меню в самом начале*/
+
 #subenaroun > ul > li > a{
 padding:18px;
 font-size:12px;
 letter-spacing:1px;
 text-decoration:none;
-color:yellow;/*#e6e5e5*/
+color:yellow;/*цвета надписей в исходном меню*/
 font-weight:700;
 }
-/*активные цвета надписей в меню в самом начале*/
+
 #subenaroun > ul > li:hover > a,#subenaroun ul li.gechnique a{
-color:black;/*#fffbfb*/
- text-shadow: red 0 0 10px; /* Свечение голубого цвета */
+color:black;/*активные цвета надписей в меню в самом начале*/
+ text-shadow: red 0 0 10px; /* Свечение красного цвета */
 }
 /*цвет активных блоков в меню*/
 #subenaroun > ul > li:hover,#subenaroun ul li.gechnique:hover,#subenaroun ul li.gechnique,#subenaroun ul li.has-sub.gechnique:hover {
-background:yellow!important;/*#0e4c79!important если убрать последнее слово, то активные блоки будут серые в мобильном меню*/
+background:yellow!important;
 -webkit-transition:background .5s ease;
 -ms-transition:background .5s ease;
 transition:background .5s ease;
@@ -125,7 +124,7 @@ right:14px;
 display:block;
 width:2px;
 height:8px;
-background:yellow;/*#ddd*/
+background:yellow;
 content:'';
 -webkit-transition:all .30s ease;
 -ms-transition:all .30s ease;
@@ -164,7 +163,7 @@ height:35px;
 #subenaroun ul ul ul{
 margin-left:100%;/*вынести развернувшийся блок по максимум влево*/
 top:0;/*высота появления блока при наведении на развертывающийся элемент меню*/
-background:  orange;/*Можно заполнить цветом и не будет пусто! Во свернутом режиме в самой глубокой вкладке цвет тоже виден*/}
+background: black;}
 /*работа с оформлением внутренних блоково и текста */
 #subenaroun ul ul li a{
 border-bottom:1px solid yellow;/*rgba(150,150,150,0.15) цвет между блоками при разворачивании меню*/
@@ -215,12 +214,12 @@ height:0;/*0*/
 background:orange;
 /*#2f2d2d*/
 }
-/*??? без него не работает уменьшенное меню*/
+
  #subenaroun ul ul ul li.gechnique a{
 border-left:1px solid green;}
 
  #subenaroun > ul > li.has-sub > ul > li.gechnique > a,#subenaroun > ul ul > li.has-sub > ul > li.gechnique> a{
-border-top:1px solid red}/* #2d2c2c*/
+border-top:1px solid red}
 
 /*-------------------------------------------------------------------------------------------------------------*/
 /*---------------------------------Срабатывает при уменьшении экрана-------------------------------------------*/
@@ -259,12 +258,8 @@ display:none;
 
 #subenaroun ul li{
 width:100%;
-border-top:1px solid pink;}
-/* 
-#subenaroun ul li:hover{
-background:red;
-}
- */
+border-top:1px solid purple;}/*цвет полос между пунктами меню в его мобильной версии*/
+
 #subenaroun ul ul li,#subenaroun li:hover > ul > li{
 height:auto}
 
@@ -283,7 +278,7 @@ background:black!important;/*#2b2a2a цвет внутренних вкладо�
 }
 
 #subenaroun ul ul li:hover{
-background:gold!important}/*#353434 цвет активных внутренних вкладок*/
+background:orange!important}/*цвет активных внутренних вкладок*/
 
 #subenaroun ul ul ul li a{
 padding-left:35px}
@@ -293,7 +288,7 @@ color: yellow;/*#e6dfdf  цвет текста*/
 background:none}
 
 #subenaroun ul ul li:hover > a,#subenaroun ul ul li.gechnique > a{
-color:black;}/*вет активного текста*/
+color:black;}/*цвет активного текста*/
 
 #subenaroun ul ul,#subenaroun ul ul ul{
 position:relative;
@@ -319,7 +314,7 @@ position:absolute;
 right:0;
 top:0;
 cursor:pointer;
-z-index: 12399994;
+z-index: 223;
 }
 /*расположение верхних 3 палочек*/
 .sponsiveweb:after{

@@ -3,77 +3,79 @@ main{
   width:75%; 
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.2);
- 
+  padding-bottom: 0px; 
 }
+
+.inf{
+
+	display: flex-block;
+	float: left;/*при уменьшении экрана флоат делать у обоих ноне*/
+	width: 100%;
+	margin-top:5%;
+	
+	}
+.inf h2 
+	{
+		margin:0;
+		font-size: 35px;
+		text-align: center;
+	}
+.inf .PriceAndOpis
+{
+	font-size: 18px;
+	background-color: rgba(255, 255, 255, 0.3);
+	width: 100%;
+	border-radius: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+
+.inf div:first-child{padding-left: 10px;}
+
+.inf img
+{
+	display:flex-block;	
+	width: 50%;
+	height: auto;
+	float: left;
+	margin-top: 5%;
+	border-radius: 10px;
+	background: none;
+	
+}
+.buttons{margin-left:25%;}
+.buttons .add-to-cart i{
+    color: red;
+    background-color:  white;
+    text-align: center;
+    line-height: 35px;
+    height: 35px;
+    width: 75px;
+    border-right: 1px solid black;
+	border-radius: 10px;
+    display: inline-block;
+	
+}
+
+.buttons .add-to-cart i:hover{
+    color: white;
+    background: red;
+}
+
+
 
 section{
 	margin: 0 auto;	
-	background: rgba(0, 0, 0, 0.5);
-	
-}
-figure img{
-  object-fit: contain;
-  width: 90%;
-  margin-top: 25px;
-  height: 230px;
-  
-} 
-figure:hover{
-	-webkit-transform: scale(1.05);
- -moz-transform: scale(1.05);
- -o-transform: scale(1.05);
-}
-figure{
-	 position:relative; 
-	background-color: white;
- border-radius: 3px;
- height: 250px;
- display: inline-block;
- padding: 0;
- width: 22.5%;
- position: relative;
-
- color: white;
- margin:12px;
- text-align: center; 
- 
-  -moz-transition: all 0.5s ease-out;
- -o-transition: all 0.5s ease-out;
- -webkit-transition: all 0.5s ease-out;
+	background: rgba(0, 0, 0, 0.4);
+	padding-bottom: 15px;
+	padding-top: 10px;
 }
 
-figure figcaption div {font-size: 10px; background: darkorange;}
-
-figure figcaption{
-	color: red;
-	background: orange;
-	
-	position: absolute;/*поскольку у родителя позиция фиксированная, при аюсолютной позиции его потомка расположение элементов будет изменяться относительно родителя*/
-	margin: 0 auto;
-	width: 100%;
-	
-}
-
-figure figcaption:first-child{
-	margin-top: 10px;
-	color: darkred;
-	font-size: 20px;
-	font-family: YesevaOne;
-	
-}
-figure figcaption:last-child{
-	margin-top: -10px;
-	color: darkred;
-	font-size: 15px;
-	font-family: YesevaOne;
-	border-radius: 3px;
-}
-figure:last-child{
-        margin-right: 0px;           	
-} 
 
 .image{
 	overflow:hidden;
+	
 }
 
 #generals{
@@ -88,7 +90,7 @@ figure:last-child{
     background-position: center center;
     background-Attachment: cover;
     background-Size: cover;
-	width: 80%;
+	width: 90%;
 	height: 100px;
 	margin: 0 auto;
 	
@@ -103,8 +105,33 @@ a{
 
 .topcontent_sweet {
 	color: white;
-	-webkit-text-stroke: 0.3px black;
 	
+	-webkit-text-stroke: 0.3px black;
+	text-shadow: 
+		-0   -2px 0   #000000,
+		 0   -2px 0   #000000,
+		-0    2px 0   #000000,
+		 0    2px 0   #000000,
+		-2px -0   0   #000000,
+		 2px -0   0   #000000,
+		-2px  0   0   #000000,
+		 2px  0   0   #000000,
+		-1px -2px 0   #000000,
+		 1px -2px 0   #000000,
+		-1px  2px 0   #000000,
+		 1px  2px 0   #000000,
+		-2px -1px 0   #000000,
+		 2px -1px 0   #000000,
+		-2px  1px 0   #000000,
+		 2px  1px 0   #000000,
+		-2px -2px 0   #000000,
+		 2px -2px 0   #000000,
+		-2px  2px 0   #000000,
+		 2px  2px 0   #000000,
+		-2px -2px 0   #000000,
+		 2px -2px 0   #000000,
+		-2px  2px 0   #000000,
+		 2px  2px 0   #000000;
 	
 }
 .topcontent_sweet{background: url(./../images/sweet.jpg);}
@@ -112,7 +139,31 @@ a{
 .topcontent_costumes {
 	color: orange;
 	-webkit-text-stroke: 0.3px darkred;
-
+text-shadow: 
+		-0   -2px 0   #000000,
+		 0   -2px 0   #000000,
+		-0    2px 0   #000000,
+		 0    2px 0   #000000,
+		-2px -0   0   #000000,
+		 2px -0   0   #000000,
+		-2px  0   0   #000000,
+		 2px  0   0   #000000,
+		-1px -2px 0   #000000,
+		 1px -2px 0   #000000,
+		-1px  2px 0   #000000,
+		 1px  2px 0   #000000,
+		-2px -1px 0   #000000,
+		 2px -1px 0   #000000,
+		-2px  1px 0   #000000,
+		 2px  1px 0   #000000,
+		-2px -2px 0   #000000,
+		 2px -2px 0   #000000,
+		-2px  2px 0   #000000,
+		 2px  2px 0   #000000,
+		-2px -2px 0   #000000,
+		 2px -2px 0   #000000,
+		-2px  2px 0   #000000,
+		 2px  2px 0   #000000;
 	
 }
 .topcontent_costumes{background: url(./../images/costumes.jpg);}
@@ -120,7 +171,32 @@ a{
 .topcontent_stickers {
 	color: red;
 	-webkit-text-stroke: 0.2px black;
-	
+	/*Замена обводки в */
+	text-shadow: 
+		-0   -2px 0   #000000,
+		 0   -2px 0   #000000,
+		-0    2px 0   #000000,
+		 0    2px 0   #000000,
+		-2px -0   0   #000000,
+		 2px -0   0   #000000,
+		-2px  0   0   #000000,
+		 2px  0   0   #000000,
+		-1px -2px 0   #000000,
+		 1px -2px 0   #000000,
+		-1px  2px 0   #000000,
+		 1px  2px 0   #000000,
+		-2px -1px 0   #000000,
+		 2px -1px 0   #000000,
+		-2px  1px 0   #000000,
+		 2px  1px 0   #000000,
+		-2px -2px 0   #000000,
+		 2px -2px 0   #000000,
+		-2px  2px 0   #000000,
+		 2px  2px 0   #000000,
+		-2px -2px 0   #000000,
+		 2px -2px 0   #000000,
+		-2px  2px 0   #000000,
+		 2px  2px 0   #000000;
 	
 }
 .topcontent_stickers{background: url(./../images/stickers.jpg);}
@@ -133,7 +209,7 @@ a{
 
 main h2{
 	 
-    text-shadow: #5dc8e5 0 0 10px; /* Свечение голубого цвета */
+    text-shadow: #5dc8e5 0 0 10px; /* Свечение голубого цвета в темное время суток*/
 
 	margin: 0 auto;
 	color: white;
@@ -144,36 +220,36 @@ main h2{
  
 
 footer{
-	
+    
 	color: white;
-	padding: 0px;
-	margin-bottom: -100px;
-	top: -100px; 
+	border-top: 5px solid gold;
 	background-color: rgba(0, 0, 0, 0.9);
-	padding-top:15px;
+	padding-left:15px; 
+	padding-bottom: 10px; 
+	padding-top: 15px;
+	
 }
 
 
 
 @media screen and (max-width:1495px){
-#generals{font-size: 40px;}
+#generals{font-size: 50px;}
 
 
 }
-@media screen and (max-width:1480px){
-figure{width: 30%;}
 
-}
-@media screen and (max-width:1380px){
-figure{width: 45%; }
-
-}
 @media screen and (max-width:1000px){
-#generals{font-size: 40px;}
+#generals{font-size: 35px;}
 
 }
-@media screen and (max-width:730px){
-figure{width: 92%; }
 
+
+@media screen and (max-width:700px){
+main{width: 95%; }
+.inf{float: none; width: 100%;}
+
+.inf img
+{width: 100%; float: none; width: 90%; align: center;}
+.buttons{margin-left:15%;}
 }
 

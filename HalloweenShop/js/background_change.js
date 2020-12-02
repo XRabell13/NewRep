@@ -1,6 +1,6 @@
 //Обязательно должен быть снизу, ибо срабатывает после загрузки страницы. 
 var date = new Date(); //текущая дата
-var h =   date.getHours(); /* date.getHours(); *///date.getHours это текущий час
+var h =   date.getHours(); /* это текущий час*/
 
 if(h >= 0 && h <= 3 ) { 
        
