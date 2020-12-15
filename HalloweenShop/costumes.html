@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title> Costumes | HallowenShop </title>	
+<title> Костюмы | HallowenShop </title>	
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css\menu.css"/>
@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css\content_1.css"/>
 	<link rel="stylesheet" type="text/css" href="css\buttonTop.css"/>
     <link rel="stylesheet" type="text/css" href="css\style.css"/>
+	<link rel="stylesheet" type="text/css" href="css\bottomButtons.css"/>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js\buttonTop.js"></script>
@@ -24,36 +25,37 @@
 
 <nav id='subenaroun'>
 
-<div class="mprovemen"><a href="/" >HallowenShop</a></div>
+<div class="mprovemen"><a href="home.html" >HallowenShop</a></div>
 <div id="kemergin-teconique"></div>
 <div class="sponsiveweb"></div>
 
 <ul>
 <li class='gechnique'><a href='home.html'>Главная</a></li>
 
-<li><a href='#'>SEO</a></li>
+<li><a href='#' class="fas fa-search" onclick="show_popap('modal-S')" > Поиск</a></li>
 
-<li><a href='#'>Акции</a>
-  <ul>
-  <li><a href='#'>Коды сайта 1</a>
-  <li><a href='#'>Коды сайта 2</a>
-  <ul>
-<li><a href='#'>Коды сайта 2</a></li>
-<li><a href='#'>Коды сайта 1</a></li>
-  </ul>
-  </li>
-  </li>
-  </ul>
-</li>
+<li><a href='#'>Акции</a></li>
+
 
 <li><a href='#'>Разделы</a>
  <ul>
-  <li><a href='#'>Коды сайта 1</a>
-  <li><a href='#'>Коды сайта 2</a>
+  <li><a href='costumes.html'>Костюмы</a>
+  <li><a href='#'>Сувениры</a>
+ <li><a href='#'>Сладости</a>
   <ul>
-<li><a href='#'>Коды сайта 2</a></li>
-<li><a href='#'>Коды сайта 1</a></li>
+<li><a href='#'>Мармелад</a></li>
+<li><a href='#'>Шоколад</a></li>
+<li><a href='#'>Леденцы</a></li>
+<li><a href='#'>Жевательная резина</a></li>
+<li><a href='#'>Ириски</a></li>
+<li><a href='#'>Кексы</a></li>
   </ul>
+  <li><a href='#'>Наклейки</a>
+  <li><a href='#'>Головные уборы</a>
+  <li><a href='#'>Аксессуары</a>
+ <li><a href='#'>Формы для выпечки</a>
+ <li><a href='#'>Декор</a>
+  <li><a href='#'>Украшения</a>
   </li>
   </li>
   </ul>
@@ -70,11 +72,632 @@
 
 <main>
 
+<!-----------------------------------------------------------Модальные окна------------------------------------------------------------------------>
+<div class="overlay" id="modal-1">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	 
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_001.jpg" alt = "Маг" title="Маг"/>
+	 <h2>Маг</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $39.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный, красный
+<br><b>Узор:</b> Двухтонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно 
+<br><b>Артикул:</b> SE001EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	 
+
+<div class="overlay" id="modal-2">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_002.jpg" alt = "Жуткий шут" title="Жуткий шут"/>
+	 <h2>Жуткий шут</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $39.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный, красный
+<br><b>Узор:</b> Двухтонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Замок-молния
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> 120 штук
+<br><b>Артикул:</b> SE002EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+<div class="overlay" id="modal-3">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_004.jpg" alt = "Черная ведьма" title="Черная ведьма"/>
+	 <h2>Черная ведьма</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $39.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE003EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
 
 
-<section>
+<div class="overlay" id="modal-4">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_003.jpg" alt = "Ведьмочка" title="Ведьмочка"/>
+	 <h2>Ведьмочка</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $59.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный
+<br><b>Узор:</b> двухтонный, юбка - в звездочки
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-5">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_005.jpg" alt = "Дьявол" title="Дьявол"/>
+	 <h2>Дьявол</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $66.60<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный, красный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+<div class="overlay" id="modal-6">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_006.jpg" alt = "Демон в плаще" title="Демон в плаще" />
+	 <h2>Демон в плаще</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $66.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> черный, красный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 
+
+
+<div class="overlay" id="modal-7">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_007.jpg" alt = "Маньяк в черном" title="Маньяк в черном"  />
+	 <h2>Маньяк в черном</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $52.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> черный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 
+
+<div class="overlay" id="modal-8">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_008.jpg" alt = "Сатанист" title="Сатанист" />
+	 <h2>Сатанист</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $30.00<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-9">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_009.jpg" alt = "Египетская мумия" title="Египетская мумия" />
+	 <h2>Египетская мумия</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $54.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> серый, бледно-коричневый
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+
+<div class="overlay" id="modal-10">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_010.jpg" alt = "Проклятая монашка" title="Проклятая монашка" />
+	 <h2>Проклятая монашка</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $59.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> черный, белый
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-11">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_011.jpg" alt = "Монстр с черепом" title="Монстр с черепом" />
+	 <h2>Монстр с черепом</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $74.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> черный
+<br><b>Узор:</b>с бликами
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 
+
+
+<div class="overlay" id="modal-12">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_012.jpg" alt = "Фанатик" title="Фанатик" />
+	 <h2>Фанатик</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $69.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> черный, красный
+<br><b>Узор:</b>руны, пятна
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 
 
 <h2 id = 'popSection'>Костюмы</h2><br>
+
+<section>
+<!-----------------------------------------------------------Товары------------------------------------------------------------------------>
+
 <div class="container">
   <div class="row">
      
@@ -449,10 +1072,17 @@
       </div>
 	  
 	  
+	  
   </div>
 </div>
 
-
+<ul class="pereklyuchatel-stranits">
+  <li><a href="#"><i>1</i></a></li>
+  <li><a href="#"><i>2</i></a></li>
+  <li><a href="#"><i>...</i></a></li>
+  <li><a href="#"><i>9</i></a></li>
+  <li><a href="#"><i>10</i></a></li>
+</ul>
 </section>
 </main>
 
@@ -461,10 +1091,21 @@
 &#9650;
 </div>
 
-<footer >
+<footer>
+<div id = "insidefooter">
+<p>HallowenShop.by<br/></p>
+<p id = "footerinf">
 
+</p>
+
+<div id="soc">
+<img src="images\icons\vk.svg"/>
+<img src="images\icons\facebook.svg"/>
+<img src="images\icons\insta.svg"/>
+</div>
+<p>©2020</p>
+</div>
 </footer>
-
 </body>
 <script src="js\locwindow.js"></script>
 <script src="js\background_change.js"></script><!-- Обязательно должен быть снизу, ибо срабатывает после загрузки страницы. -->

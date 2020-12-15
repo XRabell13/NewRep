@@ -9,7 +9,7 @@ main{
 .inf{
 
 	display: flex-block;
-	float: left;/*при уменьшении экрана флоат делать у обоих ноне*/
+	float: left;
 	width: 100%;
 	margin-top:5%;
 	
@@ -41,7 +41,7 @@ padding-bottom: 10px;
 	float: left;
 	margin-top: 5%;
 	border-radius: 10px;
-	background: none;
+	background: white;
 	
 }
 .buttons{margin-left:25%;}
@@ -73,6 +73,7 @@ section{
 }
 
 
+
 .image{
 	overflow:hidden;
 	
@@ -102,6 +103,7 @@ section{
 a{
 	text-decoration: none;
 }
+
 
 .topcontent_sweet {
 	color: white;
@@ -171,7 +173,7 @@ text-shadow:
 .topcontent_stickers {
 	color: red;
 	-webkit-text-stroke: 0.2px black;
-	/*Замена обводки в */
+	/*Замена обводки в FireFox, Microsoft Egde*/
 	text-shadow: 
 		-0   -2px 0   #000000,
 		 0   -2px 0   #000000,
@@ -218,10 +220,29 @@ main h2{
 }
 
  
+ 
+
+footer img{
+	width: 30px;
+}
+
+footer p:last-child{color: white;}
+footer p:first-child{color:orange;  font-size:45px; font-family: MarckScript;}
+footer p 
+{
+ color: gray; 
+ position: relative;
+padding: 0;
+margin:0;
+padding-bottom: 5px;
+ }
+ 
+#soc{display: inline; }
+#soc img{margin: 5px;}
 
 footer{
-    
-	color: white;
+	
+    clear:both;width:100%;
 	border-top: 5px solid gold;
 	background-color: rgba(0, 0, 0, 0.9);
 	padding-left:15px; 
@@ -229,9 +250,15 @@ footer{
 	padding-top: 15px;
 	
 }
-
-
-
+#insidefooter
+{
+	margin: 0;
+	/* width:50%;
+  margin: auto;
+  padding: auto;
+  background: red; */
+	
+}
 @media screen and (max-width:1495px){
 #generals{font-size: 50px;}
 

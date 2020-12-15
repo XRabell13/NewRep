@@ -3,7 +3,7 @@
     text-align: center;
 	background: orange;
 	border-radius: 10px;
-	
+	z-index: 1;
 }
 .product-grid .product-image{
     position: relative;
@@ -142,6 +142,10 @@
     vertical-align: top;
     display: inline-block;
 }
+
+
+
+
 /*-----------------------------------------------------Изменение некоторых элементов при изменении окна---------------------------------------------------*/
 @media only screen and (max-width:990px){
     .product-grid{ margin: 0 0 10px; }/*расстояние между карточками-товарами сверху*/

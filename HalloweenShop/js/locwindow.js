@@ -21,16 +21,20 @@ buttonExist.addEventListener('click', () => {
 function show_popap(id_popap) {
   var id = "#" + id_popap;
   var elem = document.getElementById(id_popap).getElementsByClassName('popap')[0];
-
+var H=elem.getElementsByTagName("h2");
 var date = new Date(); //текущая дата
-var h =   date.getHours(); /* это текущий час*/
+var h =   date.getHours();  /* это текущий час*/
 
 if(h >= 6 && h <= 20 ) {      
       elem.style.background = "#ffe375";
+	  elem.style.color = "darkred";
+	  H[0].style.textShadow="none";
+	  H[0].style.color="darkred";
 }
 if(h >= 21 || h <= 5) {   
 	   elem.style.background = "#00001a";
 	   elem.style.color = "white";
+	  
 }	 
  
   $(id).addClass('active');

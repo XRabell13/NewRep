@@ -2,21 +2,26 @@
 <html>
 <head>
 
-<title> Home | HallowenShop </title>	
+<title> Главная | HallowenShop </title>	
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css\menu.css"/>
-	<link rel="stylesheet" type="text/css" href="css\content.css"/>
+   
+   <link rel="stylesheet" type="text/css" href="css\menu.css"/>
 	<link rel="stylesheet" type="text/css" href="css\content_1.css"/>
 	<link rel="stylesheet" type="text/css" href="css\buttonTop.css"/>
     <link rel="stylesheet" type="text/css" href="css\style.css"/>
+	<link rel="stylesheet" type="text/css" href="css\content.css"/>
+	<link rel="stylesheet" type="text/css" href="css\bottomButtons.css"/>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="путь_к_js/jquery.simplePagination.js"></script>
 	<script type="text/javascript" src="js\buttonTop.js"></script>
 	<script type="text/javascript" src="js\menu.js"></script> 
-	<script type="text/javascript" src="js\footerInfo.js"></script>
+	 <script type="text/javascript" src="js\footerInfo.js"></script> 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 </head>
 <body>
 
@@ -24,36 +29,37 @@
 
 <nav id='subenaroun'>
 
-<div class="mprovemen"><a href="/" >HallowenShop</a></div>
+<div class="mprovemen"><a href="home.html" >HallowenShop</a></div>
 <div id="kemergin-teconique"></div>
 <div class="sponsiveweb"></div>
 
 <ul>
 <li class='gechnique'><a href='home.html'>Главная</a></li>
 
-<li><a href='#'>FAQ</a></li>
+<li><a href='#' class="fas fa-search" > Поиск</a></li>
 
-<li><a href='#'>Акции</a>
-  <ul>
-  <li><a href='#'>Коды сайта 1</a>
-  <li><a href='#'>Коды сайта 2</a>
-  <ul>
-<li><a href='#'>Коды сайта 2</a></li>
-<li><a href='#'>Коды сайта 1</a></li>
-  </ul>
-  </li>
-  </li>
-  </ul>
-</li>
+<li><a href='#'>Акции</a></li>
+
 
 <li><a href='#'>Разделы</a>
  <ul>
-  <li><a href='#'>Коды сайта 1</a>
-  <li><a href='#'>Коды сайта 2</a>
+  <li><a href='costumes.html'>Костюмы</a>
+  <li><a href='#'>Сувениры</a>
+ <li><a href='#'>Сладости</a>
   <ul>
-<li><a href='#'>Коды сайта 2</a></li>
-<li><a href='#'>Коды сайта 1</a></li>
+<li><a href='#'>Мармелад</a></li>
+<li><a href='#'>Шоколад</a></li>
+<li><a href='#'>Леденцы</a></li>
+<li><a href='#'>Жевательная резина</a></li>
+<li><a href='#'>Ириски</a></li>
+<li><a href='#'>Кексы</a></li>
   </ul>
+  <li><a href='#'>Наклейки</a>
+  <li><a href='#'>Головные уборы</a>
+  <li><a href='#'>Аксессуары</a>
+ <li><a href='#'>Формы для выпечки</a>
+ <li><a href='#'>Декор</a>
+  <li><a href='#'>Украшения</a>
   </li>
   </li>
   </ul>
@@ -61,30 +67,17 @@
 
 <li><a href='#'>Избранное &#128155;</a></li>
 <li><a href='#'>Корзина</a></li>
-<li><a onclick="show_popap('modal-R')" href='#'>Вход|Регистрация</a></li>
+<li><a href='#'>Вход|Регистрация</a></li>
 </ul>
 
 </nav>
-<div class="overlay" id="modal-R">
-  <div class="flex-popap">
-    <div class="popap">
-      <span class="close_popap">&#8855;</span>
-	 <h3>Вход</h3>
-        <form role="form" action="/requestFine" autocomplete="off" method="POST">
-         <br/> <label>Логин или E-mail</label><br/>
-          <input type="text" name="nameReq">
-          <br/><label>Пароль:</label><br/>
-          <input type="text" name="lastNameReq">
-        
-        <br/> <br/> <button type="button" class="btn">Отправить</button>
-		<br/><a href="Registration.html" >Впервые на нашем сайте? Зарегистрироваться</a>
-		</form> 
- </div>
-  </div>
-</div>
-     
+
+</header>
+
+<main>
 
 <!-----------------------------------------------------------Модальные окна------------------------------------------------------------------------>
+
 
 <div class="overlay" id="modal-1">
   <div class="flex-popap">
@@ -108,16 +101,16 @@
 <br><b>Состав:</b> Полиэстер - 100%
 <br><b>Материал подкладки:</b> Хлопок - 100%
 <br><b>Цвет:</b> Черный, красный
-<br><b>Узор:</b> однотонный
+<br><b>Узор:</b> Двухтонный
 <br><b>Страна производства:</b> США
-<br><b>Застежка:</b> нет
+<br><b>Застежка:</b> Нет
 <br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
 <br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
 <br><b>Количество на складе:</b> Достаточно 
 <br><b>Артикул:</b> SE001EGLBJW3
 
 <br><br>
-Будьте ужасны и незабываемы в ночь Хеллоуина!
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
 
 </div></div>
 <div class="buttons" >
@@ -127,8 +120,7 @@
 					  <a class="add-to-cart" href="#">
                      <i class="far fa-heart"></i></a>
 					  <a class="add-to-cart" href="#">
-                     <i class="fas fa-random"></i>
-					 
+                     <i class="fas fa-random"></i> 
                   </a>	 		 
 	 </div>
 	<div>
@@ -138,22 +130,580 @@
 </div>
 </div> 	 
 
-</header>
+<div class="overlay" id="modal-2">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_002.jpg" alt = "Жуткий шут" title="Жуткий шут"/>
+	 <h2>Жуткий шут</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $39.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный, красный
+<br><b>Узор:</b> Двухтонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Замок-молния
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> 120 штук
+<br><b>Артикул:</b> SE002EGLBJW3
 
-<!-----------------------------------------------------------Товары------------------------------------------------------------------------>
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
 
-<main>
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+<div class="overlay" id="modal-3">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_004.jpg" alt = "Черная ведьма" title="Черная ведьма"/>
+	 <h2>Черная ведьма</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $39.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE003EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+<div class="overlay" id="modal-4">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_003.jpg" alt = "Ведьмочка" title="Ведьмочка"/>
+	 <h2>Ведьмочка</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $59.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный
+<br><b>Узор:</b> двухтонный, юбка - в звездочки
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-5">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/costumes/costumes_005.jpg" alt = "Дьявол" title="Дьявол"/>
+	 <h2>Дьявол</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $66.60<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный, красный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+<div class="overlay" id="modal-6">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img  src="images/stickers/stickers_001.jpg" alt = "Наклейки" title="Наклейки"/>
+	 <h2>Наклейки</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                    <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $6.99<br><br><b>О товаре.</b>
+<br><b>Размер:</b> A4 
+<br><b>Поверхность:</b> Лакированная, гладкая
+<br><b>Цвет:</b> Мультиколор
+<br><b>Страна производства:</b> США
+<br><b>Минимальное количество при покупке:</b> 4
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE001EGLBJW4
+
+<br><br>
+Украсьте свой дом тематическими наклейками!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-7">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/stickers/stickers_002.jpg" alt = "Черные наклейки" title="Черные наклейки"/>
+	 <h2>Черные Наклейки</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $12.99<br><br><b>О товаре.</b>
+<br><b>Размер:</b> A4 
+<br><b>Поверхность:</b> Лакированная, гладкая
+<br><b>Цвет:</b> Черный
+<br><b>Страна производства:</b> США
+<br><b>Минимальное количество при покупке:</b> 6
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> 50
+<br><b>Артикул:</b> SE002EGLBJW4
+
+<br><br>
+Украсьте свой дом тематическими наклейками!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-8">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_008.jpg" alt = "Сатанист" title="Сатанист" />
+	 <h2>Сатанист</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $30.00<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> Черный
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-9">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_009.jpg" alt = "Египетская мумия" title="Египетская мумия" />
+	 <h2>Египетская мумия</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $54.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> серый, бледно-коричневый
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
 
 
 
-<h2 id = 'popSection'>&#127875;Популярные разделы!&#127875;</h2>
+<div class="overlay" id="modal-10">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/costumes/costumes_010.jpg" alt = "Проклятая монашка" title="Проклятая монашка" />
+	 <h2>Проклятая монашка</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $59.99<br><br><b>О товаре.</b>
+<br><b>Состав:</b> Полиэстер - 100%
+<br><b>Материал подкладки:</b> Хлопок - 100%
+<br><b>Цвет:</b> черный, белый
+<br><b>Узор:</b> однотонный
+<br><b>Страна производства:</b> США
+<br><b>Застежка:</b> Нет
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE012EGLBJW3
+
+<br><br>
+Будьте очаровательно ужасны и незабываемы в ночь Хеллоуина!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+<div class="overlay" id="modal-13">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/stickers/stickers_003.jpg" alt = "Круглые Наклейки" title="Круглые Наклейки" />
+	 <h2>Круглые Наклейки</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $7.99<br><br><b>О товаре.</b>
+<br><b>Размер:</b> A4 
+<br><b>Поверхность:</b> Лакированная, гладкая
+<br><b>Цвет:</b> Мульти
+<br><b>Страна производства:</b> США
+<br><b>Минимальное количество при покупке:</b> 2
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE004EGLBJW4
+
+<br><br>
+Украсьте свой дом тематическими наклейками!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<div class="overlay" id="modal-14">
+  <div class="flex-popap">
+    <div class="popap">
+      <span class="close_popap">&#8855;</span>
+	  
+     <div class = "inf">
+	 
+	 <img src="images/stickers/stickers_004.jpg" alt = "Люми-Наклейки" title="Люми-Наклейки" />
+	 <h2>Люми-наклейки(3 листа)</h2>
+	  <div class="product-grid" >
+	   <ul class="rating">
+                     <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+       </ul>
+	  </div>
+	 <div class="PriceAndOpis"><div><b>Цена:</b> $12.99<br><br><b>О товаре.</b>
+<br><b>Размер:</b> A4 
+<br><b>Поверхность:</b> Гладкая, Виниловая
+<br><b>Цвет:</b> Лаймовый
+<br><b>Страна производства:</b> США
+<br><b>Минимальное количество при покупке:</b> 3
+<br><b>Изготовитель:</b> SHANGHAI LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP & EXP CORP LTD
+<br><b>Адрес изготовителя:</b> США, Building A, Room 2602, Lujiazui Road 161#,New York, USA
+<br><b>Количество на складе:</b> Достаточно
+<br><b>Артикул:</b> SE006EGLBJW4
+
+<br><br>
+Украсьте свой дом тематическими наклейками!
+
+</div></div>
+<div class="buttons" >
+
+	 <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="far fa-heart"></i></a>
+					  <a class="add-to-cart" href="#">
+                     <i class="fas fa-random"></i> 
+                  </a>	 		 
+	 </div>
+	<div>
+  </div>
+ </div>
+</div>  
+</div>
+</div> 	
+
+
+<h2 id = 'popSection'>Популярные разделы!</h2><!-- &#127875;  &#128375;  -->
 
 <a href="#"><div class='topcontent_sweet' id='generals'>СЛАДОСТИ</div></a>
 <a href="costumes.html"><div class='topcontent_costumes' id='generals'>КОСТЮМЫ</div></a>
 <a href="#"><div class='topcontent_stickers' id='generals'>НАКЛЕЙКИ</div></a>
 
-<h2 id = 'popGoods'>&#128375;Популярные товары!&#128375;</h2>
+<h2 id = 'popGoods'>Популярные товары!</h2>
 
+<!-----------------------------------------------------------Товары------------------------------------------------------------------------>
 <section>
 
 <div class="container">
@@ -214,7 +764,7 @@
                       <li class="fas fa-star"></li>
                   </ul>
                   <a class="add-to-cart" href="#">
-                     <i class="fas fa-shopping-cart"></i> <span>$69.99</span>
+                     <i class="fas fa-shopping-cart"></i> <span>$39.99</span>
                   </a>
               </div>
           </div>
@@ -440,7 +990,7 @@
           <div class="product-grid">
               <div class="product-image">
                   <a href="#" class="image">
-                      <img class="pic-1" src="images/costumes/costumes_010.jpg" alt = "Египетская мумия" title="Египетская мумия" onclick="show_popap('modal-10')">
+                      <img class="pic-1" src="images/costumes/costumes_010.jpg" alt = "Проклятая монашка" title="Проклятая монашка" onclick="show_popap('modal-10')">
                   </a>
                   <span class="product-new-label"><span>Новинка</span></span>
                   <ul class="social">
@@ -467,25 +1017,103 @@
           </div>
       </div>
 	  
+	  <div class="col-md-3 col-sm-6">
+          <div class="product-grid" >
+              <div class="product-image">
+                  <a href="#" class="image">
+                      <img class="pic-1" src="images/stickers/stickers_003.jpg" alt = "Круглые Наклейки" title="Круглые Наклейки" onclick="show_popap('modal-13')">
+                  </a>
+                 
+                  <ul class="social">
+                      <li><a  onclick="show_popap('modal-13')"><i class="fas fa-search" ></i></a></li>
+                      <li><a href="" ><i class="far fa-heart"></i></a></li>
+                      <li><a href="" ><i class="fas fa-random"></i></a></li>
+                  </ul>
+              </div>
+              <div class="product-content">
+                  <h3 class="title"><a href="#">Круглые наклейки(2 листов)</a></h3>
+                 
+                 
+                  <ul class="rating">
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                  </ul>
+                  <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i> <span>$7.99</span>
+                  </a>
+              </div>
+          </div>
+      </div>
+	  
+	    <div class="col-md-3 col-sm-6">
+          <div class="product-grid" >
+              <div class="product-image">
+                  <a href="#" class="image">
+                      <img class="pic-1" src="images/stickers/stickers_004.jpg" alt = "Люми-Наклейки" title="Люми-Наклейки" onclick="show_popap('modal-14')">
+                  </a>
+                 
+                  <ul class="social">
+                      <li><a  onclick="show_popap('modal-14')"><i class="fas fa-search" ></i></a></li>
+                      <li><a href="" ><i class="far fa-heart"></i></a></li>
+                      <li><a href="" ><i class="fas fa-random"></i></a></li>
+                  </ul>
+              </div>
+              <div class="product-content">
+                  <h3 class="title"><a href="#">Люми-наклейки(3 листа)</a></h3>
+                 
+                 
+                  <ul class="rating">
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="fas fa-star"></li>
+                      <li class="far fa-star"></li>
+                  </ul>
+                  <a class="add-to-cart" href="#">
+                     <i class="fas fa-shopping-cart"></i> <span>$12.99</span>
+                  </a>
+              </div>
+          </div>
+      </div>
 	  
   </div>
 </div>
 
+<ul class="pereklyuchatel-stranits">
+  <li><a href="#"><i>1</i></a></li>
+  <li><a href="#"><i>2</i></a></li>
+  <li><a href="#"><i>...</i></a></li>
+  <li><a href="#"><i>9</i></a></li>
+  <li><a href="#"><i>10</i></a></li>
+</ul>
 
 </section>
 </main>
 
-
+<!-----------------------------------------------------------Кнопка прокрутки страницы------------------------------------------------------------------------>
 <div class="scrollup">
 &#9650;
 </div>
 
-<footer >
-<b>ФИО: </b>Цягунович Татьяна Валерьевна<br/>
-<b>Факультет: </b>Факультет информационных технологий (ФИТ)<br/>
-<b>Специальность: </b>Программное обеспечение информационной безопасности мобильных систем(ПОИБМС)<br/>
-<b>Группа: </b>10<br/>
-<b>Год: &copy;</b>2020<br/>
+
+
+<footer>
+<div id = "insidefooter">
+<p>HallowenShop.by<br/></p>
+<p id = "footerinf">
+
+</p>
+
+<div id="soc">
+<a href = 'https://vk.com/xrabell13'><img src="images\icons\vk.svg"/></a>
+<a href = 'https://web.facebook.com'><img src="images\icons\facebook.svg"/></a>
+<a href = 'https://www.instagram.com'><img src="images\icons\insta.svg"/></a>
+</div>
+<p>©2020</p>
+</div>
 </footer>
 
 </body>
