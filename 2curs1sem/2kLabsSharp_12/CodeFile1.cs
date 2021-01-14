@@ -1,329 +1,573 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Reflection;
+using System.IO;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-    public class MagicClass
+public static class CTVLog
 {
-    private int magicBaseValue;
-
-    public MagicClass()
+    public static string Read()
     {
-        magicBaseValue = 9;
+        string str = null;
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt";
+        try
+        {
+            using (StreamReader sr = new StreamReader(writePath, Encoding.GetEncoding(1251)))
+            {
+                str = sr.ReadToEnd();
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        return str;
     }
 
-    public int ItsMagic(int preMagic, int Hi, string a)
+    public static string[] Read(string Day)
     {
-        Console.WriteLine("Метод ItsMagic сказал {0}", a);
-        return preMagic * magicBaseValue*Hi;
+        string[] str = new string[350];
+        string[] strSearch = new string[7];
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt", stroka = null;
+        int ind=-1;
+
+        try
+        {
+            using (StreamReader sr = new StreamReader(writePath, Encoding.GetEncoding(1251)))
+            {
+                while (sr.Peek() != -1)
+                {
+                    for (int i = 0; i < 6; i++)
+                    { 
+                        strSearch[i] = sr.ReadLine();
+                    }
+                    string dayStr = strSearch[5].Substring(6,2);
+                   
+                    if (dayStr==Day)
+                    {
+                                for (int j = 0; j < 6; j++)
+                                {
+                                   
+                                    stroka += "\n" + strSearch[j];
+                                
+                                }
+                        ind++;
+                        str[ind] = stroka;
+                        stroka = null;
+                    }
+                    
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        for (int i = 0; i<=ind; i++)
+            Console.WriteLine(str[i]);
+        return str;
+    }
+    public static string[] Read(int Hour1, int Hour2)
+    {
+        string[] str = new string[350];
+        string[] strSearch = new string[7];
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt", stroka = null;
+        int ind = -1;
+
+        try
+        {
+            using (StreamReader sr = new StreamReader(writePath, Encoding.GetEncoding(1251)))
+            {
+                while (sr.Peek() != -1)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        strSearch[i] = sr.ReadLine();
+                    }
+                   int timeStr = Convert.ToInt32(strSearch[5].Substring(17, 2));
+                  
+                    if (timeStr>=Hour1 && timeStr <=Hour2)
+                    {
+                        for (int j = 0; j < 6; j++) stroka += "\n" + strSearch[j];
+
+                        ind++;
+                        str[ind] = stroka;
+                        stroka = null;
+                    }
+
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        for (int i = 0; i <= ind; i++)
+            Console.WriteLine(str[i]);
+        return str;
+    }
+
+    public static string[] ReadWithWords(string KeyWord)
+    {
+        string[] str = new string[350];
+        string[] strSearch = new string[7];
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt", stroka = null;
+        int ind = -1;
+
+        try
+        {
+            using (StreamReader sr = new StreamReader(writePath, Encoding.GetEncoding(1251)))
+            {
+                while (sr.Peek() != -1)
+                {
+                    bool flag = false;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        strSearch[i] = sr.ReadLine();
+                    }
+
+                    for (int i = 0; i < 6; i++)
+                        if ((strSearch[i].ToLower()).IndexOf(KeyWord.ToLower()) != -1) flag = true; 
+                    
+                    if (flag)
+                    {
+                        for (int j = 0; j < 6; j++) stroka += "\n" + strSearch[j];
+
+                        ind++;
+                        str[ind] = stroka;
+                        stroka = null; 
+                    }
+
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        for (int i = 0; i <= ind; i++)
+            Console.WriteLine(str[i]);
+        return str;
+    }
+
+    public static void Delete()
+    {
+        int Hour = DateTime.Now.Hour;
+       
+        string[] str = Read(Hour,Hour);
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt";
+     
+        try
+        {
+            using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+            {
+                for (int i = 0; str[i] != null; i++)
+                sw.Write(str[i]);
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+
+    }
+
+    public static int Count()
+    {
+
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt";
+        int ind = 0;
+        
+        try
+        {
+            using (StreamReader sr = new StreamReader(writePath, Encoding.GetEncoding(1251)))
+            {
+                while (sr.Peek() != -1)
+                {
+                    sr.ReadLine();
+                    ind++;
+                }
+
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        return ind/6;
+    }
+
+    public static void Save(string act, FileInfo infFile)
+    {
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt";
+        try
+        {
+            
+            using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))//если записи пропадают, поменять на false
+            {
+                sw.Write("\nДействие: "+act+"\nИмя файла: "+infFile.FullName+"\nПолный путь: "+infFile.Name+"\nДата создания: "+infFile.CreationTime+"\nДата: "+DateTime.Now+"\n");
+            }
+           
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    public static void Save(string act, DirectoryInfo infD)
+    {
+        string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_13\ctvlogfile.txt";
+        try
+        {
+
+            using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))//если записи пропадают, поменять на false
+            {
+                sw.Write("\nДействие: " + act + "\nИмя папки: " +infD.FullName + "\nПолный путь: " + infD.Name + "\nДата создания: " + infD.CreationTime + "\nДата: " + DateTime.Now + "\n");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+}
+
+public static class CTVDiskInfo
+{
+ /*Создать класс XXXDiskInfo c методами для вывода информации о 
+         * a.  свободном месте на диске 
+         * b. Файловой системе 
+         * c. Для каждого существующего диска  - имя, объем, доступный объем, метка тома. 
+         */
+    public static void GetDiskInfo(string NameD)//информация о диске
+    {
+        var allDrives = DriveInfo.GetDrives();
+        //  string str;
+        foreach (var d in allDrives)
+        {
+            if (d.Name.IndexOf(NameD) > -1)
+            {
+                Console.WriteLine("\nИмя диска: {0}", d.Name);
+                //  Console.WriteLine("Drive type: {0}", d.DriveType);
+                if (!d.IsReady) continue;
+
+                //  Console.WriteLine("File system: {0}", d.DriveFormat);
+                //  Console.WriteLine("Root: {0}", d.RootDirectory);
+                Console.WriteLine("Обьем(в Гб): {0}", d.TotalSize/1073741824);
+               
+                Console.WriteLine("Доступный обьем (в Гб): {0}", d.AvailableFreeSpace / 1073741824);
+                Console.WriteLine("Метка тома: {0}", d.VolumeLabel);
+            }
+        }
+    }
+   
+    public static void SizeFree(string NameD)//свободное место на диске
+    {
+        var allDrives = DriveInfo.GetDrives();
+        foreach (var d in allDrives)
+        {
+            if (d.Name.IndexOf(NameD) > -1)
+            {
+                Console.WriteLine("Свободного места на диске {2}: {0} Гб\n{1} Байт\n", d.TotalFreeSpace / 1073741824, d.TotalFreeSpace, NameD);
+            }
+        }
+    }
+  
+    public static void FileSystemInfo(string NameD)//информация о файловой системе
+    {
+        var allDrives = DriveInfo.GetDrives();
+        foreach (var d in allDrives)
+        {
+            if (d.Name.IndexOf(NameD) > -1)
+            {
+                if (!d.IsReady) continue;
+                Console.WriteLine("Имя файловой системы диска {1}: {0}", d.DriveFormat, NameD);
+                Console.WriteLine("Корневой каталог диска: {0}\n", d.RootDirectory);
+            }
+        }
     }
 }
 
-    public class Train
+public static class CTVFileInfo
+{
+    /*a.  Полный путь
+     * b. Размер, расширение, имя 
+     * c. Дата создания, изменения */
+    public static void FullPatch(string NameF)
+    {
+        FileInfo fileInf = new FileInfo(NameF);
+        Console.WriteLine($"Полный путь к файлу: {fileInf.FullName}");
+    }
+    public static void FileInf(string NameF) 
+    {
+        FileInfo fileInf = new FileInfo(NameF);
+        Console.WriteLine($"Имя файла: {fileInf.Name}\nРасширение файла: {fileInf.Extension}\nРазмер файла(байт): {fileInf.Length}\n");
+    
+    }
+    public static void GetCreateAndModify(string NameF) 
+    {
+        FileInfo fileInf = new FileInfo(NameF);
+        Console.WriteLine($"Дата создания файла {fileInf.Name}: {fileInf.CreationTime}\nДата изменения файла: {fileInf.LastWriteTime}\n");
+    }
+
+    
+}
+
+public static class CTVDirInfo
+{
+    /*a.  Количестве файлов 
+     * b. Время создания 
+     * c. Количестве поддиректориев 
+     * d. Список родительских директориев */
+    public static void CountFiles(string NameD)
+    {
+        var dir = new DirectoryInfo(NameD);
+        Console.WriteLine($"Количество файлов директории {dir.Name}: {dir.GetFiles().Length}\n");
+    }
+
+    public static void TimeCreation(string NameD)
+    {
+        var dir = new DirectoryInfo(NameD);
+        Console.WriteLine($"Время создания директория {dir.Name}: {dir.CreationTimeUtc}\n");
+    }
+ 
+    public static void CountFolders(string NameD)
+    {
+        var dir = new DirectoryInfo(NameD);
+        Console.WriteLine($"Количество поддиректориев директория {dir.Name}: {dir.GetDirectories().Length}\n");
+    }
+
+    public static void ParentDirectories(string NameD)
+    {
+        var dir = new DirectoryInfo(NameD);
+        Console.WriteLine($"Список родительских директориев директория: ");
+        while(dir.Parent != null)
         {
-            int Pole = 12;
-            public int Svoistvo { get; set; }
-            const string NameStation = "Минск-Пассажирский";// поле константа
-            private static int count = 0;//статическая переменная
-            public string EndPunct { get; set; } //свойство
-            public readonly string ID;// поле только для чтения
-                                      //закрытый конструктор для создания хэшфункции
-            public int PrimSet
+            Console.WriteLine(dir.Parent);
+            dir = dir.Parent;
+        }
+    }
+}
+
+public static class CTVFileManager
+{
+    public static void PunctA(string NameDisk)
+    {
+        /*
+        a. Прочитать список файлов и папок заданного диска. 
+        Создать директорий XXXInspect, создать текстовый файл xxxdirinfo.txt и сохранить туда  информацию.
+        Создать копию файла и переименовать его. 
+        Удалить первоначальный файл. 
+         */
+        Console.WriteLine("\n\t\t\t\t МЕТОД PunctA \n");
+
+        var Inf = new DirectoryInfo(NameDisk);
+
+        string infFilies = null, infFolders = null;
+
+        Console.WriteLine($"Список файлов: ");
+
+        for (int i = 0; i < Inf.GetFiles().Length; i++)
+        {
+            infFilies += "\n" + Inf.GetFiles()[i];
+        }
+
+        Console.WriteLine(infFilies);
+        Console.WriteLine($"\nСписок папок: ");
+
+        for (int i = 0; i < Inf.GetDirectories().Length; i++)
+        {
+            infFolders += "\n" + Inf.GetDirectories()[i];
+        }
+
+        Console.WriteLine(infFolders);
+        Console.WriteLine("\n\t\t\t\t Создаем директорий \n");
+
+        Directory.CreateDirectory(@"E:\CTVInspect");
+        CTVLog.Save("Создан директорий.", new DirectoryInfo(@"E:\CTVInspect"));
+
+        Console.WriteLine("\n\t\t\t\t Создаем новый файл и записываем в него информацию \n");
+
+        try
+        {      
+            using (StreamWriter sw = new StreamWriter(@"E:\CTVInspect\ctvdirinfo.txt", false, System.Text.Encoding.Default))//если записи пропадают, поменять на false
             {
-                get
-                {
-                    return PrimSet;
-                }
-                set//ограничение по set
-                {
-                    if (value > 0) PrimSet = value;
-                    else PrimSet = 0;
-                }
-
+                sw.Write($"\nСписок файлов: {infFilies}\n");        
+                sw.Write($"\nСписок папок: {infFolders}\n");  
             }
-            public DateTime time { get; set; }
-            public int numberTrain { get; set; }
-            public int hour { get; set; }
-            public int minute { get; set; }
+            CTVLog.Save("Создали файл и записали в него информацию.", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
+            Console.WriteLine("Запись выполнена");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        Console.WriteLine("\n\t\t\t\t Копируем файл и переименовываем его\n");
+      
+        try
+        {
+            File.Copy(@"E:\CTVInspect\ctvdirinfo.txt", @"E:\ctvdirinfoCOPY.txt");
+            CTVLog.Save("Копировали файл", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
+            CTVLog.Save("Создали копированием файл", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
 
-            public int Allseat { get; set; }
+        }
+        catch (System.IO.IOException)
+       {
+            Console.WriteLine("Файл уже существует, поэтому удалим его и вставим новый");
+            CTVLog.Save("Удаляется файл", new FileInfo(@"E:\ctvdirinfoCOPY.txt"));
+            File.Delete(@"E:\ctvdirinfoCOPY.txt");
+            File.Copy(@"E:\CTVInspect\ctvdirinfo.txt", @"E:\ctvdirinfoCOPY.txt");
+            CTVLog.Save("Копировали файл", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
+            CTVLog.Save("Создали копированием файл", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
+        }
+        CTVLog.Save("Копировали файл с переименованием.", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
 
-            public (int general, int compartment, int reserved, int lux) CountSeats { get; set; }//compartament(купе) reserved(плацкарт) 
+        Console.WriteLine("\n\t\t\t\t Удаляем первоначальный файл \n");
+        CTVLog.Save("Удаляется файл", new FileInfo(@"E:\CTVInspect\ctvdirinfo.txt"));
 
+        File.Delete(@"E:\CTVInspect\ctvdirinfo.txt");
+
+    }
+
+    public static void PunctB(string NameDir, string NameExtension)
+    {
+        /*
+        Создать еще один директорий XXXFiles. 
+        Скопировать в него все файлы с заданным расширением из заданного пользователем директория. 
+        Переместить XXXFiles в XXXInspect.
+         */
+        Console.WriteLine("\n\t\t\t\t МЕТОД PunctB \n");
+
+        string[] filePaths = Directory.GetFiles(NameDir);//@"C:\Users\hp\Project\NewRep"
+        Console.WriteLine("\n\t\t\t\t Создаем директорий \n");
+
+        Directory.CreateDirectory(@"E:\CTVFiles");
+        CTVLog.Save("Создан директорий.", new DirectoryInfo(@"E:\CTVFiles"));
+
+        Console.WriteLine("\n\t\t\t\t Копируем все файлы с заданным расширением в другой директорий \n");
+
+        foreach (string file in filePaths)
+        {
+            Console.WriteLine($"\n{file}");
+            FileInfo info = new FileInfo(file);
+            if (File.Exists(info.FullName) & info.Extension == NameExtension)
+            {
+                try
+                {
+                    File.Copy(file, Path.Combine(@"E:\CTVFiles\", info.Name));
+                    CTVLog.Save("Копировали файл.", new FileInfo(file));
+                    CTVLog.Save("Вставили файл.", new FileInfo(Path.Combine(@"E:\CTVFiles\", info.Name)));
+
+                }
+                catch (System.IO.IOException)
+                {
+                    Console.WriteLine("Файл уже существует, поэтому удалим его и вставим новый");
+
+                    CTVLog.Save("Удалили файл.", new FileInfo(Path.Combine(@"E:\CTVFiles\", info.Name)));
+                    File.Delete(Path.Combine(@"E:\CTVFiles\", info.Name));
+
+                    File.Copy(file, Path.Combine(@"E:\CTVFiles\", info.Name));
+                    CTVLog.Save("Копировали файл.", new FileInfo(file));
+                    CTVLog.Save("Вставили файл.", new FileInfo(Path.Combine(@"E:\CTVFiles\", info.Name)));
+                }
+            }
+           
+        }
+
+        Console.WriteLine("\n\t\t\t\t Перемещаем папку в другой директорий \n");
+
+        try
+        {
+            CTVLog.Save("Перемещение данной папки в другую папку.", new DirectoryInfo(@"E:\CTVFiles"));
+            Directory.Move(@"E:\CTVFiles", @"E:\CTVInspect\CTVFiles");
+          
+        }
+        catch (System.IO.DirectoryNotFoundException)
+        {
+            Console.WriteLine("Папки нет, потому ее создадим");
+
+            Directory.CreateDirectory(@"E:\CTVInspect");
+            CTVLog.Save("Создали папку.", new DirectoryInfo(@"E:\CTVInspect"));
+
+            CTVLog.Save("Перемещение данной папки в другую папку.", new DirectoryInfo(@"E:\CTVFiles"));
+            Directory.Move(@"E:\CTVFiles", @"E:\CTVInspect\CTVFiles");
           
 
-            public Train()  // 1 конструктор без параметров, при создании без параметров будет использоваться прогой
-            {
-                Console.WriteLine("\n\t\t\t\tСработал конструктор без параметров Train");
-                count++;
-                // Console.WriteLine(count);
-                EndPunct = "Неизвестно";
-                time = new DateTime();
-                numberTrain = 0;
-                CountSeats = (0, 0, 0, 0);
-                ID = Convert.ToString(EndPunct.GetHashCode() + time.GetHashCode());
-                Allseat = this.AllSeats();
-
-            }
-
-          public Train(string n, int hour, int minute, int numberTr, int g, int c, int r, int l) // 2 конструктор со всеми параметрами
-            {
-
-                try
-                {
-                    EndPunct = n;
-                    time = new DateTime(2020, 9, 27, hour, minute, 0);  // год - месяц - день - час - минута - секунда
-                    numberTrain = numberTr;
-                    CountSeats = (g, c, r, l);
-                    ID = Convert.ToString(EndPunct.GetHashCode() + time.GetHashCode());
-                    count++;
-                    Allseat = this.AllSeats();
-                }
-                catch
-                {
-                    Console.WriteLine("Введены неверные данные");
-
-                }
-
-
-
-            }
-
-            public Train(string n, int hour, int minute, int numberTr) // 3 конструктор с некоторыми параметрами по умолчанию
-            {
-                count++;
-                try
-                {
-                    EndPunct = n;
-                    time = new DateTime(2020, 9, 27, hour, minute, 0);  // год - месяц - день - час - минута - секунда
-                    numberTrain = numberTr;
-                    CountSeats = (100, 50, 25, 10);//типа стандарт
-                    ID = Convert.ToString(EndPunct.GetHashCode() + time.GetHashCode());
-                    Allseat = this.AllSeats();
-                }
-                catch
-                {
-
-                    Console.WriteLine("Введены неверные данные");
-
-                }
-            }
-
-            //без параметров по умолчаниб вызывается всегда при запуске программы
-            //Статические поля, методы, свойства относятся ко всему классу 
-            //и для обращения к подобным членам класса необязательно создавать экземпляр класса. 
-
-
-            // статический метод для просмотра информации о классе
-            public static void GetInfo()
-            {
-                Console.WriteLine("\nКласс содержит: поля(ID,NameStation, count);\n" +
-                    "свойства(endPunkt, time, numberTrain, hour, minute);\n" +
-                    "кортеж countSeats(int general, int compartment, int reserved, int lux)\n" +
-                    "Четыре конструктора;\n" +
-                    "Методы: GetInfo\n" +
-                    "Переопределения: ToStaring, GetHachCode, Equels.\n\n");
-
-            }
-            public int Billet(ref int typeSeats, int numbil, out bool fl3)//использование ref и out
-            {
-                typeSeats--;
-                fl3 = true;
-                numbil++;
-                return 1;
-            }
-
-            public int AllSeats()//количестов мест в поезде
-            {
-                return CountSeats.general + CountSeats.compartment + CountSeats.reserved + CountSeats.lux;
-            }
-
-            private void HelloWorld()
-            { }
-
-            ///////////////////ПЕРЕОПРЕДЕЛЕНИЯ МЕТОДОВ/////////////////////////////////
-
-            public override string ToString()
-            {
-                return "\nСтанция отправления: " + NameStation + "\nКонечная станция: " + EndPunct +
-                    "\nВремя отправления:  " + time.TimeOfDay + "\nНомер поезда: " + numberTrain +
-                    "\nКоличество общих мест: " + CountSeats.general + "\nКоличество купэ мест: " + CountSeats.compartment +
-                    "\nКоличество плацкарт мест: " + CountSeats.reserved + "\nКоличество люкс мест: " + CountSeats.lux +
-                    "\nКоличество всех мест в поезде: " + this.AllSeats();
-            }
-
-            public override int GetHashCode()
-            {
-                // 269 или 47 простые
-                int hash = 269;
-                hash = string.IsNullOrEmpty(EndPunct) ? 0 : EndPunct.GetHashCode();
-                hash = (hash * 47) + time.GetHashCode();
-                return hash;
-            }
-
-            public virtual Boolean Equals(Train obj)
-            {
-                // Сравниваемый объект не может быть равным null
-                if (obj == null) return false;
-                // Объекты разных типов не могут быть равны
-                //  if (this.GetType() != obj.GetType()) return false;
-                if (this.ID != obj.ID) return false;//сравниваем по ID, ибо если ID разные, то и поля в чем-то различаются
-
-                return true;
-            }
         }
-
-    class GeomFigureEnumerator : IEnumerator
+        catch (System.IO.IOException)
         {
-            string[] figurs;
-            int position = -1;
+            Console.WriteLine("Папка уже существует, поэтому удалим ее");
 
+            CTVLog.Save("Удаление папки.", new DirectoryInfo(@"E:\CTVInspect\CTVFiles"));
+            Directory.Delete(@"E:\CTVInspect\CTVFiles", true);
 
-            public GeomFigureEnumerator(string[] figurs)
-            {
-                this.figurs = figurs;
-            }
+            CTVLog.Save("Перемещение данной папки в другую папку.", new DirectoryInfo(@"E:\CTVFiles"));
+            Directory.Move(@"E:\CTVFiles", @"E:\CTVInspect\CTVFiles");
+        
 
-            public object Current
-            {
-                get
-                {
-                    if (position == -1 || position >= figurs.Length)
-                        throw new InvalidOperationException();
-                    return figurs[position];
-                }
-            }
-
-            public bool MoveNext()
-            {
-                if (position < figurs.Length - 1)
-                {
-                    position++;
-                    return true;
-                }
-                else
-                    return false;
-            }
-
-            public void Reset()
-            {
-                position = -1;
-            }
         }
+       
+    }
 
-        class GeomFigure
+    public static void PunctC(string NameZ)
+    {
+        /*
+        Сделайте архив из файлов директория XXXFiles.
+        Разархивируйте его в другой директорий. 
+         */
+        //GZipStream compressionStream = new GZipStream(NameD, CompressionMode.Compress);
+        Console.WriteLine("\n\t\t\t\t МЕТОД PunctC \n");
+
+        string zipName = Path.Combine(@"E:\CTVInspect\", NameZ);
+        string zipFoulder = @"E:\CTVInspect\CTVFiles"; 
+
+        try
         {
-
-            public int ind = 0;
-            public string[] figurs = new string[10];
-
-            //===========================================Конструкторы===========================================
-
-            public GeomFigure(int count, int len, string nameFigurs)
-            {
-                figurs[ind] = nameFigurs + " " + count + " " + len + " ";
-                ind++;
-                Console.WriteLine("\t\t\t\tСработал конструктор  GeomFigure(int count, int len, string nameFigurs)\n");
-            }
-            public GeomFigure(int count, int len)
-            {
-                string nameFigurs = "";
-                switch (count)
-                {
-                    case 3: nameFigurs = "Треугольник"; break;
-                    case 4: nameFigurs = "Квадрат"; break;
-                    case 5: nameFigurs = "Пятиугольник"; break;
-                    case 6: nameFigurs = "Шестиугольник"; break;
-                    case 7: nameFigurs = "Семиугольник"; break;
-                    case 8: nameFigurs = "Восьмиугольник"; break;
-                    case 9: nameFigurs = "Девятиугольник"; break;
-                    case 10: nameFigurs = "Правильный многоульник"; break;
-
-                    default:
-                        nameFigurs = "Неизвестно";
-                        break;
-                }
-                figurs[ind] = nameFigurs + " " + count + " " + len;
-                ind++;
-                Console.WriteLine("\t\t\t\tСработал конструктор GeomFigure(int count, int len)\n");
-
-            }
-            public GeomFigure()
-            {
-                figurs[ind] = "Треугольник 3 10";
-                ind++;
-                Console.WriteLine("\t\t\t\tСработал конструктор GeomFigure()\n");
-
-            }
-
-            //==============================================Методы==============================================
-
-            public IEnumerator GetEnumerator()
-            {
-                return new GeomFigureEnumerator(figurs);
-            }
-            public void Add(int count, int len, string nameFigure)
-            {
-                figurs[ind] = nameFigure + " " + count + " " + len;
-
-                Console.WriteLine("\t\t\t\tСработал Add с тремя параметрами\n");
-                Console.WriteLine($"Добавили {ind}-ый элемент: {figurs[ind]}\n");
-                ind++;
-            }
-            public void Add(int count, int len)
-            {
-                string nameFigurs = "";
-                switch (count)
-                {
-                    case 3: nameFigurs = "Треугольник"; break;
-                    case 4: nameFigurs = "Квадрат"; break;
-                    case 5: nameFigurs = "Пятиугольник"; break;
-                    case 6: nameFigurs = "Шестиугольник"; break;
-                    case 7: nameFigurs = "Семиугольник"; break;
-                    case 8: nameFigurs = "Восьмиугольник"; break;
-                    case 9: nameFigurs = "Девятиугольник"; break;
-                    case 10: nameFigurs = "Правильный многоульник"; break;
-
-                    default:
-                        nameFigurs = "Неизвестно";
-                        break;
-                }
-                figurs[ind] = nameFigurs + " " + count + " " + len;
-
-                Console.WriteLine("\t\t\t\tСработал Add с двумя параметрами\n");
-                Console.WriteLine($"Добавили {ind}-ый элемент: {figurs[ind]}\n");
-                ind++;
-            }
-
-            string Shows()
-            {
-                string a = null;
-                for (int i = 0; figurs[i] != null; i++)
-                {
-                    a += figurs[i] + '\n';
-                }
-                return a;
-            }
-
-            public override string ToString()
-            {
-                return this.Shows();
-            }
+            ZipFile.CreateFromDirectory(zipFoulder, zipName);
+            CTVLog.Save("Архивация файлов папки.", new DirectoryInfo(zipFoulder));
 
         }
-
-        public class ParamType<T> where T:struct
+        catch (System.IO.IOException)
         {
-            public void Hello() => 
-                Console.WriteLine(typeof(T));
-            public void Str(string Hi) => Console.WriteLine(Hi);
-            
+            Console.WriteLine("Файл уже существует, поэтому удалим его");
+            CTVLog.Save("Удаление архива.", new FileInfo(zipName));
+
+            File.Delete(zipName);
+            ZipFile.CreateFromDirectory(zipFoulder, zipName);
+            CTVLog.Save("Архивация файлов папки.", new DirectoryInfo(zipFoulder));
+
         }
 
+        try
+        {
+            CTVLog.Save("Извлечение архива.", new DirectoryInfo(zipName));
+            ZipFile.ExtractToDirectory(zipName, @"E:\test_1fromArhive");
+          
+        }
+        catch (System.IO.IOException)
+        {
+            Console.WriteLine("Папка уже существует, поэтому удалим ее");
 
+            CTVLog.Save("Удаление папки.", new DirectoryInfo(@"E:\test_1fromArhive"));
+            Directory.Delete(@"E:\test_1fromArhive",true);
 
+            CTVLog.Save("Извлечение архива.", new DirectoryInfo(zipName));
+            ZipFile.ExtractToDirectory(zipName, @"E:\test_1fromArhive");
 
+        }
+
+    }
+}

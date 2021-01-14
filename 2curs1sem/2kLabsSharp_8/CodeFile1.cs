@@ -1,101 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-namespace _2kLabs_Sharp_3_2_
+
+namespace _2kLabsSharp_8
 {
-    public partial class Program
+    //Первая часть задания из лабораторной работы(11 вариант)
+    partial class Program
     {
-        public interface IMineOperation<T>
+        public delegate void SomeDelegat();//свой делегат, используется в User для создания события
+        public class User
         {
-            void Show();
-            void Add(T a);
-            void Delete(int ind);
+            public event SomeDelegat Upgrade;
+            public event EventHandler Work;
+          //  static int count = 0;//кол-во объектов этого класса
+            public void CommandUpgrade()
+            {
+                Console.WriteLine("Вышла новая версия приложения! Обновить?(y/n)");
+                string str = Console.ReadLine();
+                if (str == "y" || str =="Y") Upgrade?.Invoke();
+                else Console.WriteLine("\t\t\t\tОбновление отложено.\n");
+            }
+            public void CommandWork()
+            {
+                Console.WriteLine("\t\t\t\tПриложениe запущено.\n");
+                // if (Work != null) Work(this, null); //равносильно нижнему
+                Work?.Invoke(this, null);
+            }
+            /*static User()
+            {
+                count++;
+            }*/
         }
-        public class MineCollectionType_1<T> : IMineOperation<T> where T: struct //T может принимать только наследников класса Transport
+        //--------------------------------------Классы-наблюдатели-------------------------------------------------
+        public class PO_1
         {
+            int versionNum;//номер версии до обновления
+            string nameApp;
+            static string namePO = "PO_1 v";//неизменное начало
+            string version;//строка в себе имеющая неизвенное начало и номер новой версии
+            DateTime AwokeTime = new DateTime();
 
-            public string Element;
-            private List<T> LParts = new List<T>();
-            public int numb;
-            //------------------------------Конструкторы--------------------------
-
-            public MineCollectionType_1()//конструктор без параметров
+            string times = null;
+            //--------------------------------------Обработчики событий Upgrade-------------------------------------------------
+            public void OnUpgrade()
             {
-                Element = "Null";
-                numb = 0;
+                Console.WriteLine($"\t\t\t\tМетод OnUpgrade класса PO_1 {nameApp}\n");
+                versionNum++;
+                version = namePO + versionNum;
+                Console.WriteLine($"Приложение {nameApp} было обновлено до версии {version}\n");
+
             }
 
-            public MineCollectionType_1(string value)//конструктор с параметрами
+            public void OnShowUpgrade() =>
+                Console.WriteLine($"\t\t\t\tМетод OnShowUpgrade класса PO_1\nПоследняя версия {nameApp}: {version}\n");
+
+            //--------------------------------------Обработчики событий Work-------------------------------------------------
+
+            public void OnWork(object sender, EventArgs e)
             {
-                Element = value;
-                numb = 0;
+                AwokeTime = DateTime.Now;
+                times += Convert.ToString(AwokeTime) + "\n";
             }
 
-
-
-            //-----------------------------Методы----------------------------------
-            public void Add(T a)
+            public void OnShowWork(object sender, EventArgs e)
             {
-                LParts.Add(a);
+                if (times != null)
+                    Console.WriteLine($"\t\t\t\tМетод OnShowWork класса PO_1\nПриложение {nameApp} было запущено: \n{times}");
+                else Console.WriteLine($"Приложение запущено впервые {DateTime.Now}");
+            }
+            
+
+        //--------------------------------------Конструкторы-------------------------------------------------
+            public PO_1(int beginVersion, string nameApp)
+            {
+                versionNum = beginVersion;
+                version = namePO + versionNum;
+                this.nameApp = nameApp;
+            }
+            public PO_1()
+            {
+                versionNum = 0;
+                version = namePO + versionNum;
+                nameApp = "AppConstName";
             }
 
-            public void Delete(int ind)
-            {
-                LParts.RemoveAt(ind);
-            }
-
-            public void Show()
-            {
-                Console.WriteLine($"Element: {Element}\nnumb: {numb}\nCollection LParts:{LParts[0]}");
-                for (int i = 0; i < LParts.Count; i++)
-                    Console.WriteLine($"LParts[{i}]: {LParts[i]}\n");
-
-            }
-            public string Read(string patch)
-            {
-                string str = null;
-                string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_7\";
-                try
-                {
-                    writePath += patch;
-                    using (StreamReader sr = new StreamReader(writePath))
-                    {
-                        str = sr.ReadToEnd();
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-                return str;
-            }
-
-            public void Save(string patch)
-            {
-                string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_7\";
-                try
-                {
-                    writePath += patch;
-                    using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
-                    {
-                        sw.Write(this);
-                    }
-                    Console.WriteLine("Запись выполнена");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            public override string ToString()
-            {
-                string str = null;
-                for (int i = 0; i < LParts.Count; i++)
-                { str = str + " "+ LParts[i]; }
-                return Element + " " + numb + " " + str;
-            }
         }
-            //Обобщенный тип с ограничениями по значимому типу
-        }
+    }
 }

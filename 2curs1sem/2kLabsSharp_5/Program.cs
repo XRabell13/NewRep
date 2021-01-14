@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,10 +8,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
-using System.Diagnostics;
 
-namespace _2kLabsSharp_6
+namespace _2kLabsSharp_4
 {
+
+    /*
+    Перечень классов: Автомобиль, Поезд, Транспортное средство, Экспресс, Двигатель,  Вагон. 
+     List of classes: Car, Train, Transport, Express, Engine, Wagon.*/
+
     public partial class Program
     {
         //то, что должно быть обязательно
@@ -43,10 +48,9 @@ namespace _2kLabsSharp_6
             decimal Price;
             int Consumption;
             int WayKm { get; set; }
-            public virtual decimal GetPrice() => Price;
-            public virtual int GetConsumption() => Consumption;
-
-            public virtual decimal GetMaxSpeed() => MaxSpeed;
+            public decimal GetPrice() => Price;
+            public int GetConsumption() => Consumption;
+            public decimal GetMaxSpeed() => MaxSpeed;
 
 
             public int MoveInWay(int wayKm, int speed) => wayKm / speed;//реализован уже и можно просто использовать
@@ -71,9 +75,6 @@ namespace _2kLabsSharp_6
             int maxSpeed { get; set; }
             int minSpeed { get { return minSpeed; } set { minSpeed = 1; } }//1, чтобы при делении на 0 не было ошибки
 
-            public override decimal GetPrice() => Price;
-            public override int GetConsumption() => Consumption;
-            public override decimal GetMaxSpeed() => maxSpeed;
 
             public override void MaxSpeeds(int speed)
             {
@@ -186,9 +187,7 @@ namespace _2kLabsSharp_6
 
             public decimal Price { get; set; }
             public int Speed { get; set; }
-            public override decimal GetPrice() => Price;
-            public override int GetConsumption() => Consumption;
-            public override decimal GetMaxSpeed() => MaxSpeed;
+
             public void Move(int speed)
             {
                 Speed = speed;
@@ -285,9 +284,6 @@ namespace _2kLabsSharp_6
             public string NameOrganization { get; set; }   // название транспорта
             public string Marka { get; set; }  // марка транспорта
             public string Number { get; set; } // номер транспорта
-            public override decimal GetPrice() => Price;
-            public override int GetConsumption() => Consumption;
-            public override decimal GetMaxSpeed() => MaxSpeed;
 
             public readonly string ID;
             public int Consumption { get; set; }
@@ -307,8 +303,8 @@ namespace _2kLabsSharp_6
 
             public override void MaxSpeeds(int speed)
             {
-                //if (speed > 0 && speed < 190)
-                MaxSpeed = speed;
+                if (speed > 0 && speed < 190) MaxSpeed = speed;
+
                 Console.WriteLine($"MaxСкорость установлена для Car равная: {MaxSpeed}km/h");
             }
 
@@ -329,13 +325,13 @@ namespace _2kLabsSharp_6
                 NameOrganization = n;  // название транспорта
                 Marka = m;  // марка транспорта
                 Number = num; // номер транспорта
-
                 MaxSpeeds(MxSpeed);
                 ID = Convert.ToString(Number.GetHashCode() + NameOrganization.GetHashCode());
                 Color = Colors.Yellow;
                 Consumption = Consumpt;
                 this.Price = Price;
             }
+
 
             public sealed class Engine //двигатель
             {
@@ -349,6 +345,8 @@ namespace _2kLabsSharp_6
                 }
 
             }
+
+
 
             //переопределение всех методов унаследованных от object
             public override int GetHashCode()
@@ -386,8 +384,45 @@ namespace _2kLabsSharp_6
                      "toString(), Eguals()";
             }
 
+            //сработает при закрытии программы
+            ~Car()//неявное переопределение метода finalize()
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Объект class Car №{0} уничтожен", ID);
+                Console.Beep();//звук в конце будет
+            }
+        }
+
+        ///// чисто демонстрационное ///////////////////////////////////////////////////////////////////////////
+        class DemonStrationVirtual
+        {
+
+            public virtual void Show() { Console.WriteLine("Используется метод из DemonStrationVirtual"); }
 
         }
+        class DemonStrarion : DemonStrationVirtual
+        {
+            public override void Show() { Console.WriteLine("Используется переопределенный метод из DemonStration"); }
+
+        }
+        //-----------------------------------------------------------------------------------------------------
+        interface ISay { void DoSay(); }
+
+        abstract class BaseSay { public abstract void DoSay(); }
+
+        class Demonstrations : BaseSay, ISay
+        {
+            const string name = "Methode";
+            public override void DoSay() { Console.WriteLine($"\n{name}: Привет из определенного абстрактного метода!\n"); }
+            void ISay.DoSay() { Console.WriteLine($"\n{name}: Привет из интерфейсного метода!\n"); }
+
+
+        }
+        //   interface ICloneable { bool DoClone(); }
+
+        // abstract class BaseClone { public abstract bool DoClone(); }
+        //   class UserClass : BaseClone, ICloneable
+        //  {       }
 
         class Printer
         {
@@ -400,38 +435,13 @@ namespace _2kLabsSharp_6
 
         }
 
-        class Menu
-        {
-            public static void Show()
-            {
-                Console.WriteLine("------------------------------------------------------------------");
-                Console.WriteLine(" 1. Создать объект Car.");
-                Console.WriteLine(" 2. Создать объект Train.");
-                Console.WriteLine(" 3. Создать объект  Express.");
-                Console.WriteLine(" 4. Вывести весь список транспортных средств.");
-                Console.WriteLine(" 5. Удалить транспорт из списка.");
-                Console.WriteLine(" 6. Вывести сумму цен всех транспортных средств.");
-                Console.WriteLine(" 7. Сортировать автомобили по расходу топлива.");
-                Console.WriteLine(" 8. Вывести транспортные средства по диапазону скорости.");
-
-                Console.WriteLine(" 0. Выход.");
-                Console.WriteLine("------------------------------------------------------------------\n Ваш выбор: ");
-
-            }
-        }
 
         static void Main(string[] args)
         {
-            bool flag = true;
-            int n, sp1, sp2;
-            string org, mark, avtoNum, speedStr;
-            int speed = 0, litr = 0, price = 0;
-            Controller C1 = new Controller();
+            //   Controller C1 = new Controller();
+            ArrayList Cont = new ArrayList();
 
             Car Avto1 = new Car("Avtos", "Bently", "499212");
-            Transport Avto2 = new Car("Cars", "Zafira", "327878");
-            Car Avto3 = new Car("Avtos", "A1", "13451", 150, 14, 14999);
-            Car Avto4 = new Car("Avtos", "A2", "23543", 170, 10, 34999);
             Car.Engine EngineAvto1 = new Car.Engine();
 
             Train Train1 = new Train("TrainsOrg", "BelMark", "12");
@@ -440,175 +450,32 @@ namespace _2kLabsSharp_6
 
             Express Express1 = new Express("SpeedEXP", "JN", "13-B");
 
+            Transport[] mas = new Transport[6];
             Transport Train2 = new Train("OrgTR", "RUS", "23");
-
+            Transport Avto2 = new Car("Cars", "Zafira", "327878");
             Transport Express2 = new Express("ExpressSpeed", "JN", "123-A");
 
+            Printer Print1 = new Printer();
+
+            Demonstrations d1 = new Demonstrations();
+            DemonStrarion d2 = new DemonStrarion();
+
+         //   mas[0] = Avto1; mas[1] = Train1; mas[2] = Train2; mas[3] = Avto2; mas[4] = Express2; mas[5] = Express1;
+            Cont.Add(Avto1); Cont.Add(Avto2); Cont.Add(Train1); Cont.Add(Train2); Cont.Add(Express1); Cont.Add(Express2);
+
+          for (int i = 0; i < Cont.Count; i++)
+            {
+               Console.WriteLine("\n{0}", Cont[i]);
+
+          }
+            /*Как костыль можно сделать все через if и в переменной хранить название типа обьекта :")
+            чтобы знать, к чему приводить, чтобы данные вытягивать*/
+            /*попробовать через коллекцию с is и последующим преобразованием доставать методы
+            или же как-то через виртаульные методы с перегрузкой их в зависимости от типа обьекта*/
+            Console.WriteLine(Cont[0].GetType());
             Console.WriteLine("\n\n");
-            //  Проверка на то, добавляется ли в контейнер объект нужного типа
+            
 
-            C1.Add(Avto1); C1.Add(Avto2); C1.Add(Train1); C1.Add(Train2); C1.Add(Express1); C1.Add(Express2);
-            C1.Add(Avto3); C1.Add(Avto4);
-            //добавление элементов в массив
-
-            C1.Show();//показать все записи
-
-            Console.WriteLine($"Summ: {C1.Summ()}");// показать сумму
-            C1.SortAvto();//вывести список авто сортированных по количеству употребляемого топлива
-            C1.DiapazonSpeed(160, 280);// вывести транспортные средства в диапазоне от 160 до 280 км в ч
-            C1.Show();
-            //  C1.Delete(1); C1.Delete(2); C1.Delete(3);//удалить обьекты из массива
-            // C1.Show();
-
-
-            Console.WriteLine("Создаем объект класса Car: ");
-            Console.WriteLine("Organization: ");
-            org = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Marka: ");
-            mark = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Number Avto: ");
-            avtoNum = Convert.ToString(Console.ReadLine());
-
-            Console.WriteLine("Speed: ");
-
-            try
-            {
-                speed = Convert.ToInt32(Console.ReadLine());
-
-                if (speed <= 0 || speed > 190)
-                {
-                    MaxSpeedInvlidValueException exCar = new MaxSpeedInvlidValueException();
-
-                    throw exCar;
-                }
-
-            }
-            catch (MaxSpeedInvlidValueException exCar)
-            {
-                Console.WriteLine("Блок catch (MaxSpeedInvlidValueException exCar)");
-                exCar.MyExeption(speed);
-                while (flag)
-                {
-                    Console.WriteLine("Введите верное значение Speed: ");
-                    speed = Convert.ToInt32(Console.ReadLine());
-                    if (speed > 0 & speed < 190) flag = false;
-                }
-            }
-            catch (FormatException form)
-            {
-
-                Console.Write(form.Message + "\n\n");
-                Console.Write(form.TargetSite + "\n\n");
-                Console.Write(form.StackTrace + "\n\n");
-                while (flag)
-                {
-                    Console.WriteLine("Введите числое значение скорости: ");
-                    speedStr = Console.ReadLine();
-
-                    if (int.TryParse(speedStr, out speed))
-                    {
-                        Console.WriteLine("Преобразование прошло успешно");
-                        flag = false;
-                    }
-                    else
-                        Console.WriteLine("Преобразование завершилось неудачно");
-                }
-            } 
-            catch (Exception a)
-            {
-                Debug.Assert(a == null, "Непредвиденное исключение!"); 
-             
-                Console.Write(a.Message + "\n\n");
-                Console.Write(a.TargetSite + "\n\n");
-                Console.Write(a.StackTrace + "\n\n");
-            }
-            finally
-            {
-                flag = true;
-                Console.WriteLine("Первый Блок finally");
-            }
-
-            Console.WriteLine("Consum(litr): ");
-            litr = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine("Price: ");
-            price = Convert.ToInt32(Console.ReadLine());
-            try
-            {
-                if (price <= 0)
-                {
-                    PriceInvlidValueException exCar = new PriceInvlidValueException();
-                    throw exCar;
-                }
-
-            }
-            catch (PriceInvlidValueException exCar)
-            {
-                Console.WriteLine("Блок  catch (PriceInvlidValueException exCar)");
-                exCar.MyExeption();
-                while (flag)
-                {
-                   
-                    Console.WriteLine("Введите верное значение Price: ");
-                    price = Convert.ToInt32(Console.ReadLine());
-                    if (price > 0) flag = false;
-                }
-            }
-            catch (Exception a)
-            {
-                Debug.Assert(a == null, "Непредвиденное исключение!");
-
-                Console.Write(a.Message + "\n\n");
-                Console.Write(a.TargetSite + "\n\n");
-                Console.Write(a.StackTrace + "\n\n");
-
-            }
-            finally
-            {
-                flag = true;
-                Console.WriteLine("Второй Блок finally");
-            }
-           
-            Car Avto5 = new Car(org, mark, avtoNum, speed, litr, price);
-            C1.Add(Avto5);
-            Console.WriteLine("Введите значения диапазона: ");
-                  sp1 = Convert.ToInt32(Console.ReadLine());
-                  sp2 = Convert.ToInt32(Console.ReadLine());
-            try
-                  {
-                      if (sp1 >= sp2 || sp1 < 0 || sp2 < 0)
-                      {
-                          DiapasonInvalidException exDia = new DiapasonInvalidException();
-                          throw exDia;
-                      }
-
-                  }
-                  catch (DiapasonInvalidException exDia)
-                  {
-                      Console.WriteLine("Блок   catch (DiapasonInvalidException exDia)");
-                      exDia.FromOrToInvalidValue();
-                      while (flag)
-                      {
-                          Console.WriteLine($"Введите верные значения: ");
-                          sp1 = Convert.ToInt32(Console.ReadLine());
-                          sp2 = Convert.ToInt32(Console.ReadLine());
-                          if (sp1 < sp2 & sp2 > 0 & sp1 > 0) flag = false;
-                      }
-                  }
-                  catch (Exception a)
-                  {
-                  Debug.Assert(a == null, "Непредвиденное исключение!");
-                Console.Write(a.Message + "\n\n");
-                Console.Write(a.TargetSite + "\n\n");
-                Console.Write(a.StackTrace + "\n\n");
-            }
-                  finally
-                  {
-                      flag = true;
-                      Console.WriteLine("Третий Блок finally");
-                  }
-            C1.DiapazonSpeed(sp1, sp2);
-           
         }
     }
- }
+}

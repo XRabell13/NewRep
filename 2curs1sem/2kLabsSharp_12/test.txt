@@ -1,0 +1,53 @@
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+    {
+        static void Main(string[] args)
+        {
+        var allDrives = DriveInfo.GetDrives();
+        foreach (var d in allDrives)
+        {
+            Console.WriteLine("Drive name: {0}", d.Name);
+            Console.WriteLine("Drive type: {0}", d.DriveType);
+            if (!d.IsReady) continue;
+            Console.WriteLine("Volume Label: {0}", d.VolumeLabel);
+            Console.WriteLine("File system: {0}", d.DriveFormat);
+            Console.WriteLine("Root: {0}", d.RootDirectory);
+            Console.WriteLine("Total size: {0}", d.TotalSize);
+            Console.WriteLine("Free size: {0}", d.TotalFreeSpace);
+            Console.WriteLine("Available: {0}", d.AvailableFreeSpace);
+        }
+
+        string dirName = "C:\\Users";
+        DirectoryInfo dirInfo = new DirectoryInfo(dirName);
+        Console.WriteLine($"Название каталога: {dirInfo.Name}");
+        Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
+        Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
+        Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
+
+        Console.WriteLine();
+        //============================================РАБОТА КЛАССА CTVDiskInfo============================================
+        Console.WriteLine("\n =============================================РАБОТА КЛАССА(2) CTVDiskInfo============================================\n");
+        CTVDiskInfo.GetDiskInfo("E");
+        CTVDiskInfo.GetDiskInfo("C");
+
+        CTVDiskInfo.SizeFree("C");
+        CTVDiskInfo.SizeFree("E");
+
+        CTVDiskInfo.FileSystemInfo("E");
+        CTVDiskInfo.FileSystemInfo("C");
+
+        //============================================РАБОТА КЛАССА CTVFileInfo============================================
+        Console.WriteLine("\n =============================================РАБОТА КЛАССА(3) CTVFileInfo============================================\n");
+        CTVFileInfo.FileInf(@"C:\Users\hp\source\repos\2kLabsSharp_13\test.txt");
+        CTVFileInfo.FullPatch(@"C:\Users\hp\source\repos\2kLabsSharp_13\test.txt");
+        CTVFileInfo.GetCreateAndModify(@"C:\Users\hp\source\repos\2kLabsSharp_13\test.txt");
+    
+    }
+}

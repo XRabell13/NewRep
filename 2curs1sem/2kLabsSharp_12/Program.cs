@@ -1,45 +1,65 @@
 ﻿using System;
-using System.Reflection;
 using System.IO;
+using System.IO.Compression;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
- 
-    partial class Program
+class Program
     {
-       public static void Main()
+        static void Main(string[] args)
         {
-            //============================================ПЕРВЫЙ ПУНКТ ЗАДАНИЯ============================================
-            Console.WriteLine("\n ============================================ПЕРВЫЙ ПУНКТ ЗАДАНИЯ============================================\n");
-        Console.WriteLine("\n\t\t\t\tИспользование первого Invoke\n");
-        Reflector.Invoke("MagicClass", "ItsMagic");
+      
+        //============================================РАБОТА КЛАССА CTVDiskInfo============================================
+        Console.WriteLine("\n =============================================РАБОТА КЛАССА(2) CTVDiskInfo============================================\n");
+        CTVDiskInfo.GetDiskInfo("E");
+        CTVDiskInfo.GetDiskInfo("C");
 
-        MagicClass Magic = new MagicClass();
+        CTVDiskInfo.SizeFree("C");
+        CTVDiskInfo.SizeFree("E");
+
+        CTVDiskInfo.FileSystemInfo("E");
+        CTVDiskInfo.FileSystemInfo("C");
+
+        //============================================РАБОТА КЛАССА CTVFileInfo============================================
+        Console.WriteLine("\n =============================================РАБОТА КЛАССА(3) CTVFileInfo============================================\n");
+        CTVFileInfo.FileInf(@"C:\Users\hp\source\repos\2kLabsSharp_13\test.txt");
+        CTVFileInfo.FullPatch(@"C:\Users\hp\source\repos\2kLabsSharp_13\test.txt");
+        CTVFileInfo.GetCreateAndModify(@"C:\Users\hp\source\repos\2kLabsSharp_13\test.txt");
+
+        //============================================РАБОТА КЛАССА CTVFileInfo============================================
+        Console.WriteLine("\n =============================================РАБОТА КЛАССА(3) CTVFileInfo============================================\n");
+        CTVDirInfo.CountFiles(@"C:\Users\hp\source\repos\2kLabsSharp_13");
+        CTVDirInfo.CountFolders(@"C:\Users\hp\source\repos\2kLabsSharp_13");
+        CTVDirInfo.TimeCreation(@"C:\Users\hp\source\repos\2kLabsSharp_13");
+        CTVDirInfo.ParentDirectories(@"C:\Users\hp\source\repos\2kLabsSharp_13");
+        //============================================РАБОТА КЛАССА FileManager============================================
+        Console.WriteLine("\n =============================================РАБОТА КЛАССА(4) CTVFileManager============================================\n");
        
-        object[] Pars = Reflector.GeneratorParam("MagicClass", "ItsMagic");
-        Console.WriteLine("\n\t\t\t\tИспользование второго Invoke\n");
+        CTVFileManager.PunctA(@"E:\");
+        Console.ReadKey();
+        CTVFileManager.PunctB(@"C:\Users\hp\Project\NewRep\Ответы", ".txt");
+        Console.ReadKey();
+        CTVFileManager.PunctC(@"Answers.zip");
+        
+        //============================================ ШЕСТОЙ ПУНКТ ============================================
+        Console.WriteLine("\n ============================================= ШЕСТОЙ ПУНКТ ============================================\n");
+         Console.WriteLine("\n\t\t\t\t Поиск по дню\n");
+         CTVLog.Read("09");
+        Console.ReadKey();
+        Console.WriteLine("\n\t\t\t\t Поиск по периоду часа\n");
+          CTVLog.Read(15,17);
+        Console.ReadKey();
+        Console.WriteLine("\n\t\t\t\t Поиск по ключевому слову\n");
+          CTVLog.ReadWithWords("архив");
+        Console.ReadKey();
+        Console.WriteLine($"\n\nКоличество записей: {CTVLog.Count()}\n\n");
+        Console.ReadKey();
+        Console.WriteLine("\n\t\t\t\t Оставляем в файле информацию за текущий час \n");
+        CTVLog.Delete();
+        Console.WriteLine($"\n\nКоличество записей: {CTVLog.Count()}\n\n");
+        Console.ReadKey();
 
-        Reflector.Invoke(Magic, "ItsMagic", Pars);
-
-        Console.WriteLine("\n\t\t\t\tВывод информации о своих типах и типах .Net\n");
-        Reflector.Info(typeof(Train), false);
-        Reflector.Info(typeof(GeomFigureEnumerator), false);
-        Reflector.Info(typeof(GeomFigure), false);
-        Reflector.Info(typeof(MagicClass), false);
-
-        Reflector.Info(typeof(int), false);
-        Reflector.Info(typeof(string), false);
-        Reflector.Info(typeof(object), false);
-
-        //============================================ВТОРОЙ ПУНКТ ЗАДАНИЯ============================================
-        Console.WriteLine("\n ============================================ВТОРОЙ ПУНКТ ЗАДАНИЯ============================================\n");
-           // Reflector.GetPublicMethods(typeof(Train));
-                var ob1 = Reflector.Create(typeof(Train));
-                var ob2 = Reflector.Create(typeof(GeomFigure));
-                Console.WriteLine($"\n{ob1}");
-                Console.WriteLine($"\n{ob2}");
-        }
     }
-
+}

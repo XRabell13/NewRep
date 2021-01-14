@@ -8,22 +8,13 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using System.Diagnostics;
 
-namespace _2kLabsSharp_4
+namespace _2kLabsSharp_6
 {
 
     public partial class Program
     {
-        /*   enum Color
-           {
-               Red, Orange, Yellow, Green, Blue, Purple
-           }*/
-        /*
-         * Создать частое Транспортное агентство. 
-         * Подсчитать стоимость всех транспортных средств. (суммма всех прайз)
-         * Провести сортировку автомобилей по расходу топлива. 
-         * Найти транспортное в компании, соответствующий заданному диапазону параметров скорости.(вывод всех средств в цикле)
-         */
 
         /* https://www.cyberforum.ru/csharp-beginners/thread777840.html */
         struct Str
@@ -33,16 +24,17 @@ namespace _2kLabsSharp_4
             //и т.д... инициилизировать в самой структуре нельзя
         }
 
-       public  abstract class TransAgency
+        public abstract class TransAgency
         {
-            protected const int n = 15;
+            protected const int n = 8;
             public Transport[] TransMas = new Transport[n];
 
             int ind;
-            int Index { get { return Index; } set { if (value < 15) Index = value; else Index = 14; } }
+            int Index { get { return Index; } set { if (value < n) Index = value; else Index = n-1; } }
 
             public void Add(Transport TrObj)
             {
+                int di;
                 Console.WriteLine("\n\t\t\t\tСработал метод Add");
 
                 if (ind == 0)
@@ -52,25 +44,55 @@ namespace _2kLabsSharp_4
                         TransMas[k] = new Transport();
                     }
                 }
-                TransMas[ind] = TrObj;
-                ind++;
+               
+                try
+                {
+                    TransMas[ind] = TrObj;
+                    ind++;
+
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine("Недостаточно места! Удалите один из объектов для добавления в контейнер.\n");
+                    Console.Write(ex.Message + "\n\n");
+                    Console.Write(ex.TargetSite + "\n\n");
+                    Console.Write(ex.StackTrace + "\n\n");
+                    Console.WriteLine("Выберите элемент для удаления: \n");
+                    di = Convert.ToInt32(Console.ReadLine());
+                    this.Delete(di);
+                    TransMas[ind] = TrObj;
+                    ind++;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Непредвиденное исключение!");
+                }
+                finally
+                {
+                    
+                    Console.WriteLine("Блок finally из метода Add");
+                }
+              
             }
             public void Delete(int Index)
             {
                 TransMas[Index] = new Transport();
-               for (int j = Index; j < ind; j++)
+                for (int j = Index; j < ind; j++)
                 {
+                    if (j + 1 >= ind) { TransMas[j] = new Transport(); break; }
                     TransMas[j] = TransMas[j + 1];
-                   if (j + 1 == ind) TransMas[j + 1] = new Transport();
+
                 }
+
                 ind--;
+               
             }
-         
+
             public void Show()
             {
                 Console.WriteLine("\n\t\t\t\tНаходимся в методе Show в CodeFiles1.cs");
 
-                for (int i = 0; i <ind; i++)
+                for (int i = 0; i < ind; i++)
                 {
                     Console.WriteLine($"{ TransMas[i]}\n");
 
@@ -80,16 +102,13 @@ namespace _2kLabsSharp_4
 
         public class Controller : TransAgency
         {
-
-         
-
             public decimal Summ()
             {
                 Console.WriteLine("\n\t\t\t\tСработал метод Summ");
 
                 decimal summ = 0;
-               
-                for (int j = 0; TransMas[j].GetPrice() != 0; j++)
+
+                for (int j = 0; j < n; j++)
                 {
                     summ += TransMas[j].GetPrice();
                 }
@@ -101,8 +120,8 @@ namespace _2kLabsSharp_4
             {
                 Console.WriteLine("\n\t\t\t\tСработал метод SortAvto");
 
-                int k =0, N=0;
-                for (int j = 0; TransMas[j].GetPrice() != 0; j++)
+                int k = 0, N = 0;
+                for (int j = 0; j < n; j++)
                 {
 
                     if (TransMas[j] is Car) N++;
@@ -113,9 +132,9 @@ namespace _2kLabsSharp_4
                 {
                     Mas[j] = new Transport();
                 }
-                for (int j = 0; TransMas[j].GetPrice() != 0; j++)
+                for (int j = 0; j < n; j++)
                 {
-                 //   Console.WriteLine(TransMas[j].GetType());
+                    //   Console.WriteLine(TransMas[j].GetType());
                     if (TransMas[j] is Car) { Mas[k] = TransMas[j]; k++; }
                 }
 
@@ -132,25 +151,31 @@ namespace _2kLabsSharp_4
                         }
                     }
                 }
-                for (int j = 0; j<Mas.Length; j++)
+                for (int j = 0; j < Mas.Length; j++)
                 {
-                    Console.WriteLine("\n{0}",Mas[j]);
+                    Console.WriteLine("\n{0}", Mas[j]);
                 }
-
             }
 
             public void DiapazonSpeed(int from, int to)
             {
-                Console.WriteLine("\n\t\t\t\tМетод DiapazonSpeed"); 
+                Console.WriteLine("\n\t\t\t\tМетод DiapazonSpeed");
+                bool n = true;
                 for (int i = 0; i < TransMas.Length; i++)
                 {
-                    if (TransMas[i].GetMaxSpeed() > from & TransMas[i].GetMaxSpeed() < to)
-                        Console.WriteLine("\n{0}\n",TransMas[i]);
+                    if (TransMas[i].GetMaxSpeed() > from & TransMas[i].GetMaxSpeed() < to) 
+                    {
+                        Console.WriteLine("\n{0}\n", TransMas[i]);
+                        n = false;
+                    }
+                     
+                    
                 }
+                     
+                if(n) Console.WriteLine("Ничего не найдено!");
             }
 
         }
-
 
     }
 

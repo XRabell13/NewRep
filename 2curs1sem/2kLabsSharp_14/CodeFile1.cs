@@ -1,134 +1,188 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Runtime.Remoting.Contexts;
+using System.IO;
 
-interface IMovable// его методы обязательно должны быть реализованы в классах
+
+public class Potok
 {
+   static string a = "null";
 
+    private int numberValue;
 
-    // методы
-    void Move(int speed);                // движение
+    private static SemaphoreSlim sema = new SemaphoreSlim(1);
 
-
-    // свойства
-    string NameOrganization { get; set; }   // название транспорта
-    string Marka { get; set; }  // марка транспорта
-    string Number { get; set; } // номер транспорта
-    int Speed { get; set; }
-
-
-}
-
-// то, что может быть, а может и не быть
-[Serializable]
-public abstract class Transport//общий, базовый класс. Абстрактный. Все его методы МОГУТ БЫТЬ реализованы 
-{
-
-    int MaxSpeed { get; set; }
-    int MinSpeed { get; set; }
-
-    int WayKm { get; set; }
-
-
-    public int MoveInWay(int wayKm, int speed) => wayKm / speed;//реализован уже и можно просто использовать
-
-    public abstract void MaxSpeeds(int speed);//нужно реализовать
-
-}
-
-[Serializable]
-public class Car : Transport, IMovable
-{
-
-    public string NameOrganization { get; set; }   // название транспорта
-    public string Marka { get; set; }  // марка транспорта
-    public string Number { get; set; } // номер транспорта
-
-    [NonSerialized]//несериализуемое поле
-    public readonly string ID;
-    int maxSpeed { get; set; }
-    int minSpeed { get { return minSpeed; } set { minSpeed = 1; } }//1, чтобы при делении на 0 не было ошибки
-
-    int wayKm { get { return wayKm; } set { if (value > 0) wayKm = value; else wayKm = 1; } }//сколько проехал км
-
-    public int Speed { get; set; }
-
-    public void Move(int speed)
+    public static void Save(int a, string path)
     {
-        Speed = speed;
-        Console.WriteLine($"Скорость установлена для Car равная: {Speed}km/h");
+        try
+        {
+
+            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))//если записи пропадают, поменять на false
+            {
+                sw.Write($"\n{a}");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+    public static void Save1(int a, string path)
+    {
+        try
+        {
+
+            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))//если записи пропадают, поменять на false
+            {
+                sw.Write($"\n{a}");
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
 
-    public override void MaxSpeeds(int speed)
+    public Potok(int number)
     {
-        if (speed > 0 && speed < 190) Speed = speed;
-
-        Console.WriteLine($"MaxСкорость установлена для Car равная: {Speed}km/h");
-    }
-
-    public Car(string n, string m, string num)
-    {
-        NameOrganization = n;  // название транспорта
-        Marka = m;  // марка транспорта
-        Number = num; // номер транспорта
-        MaxSpeeds(150);
-        ID = Convert.ToString(Number.GetHashCode() + NameOrganization.GetHashCode());
-    }
-
-    public Car()
-    {
-        NameOrganization = "OrganizationForCars";  // название транспорта
-        Marka = "Other";  // марка транспорта
-        Number = "1111111"; // номер транспорта
-        MaxSpeeds(150);
-       // ID = Convert.ToString(Number.GetHashCode() + NameOrganization.GetHashCode());
+        numberValue = number;
     }
 
  
-    public sealed class Engine //двигатель
+    public void SimplNumber()
     {
-        string Type { get; set; }
-        string Power { get; set; }
-
-        public Engine()
+        for (int i = 1; i <= numberValue; i++)
         {
-            Type = "Goods";
-            Power = "240 л.с.";
+            if (isSimple(i))
+            {
+                Console.Write(i.ToString() + " ");
+                Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\File.txt");
+            }
         }
-
     }
-
-
-
-    //переопределение всех методов унаследованных от object
-    public override int GetHashCode()
+    //метод который определяет простое число или нет
+    public bool isSimple(int N)
     {
-        // 269 или 47 простые
-        int hash = 269;
-        hash = string.IsNullOrEmpty(Number) ? 0 : Number.GetHashCode();
-        hash = (hash * 47) + NameOrganization.GetHashCode();
-        return hash;
-    }
-
-    public virtual Boolean Equals(Car obj)
-    {
-        // Сравниваемый объект не может быть равным null
-        if (obj == null) return false;
-        // Объекты разных типов не могут быть равны
-        //  if (this.GetType() != obj.GetType()) return false;
-        if (this.ID != obj.ID) return false;//сравниваем по ID, ибо если ID разные, то и поля в чем-то различаются
-
+        //чтоб убедится простое число или нет достаточно проверить не делитсья ли 
+        //число на числа до его половины
+        for (int i = 2; i <= (int)(N / 2); i++)
+        {
+            if (N % i == 0)
+                return false;
+        }
         return true;
     }
 
-    public new Type GetType()
+    public void Chet()
     {
-        return typeof(Car);
+        Console.WriteLine();
+        for (int i = 1; i <= numberValue; i++)
+        {
+            if (i % 2 == 0)
+            {
+                Console.WriteLine(i + " ");
+                Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
+            }
+            Thread.Sleep(150);
+        }
     }
 
-    public override string ToString()
+    public void NeChet()
     {
-        return "Класс: Car\nНаименование фирмы: " + NameOrganization + "\nМарка:" + Marka + "\nНомер:" + Number + "\nID:" + ID + "\nMaxSpeed:" +
-             Speed + "\nМетоды: Move, MaxSpeed\nПереопределения: GetType(),GetHashCode(), Finallize()" +
-             "toString(), Eguals()";
+        Console.WriteLine();
+        for (int i = 1; i <= numberValue; i++)
+        {
+            if (i % 2 != 0)
+            {
+                Console.WriteLine(i + " ");
+                Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
+            }
+            Thread.Sleep(100);
+        }
+      
+    }
+    public void Chet1()
+    {
+        Monitor.Enter(a);
+        for (int i = 1; i <= numberValue; i++)
+        {
+          
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i + " ");
+                    Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
+                }
+            }
+          
+        }
+        Monitor.Exit(a);
+
+    }
+
+    public void NeChet1()
+    {
+        Monitor.Enter(a);
+        for (int i = 1; i <= numberValue; i++)
+        {
+          
+            {
+                if (i % 2 != 0)
+                {
+                    Console.WriteLine(i + " ");
+                    Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
+                }
+              
+            }
+      
+        }
+        Monitor.Exit(a);
+    }
+
+    public void Chet2()
+    {
+       
+        Console.WriteLine();
+        for (int i = 1; i <= numberValue; i++)
+        {
+         
+            if (i % 2 == 0)
+            {
+                Console.WriteLine(i + " ");
+                sema.Wait();
+                Save1(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
+                sema.Release();
+            }
+            
+           
+        }
+        
+    }
+
+    public void NeChet2()
+    {
+        Console.WriteLine();
+        for (int i = 1; i <= numberValue; i++)
+        {
+           
+            if (i % 2 != 0)
+            {
+                Console.WriteLine(i + " ");
+                sema.Wait();
+                Save1(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
+                sema.Release();
+            }
+           
+
+        }
+        
     }
 
 }

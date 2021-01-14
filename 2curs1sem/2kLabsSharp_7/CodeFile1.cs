@@ -1,182 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
-using System.Diagnostics;
-
-namespace _2kLabsSharp_6
+using System.IO;
+namespace _2kLabs_Sharp_3_2_
 {
-
     public partial class Program
     {
-
-        /* https://www.cyberforum.ru/csharp-beginners/thread777840.html */
-        struct Str
+        public interface IMineOperation<T>
         {
-            int elem;
-            string[] fhraza;
-            //и т.д... инициилизировать в самой структуре нельзя
+            void Show();
+            void Add(T a);
+            void Delete(int ind);
         }
-
-        public abstract class TransAgency
+        public class MineCollectionType_1<T> : IMineOperation<T> where T: struct //может принимать только значимые типы
         {
-            protected const int n = 8;
-            public Transport[] TransMas = new Transport[n];
 
-            int ind;
-            int Index { get { return Index; } set { if (value < n) Index = value; else Index = n-1; } }
+            public string Element;
+            private List<T> LParts = new List<T>();
+            public int numb;
+            //------------------------------Конструкторы--------------------------
 
-            public void Add(Transport TrObj)
+            public MineCollectionType_1()//конструктор без параметров
             {
-                int di;
-                Console.WriteLine("\n\t\t\t\tСработал метод Add");
-
-                if (ind == 0)
-                {
-                    for (int k = 0; k < n; k++)
-                    {
-                        TransMas[k] = new Transport();
-                    }
-                }
-               
-                try
-                {
-                    TransMas[ind] = TrObj;
-                    ind++;
-
-                }
-                catch (IndexOutOfRangeException ex)
-                {
-                    Console.WriteLine("Недостаточно места! Удалите один из объектов для добавления в контейнер.\n");
-                    Console.Write(ex.Message + "\n\n");
-                    Console.Write(ex.TargetSite + "\n\n");
-                    Console.Write(ex.StackTrace + "\n\n");
-                    Console.WriteLine("Выберите элемент для удаления: \n");
-                    di = Convert.ToInt32(Console.ReadLine());
-                    this.Delete(di);
-                    TransMas[ind] = TrObj;
-                    ind++;
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Непредвиденное исключение!");
-                }
-                finally
-                {
-                    
-                    Console.WriteLine("Блок finally из метода Add");
-                }
-              
+                Element = "Null";
+                numb = 0;
             }
-            public void Delete(int Index)
+
+            public MineCollectionType_1(string value)//конструктор с параметрами
             {
-                TransMas[Index] = new Transport();
-                for (int j = Index; j < ind; j++)
-                {
-                    if (j + 1 >= ind) { TransMas[j] = new Transport(); break; }
-                    TransMas[j] = TransMas[j + 1];
+                Element = value;
+                numb = 0;
+            }
 
-                }
 
-                ind--;
-               
+
+            //-----------------------------Методы----------------------------------
+            public void Add(T a)
+            {
+                LParts.Add(a);
+            }
+
+            public void Delete(int ind)
+            {
+                LParts.RemoveAt(ind);
             }
 
             public void Show()
             {
-                Console.WriteLine("\n\t\t\t\tНаходимся в методе Show в CodeFiles1.cs");
+                Console.WriteLine($"Element: {Element}\nnumb: {numb}\nCollection LParts:{LParts[0]}");
+                for (int i = 0; i < LParts.Count; i++)
+                    Console.WriteLine($"LParts[{i}]: {LParts[i]}\n");
 
-                for (int i = 0; i < ind; i++)
+            }
+            public string Read(string patch)
+            {
+                string str = null;
+                string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_7\";
+                try
                 {
-                    Console.WriteLine($"{ TransMas[i]}\n");
+                    writePath += patch;
+                    using (StreamReader sr = new StreamReader(writePath))
+                    {
+                        str = sr.ReadToEnd();
+                    }
 
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                return str;
+            }
+
+            public void Save(string patch)
+            {
+                string writePath = @"C:\Users\hp\source\repos\2kLabsSharp_7\";
+                try
+                {
+                    writePath += patch;
+                    using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+                    {
+                        sw.Write(this);
+                    }
+                    Console.WriteLine("Запись выполнена");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            public override string ToString()
+            {
+                string str = null;
+                for (int i = 0; i < LParts.Count; i++)
+                { str = str + " "+ LParts[i]; }
+                return Element + " " + numb + " " + str;
             }
         }
-
-        public class Controller : TransAgency
-        {
-            public decimal Summ()
-            {
-                Console.WriteLine("\n\t\t\t\tСработал метод Summ");
-
-                decimal summ = 0;
-
-                for (int j = 0; j < n; j++)
-                {
-                    summ += TransMas[j].GetPrice();
-                }
-                return summ;
-
-            }
-
-            public void SortAvto()
-            {
-                Console.WriteLine("\n\t\t\t\tСработал метод SortAvto");
-
-                int k = 0, N = 0;
-                for (int j = 0; j < n; j++)
-                {
-
-                    if (TransMas[j] is Car) N++;
-                }
-
-                Transport[] Mas = new Transport[N];
-                for (int j = 0; j < Mas.Length; j++)
-                {
-                    Mas[j] = new Transport();
-                }
-                for (int j = 0; j < n; j++)
-                {
-                    //   Console.WriteLine(TransMas[j].GetType());
-                    if (TransMas[j] is Car) { Mas[k] = TransMas[j]; k++; }
-                }
-
-                Transport temp = new Transport();
-                for (int i = 0; i < Mas.Length; i++)
-                {
-                    for (int j = i + 1; j < Mas.Length; j++)
-                    {
-                        if (Mas[i].GetConsumption() > Mas[j].GetConsumption())
-                        {
-                            temp = Mas[i];
-                            Mas[i] = Mas[j];
-                            Mas[j] = temp;
-                        }
-                    }
-                }
-                for (int j = 0; j < Mas.Length; j++)
-                {
-                    Console.WriteLine("\n{0}", Mas[j]);
-                }
-            }
-
-            public void DiapazonSpeed(int from, int to)
-            {
-                Console.WriteLine("\n\t\t\t\tМетод DiapazonSpeed");
-                bool n = true;
-                for (int i = 0; i < TransMas.Length; i++)
-                {
-                    if (TransMas[i].GetMaxSpeed() > from & TransMas[i].GetMaxSpeed() < to) 
-                    {
-                        Console.WriteLine("\n{0}\n", TransMas[i]);
-                        n = false;
-                    }
-                     
-                    
-                }
-                     
-                if(n) Console.WriteLine("Ничего не найдено!");
-            }
-
+            //Обобщенный тип с ограничениями по значимому типу
         }
-
-    }
-
 }

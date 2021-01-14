@@ -1,180 +1,175 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization.Formatters.Soap;
+using System.Threading;
+using System.Runtime.Remoting.Contexts;
 using System.IO;
-using System.IO.Compression;
-using System.Xml.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Xml.Linq;
-using System.Xml;
 
-class Program
+
+class StatusChecker
+{
+
+   int timet; 
+
+    public StatusChecker(int count)
     {
-        static void Main(string[] args)
+        timet = count;
+    }
+    public void CheckStatus(Object tim)=>
+        Console.WriteLine("\t\t\t\tBegin: {0}\n\t\t\t\tTime {1}.",tim, DateTime.Now.ToString("h:mm:ss.fff"));
+
+    
+}
+
+public class Program
+    {
+   
+    static void Main(string[] args)
         {
+      
+        var statusChecker = new StatusChecker(3);
+        var tim = DateTime.Now;
+       
+        Console.WriteLine("{0:h:mm:ss.fff} Creating timer.\n",  DateTime.Now);
+        var stateTimer = new Timer(statusChecker.CheckStatus, tim, 0, 1500);
+
         Console.WriteLine("\n ============================================= ПЕРВЫЙ ПУНКТ ============================================\n");
+  
+        var allProcess = Process.GetProcesses();
 
-
-        Car C1 = new Car("Cars", "Opel", "123456");
-          Car C2 = new Car("Cars","Zaphire","154456");
-          Car C3 = new Car("Org","Astra","178080");
-          Car C4 = new Car("Ord","Bently","789523");
-
-        Console.WriteLine("\n ============================================= Binary ============================================\n");
-
-        Console.WriteLine($"\n\nОбъект С1 до сериализации: \n{C1}");
-      
-        BinaryFormatter formatter = new BinaryFormatter();
-        // получаем поток, куда будем записывать сериализованный объект 
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\C1New.txt", FileMode.OpenOrCreate))
+        foreach (Process proc in allProcess)
         {
-            formatter.Serialize(fs, C1);
+            ProcessThread th = proc.Threads[0];
+            using (th)
+            {
+                try
+                {
+                    Console.WriteLine($"\nИмя процесса: {proc.ProcessName}\nВремя запуска: {proc.StartTime}\nПриоритет: {proc.PriorityClass}" +
+                       $"\nId:{proc.Id}\nСколько времени использовал процессор: {(DateTime.Now - proc.StartTime).TotalSeconds} seconds");
 
-        }
-        // десериализация 
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\C1New.txt", FileMode.OpenOrCreate))
-        {
-            Car DesC1 = (Car)formatter.Deserialize(fs);
-            Console.WriteLine($"\n\nОбъект после десериализации из Binary: \n{DesC1}");
+                    Console.Write($"Текущее состояние: {th.ThreadState}\n");
 
-        }
-        Console.WriteLine("\n ============================================= Soap ============================================\n");
-     
-        Console.WriteLine($"\n\nОбъект С2 до сериализации: \n{C2}");
-        SoapFormatter soapFormatter = new SoapFormatter();
-        using (Stream fStream = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\C2.txt", FileMode.OpenOrCreate)) 
-        {
-          
-            soapFormatter.Serialize(fStream,C2);
-          
-        }
-        using (Stream fStream = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\C2.txt", FileMode.OpenOrCreate))
-        {
 
-          Car DesC2 =  (Car)soapFormatter.Deserialize(fStream);
-          Console.WriteLine($"\n\nОбъект после десериализации из Soap: \n{DesC2}");
+                }
+                catch (System.ComponentModel.Win32Exception)
+                {
+                    Console.WriteLine("\nОтказано в доступе");
+                }
+                catch (System.InvalidOperationException)
+                {
+                    Console.WriteLine("\nПроцесс был завершен, информация недоступна\n");
+                }
 
-        }
-
-        Console.WriteLine("\n ============================================= Json ============================================\n");
-      
-        Console.WriteLine($"\n\nОбъект С3 до сериализации: \n{C4}");
-        DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Car));
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\car4.json", FileMode.OpenOrCreate))
-        { 
-            jsonFormatter.WriteObject(fs, C4); 
-        }
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\car4.json", FileMode.OpenOrCreate))
-        {
-           Car DesC4 = (Car)jsonFormatter.ReadObject(fs);
-            Console.WriteLine($"\n\nОбъект после десериализации из Json: \n{DesC4}");
-
-        }
-
-        Console.WriteLine("\n ============================================= XML ============================================\n");
-
-        Console.WriteLine($"\n\nОбъект С3 до сериализации: \n{C3}");
-        XmlSerializer CarSerXML = new XmlSerializer(typeof(Car));
-
-        // получаем поток, куда будем записывать сериализованный объект
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\cars3.xml", FileMode.OpenOrCreate)) 
-        {
-            CarSerXML.Serialize(fs, C3); 
-        }
-        // десериализация
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\cars3.xml", FileMode.OpenOrCreate))
-        { 
-            Car DesC3 = CarSerXML.Deserialize(fs) as Car;
-            Console.WriteLine($"\n\nОбъект после десериализации из XML: \n{DesC3}");
-
+            }
         }
 
         Console.WriteLine("\n ============================================= ВТОРОЙ ПУНКТ ============================================\n");
 
-        XmlSerializer CarsXML = new XmlSerializer(typeof(Car[]));
-        Console.WriteLine($"\n\nМассив до сериализации: \n");
+        AppDomain D = AppDomain.CurrentDomain;
+            Console.WriteLine($"Имя домена: {D.FriendlyName}\nДетали конфигурации:\n{D.ApplicationTrust.DefaultGrantSet.PermissionSet}\nВсе сборки, загруженные в домен:\n");
+           
+        foreach (var sb in D.GetAssemblies())
+            {
+                Console.WriteLine(sb.GetName().Name+"\n");
+            }
 
-        Car[] Cars = new Car[] { C1, C2, C3, C4 };
-        for (int i = 0; i < Cars.Length; i++)
-            Console.WriteLine($"\n{Cars[i]}");
-
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\carsXMLNew.xml", FileMode.OpenOrCreate))
+        AppDomain newD = AppDomain.CreateDomain("NewDomen");
+        newD.Load("2kLabsSharp_13");
+        
+        Console.WriteLine($"\t\t\t\tНовый загруженный домен.\nИмя домена: {newD.FriendlyName}\nДетали конфигурации:{newD.ApplicationTrust.DefaultGrantSet.PermissionSet}\nВсе сборки, загруженные в домен:\n");
+        foreach (var sb in D.GetAssemblies())
         {
-            CarsXML.Serialize(fs, Cars);
+            Console.WriteLine(sb.GetName().Name + "\n");
         }
-        // десериализация
-        using (FileStream fs = new FileStream(@"C:\Users\hp\source\repos\2kLabsSharp_14\carsXMLNew.xml", FileMode.OpenOrCreate))
-        {
-            Car[] CarsX = CarsXML.Deserialize(fs) as Car[];
-            Console.WriteLine($"\n\nМассив после десериализации из XML: \n");
-            for (int i = 0; i < CarsX.Length; i++)
-                Console.WriteLine($"\n{CarsX[i]}");
 
-        }
+        AppDomain.Unload(newD);
+        Console.WriteLine($"\t\t\t\tДомен выгружен.");
 
         Console.WriteLine("\n ============================================= ТРЕТИЙ ПУНКТ ============================================\n");
 
-        XmlDocument doc = new XmlDocument();
-        doc.Load(@"C:\Users\hp\source\repos\2kLabsSharp_14\carsXML.xml");
-        XmlNode root = doc.DocumentElement;
- 
-        XmlNodeList nodeList;
+        Console.WriteLine("Искать простые числа от 1 до: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+      
+        Potok tws = new Potok(n);
+
+        Thread thr = new Thread(new ThreadStart(tws.SimplNumber));
+        thr.Start();//запуск
+
+        thr.Name = "Метод SimplNumber";
+        Console.WriteLine($"\nИмя потока: {thr.Name}");
+        Console.WriteLine($"Id: {thr.ManagedThreadId}");   
+        Console.WriteLine($"Приоритет потока: {thr.Priority}");
+        Console.WriteLine($"Статус потока: {thr.ThreadState}");
+
+        thr.Suspend();//устаревший метод, приостановка
+
+        Console.WriteLine($"\nИмя потока: {thr.Name}");
+        Console.WriteLine($"Id: {thr.ManagedThreadId}");
+        Console.WriteLine($"Приоритет потока: {thr.Priority}");
+        Console.WriteLine($"Статус потока: {thr.ThreadState}");
+
+        thr.Resume();//устаревший метод, возобновление
+
+        Console.WriteLine($"\nИмя потока: {thr.Name}");
+        Console.WriteLine($"Id: {thr.ManagedThreadId}");
+        Console.WriteLine($"Приоритет потока: {thr.Priority}");
+        Console.WriteLine($"Статус потока: {thr.ThreadState}");
+
+        Thread.Sleep(1000);
+        thr.Abort();//начинаем процесс завершения потока
+       
+        Console.WriteLine($"\nИмя потока: {thr.Name}");
+        Console.WriteLine($"Id: {thr.ManagedThreadId}");
+        Console.WriteLine($"Статус потока: {thr.ThreadState}");
+
+      /* thr.Join();//завершение потока
+        Console.WriteLine($"\nИмя потока: {thr.Name}");
+        Console.WriteLine($"Id: {thr.ManagedThreadId}");
+         Console.WriteLine($"Приоритет потока: {thr.Priority}");
+        Console.WriteLine($"Статус потока: {thr.ThreadState}");*/
    
-        nodeList = root.SelectNodes("descendant::Car[Marka='Zaphire']");
-        Console.WriteLine("Информация из узлов с маркой машины Zaphire: ");
-
-        //Change the price on the books.
-        foreach (XmlNode nd in nodeList)
-        {
-            Console.WriteLine($"\nOrg: {nd.FirstChild.InnerText}\nMarka: {nd.FirstChild.NextSibling.InnerText}\nNumber: {nd.FirstChild.NextSibling.NextSibling.InnerText}\nSpeed: {nd.LastChild.InnerText}");
-
-        }
-        XmlNode nod = root.SelectSingleNode("descendant::Car[Speed>140]");
-        Console.WriteLine("\nИнформация из первого узла, значение скорости которого больше 140: ");
-
-        Console.WriteLine($"\nOrg: {nod.FirstChild.InnerText}\nMarka: {nod.FirstChild.NextSibling.InnerText}\nNumber: {nod.FirstChild.NextSibling.NextSibling.InnerText}\nSpeed: {nod.LastChild.InnerText}");
-
-
-
         Console.WriteLine("\n ============================================= ЧЕТВЕРТЫЙ ПУНКТ ============================================\n");
+
+        Console.WriteLine("Выводить четные и нечетные числа вперемешку от 1 до: ");
+        int n1 = Convert.ToInt32(Console.ReadLine());
+
+        Potok tw = new Potok(n1);
         
-        XmlDocument newdoc = new XmlDocument();
-        newdoc.Load(@"C:\Users\hp\source\repos\2kLabsSharp_14\P4ModCars.xml");
+                Thread thrs = new Thread(new ThreadStart(tw.Chet));
+               Thread thrs1 = new Thread(new ThreadStart(tw.NeChet));
+                thrs.Start();
+                thrs1.Start();
+                Thread.Sleep(6000);
+                thrs.Abort(); thrs1.Abort();
 
-        XmlNodeList nodeListNew;
-        XmlNode rootNew = newdoc.DocumentElement;
+        Console.WriteLine("\t\t\t\tВывод с приоритетом.");
 
-        nodeListNew = rootNew.SelectNodes("descendant::Car[Speed>220]");
+        Thread thr_1 = new Thread(new ThreadStart(tw.Chet));
+        Thread thr_2 = new Thread(new ThreadStart(tw.NeChet));
+        thr_1.Priority = ThreadPriority.Highest;
+        thr_1.Start();
+        thr_2.Start();
+        Thread.Sleep(6000);
+        thr_1.Abort(); thr_2.Abort();
+       
+         Console.WriteLine("\t\t\t\tСначала четные, потом нечетные.");
+         Thread thr_3 = new Thread(new ThreadStart(tw.Chet1));
+         Thread thr_4 = new Thread(new ThreadStart(tw.NeChet1));
 
-        foreach (XmlNode nd in nodeListNew)
-        {
-           nd.FirstChild.InnerText = "NewCar2020";
-            nd.FirstChild.NextSibling.InnerText = "Tesla";
-        }
+         thr_3.Start();
+         thr_4.Start();
+         Thread.Sleep(3000);
+         thr_3.Abort(); thr_4.Abort();
+         
 
-        Console.WriteLine("\n\nНовосозданный документ по выборке на скорость и с заменой значений узлов: ");
-        newdoc.Save(Console.Out);
+        Console.WriteLine("\t\t\t\t Чет-нечет");
 
-        Console.WriteLine("\n\nЗначения узлов, в которых Number>800: ");
-
-        XmlNode nodNew = rootNew.SelectSingleNode("descendant::Car[Marka = 'Tesla']");
-        nodeListNew = rootNew.SelectNodes("descendant::Car[Number>800]");
-        foreach (XmlNode nd in nodeListNew)
-        {
-            Console.WriteLine($"\nOrg: {nd.FirstChild.InnerText}\nMarka: {nd.FirstChild.NextSibling.InnerText}\nNumber: {nd.FirstChild.NextSibling.NextSibling.InnerText}\nSpeed: {nd.LastChild.InnerText}");
-           
-        }
-        Console.WriteLine("\n\nЗначение первого узоа, в котором Marka='Tesla': ");
-
-        Console.WriteLine($"\nOrg: {nodNew.FirstChild.InnerText}\nMarka: {nodNew.FirstChild.NextSibling.InnerText}\nNumber: {nodNew.FirstChild.NextSibling.NextSibling.InnerText}\nSpeed: {nodNew.LastChild.InnerText}");
-
-
+        Thread thr_5 = new Thread(new ThreadStart(tw.Chet2));
+        Thread thr_6 = new Thread(new ThreadStart(tw.NeChet2));
+        thr_6.Start(); thr_5.Start();
+        Thread.Sleep(4000);
     }
 }
-
-    
-

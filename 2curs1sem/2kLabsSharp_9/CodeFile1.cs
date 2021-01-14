@@ -1,85 +1,173 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace _2kLabsSharp_8
+namespace _2KLabsSharp_9
 {
-    //Первая часть задания из лабораторной работы(11 вариант)
-    partial class Program
+    public partial class Program 
     {
-        public delegate void SomeDelegat();//свой делегат, используется в User для создания события
-        public class User
+
+        private static void GeomFigure_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            public event SomeDelegat Upgrade;
-            public event EventHandler Work;
-          //  static int count = 0;//кол-во объектов этого класса
-            public void CommandUpgrade()
+            switch (e.Action)
             {
-                Console.WriteLine("Вышла новая версия приложения! Обновить?(y/n)");
-                string str = Console.ReadLine();
-                if (str == "y" || str =="Y") Upgrade?.Invoke();
-                else Console.WriteLine("\t\t\t\tОбновление отложено.\n");
+                case NotifyCollectionChangedAction.Add: // если добавление
+                    GeomFigure NewFigure = e.NewItems[0] as GeomFigure;
+                    Console.WriteLine($"\nДобавлен новый объект: ");
+                    for (int i = 0; NewFigure.figurs[i] != null; i++)
+                        Console.WriteLine(NewFigure.figurs[i]);
+                    Console.WriteLine('\n');
+                    break;
+                case NotifyCollectionChangedAction.Remove: // если удаление
+                    GeomFigure OldFigure = e.OldItems[0] as GeomFigure;
+                    Console.WriteLine($"\nУдален объект: ");
+                    for (int i = 0; OldFigure.figurs[i] != null; i++)
+                        Console.WriteLine(OldFigure.figurs[i]);
+                    Console.WriteLine('\n');
+
+                    break;
             }
-            public void CommandWork()
-            {
-                Console.WriteLine("\t\t\t\tПриложениe запущено.\n");
-                // if (Work != null) Work(this, null); //равносильно нижнему
-                Work?.Invoke(this, null);
-            }
-            /*static User()
-            {
-                count++;
-            }*/
         }
-        //--------------------------------------Классы-наблюдатели-------------------------------------------------
-        public class PO_1
+        class GeomFigureEnumerator : IEnumerator
         {
-            int versionNum;//номер версии до обновления
-            string nameApp;
-            static string namePO = "PO_1 v";//неизменное начало
-            string version;//строка в себе имеющая неизвенное начало и номер новой версии
-            DateTime AwokeTime = new DateTime();
+            string[] figurs;
+            int position = -1;
 
-            string times = null;
-            //--------------------------------------Обработчики событий Upgrade-------------------------------------------------
-            public void OnUpgrade()
+
+            public GeomFigureEnumerator(string[] figurs)
             {
-                Console.WriteLine($"\t\t\t\tМетод OnUpgrade класса PO_1 {nameApp}\n");
-                versionNum++;
-                version = namePO + versionNum;
-                Console.WriteLine($"Приложение {nameApp} было обновлено до версии {version}\n");
+                this.figurs = figurs;
+            }
+
+            public object Current
+            {
+                get
+                {
+                    if (position == -1 || position >= figurs.Length)
+                        throw new InvalidOperationException();
+                    return figurs[position];
+                }
+            }
+
+            public bool MoveNext()
+            {
+                if (position < figurs.Length - 1)
+                {
+                    position++;
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+            public void Reset()
+            {
+                position = -1;
+            }
+        }
+
+        class GeomFigure
+        {
+
+            public int ind = 0;
+            public string[] figurs = new string[10];
+
+            //===========================================Конструкторы===========================================
+
+            public GeomFigure(int count, int len, string nameFigurs)
+            {
+                figurs[ind] = nameFigurs + " " + count + " " + len + " ";
+                ind++;
+                Console.WriteLine("\t\t\t\tСработал конструктор  GeomFigure(int count, int len, string nameFigurs)\n");
+            }
+            public GeomFigure(int count, int len)
+            {
+                string nameFigurs = "";
+                switch (count)
+                {
+                    case 3: nameFigurs = "Треугольник"; break;
+                    case 4: nameFigurs = "Квадрат"; break;
+                    case 5: nameFigurs = "Пятиугольник"; break;
+                    case 6: nameFigurs = "Шестиугольник"; break;
+                    case 7: nameFigurs = "Семиугольник"; break;
+                    case 8: nameFigurs = "Восьмиугольник"; break;
+                    case 9: nameFigurs = "Девятиугольник"; break;
+                    case 10: nameFigurs = "Правильный многоульник"; break;
+
+                    default:
+                        nameFigurs = "Неизвестно";
+                        break;
+                }
+                figurs[ind] = nameFigurs + " " + count + " " + len;
+                ind++;
+                Console.WriteLine("\t\t\t\tСработал конструктор GeomFigure(int count, int len)\n");
+
+            }
+            public GeomFigure()
+            {
+                figurs[ind] = "Треугольник 3 10";
+                ind++;
+                Console.WriteLine("\t\t\t\tСработал конструктор GeomFigure()\n");
 
             }
 
-            public void OnShowUpgrade() =>
-                Console.WriteLine($"\t\t\t\tМетод OnShowUpgrade класса PO_1\nПоследняя версия {nameApp}: {version}\n");
+            //==============================================Методы==============================================
 
-            //--------------------------------------Обработчики событий Work-------------------------------------------------
-
-            public void OnWork(object sender, EventArgs e)
+            public IEnumerator GetEnumerator()
             {
-                AwokeTime = DateTime.Now;
-                times += Convert.ToString(AwokeTime) + "\n";
+                return new GeomFigureEnumerator(figurs);
+            }
+            public void Add(int count, int len, string nameFigure)
+            {
+                figurs[ind] = nameFigure + " " + count + " " + len;
+
+                Console.WriteLine("\t\t\t\tСработал Add с тремя параметрами\n");
+                Console.WriteLine($"Добавили {ind}-ый элемент: {figurs[ind]}\n");
+                ind++;
+            }
+            public void Add(int count, int len)
+            {
+                string nameFigurs = "";
+                switch (count)
+                {
+                    case 3: nameFigurs = "Треугольник"; break;
+                    case 4: nameFigurs = "Квадрат"; break;
+                    case 5: nameFigurs = "Пятиугольник"; break;
+                    case 6: nameFigurs = "Шестиугольник"; break;
+                    case 7: nameFigurs = "Семиугольник"; break;
+                    case 8: nameFigurs = "Восьмиугольник"; break;
+                    case 9: nameFigurs = "Девятиугольник"; break;
+                    case 10: nameFigurs = "Правильный многоульник"; break;
+
+                    default:
+                        nameFigurs = "Неизвестно";
+                        break;
+                }
+                figurs[ind] = nameFigurs + " " + count + " " + len;
+
+                Console.WriteLine("\t\t\t\tСработал Add с двумя параметрами\n");
+                Console.WriteLine($"Добавили {ind}-ый элемент: {figurs[ind]}\n");
+                ind++;
             }
 
-            public void OnShowWork(object sender, EventArgs e)
+            string Shows()
             {
-                if (times != null)
-                    Console.WriteLine($"\t\t\t\tМетод OnShowWork класса PO_1\nПриложение {nameApp} было запущено: \n{times}");
-                else Console.WriteLine($"Приложение запущено впервые {DateTime.Now}");
+                string a = null;
+                for (int i = 0; figurs[i] != null; i++)
+                {
+                    a += figurs[i] + '\n';
+                }
+                return a;
             }
-            
 
-        //--------------------------------------Конструкторы-------------------------------------------------
-            public PO_1(int beginVersion, string nameApp)
+            public override string ToString()
             {
-                versionNum = beginVersion;
-                version = namePO + versionNum;
-                this.nameApp = nameApp;
-            }
-            public PO_1()
-            {
-                versionNum = 0;
-                version = namePO + versionNum;
-                nameApp = "AppConstName";
+                return this.Shows();
             }
 
         }

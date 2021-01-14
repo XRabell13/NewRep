@@ -1,188 +1,53 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Runtime.Remoting.Contexts;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
-
-public class Potok
+public partial class Programm
 {
-   static string a = "null";
 
-    private int numberValue;
-
-    private static SemaphoreSlim sema = new SemaphoreSlim(1);
-
-    public static void Save(int a, string path)
+    static void EratosfenArray(ref bool[] Simple)
     {
-        try
+        for (int i = 2; i < Math.Sqrt(Simple.Length) + 1; i++)
         {
-
-            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))//если записи пропадают, поменять на false
-            {
-                sw.Write($"\n{a}");
-            }
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
+            if (Simple[i])
+                for (int j = i * i; j < Simple.Length; j += i)
+                    Simple[j] = false;
         }
     }
-    public static void Save1(int a, string path)
+    static void NegativeValue(int x)
     {
-        try
-        {
-
-            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))//если записи пропадают, поменять на false
-            {
-                sw.Write($"\n{a}");
-            }
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
+        if (x > 100)
+            Console.WriteLine($" {x}\tВыполняется задача {Task.CurrentId}");
     }
 
-    public Potok(int number)
+
+   /* static BlockingCollection<int> sklad;
+
+    static void producer()
     {
-        numberValue = number;
+        for (int i = 0; i < 30; i++)
+        {
+            sklad.Add(i);
+            Console.WriteLine("\nЗавезена техника с артикулом: " + i);
+        }
+        sklad.CompleteAdding();
     }
 
- 
-    public void SimplNumber()
+    static void consumer()
     {
-        for (int i = 1; i <= numberValue; i++)
+        int i;
+        while (!sklad.IsCompleted)
         {
-            if (isSimple(i))
-            {
-                Console.Write(i.ToString() + " ");
-                Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\File.txt");
-            }
+            if (sklad.TryTake(out i))
+                Console.WriteLine("\nКуплена техника с артикулом: " + i);
         }
     }
-    //метод который определяет простое число или нет
-    public bool isSimple(int N)
-    {
-        //чтоб убедится простое число или нет достаточно проверить не делитсья ли 
-        //число на числа до его половины
-        for (int i = 2; i <= (int)(N / 2); i++)
-        {
-            if (N % i == 0)
-                return false;
-        }
-        return true;
-    }
+    */
 
-    public void Chet()
-    {
-        Console.WriteLine();
-        for (int i = 1; i <= numberValue; i++)
-        {
-            if (i % 2 == 0)
-            {
-                Console.WriteLine(i + " ");
-                Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
-            }
-            Thread.Sleep(150);
-        }
-    }
-
-    public void NeChet()
-    {
-        Console.WriteLine();
-        for (int i = 1; i <= numberValue; i++)
-        {
-            if (i % 2 != 0)
-            {
-                Console.WriteLine(i + " ");
-                Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
-            }
-            Thread.Sleep(100);
-        }
-      
-    }
-    public void Chet1()
-    {
-        Monitor.Enter(a);
-        for (int i = 1; i <= numberValue; i++)
-        {
-          
-            {
-                if (i % 2 == 0)
-                {
-                    Console.WriteLine(i + " ");
-                    Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
-                }
-            }
-          
-        }
-        Monitor.Exit(a);
-
-    }
-
-    public void NeChet1()
-    {
-        Monitor.Enter(a);
-        for (int i = 1; i <= numberValue; i++)
-        {
-          
-            {
-                if (i % 2 != 0)
-                {
-                    Console.WriteLine(i + " ");
-                    Save(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
-                }
-              
-            }
-      
-        }
-        Monitor.Exit(a);
-    }
-
-    public void Chet2()
-    {
-       
-        Console.WriteLine();
-        for (int i = 1; i <= numberValue; i++)
-        {
-         
-            if (i % 2 == 0)
-            {
-                Console.WriteLine(i + " ");
-                sema.Wait();
-                Save1(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
-                sema.Release();
-            }
-            
-           
-        }
-        
-    }
-
-    public void NeChet2()
-    {
-        Console.WriteLine();
-        for (int i = 1; i <= numberValue; i++)
-        {
-           
-            if (i % 2 != 0)
-            {
-                Console.WriteLine(i + " ");
-                sema.Wait();
-                Save1(i, @"C:\Users\hp\source\repos\2kLabsSharp_15\ChetNechet1.txt");
-                sema.Release();
-            }
-           
-
-        }
-        
-    }
 
 }
