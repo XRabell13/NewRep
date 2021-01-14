@@ -36,14 +36,10 @@ using System.Threading.Tasks;
         //============================================ВТОРОЙ ПУНКТ ЗАДАНИЯ============================================
         Console.WriteLine("\n ============================================ВТОРОЙ ПУНКТ ЗАДАНИЯ============================================\n");
            // Reflector.GetPublicMethods(typeof(Train));
-
-
                 var ob1 = Reflector.Create(typeof(Train));
                 var ob2 = Reflector.Create(typeof(GeomFigure));
                 Console.WriteLine($"\n{ob1}");
                 Console.WriteLine($"\n{ob2}");
-              
-            
         }
     }
 
