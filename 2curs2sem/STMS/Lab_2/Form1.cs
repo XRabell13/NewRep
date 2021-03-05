@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace _2k2SemLabs_2
 {
@@ -14,6 +18,7 @@ namespace _2k2SemLabs_2
     {
 
         List<Airplane> listAirs= new List<Airplane>();
+        List<Airplane> loadListAirs= new List<Airplane>();
        
         public Form1()
         {
@@ -187,7 +192,7 @@ namespace _2k2SemLabs_2
             foreach (RadioButton rdbut in typePanel.Controls)
                 if (rdbut.Checked) checks = true;
 
-            if (ID_Airplane.MaskCompleted && checks && comboModel.Text.Length!=0 && countBox.Text!="0" && countBox.Text.Length!=0 && dateRels.Value > dateServis.Value && carryingBox.Text.Length!=0 && Convert.ToInt32(carryingBox.Text)>=100) return true;
+            if (ID_Airplane.MaskCompleted && checks && comboModel.Text.Length!=0 && countBox.Text!="0" && countBox.Text.Length!=0 && dateRels.Value < dateServis.Value && carryingBox.Text.Length!=0 && Convert.ToInt32(carryingBox.Text)>=100) return true;
             else return false;
         }
         private void AddAirplButton_Click(object sender, EventArgs e)
@@ -205,6 +210,7 @@ namespace _2k2SemLabs_2
                 {
                     Crewmate cr = new Crewmate();
                     Airplane airpl = new Airplane(ID_Airplane.Text, dateRels.Text, dateServis.Text, comboModel.Text, typeAir, Convert.ToUInt16(countBox.Text), Convert.ToInt32(carryingBox.Text), cr);
+                    //MessageBox.Show(" dateRels.Text" + dateRels.Text+ " dateServis.Text" + dateServis.Text);
                     listAirs.Add(airpl);
                     airplansListBox.Items.Add(airpl);
                 }
@@ -238,7 +244,8 @@ namespace _2k2SemLabs_2
         }
         private void AddDate_Click(object sender, EventArgs e)
         {
-            SaveBox.Items.Add(airplansListBox.SelectedItem);
+            SaveBox.Items.Add(listAirs[airplansListBox.SelectedIndex].ToString());
+            MessageBox.Show(listAirs[airplansListBox.SelectedIndex].ToString());
         }
 
         private void AddCrewmate_Click(object sender, EventArgs e)
@@ -246,10 +253,10 @@ namespace _2k2SemLabs_2
             if (IsTrueDataCrew())
             {
                 Crewmate NewCrew = new Crewmate(fioBox.Text, Convert.ToInt32(ageBox.Text), exspiTrackBar.Value, postBox.Text);
-
+             
                 for (int i = 0; i < listAirs[airplansListBox.SelectedIndex].CrewList.Count; i++)
                 {
-                    if (listAirs[airplansListBox.SelectedIndex].CrewList[i].ToString() == "00")
+                    if (listAirs[airplansListBox.SelectedIndex].CrewList[i].ToString() == "0000" || listAirs[airplansListBox.SelectedIndex].CrewList[i].ToString()==null)
                     {
                         listAirs[airplansListBox.SelectedIndex].CrewList.Insert(i, NewCrew);
                         break;
@@ -258,6 +265,69 @@ namespace _2k2SemLabs_2
                 }
             }
             else MessageBox.Show("Введены неверные данные!");
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                saveFileDialog1.FileName = "Serialize_xml.xml";
+                saveFileDialog1.ShowDialog();
+                using (FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.OpenOrCreate))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Airplane>));
+                    xmlSerializer.Serialize(fs, listAirs);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.FileName = "Serialize_xml.xml";
+            openFileDialog1.ShowDialog();
+
+            List<Airplane> airs;
+            try
+            {
+                using (FileStream fst = new FileStream(openFileDialog1.FileName, FileMode.Open))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Airplane>));
+                    airs = (List<Airplane>)xmlSerializer.Deserialize(fst);
+                    int i = 0;
+                    if (airs.Count != 0)
+                        foreach (Airplane ai in airs)
+                        {
+                            loadListAirs.Add(ai);  //если надо загрузить и в массив, то расскоментить
+                            MessageBox.Show(loadListAirs[i].ToString());
+                            LoadingBox.Items.Add(ai);
+                            i++;
+                        }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace + "\n" + ex.TargetSite);
+            }
+        }
+
+        private void delSavButton_Click(object sender, EventArgs e)
+        {
+            SaveBox.Items.Clear();
+        }
+
+        private void delLoadButton_Click(object sender, EventArgs e)
+        {
+            LoadingBox.Items.Clear();
+        }
+
+        private void dateRels_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

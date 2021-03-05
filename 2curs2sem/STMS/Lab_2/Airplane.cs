@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace _2k2SemLabs_2
 {
-    class Airplane
+    public class Airplane
     {
         public string ID;
         public string type;
@@ -16,8 +17,8 @@ namespace _2k2SemLabs_2
         public string dateRelease;
         public string dateServicing;
         public int carrying;
-        private readonly int ind = 1;
-
+      
+        
         public List<Crewmate> CrewList = new List<Crewmate>();
         public Airplane(string ID, string dateRelease, string dateServicing, string model, string type, ushort seatsPass, int carrying)
         {
@@ -28,7 +29,7 @@ namespace _2k2SemLabs_2
             this.dateServicing = dateServicing;
             this.dateRelease = dateRelease;
             this.carrying = carrying;
-            CrewList[ind] = new Crewmate();
+            CrewList.Add(new Crewmate());
         }
         public Airplane(string ID, string dateRelease, string dateServicing, string model, string type, ushort seatsPass, int carrying, Crewmate crewmate)
         {
@@ -40,7 +41,7 @@ namespace _2k2SemLabs_2
             this.dateRelease = dateRelease;
             this.carrying = carrying;
             CrewList.Add(crewmate);
-            ind++;
+           
         }
 
         public Airplane()
@@ -52,47 +53,28 @@ namespace _2k2SemLabs_2
             dateServicing = "";
             dateRelease = "";
             carrying = 0;
-            CrewList[ind] = new Crewmate();
+            CrewList.Add(new Crewmate());
         }
 
         public void AddCrew(Crewmate crewmate)=>
             CrewList.Add(crewmate);
 
 
-        private string setStr()
+        public string getCrewStr()
         {
             string crewm = "Экипаж:";
-            for (int i = 0; i < CrewList.Count; i++)
+            for (int i = 0; i < CrewList.Count-1; i++)
             {
+                if(CrewList[i].fio != "0")
                 crewm = crewm + "\nФИО: " + CrewList[i].fio + " Должность: " + CrewList[i].post + " Возраст:" + CrewList[i].age +
-                        " Стаж: " + CrewList[i].exspi;
+                        " Стаж: " + CrewList[i].exspi + "\n";
             }
             return crewm;
         }
-        public override string ToString()
-        {
-            switch (type)
-            {
-                case "Поссажирский":
-                    {
-                        return model + "; " + type + "; Мест: " + seatsPass + "; Дата тех.обслуживания: " + dateRelease + "; Выпуск: "+ dateRelease+";";
-                    } 
-                case "Грузовой":
-                    {
-                        return model + "; " + type + "; Грузоподъемность: " + carrying + "; Дата тех.обслуживания: " + dateRelease + "; Выпуск: "+ dateRelease+";";
-                    }
-                case "Военный":
-                    { 
-                        return model + "; " + type + "; Мест: " + seatsPass + "; Грузоподъемность: " + carrying + "; Дата тех.обслуживания: " + dateRelease + "; Выпуск: "+ dateRelease+";";
-                    }
-                default: break;
-
-            }
-            return "";
-          //  switch(type){                catch "Поссажирский":
-          //      return model + " " + type + " Мест: " + seatsPass + " " + dateServicing + " " + dateRelease + "\n" + carrying + setStr();
-          
-        }
+        public override string ToString() => model + "; " + type + "; Мест: " +
+            seatsPass + "; Грузоподъемность: " + carrying + "; Дата тех.обслуживания: "
+            + dateRelease + "; Выпуск: " + dateServicing + ";" + getCrewStr();//тут была ошибка с датой
+     
 
     }
 }

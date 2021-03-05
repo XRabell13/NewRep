@@ -68,9 +68,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.ageBox = new System.Windows.Forms.MaskedTextBox();
             this.exspiTrackBar = new System.Windows.Forms.TrackBar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.addCrewmate = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.typePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exspiTrackBar)).BeginInit();
@@ -148,6 +148,7 @@
             this.dateRels.Name = "dateRels";
             this.dateRels.Size = new System.Drawing.Size(200, 22);
             this.dateRels.TabIndex = 12;
+            this.dateRels.ValueChanged += new System.EventHandler(this.dateRels_ValueChanged);
             // 
             // label6
             // 
@@ -313,19 +314,21 @@
             // 
             this.saveButton.Location = new System.Drawing.Point(693, 198);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(118, 48);
+            this.saveButton.Size = new System.Drawing.Size(187, 48);
             this.saveButton.TabIndex = 43;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // loadButton
             // 
             this.loadButton.Location = new System.Drawing.Point(693, 430);
             this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(118, 48);
+            this.loadButton.Size = new System.Drawing.Size(187, 48);
             this.loadButton.TabIndex = 44;
             this.loadButton.Text = "Загрузить";
             this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // LoadingBox
             // 
@@ -345,6 +348,7 @@
             this.delSavButton.TabIndex = 46;
             this.delSavButton.Text = "Очистить";
             this.delSavButton.UseVisualStyleBackColor = true;
+            this.delSavButton.Click += new System.EventHandler(this.delSavButton_Click);
             // 
             // delLoadButton
             // 
@@ -354,6 +358,7 @@
             this.delLoadButton.TabIndex = 47;
             this.delLoadButton.Text = "Очистить";
             this.delLoadButton.UseVisualStyleBackColor = true;
+            this.delLoadButton.Click += new System.EventHandler(this.delLoadButton_Click);
             // 
             // addCrewButton
             // 
@@ -451,24 +456,6 @@
             this.exspiTrackBar.TickFrequency = 5;
             this.exspiTrackBar.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(817, 199);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 48);
-            this.button1.TabIndex = 60;
-            this.button1.Text = "Экипаж";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(817, 430);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 48);
-            this.button2.TabIndex = 61;
-            this.button2.Text = "Экипаж";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // addCrewmate
             // 
             this.addCrewmate.Location = new System.Drawing.Point(366, 432);
@@ -479,14 +466,16 @@
             this.addCrewmate.UseVisualStyleBackColor = true;
             this.addCrewmate.Click += new System.EventHandler(this.AddCrewmate_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1175, 559);
             this.Controls.Add(this.addCrewmate);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.ageBox);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.carryingBox);
@@ -575,9 +564,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.MaskedTextBox ageBox;
         private System.Windows.Forms.TrackBar exspiTrackBar;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button addCrewmate;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

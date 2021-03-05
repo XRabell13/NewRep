@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace _2k2SemLabs_2
 {
-    class Crewmate
+    public class Crewmate
     {
         public string fio;
         public int age;
         public int exspi;
         public string post;
+        [XmlIgnore]
+        public bool nulls = false;
 
         public Crewmate(string fio, int age, int exspi, string post)
         {
@@ -19,18 +22,21 @@ namespace _2k2SemLabs_2
             this.age = age;
             this.exspi = exspi;
             this.post = post;
+            nulls = false;
         }
 
      public Crewmate()
         {
-            fio = "";
+            fio = "0";
             age = 0;
             exspi = 0;
-            post = "";
+            post = "0";
+            nulls = true;
         }
         public override string ToString()
         {
-            return fio + age + exspi + post;
+            if(nulls) return fio + age + exspi + post;
+            else return  "ФИО: "+ fio +"Возраст: "+ age +"Стаж: "+ exspi +"Должность: "+ post;
         }
 
     }
