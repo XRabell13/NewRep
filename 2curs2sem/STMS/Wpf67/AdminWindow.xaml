@@ -1,0 +1,190 @@
+﻿<Window x:Class="Wpf67.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf67"
+        mc:Ignorable="d"
+        Title="{DynamicResource admin_title}" Height="450" Width="800" FontSize="14" MinHeight="450" MinWidth="800">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Background="WhiteSmoke">
+            <Button Content="{DynamicResource admin_load}" />
+            <Button Content="{DynamicResource admin_add}"/>
+        </StackPanel>
+        <TabControl Grid.Row="0" Grid.Column="1">
+            <TabItem Header="{DynamicResource admin_users}" >
+                <DataGrid x:Name="dg_users" AutoGenerateColumns="False" 
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="nick" Binding="{Binding nick, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="pass Hash" Binding="{Binding password, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="IsAdmin" Binding="{Binding isAdmin, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_info_users}" >
+                <DataGrid x:Name="dg_forum_answers" AutoGenerateColumns="False" 
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id author" Binding="{Binding id_author}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id topic" Binding="{Binding id_topic, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="date create" Binding="{Binding date_create, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="context" Binding="{Binding context, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_transporters}">
+                <DataGrid x:Name="dg_users_info" AutoGenerateColumns="False" 
+                         >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name" Binding="{Binding name, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="telephone" Binding="{Binding telephone, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="email" Binding="{Binding email, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_bus}" >
+                <DataGrid x:Name="dg_users_log" AutoGenerateColumns="False" 
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="log" Binding="{Binding log, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_cities}" >
+                <DataGrid x:Name="dg_auctions" AutoGenerateColumns="False" 
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="start" Binding="{Binding dt_start, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="finish" Binding="{Binding dt_finish, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="price" Binding="{Binding price, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="start price" Binding="{Binding start_price}"/>
+                        <DataGridTextColumn Header="car id" Binding="{Binding car_id, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="last buyer" Binding="{Binding last_buyer, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="owner" Binding="{Binding owner, Mode=TwoWay}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_intermediate_point}" >
+                <DataGrid x:Name="dg_cars" AutoGenerateColumns="False" 
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="type" Binding="{Binding type, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="brend" Binding="{Binding brend, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="model" Binding="{Binding model, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="year" Binding="{Binding year}"/>
+                        <DataGridTextColumn Header="fuel" Binding="{Binding fuel, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="mileage" Binding="{Binding mileage, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="owner" Binding="{Binding id_user, Mode=TwoWay}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="context" Binding="{Binding context, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_route_bus}" >
+                <DataGrid x:Name="dg_forum_section" AutoGenerateColumns="False" 
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name" Binding="{Binding name, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="color" Binding="{Binding color, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_tickets}" >
+                <DataGrid x:Name="dg_forum_topics" AutoGenerateColumns="False" 
+                         >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id author" Binding="{Binding id_author, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id section" Binding="{Binding id_section, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name" Binding="{Binding name, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="date_create" Binding="{Binding date_create}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="context" Binding="{Binding context, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_del}" Background="LightCoral">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock FontSize="16" Text="{DynamicResource admin_del_bus}"/>
+                        <ComboBox x:Name="cb_auctions"  Grid.Column="1"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" />
+
+                        <TextBlock FontSize="16" Grid.Row="1" Text="{DynamicResource admin_del_cities}"/>
+                        <ComboBox x:Name="cb_cars" Grid.Column="1" Grid.Row="1"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="1"/>
+
+                        <TextBlock FontSize="16" Grid.Row="2" Text="{DynamicResource admin_del_intermediate_point}"/>
+                        <ComboBox x:Name="cb_forum_topics" Grid.Column="1" Grid.Row="2"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="2" />
+
+                        <TextBlock FontSize="16" Grid.Row="3" Text="{DynamicResource admin_del_route_bus}"/>
+                        <ComboBox x:Name="cb_route_bus" Grid.Column="1" Grid.Row="3"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="3" />
+
+                        <TextBlock FontSize="16" Grid.Row="4" Text="{DynamicResource admin_del_transporters}"/>
+                        <ComboBox x:Name="cb_transporters" Grid.Column="1" Grid.Row="4"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="4"/>
+
+                        <TextBlock FontSize="16" Grid.Row="5" Text="{DynamicResource admin_del_user}"/>
+                        <ComboBox x:Name="cb_rout_bus" Grid.Column="1" Grid.Row="5"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="5" />
+
+                        <TextBlock FontSize="16" Grid.Row="6" Text="{DynamicResource admin_info_users}"/>
+                        <ComboBox x:Name="cb_rut_bus" Grid.Column="1" Grid.Row="6"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="6" />
+                        <!--
+                    <TextBlock FontSize="16" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Margin="10">Select user</TextBlock>
+                    <ComboBox x:Name="cb_users" Grid.Column="2" Grid.Row="3" Margin="0,10,0,10"/>
+
+                    <TextBlock FontSize="16" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center">Topic</TextBlock>
+                    <ComboBox x:Name="cb_user_topic" Grid.Column="1" Grid.Row="4"/>
+                    <Button Content="Delete forum answers" Grid.Column="2" Grid.Row="4" Click="But_del_user_answers"/>
+-->
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!-- Main window -->
+    <v:String x:Key="m_home">Главная</v:String>
+    <v:String x:Key="m_search">Поиск</v:String>
+    <v:String x:Key="m_trips">Мои поездки</v:String>
+    <v:String x:Key="m_contacts">Контакты</v:String>
+    <v:String x:Key="m_profile">Профиль</v:String>
+    <v:String x:Key="m_comein">Вход</v:String>
+    <v:String x:Key="m_registration">Регистрация</v:String>
+    <v:String x:Key="m_login">Авторизация</v:String>
+    <v:String x:Key="m_logout">Выйти</v:String>
+
+</ResourceDictionary>

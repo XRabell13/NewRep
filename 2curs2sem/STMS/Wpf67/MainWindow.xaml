@@ -1,0 +1,49 @@
+﻿<Window x:Class="Wpf67.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf67"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1050" MinHeight="450" MinWidth="1050"
+        Icon="img/bus_icon.ico"
+         Cursor="img/normal_select.cur">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Stolbec -->
+
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!-- Stroka -->
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Canvas Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="0"  Background="LightGray"/>
+        <Grid  Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding LoadMainPage, Mode=OneTime}"  Grid.Column="0" Content="{DynamicResource m_home}"/>
+            <Button Command="{Binding LoadAuctions, Mode=OneTime}"  Grid.Column="1"  Content="{DynamicResource m_search}"/>
+
+            <Button Grid.Column="2"  Content="{DynamicResource m_trips}"/>
+
+            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3"  Content="{DynamicResource m_contacts}"/>
+
+            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3"  Content="{DynamicResource m_settings}"/>
+
+            <Button Click="LoadRegistrationWin"  Grid.Column="4"  Content="{DynamicResource m_comein}"/>
+
+        </Grid>
+
+        <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin"/>
+
+    </Grid>
+</Window>
