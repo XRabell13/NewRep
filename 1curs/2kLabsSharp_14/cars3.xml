@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Car xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NameOrganization>Org</NameOrganization>
+  <Marka>Astra</Marka>
+  <Number>178080</Number>
+  <Speed>150</Speed>
+</Car>

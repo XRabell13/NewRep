@@ -1,0 +1,470 @@
+
+Имя сборки классаTrain:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса Train есть публичный конструктор/конструкторы.
+
+Публичные методы класса Train:
+get_Svoistvo
+set_Svoistvo
+get_EndPunct
+set_EndPunct
+get_PrimSet
+set_PrimSet
+get_time
+set_time
+get_numberTrain
+set_numberTrain
+get_hour
+set_hour
+get_minute
+set_minute
+get_Allseat
+set_Allseat
+get_CountSeats
+set_CountSeats
+Billet
+AllSeats
+ToString
+GetHashCode
+Equals
+
+Свойства класса Train:
+Svoistvo
+EndPunct
+PrimSet
+time
+numberTrain
+hour
+minute
+Allseat
+CountSeats
+
+Поля класса Train:
+Pole
+<Svoistvo>k__BackingField
+<EndPunct>k__BackingField
+ID
+<time>k__BackingField
+<numberTrain>k__BackingField
+<hour>k__BackingField
+<minute>k__BackingField
+<Allseat>k__BackingField
+<CountSeats>k__BackingField
+count
+NameStation
+
+Использованные интерфейсы в классе Train:
+
+Имя сборки классаGeomFigureEnumerator:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса GeomFigureEnumerator есть публичный конструктор/конструкторы.
+
+Публичные методы класса GeomFigureEnumerator:
+get_Current
+MoveNext
+Reset
+
+Свойства класса GeomFigureEnumerator:
+Current
+
+Поля класса GeomFigureEnumerator:
+figurs
+position
+
+Использованные интерфейсы в классе GeomFigureEnumerator:
+
+IEnumerator
+
+Имя сборки классаGeomFigure:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса GeomFigure есть публичный конструктор/конструкторы.
+
+Публичные методы класса GeomFigure:
+GetEnumerator
+Add
+ToString
+
+Свойства класса GeomFigure:
+
+Поля класса GeomFigure:
+ind
+figurs
+
+Использованные интерфейсы в классе GeomFigure:
+
+Имя сборки классаMagicClass:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса MagicClass есть публичный конструктор/конструкторы.
+
+Публичные методы класса MagicClass:
+ItsMagic
+
+Свойства класса MagicClass:
+
+Поля класса MagicClass:
+magicBaseValue
+
+Использованные интерфейсы в классе MagicClass:
+
+Имя сборки классаSystem.Int32:
+
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+
+Публичные методы класса System.Int32:
+CompareTo
+Equals
+GetHashCode
+ToString
+GetTypeCode
+
+Свойства класса System.Int32:
+
+Поля класса System.Int32:
+m_value
+MaxValue
+MinValue
+
+Использованные интерфейсы в классе System.Int32:
+
+IComparable
+
+IFormattable
+
+IConvertible
+
+IComparable`1
+
+IEquatable`1
+
+Имя сборки классаSystem.String:
+
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+
+У класса System.String есть публичный конструктор/конструкторы.
+
+Публичные методы класса System.String:
+Equals
+CopyTo
+ToCharArray
+GetHashCode
+Split
+Substring
+Trim
+TrimStart
+TrimEnd
+IsNormalized
+Normalize
+CompareTo
+Contains
+EndsWith
+IndexOf
+IndexOfAny
+LastIndexOf
+LastIndexOfAny
+PadLeft
+PadRight
+StartsWith
+ToLower
+ToLowerInvariant
+ToUpper
+ToUpperInvariant
+ToString
+Clone
+Insert
+Replace
+Remove
+GetTypeCode
+GetEnumerator
+get_Chars
+get_Length
+
+Свойства класса System.String:
+Chars
+Length
+
+Поля класса System.String:
+m_stringLength
+m_firstChar
+Empty
+TrimHead
+TrimTail
+TrimBoth
+charPtrAlignConst
+alignConst
+
+Использованные интерфейсы в классе System.String:
+
+IComparable
+
+ICloneable
+
+IConvertible
+
+IEnumerable
+
+IComparable`1
+
+IEnumerable`1
+
+IEquatable`1
+
+Имя сборки классаSystem.Object:
+
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+
+У класса System.Object есть публичный конструктор/конструкторы.
+
+Публичные методы класса System.Object:
+Equals
+GetHashCode
+GetType
+ToString
+
+Свойства класса System.Object:
+
+Поля класса System.Object:
+
+Использованные интерфейсы в классе System.Object:
+
+Имя сборки классаTrain:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса Train есть публичный конструктор/конструкторы.
+
+Публичные методы класса Train:
+get_Svoistvo
+set_Svoistvo
+get_EndPunct
+set_EndPunct
+get_PrimSet
+set_PrimSet
+get_time
+set_time
+get_numberTrain
+set_numberTrain
+get_hour
+set_hour
+get_minute
+set_minute
+get_Allseat
+set_Allseat
+get_CountSeats
+set_CountSeats
+Billet
+AllSeats
+ToString
+GetHashCode
+Equals
+
+Свойства класса Train:
+Svoistvo
+EndPunct
+PrimSet
+time
+numberTrain
+hour
+minute
+Allseat
+CountSeats
+
+Поля класса Train:
+Pole
+<Svoistvo>k__BackingField
+<EndPunct>k__BackingField
+ID
+<time>k__BackingField
+<numberTrain>k__BackingField
+<hour>k__BackingField
+<minute>k__BackingField
+<Allseat>k__BackingField
+<CountSeats>k__BackingField
+count
+NameStation
+
+Использованные интерфейсы в классе Train:
+
+Имя сборки классаGeomFigureEnumerator:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса GeomFigureEnumerator есть публичный конструктор/конструкторы.
+
+Публичные методы класса GeomFigureEnumerator:
+get_Current
+MoveNext
+Reset
+
+Свойства класса GeomFigureEnumerator:
+Current
+
+Поля класса GeomFigureEnumerator:
+figurs
+position
+
+Использованные интерфейсы в классе GeomFigureEnumerator:
+
+IEnumerator
+
+Имя сборки классаGeomFigure:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса GeomFigure есть публичный конструктор/конструкторы.
+
+Публичные методы класса GeomFigure:
+GetEnumerator
+Add
+ToString
+
+Свойства класса GeomFigure:
+
+Поля класса GeomFigure:
+ind
+figurs
+
+Использованные интерфейсы в классе GeomFigure:
+
+Имя сборки классаMagicClass:
+
+2kLabsSharp_12, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+
+У класса MagicClass есть публичный конструктор/конструкторы.
+
+Публичные методы класса MagicClass:
+ItsMagic
+
+Свойства класса MagicClass:
+
+Поля класса MagicClass:
+magicBaseValue
+
+Использованные интерфейсы в классе MagicClass:
+
+Имя сборки классаSystem.Int32:
+
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+
+Публичные методы класса System.Int32:
+CompareTo
+Equals
+GetHashCode
+ToString
+GetTypeCode
+
+Свойства класса System.Int32:
+
+Поля класса System.Int32:
+m_value
+MaxValue
+MinValue
+
+Использованные интерфейсы в классе System.Int32:
+
+IComparable
+
+IFormattable
+
+IConvertible
+
+IComparable`1
+
+IEquatable`1
+
+Имя сборки классаSystem.String:
+
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+
+У класса System.String есть публичный конструктор/конструкторы.
+
+Публичные методы класса System.String:
+Equals
+CopyTo
+ToCharArray
+GetHashCode
+Split
+Substring
+Trim
+TrimStart
+TrimEnd
+IsNormalized
+Normalize
+CompareTo
+Contains
+EndsWith
+IndexOf
+IndexOfAny
+LastIndexOf
+LastIndexOfAny
+PadLeft
+PadRight
+StartsWith
+ToLower
+ToLowerInvariant
+ToUpper
+ToUpperInvariant
+ToString
+Clone
+Insert
+Replace
+Remove
+GetTypeCode
+GetEnumerator
+get_Chars
+get_Length
+
+Свойства класса System.String:
+Chars
+Length
+
+Поля класса System.String:
+m_stringLength
+m_firstChar
+Empty
+TrimHead
+TrimTail
+TrimBoth
+charPtrAlignConst
+alignConst
+
+Использованные интерфейсы в классе System.String:
+
+IComparable
+
+ICloneable
+
+IConvertible
+
+IEnumerable
+
+IComparable`1
+
+IEnumerable`1
+
+IEquatable`1
+
+Имя сборки классаSystem.Object:
+
+mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+
+У класса System.Object есть публичный конструктор/конструкторы.
+
+Публичные методы класса System.Object:
+Equals
+GetHashCode
+GetType
+ToString
+
+Свойства класса System.Object:
+
+Поля класса System.Object:
+
+Использованные интерфейсы в классе System.Object:

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2kLabsSharp_6", "2kLabsSharp_6.csproj", "{EDC1A65B-A260-474D-9E9E-54DDF22F479F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDC1A65B-A260-474D-9E9E-54DDF22F479F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC1A65B-A260-474D-9E9E-54DDF22F479F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC1A65B-A260-474D-9E9E-54DDF22F479F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC1A65B-A260-474D-9E9E-54DDF22F479F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFF4E694-5B47-4A81-BB8E-45F81EA35385}
+	EndGlobalSection
+EndGlobal

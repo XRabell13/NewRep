@@ -1,0 +1,14 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:Car id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/assem/2kLabsSharp_14%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<_x003C_NameOrganization_x003E_k__BackingField id="ref-3">Cars</_x003C_NameOrganization_x003E_k__BackingField>
+<_x003C_Marka_x003E_k__BackingField id="ref-4">Zaphire</_x003C_Marka_x003E_k__BackingField>
+<_x003C_Number_x003E_k__BackingField id="ref-5">154456</_x003C_Number_x003E_k__BackingField>
+<_x003C_maxSpeed_x003E_k__BackingField>0</_x003C_maxSpeed_x003E_k__BackingField>
+<_x003C_Speed_x003E_k__BackingField>150</_x003C_Speed_x003E_k__BackingField>
+<Transport_x002B__x003C_MaxSpeed_x003E_k__BackingField>0</Transport_x002B__x003C_MaxSpeed_x003E_k__BackingField>
+<Transport_x002B__x003C_MinSpeed_x003E_k__BackingField>0</Transport_x002B__x003C_MinSpeed_x003E_k__BackingField>
+<Transport_x002B__x003C_WayKm_x003E_k__BackingField>0</Transport_x002B__x003C_WayKm_x003E_k__BackingField>
+</a1:Car>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
