@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Wpf67.View;
 
-namespace Wpf67
+namespace Wpf67.View
 {
     /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
+    /// Логика взаимодействия для Settings.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class Settings : UserControl
     {
-        public AdminWindow()
+        public Settings()
         {
             InitializeComponent();
         }
-     
     }
 }

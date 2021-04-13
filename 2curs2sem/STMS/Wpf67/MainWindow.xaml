@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf67"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1050" MinHeight="450" MinWidth="1050"
+        Title="MainWindow" Height="720" Width="1050" MinHeight="550" MinWidth="850"
         Icon="img/bus_icon.ico"
-         Cursor="img/normal_select.cur">
+         Cursor="img/normal_select.cur"
+        WindowStartupLocation="CenterScreen"
+        >
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,16 +32,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding LoadMainPage, Mode=OneTime}"  Grid.Column="0" Content="{DynamicResource m_home}"/>
-            <Button Command="{Binding LoadAuctions, Mode=OneTime}"  Grid.Column="1"  Content="{DynamicResource m_search}"/>
+            <Button Command="{Binding LoadMainPage, Mode=OneTime}"  Grid.Column="0"  Content="{DynamicResource m_home}"/>
+            <Button Command="{Binding LoadAuctions, Mode=OneTime}"  Grid.Column="1" Click="Button_Click1" Content="{DynamicResource m_search}"/>
 
             <Button Grid.Column="2"  Content="{DynamicResource m_trips}"/>
 
             <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3"  Content="{DynamicResource m_contacts}"/>
 
-            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3"  Content="{DynamicResource m_settings}"/>
+            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3" Click="Button_Click2"  Content="{DynamicResource m_settings}"/>
 
-            <Button Click="LoadRegistrationWin"  Grid.Column="4"  Content="{DynamicResource m_comein}"/>
+            <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
 
         </Grid>
 

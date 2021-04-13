@@ -35,5 +35,13 @@ namespace Wpf67.View
             pasBox1 = box_password1;
             pasBox2 = box_password2;
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+           Authorization reg = new Authorization();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            mainWindow.OutWin.Content = reg;
+        }
     }
 }

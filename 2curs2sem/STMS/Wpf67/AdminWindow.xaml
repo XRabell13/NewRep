@@ -27,15 +27,16 @@
             <Button Content="{DynamicResource admin_load}" />
             <Button Content="{DynamicResource admin_add}"/>
         </StackPanel>
+        
         <TabControl Grid.Row="0" Grid.Column="1">
             <TabItem Header="{DynamicResource admin_users}" >
                 <DataGrid x:Name="dg_users" AutoGenerateColumns="False" 
                           >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="nick" Binding="{Binding nick, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="pass Hash" Binding="{Binding password, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="IsAdmin" Binding="{Binding isAdmin, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="login" Binding="{Binding nick, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="password" Binding="{Binding password, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="isAdmin" Binding="{Binding isAdmin, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -44,11 +45,10 @@
                 <DataGrid x:Name="dg_forum_answers" AutoGenerateColumns="False" 
                           >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="id author" Binding="{Binding id_author}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="id topic" Binding="{Binding id_topic, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="date create" Binding="{Binding date_create, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="context" Binding="{Binding context, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="№passport" Binding="{Binding id_author}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="email" Binding="{Binding id_topic, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="telephone" Binding="{Binding date_create, Mode=TwoWay}" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -65,11 +65,12 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="{DynamicResource admin_bus}" >
-                <DataGrid x:Name="dg_users_log" AutoGenerateColumns="False" 
-                          >
+                <DataGrid x:Name="dg_users_log" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="log" Binding="{Binding log, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="id bus" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id transporter" Binding="{Binding log, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="model" Binding="{Binding telephone, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="count seat" Binding="{Binding email, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -77,40 +78,35 @@
                 <DataGrid x:Name="dg_auctions" AutoGenerateColumns="False" 
                           >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="start" Binding="{Binding dt_start, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="finish" Binding="{Binding dt_finish, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="price" Binding="{Binding price, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="start price" Binding="{Binding start_price}"/>
-                        <DataGridTextColumn Header="car id" Binding="{Binding car_id, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="last buyer" Binding="{Binding last_buyer, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="owner" Binding="{Binding owner, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name city" Binding="{Binding dt_start, Mode=TwoWay}" IsReadOnly="True"/>
                     </DataGrid.Columns>
+                    
                 </DataGrid>
             </TabItem>
+            
             <TabItem Header="{DynamicResource admin_intermediate_point}" >
                 <DataGrid x:Name="dg_cars" AutoGenerateColumns="False" 
                           >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="type" Binding="{Binding type, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="brend" Binding="{Binding brend, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="model" Binding="{Binding model, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="year" Binding="{Binding year}"/>
-                        <DataGridTextColumn Header="fuel" Binding="{Binding fuel, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="mileage" Binding="{Binding mileage, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="owner" Binding="{Binding id_user, Mode=TwoWay}" IsReadOnly="True" />
-                        <DataGridTextColumn Header="context" Binding="{Binding context, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id ipoint" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id city" Binding="{Binding type, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id route" Binding="{Binding brend, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="time" Binding="{Binding model, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="cost" Binding="{Binding year}"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                
             </TabItem>
             <TabItem Header="{DynamicResource admin_route_bus}" >
-                <DataGrid x:Name="dg_forum_section" AutoGenerateColumns="False" 
-                          >
+                <DataGrid x:Name="dg_forum_section" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="name" Binding="{Binding name, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="color" Binding="{Binding color, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name route" Binding="{Binding name, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id bus" Binding="{Binding color, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="time departure" Binding="{Binding name, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="timetable" Binding="{Binding date_create}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id end city" Binding="{Binding context, Mode=TwoWay}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -118,12 +114,12 @@
                 <DataGrid x:Name="dg_forum_topics" AutoGenerateColumns="False" 
                          >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="id author" Binding="{Binding id_author, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="id section" Binding="{Binding id_section, Mode=TwoWay}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="name" Binding="{Binding name, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="date_create" Binding="{Binding date_create}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="context" Binding="{Binding context, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="id ticket" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id route" Binding="{Binding id_author, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="date departure" Binding="{Binding id_section, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="number seat" Binding="{Binding name, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="status seat" Binding="{Binding date_create}" IsReadOnly="True"/>
+                        
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

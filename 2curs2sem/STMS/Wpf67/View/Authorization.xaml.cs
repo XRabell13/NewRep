@@ -10,20 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf67.View;
 
 namespace Wpf67
 {
     /// <summary>
-    /// Логика взаимодействия для AdminWindow.xaml
+    /// Логика взаимодействия для Authorization.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class Authorization : UserControl
     {
-        public AdminWindow()
+        public Authorization()
         {
             InitializeComponent();
         }
-     
+        public void Click_Author(object sender, EventArgs e)
+        {
+            Registration reg = new Registration();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            mainWindow.OutWin.Content = reg;
+        }
     }
 }

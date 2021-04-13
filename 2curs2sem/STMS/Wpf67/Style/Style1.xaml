@@ -13,7 +13,7 @@
         <Setter Property="BorderThickness" Value="{StaticResource BorderThicknessButton}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
         <Setter Property="Padding" Value="{StaticResource MarginContentButton}"/>
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="22"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -37,7 +37,12 @@
         </Style.Triggers>
 
     </Style>
+    
+    
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="#827397"/>
     </Style>
+
+  
+
 </ResourceDictionary>
