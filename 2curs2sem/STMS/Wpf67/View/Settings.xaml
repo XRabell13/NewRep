@@ -33,17 +33,16 @@
         <TextBlock Text="Настройки" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="500">
             <TextBlock Text="Язык"/>
-            
-            <ComboBox Name="phonesList"  VerticalAlignment="Top">
-                <TextBlock>Русский</TextBlock>
-                <TextBlock>Беларуская</TextBlock>
-                
-            </ComboBox>
-            <TextBlock Text="Тема"/>
+
+            <Menu VerticalAlignment="Top"  Foreground="Black" Margin="0,50,0,0">
+                <MenuItem x:Name="menuLanguage" Header="Выберите язык" />
+                 
+            </Menu>
+            <!--<TextBlock Text="Тема"/>
             <ComboBox Name="themesList" VerticalAlignment="Top">
-                <TextBlock>Стандартная</TextBlock>
-                <TextBlock>Темная</TextBlock>
-            </ComboBox>
+                <ComboBoxItem Content="Стандартная"/>
+                <ComboBoxItem Content="Темная"/>
+            </ComboBox>-->
         </StackPanel>
 
 

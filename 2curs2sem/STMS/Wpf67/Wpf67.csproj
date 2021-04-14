@@ -120,6 +120,17 @@
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Authorization.cs" />
+    <Compile Include="Model\Bus.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\IntermediatePoint.cs" />
+    <Compile Include="Model\RouteBus.cs" />
+    <Compile Include="Model\Ticket.cs" />
+    <Compile Include="Model\Transporter.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Model\UserTicket.cs" />
+    <Compile Include="Settings\Language.cs" />
+    <Compile Include="Settings\Theme.cs" />
     <Compile Include="View\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -138,7 +149,14 @@
     <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Page Include="AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\lang.be-BY.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

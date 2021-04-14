@@ -22,6 +22,7 @@
             <!-- Stroka -->
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Canvas Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="0"  Background="LightGray"/>
         <Grid  Grid.ColumnSpan="5">
@@ -43,8 +44,11 @@
 
             <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
 
+            
         </Grid>
-
+        <Menu DockPanel.Dock="Top" Background="{x:Null}" Grid.Column="0" Grid.Row="2" >
+            <MenuItem x:Name="menuLanguage" Header="{DynamicResource m_menu_Language}" />
+        </Menu>
         <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin"/>
 
     </Grid>

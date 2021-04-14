@@ -2,10 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
-  
-    <!-- Main window -->
-
-    <v:String x:Key="m_home">Главная</v:String>
+    <v:String x:Key="m_home">Галоўная</v:String>
     <v:String x:Key="m_search">Поиск</v:String>
     <v:String x:Key="m_trips">Мои поездки</v:String>
     <v:String x:Key="m_contacts">Контакты</v:String>
@@ -44,7 +41,5 @@
     <v:String x:Key="admin_del_tickets">Удалить билеты</v:String>
     <v:String x:Key="admin_del_">Удалить</v:String>
 
-    <v:String x:Key="m_menu_Language">Язык</v:String>
-    <v:String x:Key="m_lblHelloWorld">Лейбл</v:String>
-
+    <v:String x:Key="m_menu_Language">Мова</v:String>
 </ResourceDictionary>
