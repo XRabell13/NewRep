@@ -43,6 +43,28 @@
         <Setter Property="Background" Value="#827397"/>
     </Style>
 
-  
+    <Style x:Key="TextBoxStyle00_ByRegistration_unvalid" TargetType="{x:Type TextBoxBase}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border 
+          Name="Border"
+          CornerRadius="10" 
+          Padding="0"
+          Background="Gray"
+          BorderBrush="Red"                        
+          BorderThickness="3" >
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Control.Foreground" Value="White" />
+        <Setter Property="Control.FontSize" Value="30" />
+        <Setter Property="Control.Margin" Value="120 5 120 5" />
+    </Style>
+
 
 </ResourceDictionary>

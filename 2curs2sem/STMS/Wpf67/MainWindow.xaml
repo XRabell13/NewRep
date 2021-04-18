@@ -40,9 +40,8 @@
 
             <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3"  Content="{DynamicResource m_contacts}"/>
 
-            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3" Click="Button_Click2"  Content="{DynamicResource m_settings}"/>
-
             <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
+            <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_logout}" Visibility="Hidden"/>
 
             
         </Grid>

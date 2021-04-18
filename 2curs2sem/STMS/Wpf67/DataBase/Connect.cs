@@ -8,9 +8,9 @@ using MySql.Data.MySqlClient;
 
 namespace Wpf67.DataBase
 {
-    class Connect
+   public class Connect
     {
-        string conStr = "Database=belbusdb; Data Source=db4free.net; User Id=xrabell; Password=XRabell13; charset=utf8";// "Database=sql11402426; Data Source=sql11.freesqldatabase.com; User Id=sql11402426; Password=625TQQ4mMS; charset=utf8";//utf8_unicode_ci
+        string conStr = "Database=sql11406498; Data Source=sql11.freesqldatabase.com; User Id=sql11406498; Password=Tg7M28zuml; charset=utf8"; // "Database=belbusdb; Data Source=db4free.net; User Id=xrabell; Password=XRabell13; charset=utf8";// "Database=sql11402426; Data Source=sql11.freesqldatabase.com; User Id=sql11402426; Password=625TQQ4mMS; charset=utf8";//utf8_unicode_ci
         public bool status = false;
 
         public MySqlConnection conn;

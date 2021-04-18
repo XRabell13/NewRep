@@ -16,7 +16,28 @@ namespace Wpf67.Properties {
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
+        public bool Authoriz
+        {
+            get
+            {
+                return ((bool)(this["Authoriz"]));
+            }
+            set
+            {
+                this["Authoriz"] = value;
+            }
+        }
+        public int UserId
+        {
+            get
+            {
+                return ((int)(this["UserId"]));
+            }
+            set
+            {
+                this["UserId"] = value;
+            }
+        }
         public static Settings Default {
             get {
                 return defaultInstance;

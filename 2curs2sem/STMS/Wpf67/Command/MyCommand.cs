@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Wpf67.Command
 {
-    class MyCommand : ICommand
+   public class MyCommand : ICommand
     {
        
             Action _TargetExecuteMethod;

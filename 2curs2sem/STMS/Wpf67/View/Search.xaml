@@ -34,9 +34,9 @@
         <TextBlock Text="Поиск" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="500">
             <TextBlock Text="Откуда" />
-            <TextBox  x:Name="tb_login" TextAlignment="Center" />
+            <ComboBox  x:Name="cb_begin_city"  IsEditable="True" />
             <TextBlock Text="Куда" />
-            <PasswordBox x:Name="box_password1" />
+            <ComboBox x:Name="cb_end_city" IsEditable="True"/>
             <TextBlock Text="Выберите дату поездки" />
             <Viewbox HorizontalAlignment="Center" Width="150">
                 <DatePicker Focusable="False" />

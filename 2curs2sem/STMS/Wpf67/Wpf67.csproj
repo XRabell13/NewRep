@@ -116,10 +116,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddDataWin.xaml.cs">
+      <DependentUpon>AddDataWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\Authorization.cs" />
+    <Compile Include="DataBase\AuthorizationUser.cs" />
+    <Compile Include="DataBase\RegistrationUser.cs" />
     <Compile Include="Model\Bus.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\IntermediatePoint.cs" />
@@ -129,6 +133,8 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Model\UserTicket.cs" />
+    <Compile Include="ViewModel\MenuVM.cs" />
+    <Compile Include="ViewModel\RegistrationVM.cs" />
     <Compile Include="Settings\Language.cs" />
     <Compile Include="Settings\Theme.cs" />
     <Compile Include="View\Authorization.xaml.cs">
@@ -152,6 +158,10 @@
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddDataWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

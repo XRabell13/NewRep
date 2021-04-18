@@ -23,7 +23,27 @@ namespace Wpf67
     /// </summary>
     public partial class MainWindow : Window
     {
+        public interface IMainWindow
+        {
+            void ShowMessage(string message);
+            void LoadView(ViewType typeView);
+            //        void UpUserId();
+            void Check_Autorization();
+            void ShowLoadIndicator();
+            void CollapseLoadIndicator();
+            void HeadButAuthorization();
+            void ButExitAccount();
+        }
 
+        public enum ViewType
+        {
+            Authorization,
+            Registration,
+            Search,
+            FindReise,
+            
+            Info
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -69,6 +89,8 @@ namespace Wpf67
             }
 
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
