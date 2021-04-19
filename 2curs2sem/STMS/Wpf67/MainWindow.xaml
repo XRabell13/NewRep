@@ -31,14 +31,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding LoadMainPage, Mode=OneTime}"  Grid.Column="0"  Content="{DynamicResource m_home}"/>
-            <Button Command="{Binding LoadAuctions, Mode=OneTime}"  Grid.Column="1" Click="Button_Click1" Content="{DynamicResource m_search}"/>
+            <Button Command="{Binding LoadAuctions, Mode=OneTime}"  Grid.Column="0" Click="Button_Click1" Content="{DynamicResource m_search}"/>
 
-            <Button Grid.Column="2"  Content="{DynamicResource m_trips}"/>
+            <Button Grid.Column="1"  Content="{DynamicResource m_trips}"/>
 
-            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="3"  Content="{DynamicResource m_contacts}"/>
+            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="2"  Content="{DynamicResource m_contacts}"/>
 
             <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
             <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_logout}" Visibility="Hidden"/>

@@ -37,7 +37,7 @@
             <TextBlock Text="Пароль" />
             <PasswordBox x:Name="box_password1" />
 
-            <Button Content="Войти" Margin="0,10,0,0" Click="But_Login_Click"/>
+            <Button Content="Войти" Margin="0,10,0,0" Click="AuthorizationClick"/>
             <TextBlock x:Name="tb_"> Еще не зарегистрированы? <LineBreak></LineBreak> Тогда <Hyperlink Click="Click_Author">зарегистрироваться</Hyperlink>.</TextBlock>
         </StackPanel>
 

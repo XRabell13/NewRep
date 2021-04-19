@@ -37,12 +37,13 @@ namespace Wpf67
 
         public enum ViewType
         {
+            Contacts,
             Authorization,
             Registration,
             Search,
             FindReise,
-            
-            Info
+            BookInf,
+            MyTrips,
         }
         public MainWindow()
         {
@@ -63,8 +64,103 @@ namespace Wpf67
                 menuLanguage.Items.Add(menuLang);
             }
         }
+        public void LoadView(ViewType typeView)
+        {
+            switch (typeView)
+            {
+                case ViewType.Contacts:
+                    {
+                        Contacts view = new Contacts();
+                        ContactsVM vm = new ContactsVM(this);
+                        view.DataContext = vm;
+                        this.OutWin.Content = view;
+                        break;
+                    }
+                case ViewType.Registration:
+                    {
+                        Registration view = new Registration();
+                        RegistrationVM vm = new RegistrationVM(this);
+                        view.DataContext = vm;
+                        this.OutWin.Content = view;
+                        break;
+                    }
+                case ViewType.Authorization:
+                    {
+                        F viewF = new Forum_main();
+                        Forum_mainViewModel vmF = new Forum_mainViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutWin.Content = viewF;
+                        break;
 
-        private void LanguageChanged(Object sender, EventArgs e)
+                    }
+                case ViewType.Forum_topic:
+                    {
+                        Forum_topic viewF = new Forum_topic();
+                        Forum_topicViewModel vmF = new Forum_topicViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.User_room:
+                    {
+                        User_Room viewF = new User_Room();
+                        User_RoomViewModel vmF = new User_RoomViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.AutoPark:
+                    {
+                        AutoPark viewF = new AutoPark();
+                        AutoParkViewModel vmF = new AutoParkViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.AddCar:
+                    {
+                        AddCar viewF = new AddCar();
+                        AddCarViewModel vmF = new AddCarViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.Auctions:
+                    {
+                        Auctions viewF = new Auctions();
+                        AuctionsViewModel vmF = new AuctionsViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.Auction:
+                    {
+                        ver03.Views.Auction viewF = new ver03.Views.Auction();
+                        AuctionViewModel vmF = new AuctionViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.AddAuction:
+                    {
+                        AddAuction viewF = new ver03.Views.AddAuction();
+                        AddAuctionViewModel vmF = new AddAuctionViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+                case ViewType.Info:
+                    {
+                        Info viewF = new ver03.Views.Info();
+                        InfoViewModel vmF = new InfoViewModel(this);
+                        viewF.DataContext = vmF;
+                        this.OutputView.Content = viewF;
+                        break;
+                    }
+
+            }
+        }
+            private void LanguageChanged(Object sender, EventArgs e)
         {
             CultureInfo currLang = App.Language;
 

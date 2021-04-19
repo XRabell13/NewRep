@@ -143,8 +143,8 @@
     <Compile Include="Command\MyCommand.cs" />
     <Compile Include="DataBase\Connect.cs" />
     <Compile Include="DataBase\DataBaseLoad.cs" />
-    <Compile Include="View\Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
+    <Compile Include="View\Contacts.xaml.cs">
+      <DependentUpon>Contacts.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -198,9 +198,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Main.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\Contacts.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Registration.xaml">
       <Generator>MSBuild:Compile</Generator>

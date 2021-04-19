@@ -16,28 +16,7 @@ namespace Wpf67.Properties {
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        public bool Authoriz
-        {
-            get
-            {
-                return ((bool)(this["Authoriz"]));
-            }
-            set
-            {
-                this["Authoriz"] = value;
-            }
-        }
-        public int UserId
-        {
-            get
-            {
-                return ((int)(this["UserId"]));
-            }
-            set
-            {
-                this["UserId"] = value;
-            }
-        }
+        
         public static Settings Default {
             get {
                 return defaultInstance;
@@ -53,6 +32,42 @@ namespace Wpf67.Properties {
             }
             set {
                 this["DefaultLanguage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int UserId {
+            get {
+                return ((int)(this["UserId"]));
+            }
+            set {
+                this["UserId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Authoriz {
+            get {
+                return ((bool)(this["Authoriz"]));
+            }
+            set {
+                this["Authoriz"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsAdmin {
+            get {
+                return ((bool)(this["IsAdmin"]));
+            }
+            set {
+                this["IsAdmin"] = value;
             }
         }
     }

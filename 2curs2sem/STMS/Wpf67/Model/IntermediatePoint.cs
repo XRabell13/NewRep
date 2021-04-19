@@ -12,9 +12,9 @@ namespace Wpf67.Model
         public int id_city { get; set; }
         public int id_route_bus { get; set; }
         public float cost { get; set; }
-        public DateTime time_arrive { get; set; }
+        public string time_arrive { get; set; }
 
-        public IntermediatePoint(int id_intermediate_point, int id_city, int id_route_bus, float cost, DateTime time_arrive)
+        public IntermediatePoint(int id_intermediate_point, int id_city, int id_route_bus, string time_arrive, float cost)
         {
             this.id_intermediate_point = id_intermediate_point;
             this.id_city = id_city;

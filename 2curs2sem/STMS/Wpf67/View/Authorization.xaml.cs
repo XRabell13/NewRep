@@ -28,30 +28,26 @@ namespace Wpf67
             InitializeComponent();
         }
 
-        private void But_Login_Click(object sender, RoutedEventArgs e)
+        private void AuthorizationClick(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(Try_Log_in);
+            Thread thread = new Thread(Authoriz);
             thread.Start();
         }
 
-        void Try_Log_in()
+        void Authoriz()
         {
-            //Thread.Sleep(TimeSpan.FromSeconds(1));
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
                 (ThreadStart)delegate ()
                 {
-                   
                     AuthorizationUser log = new AuthorizationUser();
                     if (log.IsTrueLogin(tb_login.Text))
                     {
                        
                         if (log.IsTruePassword(tb_login.Text, box_password1.Password))
                         {
-                            MessageBox.Show("F1");
                             int id = log.GetUserId(tb_login.Text);
-                            MessageBox.Show("F2");
-                          //  Wpf67.Properties.Settings.Default.Authoriz = true;
-                          //      Wpf67.Properties.Settings.Default.UserId = id;
+                            Wpf67.Properties.Settings.Default.Authoriz = true;
+                            Wpf67.Properties.Settings.Default.UserId = id;
                             MessageBox.Show("Вы зашли!");
                         }
                         else

@@ -18,7 +18,7 @@ namespace Wpf67.Model
         }
         public override string ToString()
         {
-            return id_city.ToString() + " " + name_city;
+            return id_city.ToString();
         }
     }
 }

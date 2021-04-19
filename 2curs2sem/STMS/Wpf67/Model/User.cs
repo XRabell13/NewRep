@@ -11,9 +11,9 @@ namespace Wpf67.Model
         public int id { get; set; }
         public string login { get; set; }
         public string password { get; set; }
-        public bool isAdmin { get; set; }
+        public int isAdmin { get; set; }
 
-        public User(int id, string login, string password, bool isAdmin)
+        public User(int id, string login, string password, int isAdmin)
         {
             this.id = id;
             this.login = login;
