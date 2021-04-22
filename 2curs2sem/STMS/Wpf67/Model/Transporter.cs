@@ -13,11 +13,11 @@ namespace Wpf67.Model
         public string adress { get; set; }
         public string telephone { get; set; }
 
-        public Transporter(int id, string login, string password, string telephone)
+        public Transporter(int id, string named, string adress, string telephone)
         {
             this.id = id;
-            this.named = login;
-            this.adress = password;
+            this.named = named;
+            this.adress = adress;
             this.telephone = telephone;
         }
 

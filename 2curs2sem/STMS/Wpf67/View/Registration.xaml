@@ -34,12 +34,13 @@
      
         <TextBlock Text="Регистрация" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="500">
-            <TextBlock Text="Логин *" ToolTip="Это поле является обязательным."/>
+            <TextBlock Text="Логин" />
             <TextBlock Text="Логин не должен содержать символы: ' &quot; " FontSize="16" />
             <TextBox  x:Name="tb_login" TextAlignment="Center" SelectionChanged="tbLogin_SelectionChanged" />
-            <TextBlock Text="Пароль *" ToolTip="Это поле является обязательным."/>
+            <TextBlock Text="Пароль"/>
+            <TextBlock Text="Пароль должен содержать больше 4 символов" FontSize="16" />
             <PasswordBox x:Name="box_password1" PasswordChanged="tbPass1_PasswordChanged"/>
-            <TextBlock  Text="Повторите пароль *" ToolTip="Это поле является обязательным."/>
+            <TextBlock  Text="Повторите пароль" />
             <PasswordBox x:Name="box_password2"  PasswordChanged="tbPass2_PasswordChanged"/>
             <TextBlock Text="E-mail"  />
 
@@ -47,8 +48,8 @@
             <TextBlock Text="Телефон" />
             <TextBox x:Name="tb_telephone"  Text="+375 " SelectionChanged="tbTelephone_TextChanged" />
 
-            <Button Content="Зарегистрироваться" Margin="0,10,0,0" Click="But_Regist_Click" />
-            <TextBlock x:Name="tb_"> Уже зарегистрированы? Тогда <Hyperlink Click="Hyperlink_Click">войти</Hyperlink>.</TextBlock>
+            <Button IsDefault="True" Content="Зарегистрироваться" Margin="0,10,0,0"   Click="But_Regist_Click" />
+            <TextBlock x:Name="tb_"> Уже зарегистрированы? Тогда <Hyperlink Command="{Binding  MoveAuthorizationPage, Mode=OneTime}">войти</Hyperlink>.</TextBlock>
         </StackPanel>
 
 

@@ -11,10 +11,10 @@ namespace Wpf67.Model
         public int id_ticket { get; set; }
         public int id_route { get; set; }
         public int num_seat { get; set; }
-        public int status_seat { get; set; }
+        public bool status_seat { get; set; }
         public string date_departure { get; set; }//DateTime
 
-        public Ticket(int id_t, int id_route, string date_departure, int num_seat, int status_seat)
+        public Ticket(int id_t, int id_route, string date_departure, int num_seat, bool status_seat)
         {
             this.id_ticket = id_t;
             this.id_route = id_route;

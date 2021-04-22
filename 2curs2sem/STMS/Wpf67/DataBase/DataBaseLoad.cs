@@ -12,7 +12,7 @@ namespace Wpf67.DataBase
 {
     class DataBaseLoad:Connect
     {
-        public bool AddCities(string name_cities)
+        /*public bool AddCities(string name_cities)
         {
             try
             {
@@ -29,7 +29,9 @@ namespace Wpf67.DataBase
                 MessageBox.Show("Ошибка загрузки");
                 return false;
             }
-        }
+        }*/
+
+       
         public void UpdateCities(List<City> cities)
         {
             Open();
@@ -50,20 +52,27 @@ namespace Wpf67.DataBase
             Close();
 
         }
-
+        #region GetTables
         public List<User> GetUsers()
         {
             List<User> users = new List<User>();
             Open();
             if (status)
             {
+               
                 string sql1 = "SELECT * from users;";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
+
                 reader = myCommand.ExecuteReader();
+
                 while (reader.Read())
-                    users.Add(new User(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
-                        reader[2].ToString(), Convert.ToInt32(reader[3].ToString())));
+                {
+                  //  MessageBox.Show(reader[2].ToString() + reader[3].ToString());
+                      users.Add(new User(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
+                        reader[2].ToString(), Convert.ToBoolean(reader[3].ToString().ToLower())));
+
+                }
                 Close();
                 reader.Close();
                 return users;
@@ -215,7 +224,7 @@ namespace Wpf67.DataBase
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
                     tickets.Add(new Ticket(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
-                    reader[2].ToString(), Convert.ToInt32(reader[3].ToString()), Convert.ToInt32(reader[4].ToString())));
+                    reader[2].ToString().Substring(0,10), Convert.ToInt32(reader[3].ToString()), Convert.ToBoolean(reader[4].ToString().ToLower())));
                 Close();
                 reader.Close();
                 return tickets;
@@ -228,6 +237,33 @@ namespace Wpf67.DataBase
             }
 
         }
+
+        public List<Transporter> GetTransporters()
+        {
+            List<Transporter> tickets = new List<Transporter>();
+            Open();
+            if (status)
+            {
+                string sql1 = "SELECT * from transporters;";
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                MySqlDataReader reader;
+                reader = myCommand.ExecuteReader();
+                while (reader.Read())
+                    tickets.Add(new Transporter(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
+                    reader[2].ToString(), reader[3].ToString()));
+                Close();
+                reader.Close();
+                return tickets;
+            }
+            else
+            {
+                MessageBox.Show("Не удалось получить таблицу Transporter");
+                Close();
+                return null;
+            }
+
+        }
+        #endregion 
 
     }
 }

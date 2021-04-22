@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
 
+    <v:String x:Key="main_window">БелТранспарт</v:String>
     <v:String x:Key="m_home">Галоўная</v:String>
     <v:String x:Key="m_search">Пошук</v:String>
     <v:String x:Key="m_trips">Мае паездкі</v:String>
@@ -14,7 +15,7 @@
     <v:String x:Key="m_settings">Параметры</v:String>
     <!-- Admin window -->
     <v:String x:Key="admin_title">Акно адміністратара</v:String>
-    <v:String x:Key="admin_load">Адлюстраваць</v:String>
+    <v:String x:Key="admin_load">Абнавіць</v:String>
 
     <!--  <v:String x:Key="admin_unload">Обновить</v:String>-->
 
@@ -28,7 +29,8 @@
     <v:String x:Key="admin_tickets">Білеты</v:String>
     <v:String x:Key="admin_del">Выдаленне даных</v:String>
     <v:String x:Key="admin_add">Дадаць</v:String>
-
+    <v:String x:Key="admin_win">База даных</v:String>
+    
     <!-- Admin window command delete-->
 
     <v:String x:Key="admin_del_user">Выдаліць карыстальніка</v:String>
@@ -42,4 +44,27 @@
     <v:String x:Key="admin_del_">Выдаліць</v:String>
 
     <v:String x:Key="m_menu_Language">Мова</v:String>
+
+
+    <!-- NoAuthorizationTrips window-->
+    <v:String x:Key="nat_text1">Для прагляду забраніраваных білетаў неабходна</v:String>
+    <v:String x:Key="nat_text2">увайсці!</v:String>
+    <v:String x:Key="nat_text3">Няма акаўнта? Тады</v:String>
+    <v:String x:Key="nat_text4">зарэгістравацца.</v:String>
+
+    <!-- Authorization UserControl -->
+    <v:String x:Key="au_title">Аўтарызацыя</v:String>
+    <v:String x:Key="au_login">Лагін</v:String>
+    <v:String x:Key="au_pass1">Пароль</v:String>
+    <v:String x:Key="au_but">Увайсці</v:String>
+    <v:String x:Key="au_text1">Яшчэ не зарэгістраваныя?</v:String>
+    <v:String x:Key="au_text2">Тады</v:String>
+    <v:String x:Key="au_text3">зарэгістравацца.</v:String>
+
+    <!-- Search UserControl -->
+    <v:String x:Key="s_title">Пошук</v:String>
+    <v:String x:Key="s_from">Адкуль</v:String>
+    <v:String x:Key="s_to">Куды</v:String>
+    <v:String x:Key="s_date">Выберыце дату паездкі</v:String>
+    <v:String x:Key="s_but">Знайсці рэйсы</v:String>
 </ResourceDictionary>

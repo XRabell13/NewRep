@@ -122,5 +122,35 @@ namespace Wpf67.DataBase
             }
         }
 
+        public bool UserIsAdmin(string login)
+        {
+            Open();
+            if (status)
+            {
+                MessageBox.Show("IsAdmin?");
+                string sql1 = "select isAdmin from users where nick='" + login + "';";
+                bool isAdmin = false;
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                MySqlDataReader reader;
+                reader = myCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    isAdmin = Convert.ToBoolean(reader[0].ToString());
+                }
+                else MessageBox.Show("Не удалось получить уровень доступа к приложению.");
+                base.Close();
+                reader.Close();
+                return isAdmin;
+            }
+            else
+            {
+                MessageBox.Show("Проверьте соединение с сервером");
+                base.Close();
+                return false;
+            }
+        }
+
+
+
     }
 }

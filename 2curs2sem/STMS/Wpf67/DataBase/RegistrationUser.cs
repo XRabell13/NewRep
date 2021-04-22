@@ -27,7 +27,6 @@ namespace Wpf67.DataBase
                             Open();
                             myCommand.ExecuteNonQuery();
                             Close();
-                            MessageBox.Show("Add New User");
                             return true;
                         }
                         else

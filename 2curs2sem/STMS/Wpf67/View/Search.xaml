@@ -31,18 +31,18 @@
     </UserControl.Resources>
 
     <Grid>
-        <TextBlock Text="Поиск" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
+        <TextBlock Text="{DynamicResource s_title}" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="500">
-            <TextBlock Text="Откуда" />
+            <TextBlock Text="{DynamicResource s_from}" />
             <ComboBox  x:Name="cb_begin_city"  IsEditable="True" />
-            <TextBlock Text="Куда" />
+            <TextBlock Text="{DynamicResource s_to}" />
             <ComboBox x:Name="cb_end_city" IsEditable="True"/>
-            <TextBlock Text="Выберите дату поездки" />
+            <TextBlock Text="{DynamicResource s_date}" />
             <Viewbox HorizontalAlignment="Center" Width="150">
                 <DatePicker Focusable="False" />
             </Viewbox>
 
-            <Button Content="Найти рейсы" Margin="0,10,0,0" Click="Button_Click"/>
+            <Button Content="{DynamicResource s_but}" Margin="0,10,0,0" Click="Button_Click"/>
 
         </StackPanel>
 

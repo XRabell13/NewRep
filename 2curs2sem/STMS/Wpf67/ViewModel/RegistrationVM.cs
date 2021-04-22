@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using Wpf67.Command;
+using System.Windows.Controls;
+using System.Threading;
+using Wpf67.DataBase;
 
 namespace Wpf67
 {
@@ -14,47 +17,66 @@ namespace Wpf67
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        /*DispatcherTimer timer = new DispatcherTimer();
+        private UserControl registControl;
+        private MainWindow mainWin;
 
-        private IMainWindowsCodeBehind _MainCodeBehind;
+        RegistrationUser regist = new RegistrationUser();
+        AuthorizationUser authoriz = new AuthorizationUser();
 
-        public RegistrationVM(IMainWindowsCodeBehind codeBehind)
+        public RegistrationVM(UserControl uc)
         {
-            if (codeBehind == null) throw new ArgumentNullException(nameof(codeBehind));
-            _MainCodeBehind = codeBehind;
-            Initial_Timer();
-        }*/
+            if (uc == null) throw new ArgumentNullException(nameof(uc));
+            registControl = uc;
+        }
 
+        public RegistrationVM(MainWindow mw)
+        {
+            if (mw == null) throw new ArgumentNullException(nameof(mw));
+           mainWin = mw;
+        }
 
-        private MyCommand _but_regist;
-        public MyCommand but_regist
+        private MyCommand moveAuthoriz;
+        public MyCommand MoveAuthorizationPage
         {
             get
             {
-                return _but_regist = _but_regist ??
-                  new MyCommand(OnShowMessage, CanShowMessage);
+                return moveAuthoriz = moveAuthoriz ??
+                  new MyCommand(ShowAuthoriz, CanShowAuthoriz);
             }
         }
-        private bool CanShowMessage()
+        private bool CanShowAuthoriz()
         {
             return true;
         }
-        private void OnShowMessage()
+        private void ShowAuthoriz()
         {
-            MessageBox.Show("New User");
+            Authorization reg = new Authorization();
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            
+            mainWindow.OutWin.Content = reg;
         }
-      /*  void Initial_Timer()
+
+        private MyCommand RegistNewUser;
+        public MyCommand RegistrarionNewUser
         {
-            timer.Tick += new EventHandler(Try_Log_in);
-            timer.Interval = new TimeSpan(0, 0, 1);
-        }
-        void Try_Log_in(object sender, EventArgs e)
-        {
-            _MainCodeBehind.Check_Autorization();
-            if (ver03.Properties.Settings.Default.Autoriz)
+            get
             {
-                ((DispatcherTimer)sender).Stop();
+                return RegistNewUser = RegistNewUser ??
+                  new MyCommand(RegNewUser, CanRegNewUser);
             }
-        }*/
+        }
+
+        private bool CanRegNewUser()
+        {
+            return true;
+        }
+        private void RegNewUser()
+        {
+          //  Thread thread = new Thread(Regist_new_User);
+            //thread.Start();
+            
+        }
+
+
     }
 }

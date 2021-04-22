@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Wpf67.DataBase;
 
-namespace Wpf67
+namespace Wpf67.View
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для FindReise.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class FindReise : UserControl
     {
-        public Window1()
+        public FindReise()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DataBaseLoad a = new DataBaseLoad();
-          //  TextBl.Text = a.Get_user_nick();
         }
     }
 }

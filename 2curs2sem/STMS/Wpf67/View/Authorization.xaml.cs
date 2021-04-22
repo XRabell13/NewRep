@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf67.DataBase;
 using Wpf67.View;
+using Wpf67.ViewModel;
 
 namespace Wpf67
 {
@@ -23,9 +24,16 @@ namespace Wpf67
     /// </summary>
     public partial class Authorization : UserControl
     {
+        IMainWindowsCodeBehind codeBehind { get; set; }
+
         public Authorization()
         {
             InitializeComponent();
+
+            AuthorizationVM vm = new AuthorizationVM(this);
+            codeBehind = (MainWindow)Application.Current.MainWindow;
+            this.DataContext = vm;
+
         }
 
         private void AuthorizationClick(object sender, RoutedEventArgs e)
@@ -39,16 +47,20 @@ namespace Wpf67
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
                 (ThreadStart)delegate ()
                 {
-                    AuthorizationUser log = new AuthorizationUser();
-                    if (log.IsTrueLogin(tb_login.Text))
+                    AuthorizationUser autUser = new AuthorizationUser();
+                    if (autUser.IsTrueLogin(tb_login.Text))
                     {
                        
-                        if (log.IsTruePassword(tb_login.Text, box_password1.Password))
+                        if (autUser.IsTruePassword(tb_login.Text, box_password1.Password))
                         {
-                            int id = log.GetUserId(tb_login.Text);
+                            int id = autUser.GetUserId(tb_login.Text);
+
                             Wpf67.Properties.Settings.Default.Authoriz = true;
+                            Wpf67.Properties.Settings.Default.IsAdmin = autUser.UserIsAdmin(tb_login.Text);
                             Wpf67.Properties.Settings.Default.UserId = id;
-                            MessageBox.Show("Вы зашли!");
+                            codeBehind.LoadView(ViewType.Search);
+                            codeBehind.ButEnterAccount();
+                            Wpf67.Properties.Settings.Default.Save();
                         }
                         else
                             MessageBox.Show("Проверьте пароль");
@@ -57,16 +69,5 @@ namespace Wpf67
                         MessageBox.Show("Проверьте логин");
                 });
         }
-        public void Click_Author(object sender, EventArgs e)
-        {
-            Registration reg = new Registration();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
-            mainWindow.OutWin.Content = reg;
-        }
     }
-
-    
-
-    
 }

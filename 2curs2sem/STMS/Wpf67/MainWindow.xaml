@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf67"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1050" MinHeight="550" MinWidth="850"
+        Title="{DynamicResource main_window}" Height="720" Width="1050" MinHeight="550" MinWidth="850"
         Icon="img/bus_icon.ico"
          Cursor="img/normal_select.cur"
         WindowStartupLocation="CenterScreen"
@@ -13,13 +13,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <!-- Stolbec -->
-
             <ColumnDefinition Width="*" />
-
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <!-- Stroka -->
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
@@ -32,15 +28,17 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding LoadAuctions, Mode=OneTime}"  Grid.Column="0" Click="Button_Click1" Content="{DynamicResource m_search}"/>
+            
+            <Button Command="{Binding LoadSearchPage, Mode=OneTime}"  Grid.Column="0" Content="{DynamicResource m_search}"/>
 
-            <Button Grid.Column="1"  Content="{DynamicResource m_trips}"/>
+            <Button Command="{Binding LoadMyTripsPage, Mode=OneTime}" x:Name="butTrips" Grid.Column="1"  Content="{DynamicResource m_trips}" />
+            <Button Command="{Binding LoadAdminWin, Mode=OneTime}" x:Name="butAdminWin"  Grid.Column="1"  Content="{DynamicResource admin_win}" Visibility="Collapsed"/>
 
-            <Button Command="{Binding LoadInfo, Mode=OneTime}" Grid.Column="2"  Content="{DynamicResource m_contacts}"/>
+            <Button Command="{Binding LoadContactsPage, Mode=OneTime}" Grid.Column="2"  Content="{DynamicResource m_contacts}"/>
 
-            <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
-            <Button Click="Button_Click" Grid.Column="4"  Content="{DynamicResource m_logout}" Visibility="Hidden"/>
-
+            <Button x:Name="butLogin" Command="{Binding  LoadAuthorizationPage, Mode=OneTime}" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
+            <Button x:Name="butExit" Command="{Binding  ExitAccount, Mode=OneTime}" Grid.Column="4"  Content="{DynamicResource m_logout}" Visibility="Collapsed"/>
+            
             
         </Grid>
         <Menu DockPanel.Dock="Top" Background="{x:Null}" Grid.Column="0" Grid.Row="2" >

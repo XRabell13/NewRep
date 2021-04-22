@@ -133,10 +133,16 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Model\UserTicket.cs" />
+    <Compile Include="ViewModel\AuthorizationVM.cs" />
+    <Compile Include="ViewModel\ContactsVM.cs" />
     <Compile Include="ViewModel\MenuVM.cs" />
+    <Compile Include="ViewModel\MyTripsVM.cs" />
+    <Compile Include="ViewModel\NoAuthorizationTripsVM.cs" />
     <Compile Include="ViewModel\RegistrationVM.cs" />
     <Compile Include="Settings\Language.cs" />
     <Compile Include="Settings\Theme.cs" />
+    <Compile Include="ViewModel\SearchVM.cs" />
+    <Compile Include="ViewModel\TicketVM.cs" />
     <Compile Include="View\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -145,6 +151,15 @@
     <Compile Include="DataBase\DataBaseLoad.cs" />
     <Compile Include="View\Contacts.xaml.cs">
       <DependentUpon>Contacts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FindReise.xaml.cs">
+      <DependentUpon>FindReise.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MyTrips.xaml.cs">
+      <DependentUpon>MyTrips.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NoAuthorizationTrips.xaml.cs">
+      <DependentUpon>NoAuthorizationTrips.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -199,6 +214,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Contacts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FindReise.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MyTrips.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NoAuthorizationTrips.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -264,6 +291,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataBase\Administrator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="NETWORKLIST">
+      <Guid>{DCB00D01-570F-4A9B-8D69-199FDBA5723B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

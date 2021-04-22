@@ -30,15 +30,22 @@
 
     </UserControl.Resources>
     <Grid>
-        <TextBlock Text="Авторизация" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
+        <TextBlock Text="{DynamicResource au_title}" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="400">
-            <TextBlock Text="Логин" />
+            <TextBlock Text="{DynamicResource au_login}" />
             <TextBox  x:Name="tb_login" TextAlignment="Center" />
             <TextBlock Text="Пароль" />
             <PasswordBox x:Name="box_password1" />
 
-            <Button Content="Войти" Margin="0,10,0,0" Click="AuthorizationClick"/>
-            <TextBlock x:Name="tb_"> Еще не зарегистрированы? <LineBreak></LineBreak> Тогда <Hyperlink Click="Click_Author">зарегистрироваться</Hyperlink>.</TextBlock>
+            <Button IsDefault="True" Content="Войти" Margin="0,10,0,0"   Click="AuthorizationClick"/>
+
+            <TextBlock>
+            <TextBlock x:Name="tb_" Text="{DynamicResource au_text1}"/>
+            <LineBreak/> 
+                <TextBlock Text="{DynamicResource au_text2}"/> 
+                <Hyperlink Command="{Binding  MoveRegistrationPage, Mode=OneTime}" > <TextBlock Text="{DynamicResource au_text3}"/> </Hyperlink>.
+                
+            </TextBlock>
         </StackPanel>
 
 

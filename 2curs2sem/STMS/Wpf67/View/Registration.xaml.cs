@@ -31,19 +31,18 @@ namespace Wpf67.View
 
         RegistrationUser regist = new RegistrationUser();
         AuthorizationUser authoriz = new AuthorizationUser();
+        IMainWindowsCodeBehind codeBehind { get; set; }
 
         public Registration()
         {
             InitializeComponent();
+
+            RegistrationVM vm = new RegistrationVM(this);
+            codeBehind = (MainWindow)Application.Current.MainWindow;
+            this.DataContext = vm;
+
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-           Authorization reg = new Authorization();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
-            mainWindow.OutWin.Content = reg;
-        }
         private void But_Regist_Click(object sender, RoutedEventArgs e)
         {
             Thread thread = new Thread(Regist_new_User);
@@ -54,7 +53,7 @@ namespace Wpf67.View
         {
             if (CheckValidInfo(login, password1, password2, email, telephone))
             {
-                if (regist.RegistUser(login, password1, password2) && login.Length >= 4)
+                if (regist.RegistUser(login, password1, password2) && login.Length >= 2)
                 {
                     telephone.Replace(" ", "");
                     email.Replace(" ", "");
@@ -62,21 +61,24 @@ namespace Wpf67.View
                     {
                         int id = authoriz.GetUserId(login);
 
-
                         if (regist.AddUserInfo(id, null, telephone, email))
                         {
                             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
                                         (ThreadStart)delegate ()
                                         {
                                             Wpf67.Properties.Settings.Default.Authoriz = true;
+                                            Wpf67.Properties.Settings.Default.IsAdmin = false;
                                             Wpf67.Properties.Settings.Default.UserId = id;
+                                            Wpf67.Properties.Settings.Default.Save();
+                                            codeBehind.LoadView(ViewType.Search);
+                                            codeBehind.ButEnterAccount();
                                         });
 
                         }
                         else
-                            MessageBox.Show("Error ошибка ввода учётных данных");
+                            MessageBox.Show("Ошибка ввода учётных данных");
                     }
-                    }
+                }
 
             }
         }
@@ -164,137 +166,6 @@ namespace Wpf67.View
             telephone = ((TextBox)sender).Text;
         }
 
-        /*
-    private void box_nick_LostFocus(object sender, RoutedEventArgs e)
-    {
-        if (login != null)
-        {
-            if (login.Length < 5)
-            {
-                SetTBStyleDef(sender);
-            }
-            else
-            {
-                bool result = false;
-                string nick;
-
-                Thread thread = new Thread(CheckNickValid);
-                thread.Start();
-
-                void CheckNickValid()
-                {
-                    nick = login;
-                    result = authoriz.IsTrueLogin(nick);
-                    this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
-                (ThreadStart)delegate ()
-                {
-                    if (!result)
-                        SetTBStyleValid(sender);
-                    else
-                        SetTBStyleUnValid(sender);
-                });
-                }
-
-
-            }
-        }
-    }
-    void SetTBStyleValid(object sender)
-    {
-        ((TextBox)sender).Style = (Style)FindResource("TextBoxStyle00_ByRegistration_valid");
-    }
-    void SetTBStyleUnValid(object sender)
-    {
-        ((TextBox)sender).Style = (Style)FindResource("TextBoxStyle00_ByRegistration_unvalid");
-    }
-    void SetTBStyleDef(object sender)
-    {
-        ((TextBox)sender).Style = (Style)FindResource("TextBoxStyle00_ByRegistration_def");
-    }
-
-    void SetPBStyleDef(object sender)
-    {
-        ((PasswordBox)sender).Style = (Style)FindResource("PasswordBox_def");
-    }
-    void SetPBStyleValid(object sender)
-    {
-        ((PasswordBox)sender).Style = (Style)FindResource("PasswordBox_valid");
-    }
-    void SetPBStyleUnValid(object sender)
-    {
-        ((PasswordBox)sender).Style = (Style)FindResource("PasswordBox_unvalid");
-    }
-
-    private void box_password1_LostFocus(object sender, RoutedEventArgs e)
-    {
-        if ((password2 != null && password1 != null) && (password1 != null && password1.Length > 0) && (password2 != null && password2.Length > 0))
-        {
-            //MessageBox.Show("1");
-            if (password2.Equals(password1))
-            {
-                SetPBStyleValid(sender);
-                SetPBStyleValid(pasBox2);
-            }
-            else
-            {
-                SetPBStyleUnValid(sender);
-                SetPBStyleUnValid(pasBox2);
-            }
-        }
-        else
-        {
-            //MessageBox.Show("2");
-            SetPBStyleDef(sender);
-            SetPBStyleDef(pasBox2);
-        }
-
-
-    }
-    private void box_password2_LostFocus(object sender, RoutedEventArgs e)
-    {
-        if ((password2 != null && password1 != null) && (password1 != null && password1.Length > 0) && (password2 != null && password2.Length > 0))
-        {
-            if (password1.Equals(password2))
-            {
-                SetPBStyleValid(sender);
-                SetPBStyleValid(pasBox1);
-            }
-            else
-            {
-                SetPBStyleUnValid(sender);
-                SetPBStyleUnValid(pasBox1);
-            }
-
-        }
-        else
-        {
-            SetPBStyleDef(sender);
-            SetPBStyleDef(pasBox1);
-        }
-
-
-    }
-
-    private void box_email_LostFocus(object sender, RoutedEventArgs e)
-    {
-        if (email.Length > 0 && email.Contains("@") && email.Contains("."))
-        {
-            SetTBStyleValid(sender);
-        }
-        else
-            if (email.Length > 0)
-            SetTBStyleUnValid(sender);
-        else
-            SetTBStyleDef(sender);
-    }
-    private void box_telephone_LostFocus(object sender, RoutedEventArgs e)
-    {
-        if (telephone.Length > 13 || (!telephone.Contains(" ") && telephone.Length > 12))
-            SetTBStyleValid(sender);
-        else if (telephone.Length > 0)
-            SetTBStyleUnValid(sender);
-        else
-            SetTBStyleDef(sender);
-    }*/
+       
     }
 }

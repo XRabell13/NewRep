@@ -15,39 +15,40 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf67.View;
+using Wpf67.ViewModel;
 
 namespace Wpf67
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    /// 
+    public interface IMainWindowsCodeBehind
     {
-        public interface IMainWindow
-        {
-            void ShowMessage(string message);
-            void LoadView(ViewType typeView);
-            //        void UpUserId();
-            void Check_Autorization();
-            void ShowLoadIndicator();
-            void CollapseLoadIndicator();
-            void HeadButAuthorization();
-            void ButExitAccount();
-        }
+       // void ShowMessage(string message);
+        void LoadView(ViewType typeView);
+        void ButExitAccount();
+        void ButEnterAccount();
+    }
 
-        public enum ViewType
-        {
-            Contacts,
-            Authorization,
-            Registration,
-            Search,
-            FindReise,
-            BookInf,
-            MyTrips,
-        }
+    public enum ViewType
+    {
+        Contacts,
+        Authorization,
+        Registration,
+        Search,
+        FindReise,
+        BookInf,
+        MyTrips,
+        NoAuthorizationTrips,
+    }
+    public partial class MainWindow : Window, IMainWindowsCodeBehind
+    {
+       
         public MainWindow()
         {
             InitializeComponent();
+
             App.LanguageChanged += LanguageChanged;
 
             CultureInfo currLang = App.Language;
@@ -63,101 +64,67 @@ namespace Wpf67
                 menuLang.Click += ChangeLanguageClick;
                 menuLanguage.Items.Add(menuLang);
             }
+
+            this.Loaded += MainWindow_Loaded;
+
+            if (Wpf67.Properties.Settings.Default.Authoriz)
+            {
+                ButEnterAccount();
+            }
+          
+          
         }
-        public void LoadView(ViewType typeView)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MenuVM vm = new MenuVM();
+            vm.CodeBehind = this;
+            this.DataContext = vm;//привязка данных к окну, из этой модели берутся даннные
+            LoadView(ViewType.Search);
+        }
+
+        public void LoadView(ViewType typeView)//привязка view к viewModel и отображение
         {
             switch (typeView)
             {
                 case ViewType.Contacts:
                     {
+                     
                         Contacts view = new Contacts();
-                        ContactsVM vm = new ContactsVM(this);
-                        view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
                     }
                 case ViewType.Registration:
                     {
+                      
                         Registration view = new Registration();
-                        RegistrationVM vm = new RegistrationVM(this);
-                        view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
                     }
                 case ViewType.Authorization:
                     {
-                        F viewF = new Forum_main();
-                        Forum_mainViewModel vmF = new Forum_mainViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutWin.Content = viewF;
+                        Authorization view = new Authorization();
+                        this.OutWin.Content = view;
                         break;
 
                     }
-                case ViewType.Forum_topic:
+                    case ViewType.Search:
+                        {
+                            Search view = new Search();
+                            this.OutWin.Content = view;
+                            break;
+                        }
+                    case ViewType.MyTrips:
+                        {
+                            MyTrips view = new MyTrips();
+                            this.OutWin.Content = view;
+                            break;
+                        }
+                case ViewType.NoAuthorizationTrips:
                     {
-                        Forum_topic viewF = new Forum_topic();
-                        Forum_topicViewModel vmF = new Forum_topicViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
+                        NoAuthorizationTrips view = new NoAuthorizationTrips();
+                        this.OutWin.Content = view;
                         break;
                     }
-                case ViewType.User_room:
-                    {
-                        User_Room viewF = new User_Room();
-                        User_RoomViewModel vmF = new User_RoomViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-                case ViewType.AutoPark:
-                    {
-                        AutoPark viewF = new AutoPark();
-                        AutoParkViewModel vmF = new AutoParkViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-                case ViewType.AddCar:
-                    {
-                        AddCar viewF = new AddCar();
-                        AddCarViewModel vmF = new AddCarViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-                case ViewType.Auctions:
-                    {
-                        Auctions viewF = new Auctions();
-                        AuctionsViewModel vmF = new AuctionsViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-                case ViewType.Auction:
-                    {
-                        ver03.Views.Auction viewF = new ver03.Views.Auction();
-                        AuctionViewModel vmF = new AuctionViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-                case ViewType.AddAuction:
-                    {
-                        AddAuction viewF = new ver03.Views.AddAuction();
-                        AddAuctionViewModel vmF = new AddAuctionViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-                case ViewType.Info:
-                    {
-                        Info viewF = new ver03.Views.Info();
-                        InfoViewModel vmF = new InfoViewModel(this);
-                        viewF.DataContext = vmF;
-                        this.OutputView.Content = viewF;
-                        break;
-                    }
-
             }
         }
             private void LanguageChanged(Object sender, EventArgs e)
@@ -185,27 +152,51 @@ namespace Wpf67
             }
 
         }
-
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+     
+       
+        public void ButExitAccount()
         {
-            Registration reg = new Registration();
-            this.OutWin.Content = reg;
-
+            Collapse_AuthorizationButtons();
+            Show_RegistrationButtons();
+          
         }
 
-        private void Button_Click1(object sender, RoutedEventArgs e)
+        public void ButEnterAccount()
         {
-            Search reg = new Search();
-            this.OutWin.Content = reg;
+            Show_AuthorizationButtons();
+            Collapse_RegistrationButtons();
+        }
+
+        public void Collapse_AuthorizationButtons()
+        {
+            butExit.Visibility = Visibility.Collapsed;
+            butAdminWin.Visibility = Visibility.Collapsed;
+        }
+        public void Show_AuthorizationButtons()
+        {
+            butExit.Visibility = Visibility.Visible;
+            if (Wpf67.Properties.Settings.Default.IsAdmin)
+            {
+                butTrips.Visibility = Visibility.Collapsed;
+                butAdminWin.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                butTrips.Visibility = Visibility.Visible;
+                butAdminWin.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        public void Show_RegistrationButtons()
+        {
+            butLogin.Visibility = Visibility.Visible;
+            butTrips.Visibility = Visibility.Visible;
 
         }
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        public void Collapse_RegistrationButtons()
         {
-            View.Settings reg = new View.Settings();
-            this.OutWin.Content = reg;
-
+            butLogin.Visibility = Visibility.Collapsed;
         }
+
     }
 }
