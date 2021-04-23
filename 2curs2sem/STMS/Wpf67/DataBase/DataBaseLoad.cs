@@ -113,7 +113,7 @@ namespace Wpf67.DataBase
 
         public List<City> GetCities()
         {
-            List<City> users = new List<City>();
+            List<City> cities = new List<City>();
             Open();
             if (status)
             {
@@ -122,10 +122,10 @@ namespace Wpf67.DataBase
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
-                    users.Add(new City(Convert.ToInt32(reader[0].ToString()), reader[1].ToString()));
+                    cities.Add(new City(Convert.ToInt32(reader[0].ToString()), reader[1].ToString()));
                 Close();
                 reader.Close();
-                return users;
+                return cities;
             }
             else
             {

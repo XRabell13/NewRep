@@ -37,13 +37,13 @@
             <TextBlock Text="Пароль" />
             <PasswordBox x:Name="box_password1" />
 
-            <Button IsDefault="True" Content="Войти" Margin="0,10,0,0"   Click="AuthorizationClick"/>
+            <Button IsDefault="True" Content="{DynamicResource au_but}" Margin="0,10,0,0"   Click="AuthorizationClick"/>
 
             <TextBlock>
             <TextBlock x:Name="tb_" Text="{DynamicResource au_text1}"/>
             <LineBreak/> 
                 <TextBlock Text="{DynamicResource au_text2}"/> 
-                <Hyperlink Command="{Binding  MoveRegistrationPage, Mode=OneTime}" > <TextBlock Text="{DynamicResource au_text3}"/> </Hyperlink>.
+                <Hyperlink Command="{Binding  MoveRegistrationPage, Mode=OneTime}" > <TextBlock Text="{DynamicResource au_text3}"/> </Hyperlink>
                 
             </TextBlock>
         </StackPanel>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Wpf67.Command;
+using Wpf67.DataBase;
 using Wpf67.View;
 
 namespace Wpf67.ViewModel
@@ -130,8 +132,13 @@ namespace Wpf67.ViewModel
         }
         private void ShowAdminWin()
         {
-            AdminWindow adminWindow = new AdminWindow();
-            adminWindow.Show();
+            DataBaseLoad baseLoad = new DataBaseLoad();
+            if (baseLoad.chekInternet.IsConnected())
+            {
+                AdminWindow adminWindow = new AdminWindow();
+                adminWindow.Show();
+            }
+            else MessageBox.Show("Проверьте подключение к интернету.");
         }
 
 
@@ -150,6 +157,8 @@ namespace Wpf67.ViewModel
         }
         private void OnExitAccount()
         {
+            MessageBox.Show("32", "234WE", MessageBoxButton.YesNo);
+           
             Wpf67.Properties.Settings.Default.UserId = 0;
             Wpf67.Properties.Settings.Default.Authoriz = false;
             Wpf67.Properties.Settings.Default.IsAdmin = false;

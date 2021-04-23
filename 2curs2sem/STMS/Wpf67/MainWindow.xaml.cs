@@ -197,6 +197,14 @@ namespace Wpf67
         {
             butLogin.Visibility = Visibility.Collapsed;
         }
+        public void ShowLoadIndicator()
+        {
+            LoadIndic.Visibility = Visibility.Visible;
+        }
+        public void CollapseLoadIndicator()
+        {
+            LoadIndic.Visibility = Visibility.Collapsed;
+        }
 
     }
 }

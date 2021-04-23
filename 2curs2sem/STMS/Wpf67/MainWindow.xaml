@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wpf67"
+        xmlns:local="clr-namespace:Wpf67" xmlns:controls="clr-namespace:Wpf67.View"
         mc:Ignorable="d"
         Title="{DynamicResource main_window}" Height="720" Width="1050" MinHeight="550" MinWidth="850"
         Icon="img/bus_icon.ico"
@@ -44,7 +44,33 @@
         <Menu DockPanel.Dock="Top" Background="{x:Null}" Grid.Column="0" Grid.Row="2" >
             <MenuItem x:Name="menuLanguage" Header="{DynamicResource m_menu_Language}" />
         </Menu>
-        <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin"/>
+        <Image x:Name="LoadIndic" Source="img/but_delete.ico" 
+       Height="50" Width="50"  Grid.Column="0" Grid.Row="1">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rotate"
+                         CenterX="25"
+                         CenterY="25"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="rotate"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin" Visibility="Collapsed"/>
+        <ListBox Name="placesList" Grid.Column="0" Grid.Row="1" MaxHeight="250" Visibility="Collapsed">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <controls:FindReise></controls:FindReise>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

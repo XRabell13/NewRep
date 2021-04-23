@@ -27,8 +27,8 @@ namespace Wpf67.View
         string password2 = null;
         string telephone = null;
         string email;
-       
 
+        DataBaseLoad db = new DataBaseLoad();
         RegistrationUser regist = new RegistrationUser();
         AuthorizationUser authoriz = new AuthorizationUser();
         IMainWindowsCodeBehind codeBehind { get; set; }
@@ -45,13 +45,19 @@ namespace Wpf67.View
 
         private void But_Regist_Click(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(Regist_new_User);
+            DataBaseLoad baseLoad = new DataBaseLoad();
+            if (baseLoad.chekInternet.IsConnected())
+            {
+                Thread thread = new Thread(Regist_new_User);
             thread.Start();
+            }
+            else MessageBox.Show("Проверьте подключение к интернету.");
 
         }
         void Regist_new_User()
         {
-            if (CheckValidInfo(login, password1, password2, email, telephone))
+           
+                if (CheckValidInfo(login, password1, password2, email, telephone))
             {
                 if (regist.RegistUser(login, password1, password2) && login.Length >= 2)
                 {
@@ -79,6 +85,7 @@ namespace Wpf67.View
                             MessageBox.Show("Ошибка ввода учётных данных");
                     }
                 }
+              
 
             }
         }

@@ -61,6 +61,17 @@
     <v:String x:Key="au_text2">Тады</v:String>
     <v:String x:Key="au_text3">зарэгістравацца.</v:String>
 
+    <!-- Authorization UserControl -->
+    <v:String x:Key="reg_title">Рэгістрацыя</v:String>
+    <v:String x:Key="reg_login">Лагін</v:String>
+    <v:String x:Key="reg_pass1">Пароль</v:String>
+    <v:String x:Key="reg_but">Зарэгістравацца</v:String>
+    <v:String x:Key="reg_text1">Ужо зарэгістраваныя?</v:String>
+    <v:String x:Key="reg_text2">Тады</v:String>
+    <v:String x:Key="reg_text3">увайсці.</v:String>
+    <v:String x:Key="reg_log1">Лагін не павінен утрымоўваць сімвалы: ' &quot;</v:String>
+    <v:String x:Key="reg_pass2">Пароль павінен змяшчаць больш за 4 сімвалы</v:String>
+
     <!-- Search UserControl -->
     <v:String x:Key="s_title">Пошук</v:String>
     <v:String x:Key="s_from">Адкуль</v:String>

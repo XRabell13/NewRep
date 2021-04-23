@@ -64,6 +64,16 @@
     <v:String x:Key="au_text2">Тогда</v:String>
     <v:String x:Key="au_text3">зарегистрироваться.</v:String>
 
+    <!-- Authorization UserControl -->
+    <v:String x:Key="reg_title">Авторизация</v:String>
+    <v:String x:Key="reg_login">Логин</v:String>
+    <v:String x:Key="reg_pass1">Пароль</v:String>
+    <v:String x:Key="reg_but">Зарегистрироваться</v:String>
+    <v:String x:Key="reg_text1">Уже зарегистрированы?</v:String>
+    <v:String x:Key="reg_text2">Тогда</v:String>
+    <v:String x:Key="reg_text3">войти.</v:String>
+    <v:String x:Key="reg_log1">Логин не должен содержать символы: ' &quot;</v:String>
+    <v:String x:Key="reg_pass2">Пароль должен содержать больше 4 символов</v:String>
     <!-- Search UserControl -->
     <v:String x:Key="s_title">Поиск</v:String>
     <v:String x:Key="s_from">Откуда</v:String>

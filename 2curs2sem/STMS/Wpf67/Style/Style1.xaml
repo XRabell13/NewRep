@@ -37,8 +37,25 @@
         </Style.Triggers>
 
     </Style>
-    
-    
+
+    <Style x:Key="butDel" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Cursor="Hand">
+                        <Border Name="back" Margin="0,1,0,0" Background="{StaticResource ButtonBackground}">
+                            <Image Name="imgBut" Source="img/but_delete.ico" />
+                        </Border>
+                        <Border BorderThickness="1" BorderBrush="#FF004F92">
+                            <Border BorderThickness="0,0,1,0" BorderBrush="#FF101D29" />
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- DataGrid -->
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="#827397"/>
     </Style>
@@ -66,5 +83,5 @@
         <Setter Property="Control.Margin" Value="120 5 120 5" />
     </Style>
 
-
+   
 </ResourceDictionary>

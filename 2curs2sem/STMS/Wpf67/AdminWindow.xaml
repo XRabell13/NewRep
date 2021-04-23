@@ -56,7 +56,10 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Удалить" Click="Button_Click" Margin="0" />
+                                    <Button Background="White" BorderBrush="White" Click="Button_Click" Margin="0">
+                                        <Image Source="img/but_delete.ico"></Image>
+                                        
+                                    </Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -92,7 +95,16 @@
                         <DataGridTextColumn Header="id" Binding="{Binding id_city}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="name city" Binding="{Binding name_city, Mode=TwoWay}" />
                     </DataGrid.Columns>
-                    
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="White" BorderBrush="White" Click="Button_Click" Margin="0">
+                                    <Image Source="img/but_delete.ico"></Image>
+
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid>
             </TabItem>
             

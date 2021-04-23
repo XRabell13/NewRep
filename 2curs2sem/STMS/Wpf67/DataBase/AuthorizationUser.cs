@@ -77,7 +77,7 @@ namespace Wpf67.DataBase
                 reader.Close();
                 if (!pass_valide)
                 {
-                    MessageBox.Show("Пороль не верный");
+                    MessageBox.Show("Пароль не верный");
                     return false;
                 }
                 else return true;
@@ -95,7 +95,7 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-                MessageBox.Show("GetUserId");
+               // MessageBox.Show("GetUserId");
                 string sql1 = "select id_user from users where nick='" + login + "';";
                 int id;
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -127,7 +127,7 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-                MessageBox.Show("IsAdmin?");
+               // MessageBox.Show("IsAdmin?");
                 string sql1 = "select isAdmin from users where nick='" + login + "';";
                 bool isAdmin = false;
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -137,7 +137,7 @@ namespace Wpf67.DataBase
                 {
                     isAdmin = Convert.ToBoolean(reader[0].ToString());
                 }
-                else MessageBox.Show("Не удалось получить уровень доступа к приложению.");
+                else MessageBox.Show("Не удалось получить уровень доступа к приложению");
                 base.Close();
                 reader.Close();
                 return isAdmin;

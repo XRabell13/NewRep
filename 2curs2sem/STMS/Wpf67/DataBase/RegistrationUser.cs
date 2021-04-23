@@ -55,12 +55,12 @@ namespace Wpf67.DataBase
                 Open();
                 myCommand.ExecuteNonQuery();
                 Close();
-                MessageBox.Show("Add New UserInfo");
+               // MessageBox.Show("Add New UserInfo");
                 return true;
             }
             catch
             {
-                MessageBox.Show("Error: Ошибка добавления учётных данных");
+                MessageBox.Show("Ошибка добавления учётных данных");
                 return false;
             }
         }

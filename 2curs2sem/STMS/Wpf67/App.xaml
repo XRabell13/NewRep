@@ -4,7 +4,9 @@
              xmlns:local="clr-namespace:Wpf67"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+       
         <ResourceDictionary>
+            <Image x:Key="butDel" Source="img/but_delete.ico" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/lang.xaml" />
                 <ResourceDictionary Source="Style/Style1.xaml" />

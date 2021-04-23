@@ -38,13 +38,19 @@ namespace Wpf67
 
         private void AuthorizationClick(object sender, RoutedEventArgs e)
         {
-            Thread thread = new Thread(Authoriz);
+            DataBaseLoad baseLoad = new DataBaseLoad();
+            if (baseLoad.chekInternet.IsConnected())
+            {
+                Thread thread = new Thread(Authoriz);
             thread.Start();
+            }
+            else MessageBox.Show("Проверьте подключение к интернету.");
         }
 
         void Authoriz()
         {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
+           
+                this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
                 (ThreadStart)delegate ()
                 {
                     AuthorizationUser autUser = new AuthorizationUser();
@@ -68,6 +74,7 @@ namespace Wpf67
                     else
                         MessageBox.Show("Проверьте логин");
                 });
+           
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf67.ViewModel;
 
 namespace Wpf67.View
 {
@@ -20,9 +21,20 @@ namespace Wpf67.View
     /// </summary>
     public partial class Search : UserControl
     {
+        SearchVM vm;
         public Search()
         {
             InitializeComponent();
+            dpDate.DisplayDateStart = dpDate.SelectedDate = DateTime.Today;
+            dpDate.DisplayDateEnd = DateTime.Today.AddDays(14);
+                
+            vm = new SearchVM(this);
+            LoadCities();
+        }
+
+        private void LoadCities()
+        {
+            ((ComboBox)FindName("cb_begin_city")).ItemsSource = ((ComboBox)FindName("cb_end_city")).ItemsSource = vm.LoadAllCities();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -34,11 +34,11 @@
      
         <TextBlock Text="Регистрация" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="500">
-            <TextBlock Text="Логин" />
-            <TextBlock Text="Логин не должен содержать символы: ' &quot; " FontSize="16" />
+            <TextBlock Text="{DynamicResource au_login}" />
+            <TextBlock Text="{DynamicResource reg_log1}" FontSize="16" />
             <TextBox  x:Name="tb_login" TextAlignment="Center" SelectionChanged="tbLogin_SelectionChanged" />
-            <TextBlock Text="Пароль"/>
-            <TextBlock Text="Пароль должен содержать больше 4 символов" FontSize="16" />
+            <TextBlock Text="{DynamicResource au_pass1}"/>
+            <TextBlock Text="{DynamicResource reg_pass2}" FontSize="16" />
             <PasswordBox x:Name="box_password1" PasswordChanged="tbPass1_PasswordChanged"/>
             <TextBlock  Text="Повторите пароль" />
             <PasswordBox x:Name="box_password2"  PasswordChanged="tbPass2_PasswordChanged"/>
@@ -49,7 +49,14 @@
             <TextBox x:Name="tb_telephone"  Text="+375 " SelectionChanged="tbTelephone_TextChanged" />
 
             <Button IsDefault="True" Content="Зарегистрироваться" Margin="0,10,0,0"   Click="But_Regist_Click" />
-            <TextBlock x:Name="tb_"> Уже зарегистрированы? Тогда <Hyperlink Command="{Binding  MoveAuthorizationPage, Mode=OneTime}">войти</Hyperlink>.</TextBlock>
+            <TextBlock>
+            <TextBlock x:Name="tb_" Text="{DynamicResource reg_text1}"/>
+            <LineBreak/> 
+                <TextBlock Text="{DynamicResource reg_text2}"/> 
+                <Hyperlink Command="{Binding  MoveAuthorizationPage, Mode=OneTime}" > <TextBlock Text="{DynamicResource reg_text3}"/> </Hyperlink>
+                
+            </TextBlock>
+          
         </StackPanel>
 
 

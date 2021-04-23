@@ -25,8 +25,7 @@ namespace Wpf67
     {
 
         DataBaseLoad baseLoad = new DataBaseLoad();
-      //  DBFillAdmin dbf = new DBFillAdmin();
-
+  
         List<User> users = new List<User>();
         List<User> usersUpdate = new List<User>();
 
@@ -111,12 +110,9 @@ namespace Wpf67
         public AdminWindow()
         {
             InitializeComponent();
-            if (baseLoad.chekInternet.IsConnected())
-            {
                 LoadDataBase();
                 UpdateDataGrid();
-            }
-            else MessageBox.Show("Проверьте подключение к интернету.");
+           
           
         }
 
