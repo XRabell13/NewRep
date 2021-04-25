@@ -37,7 +37,7 @@ namespace Wpf67.DataBase
             Open();
             foreach (var city in cities)
             {
-                string sql1 = "UPDATE cities SET `name_city`='" + city.name_city + "' WHERE `id`='" +  city.id_city.ToString() + "';";
+                string sql1 = "UPDATE cities SET `name_city`='" + city.name_city + "' WHERE `id`='" +  city.id_city + "';";
                 try
                 {
                     MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -50,8 +50,131 @@ namespace Wpf67.DataBase
                 }
             }
             Close();
-
         }
+        public void UpdateUsers(List<User> users)
+        {
+            Open();
+            foreach (var us in users)
+            {
+                string sql1 = "UPDATE users SET `isAdmin`='" + Convert.ToInt32(us.isAdmin) + "' WHERE `id_user`='" + us.id + "';";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
+
+        public void UpdateTransporters(List<Transporter> transporters)
+        {
+            Open();
+            foreach (var tr in transporters)
+            {
+                string sql1 = "UPDATE transporters SET `named`='" + tr.named + "',`adress`='" + tr.adress + "', `telephone`='" + tr.telephone + "'  WHERE `id_transporter`='" + tr.id + "';";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
+
+        public void UpdateBuses(List<Bus> buses)
+        {
+            Open();
+            foreach (var b in buses)
+            {
+                string sql1 = "UPDATE bus SET `id_transporter`='" + b.id_transporter + "',`model`='" + b.model + "', `count_seats`='" + b.count_seats + "'  WHERE `state_number`='" + b.id_bus + "';";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
+
+        public void UpdateIntermediatePoints(List<IntermediatePoint> points)
+        {
+            Open();
+            foreach (var ip in points)
+            {
+             
+                string sql1 = "UPDATE intermediate_point SET `id_city`='" + ip.id_city + "',`id_route_bus`='" + ip.id_route_bus + 
+                    "', `time_arrive`='" + ip.time_arrive + "', `cost`='" + Convert.ToString(ip.cost).Replace(",",".") + "'  WHERE `id_intermediate_point`='" + ip.id_intermediate_point + "';";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
+
+        public void UpdateTickets(List<Ticket> tickets)
+        {
+            Open();
+            foreach (var t in tickets)
+            {
+                //  string cost = Convert.ToString(ip.cost).Replace(".",",");
+                string sql1 = "UPDATE `tickets` SET `status_seat` = '"+Convert.ToInt32(t.status_seat) +"' WHERE `tickets`.`id_ticket` = "+t.id_ticket+";";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
+        public void DeleteTransporters(List<Transporter> transporters)
+        {
+            Open();
+            foreach (var tr in transporters)
+            {
+                //"DELETE FROM `users` WHERE `id_user` = 4"
+                string sql1 = "DELETE FROM `transporters` WHERE `id`='" + tr.id + "';";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
+
+
         #region GetTables
         public List<User> GetUsers()
         {
@@ -171,9 +294,11 @@ namespace Wpf67.DataBase
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
+
                 while (reader.Read())
-                    iPoints.Add(new IntermediatePoint(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()), 
-                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(), Convert.ToSingle(reader[4])));
+                    iPoints.Add(new IntermediatePoint(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
+                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(), Convert.ToDecimal(reader[4])));
+                
                 Close();
                 reader.Close();
                 return iPoints;

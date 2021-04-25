@@ -49,71 +49,16 @@ namespace Wpf67
 
         List<Transporter> transporters = new List<Transporter>();
         List<Transporter> transportersUpdate = new List<Transporter>();
+        List<Transporter> transportersDelete = new List<Transporter>();
 
         List<UserTicket> userTickets = new List<UserTicket>();
-        List<UserTicket> userTicketsUpdate = new List<UserTicket>();
-
-        //Индекс столбца для отображения элемента
-        int columnIndex = 0;
-
-        //Индекс ячейки для отображения элемента
-        int rowIndex = 0;
-
-        //Создаем comboBox
-        ComboBox comboBox = new ComboBox();
-        /*
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //Скрываем элемент
-            comboBox.Visible = false;
-
-            //Создаем перечисление значений
-            string[] arrayItem = { "Занчение1", "Занчение2", "Занчение3", "Занчение4", "Занчение5", "и.т.д" };
-            comboBox.Items.AddRange(arrayItem);
-
-            //Создаем обработчик события(выбор из списка)
-            comboBox.SelectedValueChanged += comboBox_SelectedValueChanged;
-
-            //Добавляем элемент
-            dataGridView1.Controls.Add(comboBox);
-
-        }
-
-        //Событие происходит всякий раз, при выборе значения из списка
-        private void comboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            //Заносим данные в ячейку
-            dataGridView1[columnIndex, rowIndex].Value = comboBox.SelectedItem;
-
-            //Скрываем элемент
-            comboBox.Visible = false;
-        }
-
-        //Событие происходит всякий раз, при клике по ячейкам
-     /*   private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //Задаем индекс строки
-            rowIndex = e.RowIndex;
-
-            //получаем прямоугольник ячейки
-            Rectangle rectangle = dataGridView1.GetCellDisplayRectangle(columnIndex, rowIndex, true);
-
-            //Задаем размеры и месторасположение
-            comboBox.Size = new Size(rectangle.Width, rectangle.Height);
-            comboBox.Location = new Point(rectangle.X, rectangle.Y);
-
-            //Показываем элемент
-            comboBox.Visible = true;
-        }*/
-
+       // List<UserTicket> userTicketsUpdate = new List<UserTicket>();
 
         public AdminWindow()
         {
             InitializeComponent();
                 LoadDataBase();
                 UpdateDataGrid();
-           
-          
         }
 
         void LoadDataBase()
@@ -128,70 +73,129 @@ namespace Wpf67
             transporters = baseLoad.GetTransporters();
         }
 
-        /*
-        void LoadUsers()
-        {
-            users = baseLoad.GetUsers();
-        }
-        void LoadUsersInfo()
-        {
-            usersInfo = baseLoad.GetUsersInfo();
-        }
-        void LoadCities()
-        {
-            cities = baseLoad.GetCities();
-        }
-        void LoadBuses()
-        {
-            buses = baseLoad.GetBuses();
-        }
-        void LoadInterPoints()
-        {
-            intermediatePoints = baseLoad.GetInterPoints();
-        }
-        void LoadRouteBuses()
-        {
-            routeBuses = baseLoad.GetRouteBuses();
-        }
-        void LoadTickets()
-        {
-            tickets = baseLoad.GetTickets();
-        }
-        */
-
-
-
         void UpdateDataGrid()
         {
             dg_users.ItemsSource = users;
-           // ((ComboBox)FindName("cb_users")).ItemsSource = users;
+            ((ComboBox)FindName("cb_users")).ItemsSource = users;
             
             dg_cities.ItemsSource = cities;
-          //  ((ComboBox)FindName("cb_cities")).ItemsSource = cities;
+            ((ComboBox)FindName("cb_cities")).ItemsSource = cities;
 
             dg_buses.ItemsSource = buses;
-          //  ((ComboBox)FindName("cb_buses")).ItemsSource = buses;
+            ((ComboBox)FindName("cb_buses")).ItemsSource = buses;
 
-            dg_intermediate_points.ItemsSource = intermediatePoints;
-          //  ((ComboBox)FindName("cb_intermediate_points")).ItemsSource = intermediatePoints;
+           dg_intermediate_points.ItemsSource = intermediatePoints;
+            ((ComboBox)FindName("cb_intermediate_points")).ItemsSource = intermediatePoints;
 
             dg_route_buses.ItemsSource = routeBuses;
-          // ((ComboBox)FindName("cb_route_bus")).ItemsSource = routeBuses;
+          ((ComboBox)FindName("cb_route_bus")).ItemsSource = routeBuses;
 
             dg_tickets.ItemsSource = tickets;
 
-            dg_users_info.ItemsSource = usersInfo;
-           // ((ComboBox)FindName("cb_users_info")).ItemsSource = usersInfo;
+           dg_users_info.ItemsSource = usersInfo;
+            ((ComboBox)FindName("cb_users_info")).ItemsSource = usersInfo;
 
             dg_transporters.ItemsSource = transporters;
-          //  ((ComboBox)FindName("cb_transporters")).ItemsSource = transporters;
+            ((ComboBox)FindName("cb_transporters")).ItemsSource = transporters;
 
 
         }
 
+        private void dg_users_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            usersUpdate.Add((User)(dg_users.SelectedItem));
+            MessageBox.Show(dg_users.SelectedItem.ToString());
+        }
+        private void dg_transporters_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            transportersUpdate.Add((Transporter)(dg_transporters.SelectedItem));
+            MessageBox.Show(dg_transporters.SelectedItem.ToString());
+        }
+        private void dg_buses_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            busesUpdate.Add((Bus)(dg_buses.SelectedItem));
+            MessageBox.Show(dg_buses.SelectedItem.ToString());
+        }
+        private void dg_ipoints_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            intermediatePointsUpdate.Add((IntermediatePoint)(dg_intermediate_points.SelectedItem));
+            MessageBox.Show(dg_intermediate_points.SelectedItem.ToString());
+        }
+        private void dg_tickets_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            ticketsUpdate.Add((Ticket)(dg_tickets.SelectedItem));
+            MessageBox.Show(dg_tickets.SelectedItem.ToString());
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //comboBox1.Items.Contains(comboBox1.Text) 
             MessageBox.Show("Del");
+        }
+
+        private void dg_transporters_Delete(object sender, RoutedEventArgs e)
+        {
+            transportersDelete.Add((Transporter)(dg_transporters.SelectedItem));
+            dg_transporters.Items.Remove(dg_transporters.SelectedItem);
+           
+        }
+
+        private void But_UpLoad(object sender, RoutedEventArgs e)
+        {
+            if (usersUpdate.Count > 0 || usersInfoUpdate.Count > 0 || citiesUpdate.Count > 0 ||
+                busesUpdate.Count > 0 || transportersUpdate.Count > 0 || intermediatePoints.Count > 0 
+                || ticketsUpdate.Count > 0 || routeBusesUpdate.Count>0)
+            {
+                if (usersUpdate.Count > 0)
+                {
+                   baseLoad.UpdateUsers(usersUpdate);
+                    usersUpdate = new List<User>();
+                }
+              
+                if (transportersUpdate.Count > 0)
+                {
+                    baseLoad.UpdateTransporters(transportersUpdate);
+                    transportersUpdate = new List<Transporter>();
+                }  
+                if (busesUpdate.Count > 0)
+                {
+                    baseLoad.UpdateBuses(busesUpdate);
+                    busesUpdate = new List<Bus>();
+                }
+                if (intermediatePointsUpdate.Count > 0)
+                {
+                    baseLoad.UpdateIntermediatePoints(intermediatePointsUpdate);
+                    intermediatePointsUpdate = new List<IntermediatePoint>();
+                }
+                if (ticketsUpdate.Count > 0)
+                {
+                    baseLoad.UpdateTickets(ticketsUpdate);
+                    ticketsUpdate = new List<Ticket>();
+                }/*
+                if (forumSectionsToEdit.Count > 0)
+                {
+                    dbf.UpdateForumSections(forumSectionsToEdit);
+                    forumSectionsToEdit = new List<ForumSection>();
+                    MessageBox.Show("Upload forum_sections");
+                }
+                if (forumTopicsToEdit.Count > 0)
+                {
+                    dbf.UpdateForumTopics(forumTopicsToEdit);
+                    forumTopicsToEdit = new List<ForumTopic>();
+                    MessageBox.Show("Upload table forum_topics");
+                }
+                if (forumAnswersToEdit.Count > 0)
+                {
+                    dbf.UpdateForumAnswers(forumAnswersToEdit);
+                    forumAnswersToEdit = new List<ForumAnswer>();
+                    MessageBox.Show("Upload table forum_answers");
+                }*/
+
+                LoadDataBase();
+                UpdateDataGrid();
+            }
+            else
+                MessageBox.Show("No data changed");
+
         }
     }
 }

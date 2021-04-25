@@ -12,9 +12,9 @@ namespace Wpf67.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private MainWindow mainWindow;
+        private IMMCodeBehind mainWindow;
 
-        public MyTripsVM(MainWindow win)
+        public MyTripsVM(IMMCodeBehind win)
         {
             if (win == null) throw new ArgumentNullException(nameof(win));
             mainWindow = win;

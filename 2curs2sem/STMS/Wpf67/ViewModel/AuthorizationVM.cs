@@ -15,19 +15,14 @@ namespace Wpf67.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private MainWindow mainWindow;
-        private UserControl authorizControl;
-        public AuthorizationVM(MainWindow win)
+        private IMMCodeBehind mainWindow;
+        
+        public AuthorizationVM(IMMCodeBehind win)
         {
             if (win == null) throw new ArgumentNullException(nameof(win));
             mainWindow = win;
         }
-        public AuthorizationVM(UserControl uc)
-        {
-            if (uc == null) throw new ArgumentNullException(nameof(uc));
-            authorizControl = uc;
-          
-        }
+       
 
         private MyCommand loadRegist;
         public MyCommand MoveRegistrationPage
@@ -44,10 +39,7 @@ namespace Wpf67.ViewModel
         }
         private void ShowAuthorizPage()
         {
-            Registration reg = new Registration();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
-            mainWindow.OutWin.Content = reg;
+            mainWindow.LoadView(ViewType.Registration);
         }
 
 

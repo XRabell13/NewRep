@@ -28,19 +28,15 @@ namespace Wpf67.View
         string telephone = null;
         string email;
 
-        DataBaseLoad db = new DataBaseLoad();
+       
         RegistrationUser regist = new RegistrationUser();
         AuthorizationUser authoriz = new AuthorizationUser();
-        IMainWindowsCodeBehind codeBehind { get; set; }
+        IMMCodeBehind codeBehind { get; set; }
 
         public Registration()
         {
             InitializeComponent();
-
-            RegistrationVM vm = new RegistrationVM(this);
             codeBehind = (MainWindow)Application.Current.MainWindow;
-            this.DataContext = vm;
-
         }
 
         private void But_Regist_Click(object sender, RoutedEventArgs e)

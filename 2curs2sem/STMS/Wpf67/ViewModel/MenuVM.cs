@@ -17,7 +17,7 @@ namespace Wpf67.ViewModel
 
         }
 
-        public IMainWindowsCodeBehind CodeBehind { get; set; }
+        public IMMCodeBehind CodeBehind { get; set; }
 
         private MyCommand loadContacts;
         public MyCommand LoadContactsPage
@@ -157,14 +157,21 @@ namespace Wpf67.ViewModel
         }
         private void OnExitAccount()
         {
-            MessageBox.Show("32", "234WE", MessageBoxButton.YesNo);
-           
-            Wpf67.Properties.Settings.Default.UserId = 0;
+            var Result = MessageBox.Show("Вы уверены, что хотите выйти?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (Result == MessageBoxResult.Yes)
+            {
+                Wpf67.Properties.Settings.Default.UserId = 0;
             Wpf67.Properties.Settings.Default.Authoriz = false;
             Wpf67.Properties.Settings.Default.IsAdmin = false;
             Wpf67.Properties.Settings.Default.Save();
             CodeBehind.ButExitAccount();
             CodeBehind.LoadView(ViewType.Authorization);
+             MessageBox.Show("Вы вышли.");
+            }
+            else if (Result == MessageBoxResult.No)
+            {
+                
+            }
         }
     }
 }

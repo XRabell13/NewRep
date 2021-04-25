@@ -24,16 +24,12 @@ namespace Wpf67
     /// </summary>
     public partial class Authorization : UserControl
     {
-        IMainWindowsCodeBehind codeBehind { get; set; }
+        IMMCodeBehind codeBehind { get; set; }
 
         public Authorization()
         {
             InitializeComponent();
-
-            AuthorizationVM vm = new AuthorizationVM(this);
             codeBehind = (MainWindow)Application.Current.MainWindow;
-            this.DataContext = vm;
-
         }
 
         private void AuthorizationClick(object sender, RoutedEventArgs e)
@@ -49,7 +45,6 @@ namespace Wpf67
 
         void Authoriz()
         {
-           
                 this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.SystemIdle,
                 (ThreadStart)delegate ()
                 {

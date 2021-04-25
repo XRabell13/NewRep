@@ -34,7 +34,7 @@
         <TextBlock Text="{DynamicResource s_title}" VerticalAlignment="Top" FontSize="35" Margin="0,20,0,0"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray" Width="500">
             <TextBlock Text="{DynamicResource s_from}" />
-            <ComboBox  x:Name="cb_begin_city"  IsEditable="True" />
+            <ComboBox  x:Name="cb_begin_city" ItemsSource="{Binding cities}"  IsEditable="True" />
             <TextBlock Text="{DynamicResource s_to}" />
             <ComboBox x:Name="cb_end_city" IsEditable="True"/>
             <TextBlock Text="{DynamicResource s_date}" />

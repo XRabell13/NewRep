@@ -12,7 +12,8 @@ namespace Wpf67.DataBase
 {
    public class Connect
     {
-        string conStr = "Database=sql11406498; Data Source=sql11.freesqldatabase.com; User Id=sql11406498; Password=Tg7M28zuml; charset=utf8"; // "Database=belbusdb; Data Source=db4free.net; User Id=xrabell; Password=XRabell13; charset=utf8";// "Database=sql11402426; Data Source=sql11.freesqldatabase.com; User Id=sql11402426; Password=625TQQ4mMS; charset=utf8";//utf8_unicode_ci
+        //Host=myServerAddress;UserName=myUsername;Password=myPassword;Database=myDataBase;
+        string conStr = "Database=9VoWrdVUvt; Data Source=remotemysql.com; User Id=9VoWrdVUvt; Password=b7dvPcjhom; charset=utf8";//"Data Source=db4free.net; User Id = xrabell; Password=XRabell13; charset=utf8";//"SERVER=10.35.250.195;DATABASE=sql11406498;USERID=root;PASSWORD=;"; // "Database=belbusdb; Data Source=db4free.net; User Id=xrabell; Password=XRabell13; charset=utf8";//"Database=sql11406498; Data Source=sql11.freesqldatabase.com; User Id=sql11406498; Password=Tg7M28zuml; charset=utf8"; // "Database=belbusdb; Data Source=db4free.net; User Id=xrabell; Password=XRabell13; charset=utf8";// "Database=sql11402426; Data Source=sql11.freesqldatabase.com; User Id=sql11402426; Password=625TQQ4mMS; charset=utf8";//utf8_unicode_ci
         public bool status = false;
         public InternetConnectionChecker chekInternet = new InternetConnectionChecker();
         public MySqlConnection conn;

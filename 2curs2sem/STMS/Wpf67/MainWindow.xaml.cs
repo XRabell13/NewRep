@@ -23,7 +23,7 @@ namespace Wpf67
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     /// 
-    public interface IMainWindowsCodeBehind
+    public interface IMMCodeBehind
     {
        // void ShowMessage(string message);
         void LoadView(ViewType typeView);
@@ -42,7 +42,7 @@ namespace Wpf67
         MyTrips,
         NoAuthorizationTrips,
     }
-    public partial class MainWindow : Window, IMainWindowsCodeBehind
+    public partial class MainWindow : Window, IMMCodeBehind
     {
        
         public MainWindow()
@@ -88,8 +88,10 @@ namespace Wpf67
             {
                 case ViewType.Contacts:
                     {
-                     
                         Contacts view = new Contacts();
+                        ContactsVM vm = new ContactsVM(this);
+                        //таким образом получится биндингом брать значения из ВМ?
+                        view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
                     }
@@ -97,31 +99,41 @@ namespace Wpf67
                     {
                       
                         Registration view = new Registration();
+                        RegistrationVM vm = new RegistrationVM(this);
+                        view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
                     }
                 case ViewType.Authorization:
                     {
                         Authorization view = new Authorization();
+                        AuthorizationVM vm = new AuthorizationVM(this);
+                        view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
 
                     }
                     case ViewType.Search:
                         {
+                        SearchVM vm = new SearchVM(this);
                             Search view = new Search();
+                          view.DataContext = vm;
                             this.OutWin.Content = view;
                             break;
                         }
                     case ViewType.MyTrips:
                         {
+                        MyTripsVM vm = new MyTripsVM(this);
                             MyTrips view = new MyTrips();
+                         view.DataContext = vm;
                             this.OutWin.Content = view;
                             break;
                         }
                 case ViewType.NoAuthorizationTrips:
                     {
+                        NoAuthorizationTripsVM vm = new NoAuthorizationTripsVM(this);
                         NoAuthorizationTrips view = new NoAuthorizationTrips();
+                        view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
                     }
@@ -156,13 +168,18 @@ namespace Wpf67
        
         public void ButExitAccount()
         {
-            Collapse_AuthorizationButtons();
-            Show_RegistrationButtons();
+           
+                Collapse_AuthorizationButtons();
+                Show_RegistrationButtons();
+                // btnSeat1.Text = "Reserved";
+          
+           
           
         }
 
         public void ButEnterAccount()
         {
+     
             Show_AuthorizationButtons();
             Collapse_RegistrationButtons();
         }
@@ -197,14 +214,7 @@ namespace Wpf67
         {
             butLogin.Visibility = Visibility.Collapsed;
         }
-        public void ShowLoadIndicator()
-        {
-            LoadIndic.Visibility = Visibility.Visible;
-        }
-        public void CollapseLoadIndicator()
-        {
-            LoadIndic.Visibility = Visibility.Collapsed;
-        }
+     
 
     }
 }

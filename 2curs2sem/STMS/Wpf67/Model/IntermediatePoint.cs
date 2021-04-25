@@ -11,10 +11,10 @@ namespace Wpf67.Model
         public int id_intermediate_point { get; set; }
         public int id_city { get; set; }
         public int id_route_bus { get; set; }
-        public float cost { get; set; }
+        public decimal cost { get; set; }
         public string time_arrive { get; set; }
 
-        public IntermediatePoint(int id_intermediate_point, int id_city, int id_route_bus, string time_arrive, float cost)
+        public IntermediatePoint(int id_intermediate_point, int id_city, int id_route_bus, string time_arrive, decimal cost)
         {
             this.id_intermediate_point = id_intermediate_point;
             this.id_city = id_city;
@@ -25,7 +25,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_route_bus.ToString() + " " + id_city;
+            return id_intermediate_point.ToString() + " id city: " + id_city;
         }
     }
 }

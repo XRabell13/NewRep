@@ -11,12 +11,12 @@ namespace Wpf67.ViewModel
 {
     class NoAuthorizationTripsVM
     {
-        IMainWindowsCodeBehind codeBehind { get; set; }
-        NoAuthorizationTrips nat;
-       public NoAuthorizationTripsVM(NoAuthorizationTrips nat)
+        IMMCodeBehind codeBehind { get; set; }
+      
+       public NoAuthorizationTripsVM(IMMCodeBehind nat)
         {
-            this.codeBehind = (MainWindow)Application.Current.MainWindow;
-            this.nat = nat;
+            if (nat == null) throw new ArgumentNullException(nameof(nat));
+           codeBehind = nat;
         }
 
         private MyCommand loadRegist;
@@ -36,10 +36,7 @@ namespace Wpf67.ViewModel
         }
         private void ShowRegistPage()
         {
-            Registration reg = new Registration();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
-            mainWindow.OutWin.Content = reg;
+            codeBehind.LoadView(ViewType.Registration);
         }
 
         private MyCommand loadAuthorization;
@@ -58,10 +55,7 @@ namespace Wpf67.ViewModel
         }
         private void ShowAuthorizPage()
         {
-            Authorization reg = new Authorization();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-
-            mainWindow.OutWin.Content = reg;
+            codeBehind.LoadView(ViewType.Authorization);
         }
 
     }

@@ -23,7 +23,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_user.ToString();
+            return id_user.ToString() + " " + passport;
         }
     }
 }

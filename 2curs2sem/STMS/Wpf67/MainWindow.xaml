@@ -44,33 +44,15 @@
         <Menu DockPanel.Dock="Top" Background="{x:Null}" Grid.Column="0" Grid.Row="2" >
             <MenuItem x:Name="menuLanguage" Header="{DynamicResource m_menu_Language}" />
         </Menu>
-        <Image x:Name="LoadIndic" Source="img/but_delete.ico" 
-       Height="50" Width="50"  Grid.Column="0" Grid.Row="1">
-            <Image.RenderTransform>
-                <RotateTransform x:Name="rotate"
-                         CenterX="25"
-                         CenterY="25"/>
-            </Image.RenderTransform>
-            <Image.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard RepeatBehavior="Forever">
-                            <DoubleAnimation Storyboard.TargetName="rotate"
-                                     Storyboard.TargetProperty="Angle"
-                                     By="360" Duration="0:0:1"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Image.Triggers>
-        </Image>
-        <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin" Visibility="Collapsed"/>
-        <ListBox Name="placesList" Grid.Column="0" Grid.Row="1" MaxHeight="250" Visibility="Collapsed">
+     
+        <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin" Visibility="Visible"/>
+      <!--  <ListBox Name="placesList" Grid.Column="0" Grid.Row="1" MaxHeight="250" Visibility="Collapsed">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <controls:FindReise></controls:FindReise>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
+-->
     </Grid>
 </Window>

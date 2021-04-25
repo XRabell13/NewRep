@@ -16,6 +16,7 @@ namespace Wpf67.Model
             this.id_city = id_city;
             this.name_city = name_city;
         }
+       
         public override string ToString()
         {
             return  name_city;

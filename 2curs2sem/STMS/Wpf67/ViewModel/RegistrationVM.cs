@@ -16,7 +16,8 @@ namespace Wpf67
     public class RegistrationVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-
+        IMMCodeBehind mainWin { get; set; }
+        /*
         private UserControl registControl;
         private MainWindow mainWin;
 
@@ -27,7 +28,7 @@ namespace Wpf67
         {
             if (uc == null) throw new ArgumentNullException(nameof(uc));
             registControl = uc;
-        }
+        }*/
 
         public RegistrationVM(MainWindow mw)
         {
@@ -50,10 +51,7 @@ namespace Wpf67
         }
         private void ShowAuthoriz()
         {
-            Authorization reg = new Authorization();
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            
-            mainWindow.OutWin.Content = reg;
+            mainWin.LoadView(ViewType.Authorization);
         }
 
         private MyCommand RegistNewUser;

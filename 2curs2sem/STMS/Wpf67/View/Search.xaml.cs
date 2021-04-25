@@ -21,14 +21,12 @@ namespace Wpf67.View
     /// </summary>
     public partial class Search : UserControl
     {
-        SearchVM vm;
+        SearchVM vm = new SearchVM();
         public Search()
         {
             InitializeComponent();
             dpDate.DisplayDateStart = dpDate.SelectedDate = DateTime.Today;
             dpDate.DisplayDateEnd = DateTime.Today.AddDays(14);
-                
-            vm = new SearchVM(this);
             LoadCities();
         }
 

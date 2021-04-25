@@ -133,6 +133,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Model\UserTicket.cs" />
+    <Compile Include="ViewModel\AdminWindowVM.cs" />
     <Compile Include="ViewModel\AuthorizationVM.cs" />
     <Compile Include="ViewModel\ContactsVM.cs" />
     <Compile Include="ViewModel\MenuVM.cs" />

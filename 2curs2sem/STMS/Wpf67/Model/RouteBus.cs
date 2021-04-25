@@ -29,7 +29,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_bus.ToString() + name_route;
+            return id_route.ToString() + " " + name_route;
         }
 
 

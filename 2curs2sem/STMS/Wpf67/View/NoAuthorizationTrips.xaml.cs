@@ -24,8 +24,6 @@ namespace Wpf67.View
         public NoAuthorizationTrips()
         {
             InitializeComponent();
-            NoAuthorizationTripsVM vm = new NoAuthorizationTripsVM(this);
-            this.DataContext = vm;
         }
 
 

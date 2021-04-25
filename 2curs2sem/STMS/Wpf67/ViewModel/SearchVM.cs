@@ -17,22 +17,20 @@ namespace Wpf67.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        private MainWindow mainWindow;
-        private Search model;
+        private IMMCodeBehind mainWindow;
+
         List<City> cities = new List<City>();
         DataBaseLoad db = new DataBaseLoad();
-        public SearchVM(MainWindow win)
+
+        public SearchVM(IMMCodeBehind win)
         {
             if (win == null) throw new ArgumentNullException(nameof(win));
             mainWindow = win;
         }
-        public SearchVM(Search model)
+        public SearchVM()
         {
-            if (model == null) throw new ArgumentNullException(nameof(model));
-            this.model = model;
+           
         }
-
-
         public List<City> LoadAllCities()
         {
             cities = db.GetCities();
