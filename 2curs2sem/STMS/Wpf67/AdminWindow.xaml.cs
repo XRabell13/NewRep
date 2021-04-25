@@ -88,7 +88,7 @@ namespace Wpf67
             ((ComboBox)FindName("cb_intermediate_points")).ItemsSource = intermediatePoints;
 
             dg_route_buses.ItemsSource = routeBuses;
-          ((ComboBox)FindName("cb_route_bus")).ItemsSource = routeBuses;
+           ((ComboBox)FindName("cb_route_bus")).ItemsSource = routeBuses;
 
             dg_tickets.ItemsSource = tickets;
 
@@ -106,6 +106,11 @@ namespace Wpf67
             usersUpdate.Add((User)(dg_users.SelectedItem));
             MessageBox.Show(dg_users.SelectedItem.ToString());
         }
+        private void dg_cities_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            citiesUpdate.Add((City)(dg_cities.SelectedItem));
+            MessageBox.Show(dg_cities.SelectedItem.ToString());
+        }
         private void dg_transporters_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             transportersUpdate.Add((Transporter)(dg_transporters.SelectedItem));
@@ -120,6 +125,14 @@ namespace Wpf67
         {
             intermediatePointsUpdate.Add((IntermediatePoint)(dg_intermediate_points.SelectedItem));
             MessageBox.Show(dg_intermediate_points.SelectedItem.ToString());
+        }
+        private void dg_route_bus_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            //if()
+            routeBusesUpdate.Add((RouteBus)(dg_route_buses.SelectedItem));
+            MessageBox.Show(dg_route_buses.SelectedItem.ToString());
+        //    MessageBox.Show(((int)(DateTime.Now.DayOfWeek)).ToString());
+         
         }
         private void dg_tickets_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
@@ -170,32 +183,51 @@ namespace Wpf67
                 {
                     baseLoad.UpdateTickets(ticketsUpdate);
                     ticketsUpdate = new List<Ticket>();
-                }/*
-                if (forumSectionsToEdit.Count > 0)
-                {
-                    dbf.UpdateForumSections(forumSectionsToEdit);
-                    forumSectionsToEdit = new List<ForumSection>();
-                    MessageBox.Show("Upload forum_sections");
                 }
-                if (forumTopicsToEdit.Count > 0)
+                if (routeBusesUpdate.Count > 0)
                 {
-                    dbf.UpdateForumTopics(forumTopicsToEdit);
-                    forumTopicsToEdit = new List<ForumTopic>();
-                    MessageBox.Show("Upload table forum_topics");
+                  baseLoad.UpdateRouteBuses(routeBusesUpdate);
+                  routeBusesUpdate = new List<RouteBus>();
                 }
-                if (forumAnswersToEdit.Count > 0)
+                if (citiesUpdate.Count > 0)
                 {
-                    dbf.UpdateForumAnswers(forumAnswersToEdit);
-                    forumAnswersToEdit = new List<ForumAnswer>();
-                    MessageBox.Show("Upload table forum_answers");
-                }*/
-
+                    baseLoad.UpdateCities(citiesUpdate);
+                    routeBusesUpdate = new List<RouteBus>();
+                }
                 LoadDataBase();
                 UpdateDataGrid();
             }
             else
                 MessageBox.Show("No data changed");
 
+        }
+
+        private void DeleteTransporter(object sender, RoutedEventArgs e)
+        {
+            if (((ComboBox)FindName("cb_transporters")).SelectedItem != null)
+            {
+                baseLoad.DeleteTransporter((Transporter)(((ComboBox)FindName("cb_transporters")).SelectedItem));
+                LoadDataBase();
+                UpdateDataGrid();
+            }
+        }
+        private void DeleteUser(object sender, RoutedEventArgs e)
+        {
+            if (((ComboBox)FindName("cb_users")).SelectedItem != null)
+            {
+                baseLoad.DeleteUser((User)(((ComboBox)FindName("cb_users")).SelectedItem));
+                LoadDataBase();
+                UpdateDataGrid();
+            }
+        }
+        private void DeleteBus(object sender, RoutedEventArgs e)
+        {
+            if (((ComboBox)FindName("cb_buses")).SelectedItem != null)
+            {
+                baseLoad.DeleteBus((Bus)(((ComboBox)FindName("cb_buses")).SelectedItem));
+                LoadDataBase();
+                UpdateDataGrid();
+            }
         }
     }
 }

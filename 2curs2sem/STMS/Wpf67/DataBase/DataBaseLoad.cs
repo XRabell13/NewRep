@@ -31,13 +31,13 @@ namespace Wpf67.DataBase
             }
         }*/
 
-       
+        #region Update
         public void UpdateCities(List<City> cities)
         {
             Open();
             foreach (var city in cities)
             {
-                string sql1 = "UPDATE cities SET `name_city`='" + city.name_city + "' WHERE `id`='" +  city.id_city + "';";
+                string sql1 = "UPDATE cities SET `name_city`='" + city.name_city + "' WHERE `id_city`='" +  city.id_city + "';";
                 try
                 {
                     MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -132,7 +132,28 @@ namespace Wpf67.DataBase
             }
             Close();
         }
+        public void UpdateRouteBuses(List<RouteBus> route)
+        {
+            Open();
+            foreach (var rou in route)
+            {
+                string sql1 = "UPDATE route_bus SET `id_bus`='" + rou.id_bus + "',`name_route`='" + rou.name_route +
+                    "', `time_departure`='" + rou.time_departure + "', `timetable`='" + rou.timetable +
+                    "', `id_departure_point`='" + rou.id_departure_point + "', `id_end_city`='" + rou.id_end_city 
+                    + "'  WHERE `id_route`='" + rou.id_route + "';";
+                try
+                {
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                    myCommand.ExecuteNonQuery();
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                }
+            }
+            Close();
+        }
         public void UpdateTickets(List<Ticket> tickets)
         {
             Open();
@@ -153,28 +174,66 @@ namespace Wpf67.DataBase
             }
             Close();
         }
-        public void DeleteTransporters(List<Transporter> transporters)
+        #endregion
+        public void DeleteTransporter(Transporter transporters)
         {
             Open();
-            foreach (var tr in transporters)
-            {
+            
                 //"DELETE FROM `users` WHERE `id_user` = 4"
-                string sql1 = "DELETE FROM `transporters` WHERE `id`='" + tr.id + "';";
+                string sql1 = "DELETE FROM `users` WHERE `id_user`='" + transporters.id + "';";
+         
                 try
                 {
-                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+             
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                     myCommand.ExecuteNonQuery();
-
-                }
+              
+            }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ошибка  \n " + ex.Message);
                 }
-            }
+            
             Close();
         }
+        public void DeleteUser(User user)
+        {
+            Open();
+            //"DELETE FROM `users` WHERE `id_user` = 4"
+            string sql1 = "DELETE FROM `users` WHERE `id_user`='" + user.id + "';";
+            try
+            {
+               
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.ExecuteNonQuery();
+           
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
 
+            Close();
+        }
+        public void DeleteBus(Bus bus)
+        {
+            Open();
+            //"DELETE FROM `users` WHERE `id_user` = 4"
+            string sql1 = "DELETE FROM `bus` WHERE `id_bus`='" + bus.id_bus + "';";
+            try
+            {
 
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
         #region GetTables
         public List<User> GetUsers()
         {
