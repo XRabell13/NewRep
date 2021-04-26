@@ -17,7 +17,7 @@
             <Setter Property="Height" Value="30" />
         </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="130"/>
@@ -32,16 +32,16 @@
             <Button Content="{DynamicResource admin_save}" Click="But_UpLoad" />
             <Button Content="{DynamicResource admin_add}"/>
         </StackPanel>
-        
+
         <TabControl Grid.Row="0" Grid.Column="1">
             <TabItem Header="{DynamicResource admin_users}" >
                 <DataGrid x:Name="dg_users" AutoGenerateColumns="False" CanUserDeleteRows="False" CellEditEnding="dg_users_CellEditEnding">
-                    <DataGrid.Columns> 
+                    <DataGrid.Columns>
                         <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="login" Binding="{Binding login, Mode=TwoWay}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="password" Binding="{Binding password, Mode=TwoWay}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="isAdmin" Binding="{Binding isAdmin, Mode=TwoWay}" />
-                       
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -54,7 +54,7 @@
                         <DataGridTextColumn Header="email" Binding="{Binding email, Mode=TwoWay}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="telephone" Binding="{Binding telephone, Mode=TwoWay}" IsReadOnly="True"/>
 
-                        
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -67,7 +67,7 @@
                         <DataGridTextColumn Header="name" Binding="{Binding named, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="adress" Binding="{Binding adress, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="telephone" Binding="{Binding telephone, Mode=TwoWay}"/>
-                      
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -78,7 +78,7 @@
                         <DataGridTextColumn Header="id transporter" Binding="{Binding id_transporter, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="model" Binding="{Binding model, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="count seats" Binding="{Binding count_seats, Mode=TwoWay}"/>
-                     
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -87,12 +87,12 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="id" Binding="{Binding id_city}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="name city" Binding="{Binding name_city, Mode=TwoWay}" />
-                        
+
                     </DataGrid.Columns>
-              
+
                 </DataGrid>
             </TabItem>
-            
+
             <TabItem Header="{DynamicResource admin_intermediate_point}" >
                 <DataGrid x:Name="dg_intermediate_points" AutoGenerateColumns="False"  CanUserDeleteRows="False" CellEditEnding="dg_ipoints_CellEditEnding">
                     <DataGrid.Columns>
@@ -101,10 +101,10 @@
                         <DataGridTextColumn Header="id route" Binding="{Binding id_route_bus, Mode=TwoWay}" />
                         <DataGridTextColumn Header="time" Binding="{Binding time_arrive, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="cost" Binding="{Binding cost}"/>
-                      
+
                     </DataGrid.Columns>
                 </DataGrid>
-                
+
             </TabItem>
             <TabItem Header="{DynamicResource admin_route_bus}" >
                 <DataGrid x:Name="dg_route_buses" AutoGenerateColumns="False" CanUserDeleteRows="False" CellEditEnding="dg_route_bus_CellEditEnding">
@@ -116,7 +116,7 @@
                         <DataGridTextColumn Header="timetable" Binding="{Binding timetable}" />
                         <DataGridTextColumn Header="id departure point" Binding="{Binding id_departure_point}" />
                         <DataGridTextColumn Header="id end city" Binding="{Binding id_end_city, Mode=TwoWay}"/>
-                  
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -129,7 +129,7 @@
                         <DataGridTextColumn Header="date departure" Binding="{Binding date_departure, Mode=TwoWay}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="number seat" Binding="{Binding num_seat, Mode=TwoWay}" IsReadOnly="True"/>
                         <DataGridTextColumn Header="status seat" Binding="{Binding status_seat}" />
-                       
+
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -159,19 +159,19 @@
 
                         <TextBlock FontSize="16" Grid.Row="1" Text="{DynamicResource admin_del_cities}"/>
                         <ComboBox x:Name="cb_cities" IsEditable="True" Grid.Column="1" Grid.Row="1"></ComboBox>
-                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="1"/>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="1" Click="DeleteCity"/>
 
                         <TextBlock FontSize="16" Grid.Row="2" Text="{DynamicResource admin_del_intermediate_point}"/>
                         <ComboBox x:Name="cb_intermediate_points" IsEditable="True" Grid.Column="1" Grid.Row="2"></ComboBox>
-                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="2" />
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="2" Click="DeleteIntermediatePoint" />
 
                         <TextBlock FontSize="16" Grid.Row="3" Text="{DynamicResource admin_del_route_bus}"/>
                         <ComboBox x:Name="cb_route_bus" IsEditable="True" Grid.Column="1" Grid.Row="3"></ComboBox>
-                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="3" />
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="3" Click="DeleteRouteBus" />
 
                         <TextBlock FontSize="16" Grid.Row="4" Text="{DynamicResource admin_del_transporters}"/>
                         <ComboBox x:Name="cb_transporters" IsEditable="True" Grid.Column="1" Grid.Row="4"></ComboBox>
-                        <Button Content="{DynamicResource admin_del_}" Click="DeleteTransporter" Grid.Column="2" Grid.Row="4"/>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="4" Click="DeleteTransporter"/>
 
                         <TextBlock FontSize="16" Grid.Row="5" Text="{DynamicResource admin_del_user}"/>
                         <ComboBox x:Name="cb_users" IsEditable="True" Grid.Column="1" Grid.Row="5"></ComboBox>
@@ -179,7 +179,7 @@
 
                         <TextBlock FontSize="16" Grid.Row="6" Text="{DynamicResource admin_del_inf_user}"/>
                         <ComboBox x:Name="cb_users_info" IsEditable="True" Grid.Column="1" Grid.Row="6"></ComboBox>
-                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="6" />
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="6" Click="DeleteUserInfo"/>
 
                     </Grid>
                 </ScrollViewer>

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Wpf67.Command;
 using Wpf67.DataBase;
-using Wpf67.View;
 
 namespace Wpf67.ViewModel
 {

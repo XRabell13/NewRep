@@ -21,7 +21,6 @@ namespace Wpf67.ViewModel
         {
             get
             {
-                
                 return deleteRowTable = deleteRowTable ??
                   new MyCommand(DeleteRowTable, CanDeleteRowTable);
             }

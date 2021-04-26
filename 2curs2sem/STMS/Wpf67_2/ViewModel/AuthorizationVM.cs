@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf67.Command;
-using Wpf67.View;
 
 namespace Wpf67.ViewModel
 {

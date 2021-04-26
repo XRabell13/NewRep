@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using MySql.Data.MySqlClient;
 using Wpf67.Model;
 
 namespace Wpf67.DataBase
 {
-    class DataBaseLoad:Connect
+    class DataBaseLoad : Connect
     {
         /*public bool AddCities(string name_cities)
         {
@@ -37,7 +33,7 @@ namespace Wpf67.DataBase
             Open();
             foreach (var city in cities)
             {
-                string sql1 = "UPDATE cities SET `name_city`='" + city.name_city + "' WHERE `id_city`='" +  city.id_city + "';";
+                string sql1 = "UPDATE cities SET `name_city`='" + city.name_city + "' WHERE `id_city`='" + city.id_city + "';";
                 try
                 {
                     MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -116,9 +112,9 @@ namespace Wpf67.DataBase
             Open();
             foreach (var ip in points)
             {
-             
-                string sql1 = "UPDATE intermediate_point SET `id_city`='" + ip.id_city + "',`id_route_bus`='" + ip.id_route_bus + 
-                    "', `time_arrive`='" + ip.time_arrive + "', `cost`='" + Convert.ToString(ip.cost).Replace(",",".") + "'  WHERE `id_intermediate_point`='" + ip.id_intermediate_point + "';";
+
+                string sql1 = "UPDATE intermediate_point SET `id_city`='" + ip.id_city + "',`id_route_bus`='" + ip.id_route_bus +
+                    "', `time_arrive`='" + ip.time_arrive + "', `cost`='" + Convert.ToString(ip.cost).Replace(",", ".") + "'  WHERE `id_intermediate_point`='" + ip.id_intermediate_point + "';";
                 try
                 {
                     MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -139,7 +135,7 @@ namespace Wpf67.DataBase
             {
                 string sql1 = "UPDATE route_bus SET `id_bus`='" + rou.id_bus + "',`name_route`='" + rou.name_route +
                     "', `time_departure`='" + rou.time_departure + "', `timetable`='" + rou.timetable +
-                    "', `id_departure_point`='" + rou.id_departure_point + "', `id_end_city`='" + rou.id_end_city 
+                    "', `id_departure_point`='" + rou.id_departure_point + "', `id_end_city`='" + rou.id_end_city
                     + "'  WHERE `id_route`='" + rou.id_route + "';";
                 try
                 {
@@ -159,8 +155,7 @@ namespace Wpf67.DataBase
             Open();
             foreach (var t in tickets)
             {
-                //  string cost = Convert.ToString(ip.cost).Replace(".",",");
-                string sql1 = "UPDATE `tickets` SET `status_seat` = '"+Convert.ToInt32(t.status_seat) +"' WHERE `tickets`.`id_ticket` = "+t.id_ticket+";";
+                string sql1 = "UPDATE `tickets` SET `status_seat` = '" + Convert.ToInt32(t.status_seat) + "' WHERE `tickets`.`id_ticket` = " + t.id_ticket + ";";
                 try
                 {
                     MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -175,38 +170,38 @@ namespace Wpf67.DataBase
             Close();
         }
         #endregion
+
+        #region Delete
         public void DeleteTransporter(Transporter transporters)
         {
             Open();
-            
-                //"DELETE FROM `users` WHERE `id_user` = 4"
-                string sql1 = "DELETE FROM `users` WHERE `id_user`='" + transporters.id + "';";
-         
-                try
-                {
-             
+            string sql1 = "DELETE FROM `users` WHERE `id_user`='" + transporters.id + "';";
+
+            try
+            {
+
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-                    myCommand.ExecuteNonQuery();
-              
+                myCommand.ExecuteNonQuery();
+
             }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ошибка  \n " + ex.Message);
-                }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
             Close();
         }
         public void DeleteUser(User user)
         {
             Open();
-            //"DELETE FROM `users` WHERE `id_user` = 4"
+
             string sql1 = "DELETE FROM `users` WHERE `id_user`='" + user.id + "';";
             try
             {
-               
+
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 myCommand.ExecuteNonQuery();
-           
+
             }
             catch (Exception ex)
             {
@@ -218,8 +213,8 @@ namespace Wpf67.DataBase
         public void DeleteBus(Bus bus)
         {
             Open();
-            //"DELETE FROM `users` WHERE `id_user` = 4"
-            string sql1 = "DELETE FROM `bus` WHERE `id_bus`='" + bus.id_bus + "';";
+
+            string sql1 = "DELETE FROM `bus` WHERE `state_number`='" + bus.id_bus + "';";
             try
             {
 
@@ -234,6 +229,84 @@ namespace Wpf67.DataBase
 
             Close();
         }
+        public void DeleteCity(City city)
+        {
+            Open();
+
+            string sql1 = "DELETE FROM `cities` WHERE `id_city`='" + city.id_city + "';";
+            try
+            {
+
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
+        public void DeleteInterPoint(IntermediatePoint ipoint)
+        {
+            Open();
+
+            string sql1 = "DELETE FROM `intermediate_point` WHERE `id_intermediate_point`='" + ipoint.id_intermediate_point + "';";
+            try
+            {
+
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
+
+        public void DeleteUserInf(UserInfo uinf)
+        {
+            Open();
+
+            string sql1 = "DELETE FROM `users_info` WHERE `id_user`='" + uinf.id_user + "' and `_passport`='" + uinf.passport + "';";
+            try
+            {
+
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
+        public void DeleteRouteBus(RouteBus rb)
+        {
+            Open();
+            string sql1 = "DELETE FROM `route_bus` WHERE `id_route`='" + rb.id_route + "';";
+            try
+            {
+
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
+        #endregion 
+
         #region GetTables
         public List<User> GetUsers()
         {
@@ -241,7 +314,7 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-               
+
                 string sql1 = "SELECT * from users;";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
@@ -250,9 +323,9 @@ namespace Wpf67.DataBase
 
                 while (reader.Read())
                 {
-                  //  MessageBox.Show(reader[2].ToString() + reader[3].ToString());
-                      users.Add(new User(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
-                        reader[2].ToString(), Convert.ToBoolean(reader[3].ToString().ToLower())));
+                    //  MessageBox.Show(reader[2].ToString() + reader[3].ToString());
+                    users.Add(new User(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
+                      reader[2].ToString(), Convert.ToBoolean(reader[3].ToString().ToLower())));
 
                 }
                 Close();
@@ -328,7 +401,7 @@ namespace Wpf67.DataBase
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
-                    buses.Add(new Bus(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()), 
+                    buses.Add(new Bus(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
                         reader[2].ToString(), Convert.ToInt32(reader[3].ToString())));
                 Close();
                 reader.Close();
@@ -357,7 +430,7 @@ namespace Wpf67.DataBase
                 while (reader.Read())
                     iPoints.Add(new IntermediatePoint(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
                         Convert.ToInt32(reader[2].ToString()), reader[3].ToString(), Convert.ToDecimal(reader[4])));
-                
+
                 Close();
                 reader.Close();
                 return iPoints;
@@ -382,8 +455,8 @@ namespace Wpf67.DataBase
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
                     routeBuses.Add(new RouteBus(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
-                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(), 
-                        reader[4].ToString(), Convert.ToInt32(reader[5].ToString()),Convert.ToInt32(reader[6].ToString())));
+                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(),
+                        reader[4].ToString(), Convert.ToInt32(reader[5].ToString()), Convert.ToInt32(reader[6].ToString())));
                 Close();
                 reader.Close();
                 return routeBuses;
@@ -408,7 +481,7 @@ namespace Wpf67.DataBase
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
                     tickets.Add(new Ticket(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
-                    reader[2].ToString().Substring(0,10), Convert.ToInt32(reader[3].ToString()), Convert.ToBoolean(reader[4].ToString().ToLower())));
+                    reader[2].ToString().Substring(0, 10), Convert.ToInt32(reader[3].ToString()), Convert.ToBoolean(reader[4].ToString().ToLower())));
                 Close();
                 reader.Close();
                 return tickets;
