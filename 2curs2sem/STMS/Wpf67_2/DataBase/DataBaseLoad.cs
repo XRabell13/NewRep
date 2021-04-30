@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using MySql.Data.MySqlClient;
 using Wpf67.Model;
@@ -308,9 +309,9 @@ namespace Wpf67.DataBase
         #endregion 
 
         #region GetTables
-        public List<User> GetUsers()
+        public ObservableCollection<User> GetUsers()
         {
-            List<User> users = new List<User>();
+            ObservableCollection<User> users = new ObservableCollection<User>();
             Open();
             if (status)
             {
@@ -341,9 +342,9 @@ namespace Wpf67.DataBase
 
         }
 
-        public List<UserInfo> GetUsersInfo()
+        public ObservableCollection<UserInfo> GetUsersInfo()
         {
-            List<UserInfo> usersInfo = new List<UserInfo>();
+            ObservableCollection<UserInfo> usersInfo = new ObservableCollection<UserInfo>();
             Open();
             if (status)
             {
@@ -366,9 +367,9 @@ namespace Wpf67.DataBase
             }
         }
 
-        public List<City> GetCities()
+        public ObservableCollection<City> GetCities()
         {
-            List<City> cities = new List<City>();
+            ObservableCollection<City> cities = new ObservableCollection<City>();
             Open();
             if (status)
             {
@@ -390,9 +391,9 @@ namespace Wpf67.DataBase
             }
 
         }
-        public List<Bus> GetBuses()
+        public ObservableCollection<Bus> GetBuses()
         {
-            List<Bus> buses = new List<Bus>();
+            ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
             Open();
             if (status)
             {
@@ -416,9 +417,9 @@ namespace Wpf67.DataBase
 
         }
 
-        public List<IntermediatePoint> GetInterPoints()
+        public ObservableCollection<IntermediatePoint> GetInterPoints()
         {
-            List<IntermediatePoint> iPoints = new List<IntermediatePoint>();
+            ObservableCollection<IntermediatePoint> iPoints = new ObservableCollection<IntermediatePoint>();
             Open();
             if (status)
             {
@@ -443,9 +444,9 @@ namespace Wpf67.DataBase
             }
         }
 
-        public List<RouteBus> GetRouteBuses()
+        public ObservableCollection<RouteBus> GetRouteBuses()
         {
-            List<RouteBus> routeBuses = new List<RouteBus>();
+            ObservableCollection<RouteBus> routeBuses = new ObservableCollection<RouteBus>();
             Open();
             if (status)
             {
@@ -469,9 +470,9 @@ namespace Wpf67.DataBase
             }
         }
 
-        public List<Ticket> GetTickets()
+        public ObservableCollection<Ticket> GetTickets()
         {
-            List<Ticket> tickets = new List<Ticket>();
+            ObservableCollection<Ticket> tickets = new ObservableCollection<Ticket>();
             Open();
             if (status)
             {
@@ -495,9 +496,9 @@ namespace Wpf67.DataBase
 
         }
 
-        public List<Transporter> GetTransporters()
+        public ObservableCollection<Transporter> GetTransporters()
         {
-            List<Transporter> tickets = new List<Transporter>();
+            ObservableCollection<Transporter> tickets = new ObservableCollection<Transporter>();
             Open();
             if (status)
             {

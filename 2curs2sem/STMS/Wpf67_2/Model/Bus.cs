@@ -23,7 +23,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_bus.ToString() + " id transporter: " + id_transporter + " model: " + model;
+            return id_bus + " id transporter: " + id_transporter + " model: " + model;
         }
     }
 }

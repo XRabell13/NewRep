@@ -47,6 +47,7 @@ namespace Wpf67
        
         public MainWindow()
         {
+
             InitializeComponent();
 
             App.LanguageChanged += LanguageChanged;
@@ -79,6 +80,7 @@ namespace Wpf67
             MenuVM vm = new MenuVM();
             vm.CodeBehind = this;
             this.DataContext = vm;//привязка данных к окну, из этой модели берутся даннные
+
             LoadView(ViewType.Search);
         }
 
@@ -171,10 +173,6 @@ namespace Wpf67
            
                 Collapse_AuthorizationButtons();
                 Show_RegistrationButtons();
-                // btnSeat1.Text = "Reserved";
-          
-           
-          
         }
 
         public void ButEnterAccount()

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wpf67.DataBase;
 using Wpf67.Model;
-using Wpf67.View;
+using Wpf67.ViewModel;
 
 namespace Wpf67
 {
@@ -26,7 +26,7 @@ namespace Wpf67
 
         DataBaseLoad baseLoad = new DataBaseLoad();
 
-        List<User> users = new List<User>();
+       // List<User> users = new List<User>();
         List<User> usersUpdate = new List<User>();
 
         List<UserInfo> usersInfo = new List<UserInfo>();
@@ -49,34 +49,35 @@ namespace Wpf67
 
         List<Transporter> transporters = new List<Transporter>();
         List<Transporter> transportersUpdate = new List<Transporter>();
-        List<Transporter> transportersDelete = new List<Transporter>();
 
-        List<UserTicket> userTickets = new List<UserTicket>();
+       // List<UserTicket> userTickets = new List<UserTicket>();
         // List<UserTicket> userTicketsUpdate = new List<UserTicket>();
 
         public AdminWindow()
         {
             InitializeComponent();
-            LoadDataBase();
-            UpdateDataGrid();
+            AdminWindowVM vm = new AdminWindowVM();
+            this.DataContext = vm;
+           // LoadDataBase();
+         //   UpdateDataGrid();
         }
 
         void LoadDataBase()
         {
-            users = baseLoad.GetUsers();
-            cities = baseLoad.GetCities();
-            buses = baseLoad.GetBuses();
+         //users = baseLoad.GetUsers();
+           // cities = baseLoad.GetCities();
+          /*  buses = baseLoad.GetBuses();
             intermediatePoints = baseLoad.GetInterPoints();
             routeBuses = baseLoad.GetRouteBuses();
             tickets = baseLoad.GetTickets();
             usersInfo = baseLoad.GetUsersInfo();
-            transporters = baseLoad.GetTransporters();
+            transporters = baseLoad.GetTransporters();*/
         }
 
         void UpdateDataGrid()
         {
-            dg_users.ItemsSource = users;
-            ((ComboBox)FindName("cb_users")).ItemsSource = users;
+         //  dg_users.ItemsSource = users;
+          // ((ComboBox)FindName("cb_users")).ItemsSource = users;
 
             dg_cities.ItemsSource = cities;
             ((ComboBox)FindName("cb_cities")).ItemsSource = cities;
@@ -104,52 +105,35 @@ namespace Wpf67
         private void dg_users_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             usersUpdate.Add((User)(dg_users.SelectedItem));
-            MessageBox.Show(dg_users.SelectedItem.ToString());
+          
         }
         private void dg_cities_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             citiesUpdate.Add((City)(dg_cities.SelectedItem));
-            MessageBox.Show(dg_cities.SelectedItem.ToString());
+           
         }
         private void dg_transporters_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             transportersUpdate.Add((Transporter)(dg_transporters.SelectedItem));
-            MessageBox.Show(dg_transporters.SelectedItem.ToString());
         }
         private void dg_buses_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             busesUpdate.Add((Bus)(dg_buses.SelectedItem));
-            MessageBox.Show(dg_buses.SelectedItem.ToString());
+          
         }
         private void dg_ipoints_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             intermediatePointsUpdate.Add((IntermediatePoint)(dg_intermediate_points.SelectedItem));
-            MessageBox.Show(dg_intermediate_points.SelectedItem.ToString());
+           
         }
         private void dg_route_bus_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            //if()
             routeBusesUpdate.Add((RouteBus)(dg_route_buses.SelectedItem));
-            MessageBox.Show(dg_route_buses.SelectedItem.ToString());
-            //    MessageBox.Show(((int)(DateTime.Now.DayOfWeek)).ToString());
-
         }
         private void dg_tickets_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             ticketsUpdate.Add((Ticket)(dg_tickets.SelectedItem));
-            MessageBox.Show(dg_tickets.SelectedItem.ToString());
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //comboBox1.Items.Contains(comboBox1.Text) 
-            MessageBox.Show("Del");
-        }
-
-        private void dg_transporters_Delete(object sender, RoutedEventArgs e)
-        {
-            transportersDelete.Add((Transporter)(dg_transporters.SelectedItem));
-            dg_transporters.Items.Remove(dg_transporters.SelectedItem);
-
+          
         }
 
         private void But_UpLoad(object sender, RoutedEventArgs e)
@@ -198,7 +182,7 @@ namespace Wpf67
                 UpdateDataGrid();
             }
             else
-                MessageBox.Show("No data changed");
+                MessageBox.Show("Изменений не обнаружено.");
 
         }
 
@@ -215,10 +199,15 @@ namespace Wpf67
         {
             if (((ComboBox)FindName("cb_users")).SelectedItem != null)
             {
+                MessageBox.Show(cb_users.SelectedItem.ToString());
+            }
+            else MessageBox.Show("Mne");
+            /*if (((ComboBox)FindName("cb_users")).SelectedItem != null)
+            {
                 baseLoad.DeleteUser((User)(((ComboBox)FindName("cb_users")).SelectedItem));
                 LoadDataBase();
                 UpdateDataGrid();
-            }
+            }*/
         }
         private void DeleteBus(object sender, RoutedEventArgs e)
         {

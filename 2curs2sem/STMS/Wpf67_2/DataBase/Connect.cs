@@ -24,7 +24,7 @@ namespace Wpf67.DataBase
         }
         public void Open()
         {
-           
+          
                 if (conn.State != System.Data.ConnectionState.Open)
                     try
                     {

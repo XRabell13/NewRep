@@ -21,23 +21,19 @@ namespace Wpf67.View
     /// </summary>
     public partial class Search : UserControl
     {
-        SearchVM vm = new SearchVM();
+      
         public Search()
         {
             InitializeComponent();
-            dpDate.DisplayDateStart = dpDate.SelectedDate = DateTime.Today;
-            dpDate.DisplayDateEnd = DateTime.Today.AddDays(14);
-            LoadCities();
+            SearchVM vm = new SearchVM();
+            this.DataContext = vm;
+         //   LoadCities();
         }
 
         private void LoadCities()
         {
-            ((ComboBox)FindName("cb_begin_city")).ItemsSource = ((ComboBox)FindName("cb_end_city")).ItemsSource = vm.LoadAllCities();
+         //   ((ComboBox)FindName("cb_begin_city")).ItemsSource = ((ComboBox)FindName("cb_end_city")).ItemsSource = vm.LoadAllCities();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }
