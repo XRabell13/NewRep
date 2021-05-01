@@ -53,6 +53,7 @@ namespace Wpf67.DataBase
             Open();
             foreach (var us in users)
             {
+                MessageBox.Show(us.isAdmin.ToString());
                 string sql1 = "UPDATE users SET `isAdmin`='" + Convert.ToInt32(us.isAdmin) + "' WHERE `id_user`='" + us.id + "';";
                 try
                 {
@@ -391,6 +392,7 @@ namespace Wpf67.DataBase
             }
 
         }
+       
         public ObservableCollection<Bus> GetBuses()
         {
             ObservableCollection<Bus> buses = new ObservableCollection<Bus>();

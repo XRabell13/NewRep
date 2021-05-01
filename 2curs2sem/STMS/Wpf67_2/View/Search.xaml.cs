@@ -25,14 +25,9 @@ namespace Wpf67.View
         public Search()
         {
             InitializeComponent();
-            SearchVM vm = new SearchVM();
-            this.DataContext = vm;
+         
+            this.DataContext =   new SearchVM();
          //   LoadCities();
-        }
-
-        private void LoadCities()
-        {
-         //   ((ComboBox)FindName("cb_begin_city")).ItemsSource = ((ComboBox)FindName("cb_end_city")).ItemsSource = vm.LoadAllCities();
         }
 
     }

@@ -56,10 +56,9 @@ namespace Wpf67
         public AdminWindow()
         {
             InitializeComponent();
-            AdminWindowVM vm = new AdminWindowVM();
-            this.DataContext = vm;
-           // LoadDataBase();
-         //   UpdateDataGrid();
+            this.DataContext = new AdminWindowVM();
+            // LoadDataBase();
+            //   UpdateDataGrid();
         }
 
         void LoadDataBase()
@@ -101,7 +100,7 @@ namespace Wpf67
 
 
         }
-
+        /*
         private void dg_users_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             usersUpdate.Add((User)(dg_users.SelectedItem));
@@ -185,7 +184,7 @@ namespace Wpf67
                 MessageBox.Show("Изменений не обнаружено.");
 
         }
-
+     
         private void DeleteTransporter(object sender, RoutedEventArgs e)
         {
             if (((ComboBox)FindName("cb_transporters")).SelectedItem != null)
@@ -201,13 +200,7 @@ namespace Wpf67
             {
                 MessageBox.Show(cb_users.SelectedItem.ToString());
             }
-            else MessageBox.Show("Mne");
-            /*if (((ComboBox)FindName("cb_users")).SelectedItem != null)
-            {
-                baseLoad.DeleteUser((User)(((ComboBox)FindName("cb_users")).SelectedItem));
-                LoadDataBase();
-                UpdateDataGrid();
-            }*/
+          
         }
         private void DeleteBus(object sender, RoutedEventArgs e)
         {
@@ -253,6 +246,6 @@ namespace Wpf67
                 LoadDataBase();
                 UpdateDataGrid();
             }
-        }
+        }*/
     }
 }

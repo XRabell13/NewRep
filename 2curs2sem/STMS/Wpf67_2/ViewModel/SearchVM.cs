@@ -53,21 +53,20 @@ namespace Wpf67.ViewModel
         {
             if (win == null) throw new ArgumentNullException(nameof(win));
             mainWindow = win;
-            Cities = db.GetCities();
+           _cities = LoadAllCities();
         }
         public SearchVM()
         {
-            // _cities = LoadAllCities();
-            Cities = db.GetCities();
+            _cities = LoadAllCities();
         }
 
         public ObservableCollection<City> LoadAllCities()
         {
-            _cities = db.GetCities();
-            var items = from u in _cities
-                        orderby u.name_city
-                        select u;
-            return (ObservableCollection<City>)items;
+                var items = from u in db.GetCities()
+                            orderby u.name_city 
+                            select u;
+               
+            return new ObservableCollection<City>(items);
         }
 
        
