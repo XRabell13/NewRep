@@ -30,7 +30,7 @@
     <v:String x:Key="admin_del">Выдаленне даных</v:String>
     <v:String x:Key="admin_add">Дадаць</v:String>
     <v:String x:Key="admin_win">База даных</v:String>
-    
+    <v:String x:Key="admin_save">Загрузіць</v:String>
     <!-- Admin window command delete-->
 
     <v:String x:Key="admin_del_user">Выдаліць карыстальніка</v:String>
@@ -45,7 +45,15 @@
 
     <v:String x:Key="m_menu_Language">Мова</v:String>
 
-
+    <v:String x:Key="admin_add_user">Дадаць карыстальніка</v:String>
+    <v:String x:Key="admin_add_transporters">Дадаць перавозчыка</v:String>
+    <v:String x:Key="admin_add_bus">Дадаць аўтобус</v:String>
+    <v:String x:Key="admin_add_cities">Дадаць горад</v:String>
+    <v:String x:Key="admin_add_intermediate_point">Дадаць прамежкавы пункт</v:String>
+    <v:String x:Key="admin_add_route_bus">Дадаць рэйс</v:String>
+    <!--  <v:String x:Key="admin_add_tickets">Добавить билеты</v:String>-->
+    <v:String x:Key="admin_add_">Дадаць інфармацыю</v:String>
+    
     <!-- NoAuthorizationTrips window-->
     <v:String x:Key="nat_text1">Для прагляду забраніраваных білетаў неабходна</v:String>
     <v:String x:Key="nat_text2">увайсці!</v:String>

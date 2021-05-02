@@ -9,12 +9,13 @@ namespace Wpf67.DataBase
 {
     class DataBaseLoad : Connect
     {
-        /*public bool AddCities(string name_cities)
+        public bool AddCities(string name_cities)
         {
             try
             {
-                string sql1 = "INSERT INTO cities(`name_city`) VALUES('" + name_cities + "'); ";
+                string sql1 = "INSERT INTO cities(`name_city`) VALUES(@city); ";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@city", name_cities);
                 Open();
                 myCommand.ExecuteNonQuery();
                 Close();
@@ -26,7 +27,7 @@ namespace Wpf67.DataBase
                 MessageBox.Show("Ошибка загрузки");
                 return false;
             }
-        }*/
+        }
 
         #region Update
         public void UpdateCities(List<City> cities)

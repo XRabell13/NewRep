@@ -133,6 +133,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="Model\UserTicket.cs" />
+    <Compile Include="ViewModel\AdminWindowVM1.cs" />
     <Compile Include="ViewModel\AdminWindowVM.cs" />
     <Compile Include="ViewModel\AuthorizationVM.cs" />
     <Compile Include="ViewModel\ContactsVM.cs" />
@@ -144,6 +145,9 @@
     <Compile Include="Settings\Theme.cs" />
     <Compile Include="ViewModel\SearchVM.cs" />
     <Compile Include="ViewModel\TicketVM.cs" />
+    <Compile Include="View\AdminControl.xaml.cs">
+      <DependentUpon>AdminControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
@@ -183,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\lang.be-BY.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

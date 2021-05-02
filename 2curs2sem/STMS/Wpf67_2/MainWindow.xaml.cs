@@ -41,6 +41,7 @@ namespace Wpf67
         BookInf,
         MyTrips,
         NoAuthorizationTrips,
+        AdminWin
     }
     public partial class MainWindow : Window, IMMCodeBehind
     {
@@ -80,7 +81,7 @@ namespace Wpf67
             MenuVM vm = new MenuVM();
             vm.CodeBehind = this;
             this.DataContext = vm;//привязка данных к окну, из этой модели берутся даннные
-
+            
             LoadView(ViewType.Search);
         }
 
@@ -92,7 +93,6 @@ namespace Wpf67
                     {
                         Contacts view = new Contacts();
                         ContactsVM vm = new ContactsVM(this);
-                        //таким образом получится биндингом брать значения из ВМ?
                         view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
@@ -139,6 +139,14 @@ namespace Wpf67
                         this.OutWin.Content = view;
                         break;
                     }
+                case ViewType.AdminWin:
+                    {
+                        AdminControl view = new AdminControl();
+                        AdminWindowVM vm = new AdminWindowVM();
+                        view.DataContext = vm;
+                        this.OutWin.Content = view;
+                        break;
+                    }
             }
         }
             private void LanguageChanged(Object sender, EventArgs e)
@@ -170,7 +178,6 @@ namespace Wpf67
        
         public void ButExitAccount()
         {
-           
                 Collapse_AuthorizationButtons();
                 Show_RegistrationButtons();
         }

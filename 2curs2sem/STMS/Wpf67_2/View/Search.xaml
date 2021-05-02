@@ -36,7 +36,6 @@
             <TextBlock Text="{DynamicResource s_from}" />
             <ComboBox  x:Name="cb_begin_city" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCityFrom}" DisplayMemberPath="name_city" IsEditable="True" />
             <TextBlock Text="{DynamicResource s_to}" />
-            <TextBlock Text="{Binding str}" />
             <ComboBox x:Name="cb_end_city" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCityIn}" DisplayMemberPath="name_city" IsEditable="True" />
             <TextBlock Text="{DynamicResource s_date}" />
             <Viewbox HorizontalAlignment="Center" Width="150">

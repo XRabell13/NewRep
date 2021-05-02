@@ -25,9 +25,8 @@ namespace Wpf67.View
         public Search()
         {
             InitializeComponent();
-         
             this.DataContext =   new SearchVM();
-         //   LoadCities();
+         
         }
 
     }

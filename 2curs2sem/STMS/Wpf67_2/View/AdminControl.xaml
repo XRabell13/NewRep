@@ -1,0 +1,307 @@
+﻿<UserControl x:Class="Wpf67.View.AdminControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf67.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10 8 10 8" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+     
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Background="WhiteSmoke">
+            <Button Content="{DynamicResource admin_save}" Command="{Binding ButLoad}" />
+            
+        </StackPanel>
+
+        <TabControl Grid.Row="0" Grid.Column="1">
+            <TabItem Header="{DynamicResource admin_users}" >
+                <DataGrid x:Name="dg_users" ItemsSource="{Binding Users, Mode=OneWay}"  AutoGenerateColumns="False" CanUserDeleteRows="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="login" Binding="{Binding login}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="password" Binding="{Binding password}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="isAdmin" Binding="{Binding isAdmin}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_info_users}" >
+                <DataGrid x:Name="dg_users_info" ItemsSource="{Binding UsersInfo}" AutoGenerateColumns="False" CanUserDeleteRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding id_user}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="passport" Binding="{Binding passport}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="email" Binding="{Binding email, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="telephone" Binding="{Binding telephone, Mode=TwoWay}" IsReadOnly="True"/>
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_transporters}">
+                <DataGrid x:Name="dg_transporters" ItemsSource="{Binding Transporters}" AutoGenerateColumns="False" CanUserDeleteRows="False"
+                    >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name" Binding="{Binding named, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="adress" Binding="{Binding adress, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="telephone" Binding="{Binding telephone, Mode=TwoWay}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_bus}" >
+                <DataGrid x:Name="dg_buses" AutoGenerateColumns="False" ItemsSource="{Binding Buses}" CanUserDeleteRows="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id bus" Binding="{Binding id_bus}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id transporter" Binding="{Binding id_transporter, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="model" Binding="{Binding model, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="count seats" Binding="{Binding count_seats, Mode=TwoWay}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_cities}" >
+                <DataGrid x:Name="dg_cities" AutoGenerateColumns="False" ItemsSource="{Binding Cities}" CanUserDeleteRows="False" CanUserAddRows="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding id_city}" IsReadOnly="True" />
+                        <DataGridTextColumn Header="name city" Binding="{Binding name_city, Mode=TwoWay}" />
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_intermediate_point}" >
+                <DataGrid x:Name="dg_intermediate_points" AutoGenerateColumns="False" ItemsSource="{Binding IPoints}" CanUserDeleteRows="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id ipoint" Binding="{Binding id_intermediate_point}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id city" Binding="{Binding id_city, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id route" Binding="{Binding id_route_bus, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="time" Binding="{Binding time_arrive, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="cost" Binding="{Binding cost}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_route_bus}" >
+                <DataGrid x:Name="dg_route_buses" ItemsSource="{Binding RouteBuses}" AutoGenerateColumns="False" CanUserDeleteRows="False" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding id_route}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="name route" Binding="{Binding name_route, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id bus" Binding="{Binding id_bus, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="time departure" Binding="{Binding time_departure, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="timetable" Binding="{Binding timetable}" />
+                        <DataGridTextColumn Header="id departure point" Binding="{Binding id_departure_point}" />
+                        <DataGridTextColumn Header="id end city" Binding="{Binding id_end_city, Mode=TwoWay}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="{DynamicResource admin_tickets}" >
+                <DataGrid x:Name="dg_tickets" AutoGenerateColumns="False" ItemsSource="{Binding Tickets}" CanUserDeleteRows="False" 
+                         >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id ticket" Binding="{Binding id_ticket}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="id route" Binding="{Binding id_route, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="date departure" Binding="{Binding date_departure, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="number seat" Binding="{Binding num_seat, Mode=TwoWay}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="status seat" Binding="{Binding status_seat}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_add_}" Background="WhiteSmoke">
+                <ScrollViewer>
+                <StackPanel>
+                    <Expander Header="{DynamicResource admin_add_transporters}">
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource add_tr_named}"/>
+                            <TextBox Style="{DynamicResource TextBoxInfoBD}" ></TextBox>
+                            <TextBlock Text="{DynamicResource add_tr_adress}"/>
+                            <TextBox Style="{DynamicResource TextBoxInfoBD}"></TextBox>
+                            <TextBlock Text="{DynamicResource add_tr_telephone}"/>
+                            <TextBox Style="{DynamicResource TextBoxInfoBD}"></TextBox>
+                            <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="{DynamicResource admin_add_bus}">
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource add_tr_named}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Transporters}" SelectedItem="{Binding SelectTransporter}" IsEditable="True"></ComboBox>
+                             <TextBlock Text="{DynamicResource add_bus_model}"/>
+                            <TextBox Style="{DynamicResource TextBoxInfoBD}"></TextBox>
+                            <TextBlock Text="{DynamicResource add_bus_count}"/>
+                            <TextBox Style="{DynamicResource TextBoxInfoBD}"></TextBox>
+                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
+                            </StackPanel>
+                    </Expander>
+                    <Expander Header="{DynamicResource admin_add_cities}">
+                        <StackPanel>
+                                <TextBlock Text="{DynamicResource add_city_name }"/>
+                                <TextBox Style="{DynamicResource TextBoxInfoBD}" Text="{Binding NewCity, Mode=TwoWay}"></TextBox>
+                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" Command="{Binding AddCity}"/>
+                            </StackPanel>
+                    </Expander>
+                        <Expander Header="{DynamicResource admin_add_route_bus}">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource add_routebus_name}"/>
+                                <TextBox Style="{DynamicResource TextBoxInfoBD}" ></TextBox>
+                                <TextBlock Text="{DynamicResource add_routebus_bus}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Buses}" SelectedItem="{Binding SelectBuses}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource add_routebus_time_departure}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{DynamicResource TextBoxTime}" SelectionStart="10" ></TextBox>
+                                    <TextBlock Text=":"/>
+                                    <TextBox Style="{DynamicResource TextBoxTime}" ></TextBox>
+                                </StackPanel>
+                                <TextBlock Text="{DynamicResource add_routebus_departure_point}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource add_routebus_end_point}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity}" IsEditable="True"></ComboBox>
+                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
+                            </StackPanel>
+                        </Expander>
+                     
+                        <Expander Header="{DynamicResource admin_add_intermediate_point}">
+                            <StackPanel>
+                                <TextBlock Text="{DynamicResource add_ip_city}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource add_ip_route_bus}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding RouteBuses}" SelectedItem="{Binding SelectRouteBuses}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource add_ip_time_arrive}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Style="{DynamicResource TextBoxTime}" ></TextBox>
+                                    <TextBlock Text=":"/>
+                                    <TextBox Style="{DynamicResource TextBoxTime}" ></TextBox>
+                                </StackPanel>
+                                <TextBlock Text="{DynamicResource add_ip_cost}"/>
+                                <TextBox Style="{DynamicResource TextBoxInfoBD}" ></TextBox>
+                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+                <!-- <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock FontSize="16" Text="{DynamicResource admin_add_bus}"/>
+                        <ComboBox x:Name="cb_buses_add" ItemsSource="{Binding Buses}" IsEditable="True" Grid.Column="1"></ComboBox>
+                        <Button Content="{DynamicResource admin_add}"  Grid.Column="2"  />
+
+                        <TextBlock FontSize="16" Grid.Row="1" Text="{DynamicResource admin_add_cities}"/>
+                        <ComboBox x:Name="cb_cities_add" ItemsSource="{Binding Cities}" IsEditable="True" Grid.Column="1" Grid.Row="1"></ComboBox>
+                        <Button Content="{DynamicResource admin_add}" Grid.Column="2" Grid.Row="1" />
+
+                        <TextBlock FontSize="16" Grid.Row="2" Text="{DynamicResource admin_add_transporters}"/>
+                        <ComboBox x:Name="cb_intermediate_points_add" ItemsSource="{Binding IPoints}" IsEditable="True" Grid.Column="1" Grid.Row="2"></ComboBox>
+                        <Button Content="{DynamicResource admin_add}" Grid.Column="2" Grid.Row="2" />
+
+                        <TextBlock FontSize="16" Grid.Row="3" Text="{DynamicResource admin_add_user}"/>
+                        <ComboBox x:Name="cb_route_bus_add" IsEditable="True" Grid.Column="1" Grid.Row="3"></ComboBox>
+                        <Button Content="{DynamicResource admin_add}" Grid.Column="2" Grid.Row="3"  />
+
+                        <TextBlock FontSize="16" Grid.Row="4" Text="{DynamicResource admin_add_intermediate_point}"/>
+                        <ComboBox x:Name="cb_transporters_add" IsEditable="True" Grid.Column="1" Grid.Row="4"></ComboBox>
+                        <Button Content="{DynamicResource admin_add}" Grid.Column="2" Grid.Row="4" />
+
+                        <TextBlock FontSize="16" Grid.Row="5" Text="{DynamicResource admin_add_route_bus}"/>
+                        <ComboBox x:Name="cb_users_add" IsEditable="True" Grid.Column="1" Grid.Row="5"></ComboBox>
+                        <Button Content="{DynamicResource admin_add}" Grid.Column="2" Grid.Row="5"  />
+                    </Grid>
+                </ScrollViewer>-->
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="{DynamicResource admin_del}" Background="DarkGray">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock FontSize="16" Text="{DynamicResource admin_del_bus}"/>
+                        <ComboBox x:Name="cb_buses" ItemsSource="{Binding Buses}" SelectedItem="{Binding SelectBus}" IsEditable="True" Grid.Column="1"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}"  Grid.Column="2" Command="{Binding DeleteBus}" />
+
+                        <TextBlock FontSize="16" Grid.Row="1" Text="{DynamicResource admin_del_cities}"/>
+                        <ComboBox x:Name="cb_cities" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity}" IsEditable="True" Grid.Column="1" Grid.Row="1"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="1" Command="{Binding DeleteCity}"/>
+
+                        <TextBlock FontSize="16" Grid.Row="2" Text="{DynamicResource admin_del_intermediate_point}"/>
+                        <ComboBox x:Name="cb_intermediate_points" ItemsSource="{Binding IPoints}" SelectedItem="{Binding SelectIp}" IsEditable="True" Grid.Column="1" Grid.Row="2"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="2" Command="{Binding DeleteIPoint}" />
+
+                        <TextBlock FontSize="16" Grid.Row="3" Text="{DynamicResource admin_del_route_bus}"/>
+                        <ComboBox x:Name="cb_route_bus" ItemsSource="{Binding RouteBuses, Mode=TwoWay}" SelectedItem="{Binding SelectRouteBus}" IsEditable="True" Grid.Column="1" Grid.Row="3"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="3" Command="{Binding DeleteRouteBus}" />
+
+                        <TextBlock FontSize="16" Grid.Row="4" Text="{DynamicResource admin_del_transporters}"/>
+                        <ComboBox x:Name="cb_transporters" ItemsSource="{Binding Transporters}" SelectedItem="{Binding SelectTransporter}" IsEditable="True" Grid.Column="1" Grid.Row="4"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="4" Command="{Binding DeleteTransporter}"/>
+
+                        <TextBlock FontSize="16" Grid.Row="5" Text="{DynamicResource admin_del_user}"/>
+                        <ComboBox x:Name="cb_users" ItemsSource="{Binding Users, Mode=TwoWay}" SelectedItem="{Binding SelectUser}"  IsEditable="True" Grid.Column="1" Grid.Row="5"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="5" Command="{Binding DeleteUser}" />
+
+                        <TextBlock FontSize="16" Grid.Row="6" Text="{DynamicResource admin_del_inf_user}"/>
+                        <ComboBox x:Name="cb_users_info" ItemsSource="{Binding UsersInfo}" SelectedItem="{Binding SelectUserInfo}" IsEditable="True" Grid.Column="1" Grid.Row="6"></ComboBox>
+                        <Button Content="{DynamicResource admin_del_}" Grid.Column="2" Grid.Row="6" Command="{Binding DeleteUserInfo}"/>
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+
+
+
+        </TabControl>
+    </Grid>
+</UserControl>

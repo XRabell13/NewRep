@@ -13,7 +13,7 @@ using Wpf67.Model;
 
 namespace Wpf67.ViewModel
 {
-    class AdminWindowVM : INotifyPropertyChanged
+   partial class AdminWindowVM : INotifyPropertyChanged
     {
 
         #region INotifyPropertyChanged Impl
@@ -27,10 +27,7 @@ namespace Wpf67.ViewModel
         #endregion
         public string Svoi { get; set; } = "СВЯЗАНО";
 
-   
-
         DataBaseLoad baseLoad = new DataBaseLoad();
-
 
         private User _selectUser;
         public User SelectUser { get =>_selectUser; set { _selectUser = value; } }
@@ -61,6 +58,8 @@ namespace Wpf67.ViewModel
 
         private City _selectCity;
         public City SelectCity { get => _selectCity; set { _selectCity = value; } }
+
+      
 
         private ObservableCollection<City> _cities = new ObservableCollection<City>();
         public ObservableCollection<City> Cities
@@ -154,10 +153,11 @@ namespace Wpf67.ViewModel
      
         public AdminWindowVM()
         {
+           
             AllCollectionChanged();
             LoadDataBase();
+            
 
-          //  LoadDataBase();
         }
         void AllCollectionChanged()
         {
@@ -172,17 +172,7 @@ namespace Wpf67.ViewModel
         }
         void LoadDataBase()
         {
-            // Users = baseLoad.GetUsers();
-            // Users.CollectionChanged += m_people_CollectionChanged;
-
-            /* Cities = baseLoad.GetCities();
-             Buses = baseLoad.GetBuses();
-             IPoints = baseLoad.GetInterPoints();
-             RouteBuses = baseLoad.GetRouteBuses();
-             Tickets = baseLoad.GetTickets();
-             UsersInfo = baseLoad.GetUsersInfo();
-             Transporters = baseLoad.GetTransporters();(*/
-            ClearAllCollection();
+               ClearAllCollection();
                 foreach (var u in baseLoad.GetUsers())
                 {
                 
@@ -219,8 +209,6 @@ namespace Wpf67.ViewModel
                 }
             
         }
-        // public IMMCodeBehind CodeBehind { get; set; }
-
         void ClearAllCollection()
         {
             _users.Clear();
@@ -231,6 +219,71 @@ namespace Wpf67.ViewModel
             _tickets.Clear();
             _usersInfo.Clear();
             _transporter.Clear();
+        }
+
+      
+
+        private MyCommand butLoad;
+        public MyCommand ButLoad
+        {
+            get
+            {
+                return butLoad = butLoad ??
+                  new MyCommand(Load, CanLoad);
+            }
+        }
+        private bool CanLoad()
+        {
+
+            return true;
+        }
+        private void Load()
+        {
+            if (usersUpdate.Count > 0 || usersInfoUpdate.Count > 0 || citiesUpdate.Count > 0 ||
+                  busesUpdate.Count > 0 || transportersUpdate.Count > 0 || intermediatePointsUpdate.Count > 0
+                  || ticketsUpdate.Count > 0 || routeBusesUpdate.Count > 0)
+            {
+                if (usersUpdate.Count > 0)
+                {
+                    baseLoad.UpdateUsers(usersUpdate);
+                    usersUpdate = new List<User>();
+                }
+
+                if (transportersUpdate.Count > 0)
+                {
+                    baseLoad.UpdateTransporters(transportersUpdate);
+                    transportersUpdate = new List<Transporter>();
+                }
+                if (busesUpdate.Count > 0)
+                {
+                    baseLoad.UpdateBuses(busesUpdate);
+                    busesUpdate = new List<Bus>();
+                }
+                if (intermediatePointsUpdate.Count > 0)
+                {
+                    baseLoad.UpdateIntermediatePoints(intermediatePointsUpdate);
+                    intermediatePointsUpdate = new List<IntermediatePoint>();
+                }
+                if (ticketsUpdate.Count > 0)
+                {
+                    baseLoad.UpdateTickets(ticketsUpdate);
+                    ticketsUpdate = new List<Ticket>();
+                }
+                if (routeBusesUpdate.Count > 0)
+                {
+                    baseLoad.UpdateRouteBuses(routeBusesUpdate);
+                    routeBusesUpdate = new List<RouteBus>();
+                }
+                if (citiesUpdate.Count > 0)
+                {
+                    baseLoad.UpdateCities(citiesUpdate);
+                    routeBusesUpdate = new List<RouteBus>();
+                }
+                LoadDataBase();
+            }
+            else
+                MessageBox.Show("Изменений не обнаружено.");
+
         }
 
         #region Delete
@@ -395,78 +448,16 @@ namespace Wpf67.ViewModel
         }
         private void delIPoint()
         {
-            if (_selectRouteBus != null)
+            if (_selectIp != null)
             {
-                baseLoad.DeleteRouteBus(_selectRouteBus);
+                baseLoad.DeleteInterPoint(_selectIp);
                 LoadDataBase();
             }
             else MessageBox.Show("Выберите элемент из списка для удаления.");
         }
         #endregion
 
-        private MyCommand butLoad;
-        public MyCommand ButLoad
-        {
-            get
-            {
-                return butLoad = butLoad ??
-                  new MyCommand(Load, CanLoad);
-            }
-        }
-        private bool CanLoad()
-        {
-
-            return true;
-        }
-        private void Load()
-        {
-              if (usersUpdate.Count > 0 || usersInfoUpdate.Count > 0 || citiesUpdate.Count > 0 ||
-                    busesUpdate.Count > 0 || transportersUpdate.Count > 0 || intermediatePointsUpdate.Count > 0
-                    || ticketsUpdate.Count > 0 || routeBusesUpdate.Count > 0)
-                {
-                    if (usersUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateUsers(usersUpdate);
-                        usersUpdate = new List<User>(); 
-                    }
-
-                    if (transportersUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateTransporters(transportersUpdate);
-                        transportersUpdate = new List<Transporter>();
-                    }
-                    if (busesUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateBuses(busesUpdate);
-                        busesUpdate = new List<Bus>();
-                    }
-                    if (intermediatePointsUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateIntermediatePoints(intermediatePointsUpdate);
-                        intermediatePointsUpdate = new List<IntermediatePoint>();
-                    }
-                    if (ticketsUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateTickets(ticketsUpdate);
-                        ticketsUpdate = new List<Ticket>();
-                    }
-                    if (routeBusesUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateRouteBuses(routeBusesUpdate);
-                        routeBusesUpdate = new List<RouteBus>();
-                    }
-                    if (citiesUpdate.Count > 0)
-                    {
-                        baseLoad.UpdateCities(citiesUpdate);
-                        routeBusesUpdate = new List<RouteBus>();
-                    }
-                    LoadDataBase();
-                }
-                else
-                    MessageBox.Show("Изменений не обнаружено.");
-           
-        }
-
+        #region CollectionChanged
         private void User_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null && e.NewItems.Count > 0)
@@ -690,43 +681,8 @@ namespace Wpf67.ViewModel
                 transportersUpdate.Add(row);
             }
         }
-        /*
-        private void dg_users_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            if (_selectUser != null)
-            {
-                usersUpdate.Add((User)(dg_users.SelectedItem));
+        #endregion
 
-            }
-        }
-        private void dg_cities_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            citiesUpdate.Add((City)(dg_cities.SelectedItem));
-
-        }
-        private void dg_transporters_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            transportersUpdate.Add((Transporter)(dg_transporters.SelectedItem));
-        }
-        private void dg_buses_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            busesUpdate.Add((Bus)(dg_buses.SelectedItem));
-
-        }
-        private void dg_ipoints_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            intermediatePointsUpdate.Add((IntermediatePoint)(dg_intermediate_points.SelectedItem));
-
-        }
-        private void dg_route_bus_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            routeBusesUpdate.Add((RouteBus)(dg_route_buses.SelectedItem));
-        }
-        private void dg_tickets_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            ticketsUpdate.Add((Ticket)(dg_tickets.SelectedItem));
-
-        }*/
 
     }
 }

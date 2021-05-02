@@ -17,6 +17,7 @@ namespace Wpf67.ViewModel
         }
 
         public IMMCodeBehind CodeBehind { get; set; }
+        DataBaseLoad baseLoad = new DataBaseLoad();
 
         private MyCommand loadContacts;
         public MyCommand LoadContactsPage
@@ -131,14 +132,14 @@ namespace Wpf67.ViewModel
         }
         private void ShowAdminWin()
         {
-            DataBaseLoad baseLoad = new DataBaseLoad();
+          
             if (baseLoad.chekInternet.IsConnected())
             {
-                AdminWindow adminWindow = new AdminWindow();
-                adminWindow.Show();
+                   CodeBehind.LoadView(ViewType.AdminWin);
             }
             else MessageBox.Show("Проверьте подключение к интернету.");
-        }
+       
+            }
 
 
         private MyCommand exitAccount;
