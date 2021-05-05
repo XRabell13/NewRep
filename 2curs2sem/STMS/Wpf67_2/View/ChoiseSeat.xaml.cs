@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Wpf67.ViewModel;
 
 namespace Wpf67.View
 {
     /// <summary>
-    /// Логика взаимодействия для Search.xaml
+    /// Логика взаимодействия для ChoiseSeat.xaml
     /// </summary>
-    public partial class Search : UserControl
+    public partial class ChoiseSeat : UserControl
     {
-      
-        public Search()
+        public ChoiseSeat()
         {
             InitializeComponent();
-            this.DataContext =   new SearchVM();
-         
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           // grid1.Visibility = Visibility.Visible;
         }
     }
 }

@@ -17,21 +17,13 @@ using Wpf67.ViewModel;
 namespace Wpf67.View
 {
     /// <summary>
-    /// Логика взаимодействия для Search.xaml
+    /// Логика взаимодействия для FindRoutes.xaml
     /// </summary>
-    public partial class Search : UserControl
+    public partial class FindRoutes : UserControl
     {
-      
-        public Search()
+        public FindRoutes()
         {
             InitializeComponent();
-            this.DataContext =   new SearchVM();
-         
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           // grid1.Visibility = Visibility.Visible;
         }
     }
 }

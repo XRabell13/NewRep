@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Wpf67.View.FindRoutes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf67.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ListBox HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0" Name="FindRouteListBox" ItemsSource="{Binding FindRoutes}" SelectedItem="{Binding SelectRoute}" Background="WhiteSmoke" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                    <TextBlock Width="auto" Height="20" Background="DarkSlateGray"/>
+                    <Grid ShowGridLines="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                      
+                        <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="0" Text="{Binding BeginCity}"  />
+                        <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="1" Text="{Binding EndCity}" />
+                        <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="2" Text="{DynamicResource fr_cost}" />
+                        <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}" />
+
+                        <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="0" Text="{Binding BeginTime}"  />
+                        <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="1" Text="{Binding EndTime}" />
+
+                            <Expander  Header="{DynamicResource fr_def}"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+                                <StackPanel  >
+                                    <TextBlock Margin="10,0" Text="{DynamicResource fr_transporter}">  <TextBlock  Text="{Binding NamedTransporter}"/></TextBlock>
+
+                                    <TextBlock Margin="10,0" Text="{DynamicResource fr_bus}">  <TextBlock  Text="{Binding ModelBus}"/></TextBlock>
+                                  
+                                </StackPanel>
+                            </Expander>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="0" Grid.Row='1' Background="WhiteSmoke">
+            <Button Style="{DynamicResource butNext}" Content="{DynamicResource fr_next}" Command="{Binding NextPage}"/>
+
+        </StackPanel>
+      
+
+    </Grid>
+</UserControl>

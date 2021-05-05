@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf67.DataBase;
 using Wpf67.View;
 using Wpf67.ViewModel;
 
@@ -27,6 +28,7 @@ namespace Wpf67
     {
        // void ShowMessage(string message);
         void LoadView(ViewType typeView);
+        void LoadViewWhithParam(ViewType typeView, string begin, string end, DateTime date);
         void ButExitAccount();
         void ButEnterAccount();
     }
@@ -37,7 +39,7 @@ namespace Wpf67
         Authorization,
         Registration,
         Search,
-        FindReise,
+        FindRoutes,
         BookInf,
         MyTrips,
         NoAuthorizationTrips,
@@ -51,12 +53,12 @@ namespace Wpf67
 
             InitializeComponent();
 
-            App.LanguageChanged += LanguageChanged;
+            //  App.LanguageChanged += LanguageChanged;
 
-            CultureInfo currLang = App.Language;
+            //  CultureInfo currLang = App.Language;
 
             //Заполняем меню смены языка:
-            menuLanguage.Items.Clear();
+            /*menuLanguage.Items.Clear();
             foreach (var lang in App.Languages)
             {
                 MenuItem menuLang = new MenuItem();
@@ -65,14 +67,19 @@ namespace Wpf67
                 menuLang.IsChecked = lang.Equals(currLang);
                 menuLang.Click += ChangeLanguageClick;
                 menuLanguage.Items.Add(menuLang);
-            }
+            }*/
+            DataBaseLoad db = new DataBaseLoad();
 
-            this.Loaded += MainWindow_Loaded;
-
-            if (Wpf67.Properties.Settings.Default.Authoriz)
+            if (db.chekInternet.IsConnected())
             {
-                ButEnterAccount();
+                this.Loaded += MainWindow_Loaded;
+
+                if (Wpf67.Properties.Settings.Default.Authoriz)
+                {
+                    ButEnterAccount();
+                }
             }
+            else MessageBox.Show("Проверьте подключение к интернету");
           
           
         }
@@ -147,9 +154,27 @@ namespace Wpf67
                         this.OutWin.Content = view;
                         break;
                     }
+              
             }
         }
-            private void LanguageChanged(Object sender, EventArgs e)
+
+      public void LoadViewWhithParam(ViewType typeView, string begin, string end, DateTime date)
+        {
+            switch (typeView)
+            {
+                case ViewType.FindRoutes:
+                    {
+                        FindRoutes view = new FindRoutes();
+                        FindRoutesVM vm = new FindRoutesVM(begin,end,date);
+                        view.DataContext = vm;
+                        this.OutWin.Content = view;
+                        break;
+                    }
+            }
+
+        }
+        /*
+        private void LanguageChanged(Object sender, EventArgs e)
         {
             CultureInfo currLang = App.Language;
 
@@ -173,7 +198,7 @@ namespace Wpf67
                 }
             }
 
-        }
+        }*/
      
        
         public void ButExitAccount()

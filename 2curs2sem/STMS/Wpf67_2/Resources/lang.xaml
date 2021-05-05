@@ -78,6 +78,17 @@
     <v:String x:Key="add_routebus_end_point">Пункт прибытия</v:String>
 
 
+
+    <v:String x:Key="add_monday">Понедельник</v:String>
+    <v:String x:Key="add_tuesday">Вторник</v:String>
+    <v:String x:Key="add_wednesday">Среда</v:String>
+    <v:String x:Key="add_thursday">Четверг</v:String>
+    <v:String x:Key="add_friday">Пятница</v:String>
+    <v:String x:Key="add_saturday">Суббота</v:String>
+    <v:String x:Key="add_sunday">Воскресенье</v:String>
+
+
+
     <v:String x:Key="add_ip_city">Промежуточный пункт</v:String>
     <v:String x:Key="add_ip_route_bus">Рейс</v:String>
     <v:String x:Key="add_ip_time_arrive">Время прибытия</v:String>
@@ -118,5 +129,13 @@
     <v:String x:Key="s_to">Куда</v:String>
     <v:String x:Key="s_date">Выберите дату поездки</v:String>
     <v:String x:Key="s_but">Найти рейсы</v:String>
-  
+    
+    <!-- Search UserControl -->
+    <v:String x:Key="fr_cost">Цена</v:String>
+    <v:String x:Key="fr_next">Выбрать</v:String>
+    <v:String x:Key="fr_def">Дополнительно</v:String>
+    <v:String x:Key="fr_intermediate_points">Промежуточные пункты</v:String>
+    <v:String x:Key="fr_transporter">Перевозчик: </v:String>
+    <v:String x:Key="fr_bus">Автобус: </v:String>
+    
 </ResourceDictionary>

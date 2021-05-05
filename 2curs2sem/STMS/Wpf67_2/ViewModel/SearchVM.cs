@@ -18,7 +18,12 @@ namespace Wpf67.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public string str { get; set; } = "Hello tlen";
+        //  Visibility _findRoute = Visibility.Visible;
+        // public Visibility FindRouteVisibility { get => _findRoute; set { _findRoute = Visibility; OnPropertyChanged();} };
+      
+        DateTime _dateTime;
+        DateTime Date { get => _dateTime; set { _dateTime = value; } }
+       
 
         public DateTime Now { get; set; } = DateTime.Today;
 
@@ -92,5 +97,32 @@ namespace Wpf67.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+
+        private MyCommand loadFindRoutes;
+        public MyCommand LoadFindRoutes
+        {
+            get
+            {
+                return loadFindRoutes = loadFindRoutes ??
+                  new MyCommand(ShowFindRoutesPage, CanLoadFindRoutesPagePage);
+            }
+        }
+        private bool CanLoadFindRoutesPagePage()
+        {
+            return true;
+        }
+        private void ShowFindRoutesPage()
+        {
+            try
+            {
+                if (_selectCityFrom!=null && SelectCityIn!=null && _dateTime != null)
+                    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, _dateTime);
+                else MessageBox.Show("Введите данные");
+            }
+            catch (Exception a) { MessageBox.Show(a.Message + "" + a.StackTrace); }
+        }
+
+
     }
 }

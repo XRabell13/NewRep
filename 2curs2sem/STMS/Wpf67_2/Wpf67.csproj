@@ -123,6 +123,8 @@
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBase\AuthorizationUser.cs" />
+    <Compile Include="Model\ChoiseSeat.cs" />
+    <Compile Include="Model\FindRoute.cs" />
     <Compile Include="DataBase\RegistrationUser.cs" />
     <Compile Include="Model\Bus.cs" />
     <Compile Include="Model\City.cs" />
@@ -136,7 +138,9 @@
     <Compile Include="ViewModel\AdminWindowVM1.cs" />
     <Compile Include="ViewModel\AdminWindowVM.cs" />
     <Compile Include="ViewModel\AuthorizationVM.cs" />
+    <Compile Include="ViewModel\ChoiseSeatVM.cs" />
     <Compile Include="ViewModel\ContactsVM.cs" />
+    <Compile Include="ViewModel\FindRoutesVM.cs" />
     <Compile Include="ViewModel\MenuVM.cs" />
     <Compile Include="ViewModel\MyTripsVM.cs" />
     <Compile Include="ViewModel\NoAuthorizationTripsVM.cs" />
@@ -154,11 +158,14 @@
     <Compile Include="Command\MyCommand.cs" />
     <Compile Include="DataBase\Connect.cs" />
     <Compile Include="DataBase\DataBaseLoad.cs" />
+    <Compile Include="View\ChoiseSeat.xaml.cs">
+      <DependentUpon>ChoiseSeat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Contacts.xaml.cs">
       <DependentUpon>Contacts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\FindReise.xaml.cs">
-      <DependentUpon>FindReise.xaml</DependentUpon>
+    <Compile Include="View\FindRoutes.xaml.cs">
+      <DependentUpon>FindRoutes.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MyTrips.xaml.cs">
       <DependentUpon>MyTrips.xaml</DependentUpon>
@@ -222,11 +229,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ChoiseSeat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Contacts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FindReise.xaml">
+    <Page Include="View\FindRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

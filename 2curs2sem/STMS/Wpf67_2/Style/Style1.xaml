@@ -38,6 +38,39 @@
 
     </Style>
 
+    <Style x:Key="butNext"  TargetType="Button">
+        <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundWhite}" />
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundNormal}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource BorderThicknessButton}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}"/>
+        <Setter Property="Padding" Value="{StaticResource MarginContentButton}"/>
+        <Setter Property="FontSize" Value="22"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+
     <Style x:Key="butDel" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -95,6 +128,19 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
+    <Style x:Key="TextBlockRouteBus" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Margin" Value="10"/>
+     <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="TextBlockRouteBusCost" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+    
+    
     <Style x:Key="ButAddInfoDB" TargetType="Button">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Width" Value="100"/>
@@ -102,11 +148,24 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
-    
-    
+
+
     <Style x:Key="ComboBoxInfoBD" TargetType="ComboBox">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Width" Value="650"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
+
+    
+    <Style x:Key="ListBoxСhoiseSeat" TargetType="ListBox">
+        <!-- Rest of the style -->
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

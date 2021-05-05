@@ -7,6 +7,25 @@ using Wpf67.Model;
 
 namespace Wpf67.DataBase
 {
+    /*
+      select *
+   from route_bus 
+   join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
+   and route_bus.timetable like '%1%'
+   and route_bus.name_route like '%Минск%' 
+   join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Радошковичи%' 
+   join bus on route_bus.id_bus = bus.state_number 
+   join transporters on transporters.id_transporter = bus.id_transporter
+ 
+    select *
+   from route_bus 
+   join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
+   and route_bus.timetable like '%1%'
+   and route_bus.name_route like '%Минск АВ-Центральный%' 
+   join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Радошковичи%' 
+   join bus on route_bus.id_bus = bus.state_number 
+   join transporters on transporters.id_transporter = bus.id_transporter
+     */
     class DataBaseLoad : Connect
     {
         public bool AddCities(string name_cities)
@@ -21,6 +40,28 @@ namespace Wpf67.DataBase
                 Close();
                 return true;
 
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка загрузки");
+                return false;
+            }
+        }
+
+        public bool AddRouteBus(string name_city_begin, string name_city_end, DateTime date)
+        {
+            try
+            {/*
+                string sql1 = "INSERT INTO cities(`name_city`) VALUES(@city); ";
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@city", name_cities);
+                Open();
+                myCommand.ExecuteNonQuery();
+                Close();*/
+
+
+                return true;
+                
             }
             catch
             {
@@ -308,9 +349,56 @@ namespace Wpf67.DataBase
 
             Close();
         }
-        #endregion 
+        #endregion
 
         #region GetTables
+        public List<FindRoute> GetFindRoutes(string bc, string ec, DateTime date)
+        {
+           List<FindRoute> findRoutes = new List<FindRoute>();
+            if (chekInternet.IsConnected())
+            {
+                Open();
+                try
+                {
+                    if (status)
+                    {
+
+                        //Convert.ToString(ip.cost).Replace(",", ".")
+                        string sql1 = "select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost" +
+                            " from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus" +
+                            " and route_bus.timetable like '%" + Convert.ToInt32(date.DayOfWeek) + "%' and route_bus.name_route like '%" + bc + "%'" +
+                            "join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%" + ec + "%'" +
+                            "join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter";
+                        MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                        MySqlDataReader reader;
+
+                        reader = myCommand.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            findRoutes.Add(new FindRoute(Convert.ToInt32(reader[0]), bc, ec, reader[1].ToString().Remove(5, 3),
+                                reader[2].ToString(), reader[3].ToString(), reader[4].ToString().Remove(5, 3), Convert.ToDecimal(reader[5])));
+
+                        }
+                        //    MessageBox.Show(reader[4].ToString() + " " );
+                        Close();
+                        reader.Close();
+                        // MessageBox.Show(findRoutes[0].cost.ToString());
+                        return findRoutes;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Не удалось найти рейсы. Пожалкйста, попробуйте позже.");
+                        Close();
+                        return null;
+                    }
+                }
+                catch (Exception a) { MessageBox.Show(a.Message + " " + a.StackTrace); }
+            }
+            else MessageBox.Show("Проверьте подключение к интернету");
+            return new List<FindRoute>();
+        }
+
         public ObservableCollection<User> GetUsers()
         {
             ObservableCollection<User> users = new ObservableCollection<User>();

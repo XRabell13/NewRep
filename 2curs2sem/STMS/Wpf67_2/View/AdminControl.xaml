@@ -171,6 +171,16 @@
                                 <TextBox Style="{DynamicResource TextBoxInfoBD}" ></TextBox>
                                 <TextBlock Text="{DynamicResource add_routebus_bus}"/>
                                 <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Buses}" SelectedItem="{Binding SelectBuses}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource add_routebus_timetable}"/>
+                                <StackPanel x:Name="stackPanel">
+                                    <CheckBox x:Name="checkBox1" Height="20" Content="{DynamicResource add_monday}" />
+                                    <CheckBox x:Name="checkBox2" IsThreeState="True" Height="20" Content="{DynamicResource add_tuesday}"/>
+                                    <CheckBox x:Name="checkBox3" IsThreeState="True" Height="20" Content="{DynamicResource add_wednesday}"/>
+                                    <CheckBox x:Name="checkBox4" IsThreeState="True" Height="20" Content="{DynamicResource add_thursday}"/>
+                                    <CheckBox x:Name="checkBox5" IsThreeState="True" Height="20" Content="{DynamicResource add_friday}"/>
+                                    <CheckBox x:Name="checkBox6" IsThreeState="True" Height="20" Content="{DynamicResource add_saturday}"/>
+                                    <CheckBox x:Name="checkBox7" IsThreeState="True" Height="20" Content="{DynamicResource add_sunday}"/>
+                                </StackPanel>
                                 <TextBlock Text="{DynamicResource add_routebus_time_departure}"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Style="{DynamicResource TextBoxTime}" SelectionStart="10" ></TextBox>
