@@ -43,29 +43,57 @@ namespace Wpf67.DataBase
             }
             catch
             {
-                MessageBox.Show("Ошибка загрузки");
+                MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
 
-        public bool AddRouteBus(string name_city_begin, string name_city_end, DateTime date)
+        public bool AddRouteBus(string name_route, int id_bus, string time_departure, string timetable, int id_departure_point, int id_end_city)
         {
             try
-            {/*
-                string sql1 = "INSERT INTO cities(`name_city`) VALUES(@city); ";
+            {
+               
+                string sql1 = "INSERT INTO `route_bus` (`name_route`, `id_bus`, `time_departure`, `timetable`, `id_departure_point`, `id_end_city`) "+
+                    "VALUES ('"+name_route+"', '"+id_bus+"', '"+time_departure+"', '"+timetable+"', '"+id_departure_point+"', '"+id_end_city+"'); ";
+                MessageBox.Show(sql1);
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-                myCommand.Parameters.AddWithValue("@city", name_cities);
+             //   myCommand.Parameters.AddWithValue(" @name_city_begin", name_route);
                 Open();
                 myCommand.ExecuteNonQuery();
-                Close();*/
-
-
+                Close();
                 return true;
                 
             }
-            catch
+            catch(Exception a)
             {
-                MessageBox.Show("Ошибка загрузки");
+                MessageBox.Show(a.Message +"\n"+ a.StackTrace);
+             //   MessageBox.Show("Ошибка добавления данных");
+                return false;
+            }
+        }
+
+        public bool AddTransporter(string named_transporter, string address, string telephone)
+        {
+            try
+            {
+
+                string sql1 = "INSERT INTO `transporters` (`named`, `adress`, `telephone`)"+
+                    " VALUES (@name_route, @address, @tel); ";
+                MessageBox.Show(sql1);
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@name_route", named_transporter);
+                myCommand.Parameters.AddWithValue("@address", address);
+                myCommand.Parameters.AddWithValue("@tel", telephone);
+                Open();
+                myCommand.ExecuteNonQuery();
+                Close();
+                return true;
+
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                //   MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
@@ -167,7 +195,7 @@ namespace Wpf67.DataBase
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка  \n " + ex.Message);
+                    MessageBox.Show("Ошибка:  \n " + ex.Message);
                 }
             }
             Close();
@@ -488,13 +516,14 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-                string sql1 = "SELECT * from bus;";
+                string sql1 = "SELECT bus.state_number, bus.id_transporter, bus.model, bus.count_seats,"+
+                    " transporters.named from bus join transporters on bus.id_transporter = transporters.id_transporter ;";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
                     buses.Add(new Bus(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
-                        reader[2].ToString(), Convert.ToInt32(reader[3].ToString())));
+                        reader[2].ToString(), Convert.ToInt32(reader[3].ToString()), reader[4].ToString()));
                 Close();
                 reader.Close();
                 return buses;
@@ -513,15 +542,18 @@ namespace Wpf67.DataBase
             ObservableCollection<IntermediatePoint> iPoints = new ObservableCollection<IntermediatePoint>();
             Open();
             if (status)
-            {
-                string sql1 = "SELECT * from intermediate_point;";
+            {//SELECT intermediate_point.id_intermediate_point, intermediate_point.id_city, intermediate_point.id_route_bus, intermediate_point.time_arrive, intermediate_point.cost, cities.name_city, route_bus.name_route from intermediate_point join cities on intermediate_point.id_city=cities.id_city join route_bus on intermediate_point.id_route_bus=route_bus.id_departure_point ;
+                string sql1 = "SELECT intermediate_point.id_intermediate_point, intermediate_point.id_city,"+
+                    " intermediate_point.id_route_bus, intermediate_point.time_arrive, intermediate_point.cost, cities.name_city, "+
+                    "route_bus.name_route from intermediate_point join cities on intermediate_point.id_city=cities.id_city join route_bus on"+
+                    " intermediate_point.id_route_bus=route_bus.id_route;";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
 
                 while (reader.Read())
                     iPoints.Add(new IntermediatePoint(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
-                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(), Convert.ToDecimal(reader[4])));
+                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(), Convert.ToDecimal(reader[4]), reader[5].ToString(), reader[6].ToString()));
 
                 Close();
                 reader.Close();
@@ -538,19 +570,48 @@ namespace Wpf67.DataBase
         public ObservableCollection<RouteBus> GetRouteBuses()
         {
             ObservableCollection<RouteBus> routeBuses = new ObservableCollection<RouteBus>();
-            Open();
+            
+                Open();
             if (status)
             {
-                string sql1 = "SELECT * from route_bus;";
-                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-                MySqlDataReader reader;
-                reader = myCommand.ExecuteReader();
-                while (reader.Read())
-                    routeBuses.Add(new RouteBus(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
-                        Convert.ToInt32(reader[2].ToString()), reader[3].ToString(),
-                        reader[4].ToString(), Convert.ToInt32(reader[5].ToString()), Convert.ToInt32(reader[6].ToString())));
-                Close();
-                reader.Close();
+                try
+                {
+                    //select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city, ci
+                    //select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city
+                    string sql1 = "select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, " +
+                    "route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from" +
+                    " route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city;";
+                    string sql2 = "select cities.name_city from cities join route_bus on cities.id_city=route_bus.id_end_city;";
+                    int i = 0;
+                    List<string> endCities = new List<string>();
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn),
+                        myCommand1 = new MySqlCommand(sql2, conn);
+
+                    MySqlDataReader reader, reader1;
+
+                    reader = myCommand.ExecuteReader();
+                    while (reader.Read())
+                      routeBuses.Add(new RouteBus(Convert.ToInt32(reader[0].ToString()), reader[1].ToString(),
+                           Convert.ToInt32(reader[2].ToString()), reader[3].ToString(),
+                           reader[4].ToString(), Convert.ToInt32(reader[5].ToString()), Convert.ToInt32(reader[6].ToString()), reader[7].ToString(),
+                           reader[8].ToString(), null));
+                  
+                    reader.Close();
+
+                    reader1 = myCommand1.ExecuteReader();
+                    while (reader1.Read())
+                        endCities.Add(reader1[0].ToString());
+                    foreach (var rb in routeBuses)
+                    {
+                        rb.InsertEndCity(endCities[i]);
+                        i++;
+                    }
+
+                    Close();
+                    reader1.Close();
+                }
+                catch (Exception a) { MessageBox.Show(a.Message + "\n"+a.StackTrace); }
+
                 return routeBuses;
             }
             else

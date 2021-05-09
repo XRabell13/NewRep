@@ -15,6 +15,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        <ScrollViewer>
         <ListBox HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0" Name="FindRouteListBox" ItemsSource="{Binding FindRoutes}" SelectedItem="{Binding SelectRoute}" Background="WhiteSmoke" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -31,20 +32,24 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                      
-                        <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="0" Text="{Binding BeginCity}"  />
-                        <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="1" Text="{Binding EndCity}" />
-                        <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="2" Text="{DynamicResource fr_cost}" />
-                        <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}" />
+                            <StackPanel>
+                                
+                                
+                            </StackPanel>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource fr_from}" Grid.Row="0" Grid.Column="0"> <LineBreak/><TextBlock Text="     "/>
+                                    <TextBlock  Text="{Binding BeginCity}"  /></TextBlock>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource fr_in}" Grid.Row="0" Grid.Column="1" ><LineBreak/><TextBlock Text="       "/><TextBlock Text="{Binding EndCity}" /></TextBlock>
+                                <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="2" Text="{DynamicResource fr_cost}" />
+                            <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}"><TextBlock Text=" Br"/></TextBlock>
 
-                        <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="0" Text="{Binding BeginTime}"  />
+                            <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="0" Text="{Binding BeginTime}"  />
                         <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="1" Text="{Binding EndTime}" />
 
-                            <Expander  Header="{DynamicResource fr_def}"  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+                            <Expander  Header="{DynamicResource fr_def}" FontSize="16" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
                                 <StackPanel  >
-                                    <TextBlock Margin="10,0" Text="{DynamicResource fr_transporter}">  <TextBlock  Text="{Binding NamedTransporter}"/></TextBlock>
+                                        <TextBlock Margin="10,0" Text="{DynamicResource fr_transporter}"><TextBlock Text="      "/><TextBlock  Text="{Binding NamedTransporter}"/></TextBlock>
 
-                                    <TextBlock Margin="10,0" Text="{DynamicResource fr_bus}">  <TextBlock  Text="{Binding ModelBus}"/></TextBlock>
+                                        <TextBlock Margin="10,0" Text="{DynamicResource fr_bus}"> <TextBlock Text="      "/><TextBlock  Text="{Binding ModelBus}"/></TextBlock>
                                   
                                 </StackPanel>
                             </Expander>
@@ -53,6 +58,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        </ScrollViewer>
         <StackPanel Grid.Column="0" Grid.Row='1' Background="WhiteSmoke">
             <Button Style="{DynamicResource butNext}" Content="{DynamicResource fr_next}" Command="{Binding NextPage}"/>
 

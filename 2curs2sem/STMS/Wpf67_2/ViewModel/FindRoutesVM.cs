@@ -61,6 +61,7 @@ namespace Wpf67.ViewModel
         {
             if (_selectRoute != null)
                 MessageBox.Show(_selectRoute.ToString());
+            //    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, _dateTime);
             else MessageBox.Show("Выберите рейс");
         }
     }

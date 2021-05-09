@@ -21,10 +21,6 @@ namespace Wpf67.ViewModel
         //  Visibility _findRoute = Visibility.Visible;
         // public Visibility FindRouteVisibility { get => _findRoute; set { _findRoute = Visibility; OnPropertyChanged();} };
       
-        DateTime _dateTime;
-        DateTime Date { get => _dateTime; set { _dateTime = value; } }
-       
-
         public DateTime Now { get; set; } = DateTime.Today;
 
         public DateTime EndDate { get; set; } = DateTime.Today.AddDays(7);
@@ -116,8 +112,11 @@ namespace Wpf67.ViewModel
         {
             try
             {
-                if (_selectCityFrom!=null && SelectCityIn!=null && _dateTime != null)
-                    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, _dateTime);
+                if (_selectCityFrom != null && SelectCityIn != null)
+                {
+                    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, Now);
+                    MessageBox.Show(Now.ToString());
+                }
                 else MessageBox.Show("Введите данные");
             }
             catch (Exception a) { MessageBox.Show(a.Message + "" + a.StackTrace); }

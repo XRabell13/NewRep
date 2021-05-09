@@ -70,7 +70,7 @@
 
     <v:String x:Key="add_routebus_name">Наименование рейса</v:String>
     <v:String x:Key="add_routebus_bus">Автобус</v:String>
-    <v:String x:Key="add_routebus_time_departure">Время отправления</v:String>
+    <v:String x:Key="add_routebus_time_departure">Время отправления(ч:м)</v:String>
     <v:String x:Key="add_routebus_time_hour">Час</v:String>
     <v:String x:Key="add_routebus_time_minute">Минута</v:String>
     <v:String x:Key="add_routebus_timetable">График</v:String>
@@ -137,5 +137,25 @@
     <v:String x:Key="fr_intermediate_points">Промежуточные пункты</v:String>
     <v:String x:Key="fr_transporter">Перевозчик: </v:String>
     <v:String x:Key="fr_bus">Автобус: </v:String>
-    
+
+    <v:String x:Key="fr_from"> Откуда: </v:String>
+    <v:String x:Key="fr_in"> Куда: </v:String>
+
+    <!-- DataGrid -->
+    <v:String x:Key="id_city">ID</v:String>
+    <v:String x:Key="id_intermediate_point">ID</v:String>
+    <v:String x:Key="id_transporter">ID</v:String>
+    <v:String x:Key="id_bus">ID</v:String>
+    <v:String x:Key="id_user">ID</v:String>
+    <v:String x:Key="id_route_bus">ID</v:String>
+    <v:String x:Key="id_ticket">ID</v:String>
+<!--
+    <v:String x:Key="city_name">ID</v:String>
+    <v:String x:Key="intermediate_point">ID</v:String>
+    <v:String x:Key="id_transporter">ID</v:String>
+    <v:String x:Key="id_bus">ID</v:String>
+    <v:String x:Key="id_user">ID</v:String>
+    <v:String x:Key="id_route_bus">ID</v:String>
+    <v:String x:Key="id_ticket">ID</v:String>-->
+
 </ResourceDictionary>

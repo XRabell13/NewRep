@@ -21,7 +21,54 @@ namespace Wpf67.Model
         #endregion
 
         int _id_route, _id_bus, _id_departure_point, _id_end_city;
-        string _name_route, _time_departure, _timetable;
+        string _name_route, _time_departure, _timetable, _name_end_city, _name_bus, _name_departure_point;
+
+        public string NameBus
+        {
+            get
+            {
+                return _name_bus;
+            }
+            set
+            {
+                if (value == _name_bus)
+                    return;
+
+                _name_bus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string NameDeparturePoint
+        {
+            get
+            {
+                return _name_departure_point;
+            }
+            set
+            {
+                if (value == _name_departure_point)
+                    return;
+
+                _name_departure_point = value;
+                OnPropertyChanged();
+            }
+        }
+        public string NameEndCity
+        {
+            get
+            {
+                return _name_end_city;
+            }
+            set
+            {
+                if (value == _name_end_city)
+                    return;
+
+                _name_end_city = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int id_route
         {
@@ -129,7 +176,8 @@ namespace Wpf67.Model
             }
         }
 
-        public RouteBus(int id_route, string name_route, int id_b, string time_departure, string timetable, int id_departure_point, int id_end_city)
+        public RouteBus(int id_route, string name_route, int id_b, string time_departure, string timetable, int id_departure_point, int id_end_city, 
+             string _name_bus, string _name_departure_point,string _name_end_city)
         {
             this.id_bus = id_b;
             this.id_route = id_route;
@@ -138,7 +186,14 @@ namespace Wpf67.Model
             this.timetable = timetable;
             this.time_departure = time_departure;
             this.name_route = name_route;
+            this._name_departure_point = _name_end_city;
+            this._name_bus = _name_bus;
+            this._name_departure_point = _name_departure_point;
         }
+
+        public void InsertEndCity(string end_city)=>
+            _name_end_city = end_city;
+        
 
         public override string ToString()
         {

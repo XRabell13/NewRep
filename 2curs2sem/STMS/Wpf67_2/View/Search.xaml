@@ -42,7 +42,7 @@
                 <ComboBox x:Name="cb_end_city" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCityIn}" DisplayMemberPath="name_city" IsEditable="True" />
                 <TextBlock Text="{DynamicResource s_date}" />
                 <Viewbox HorizontalAlignment="Center" Width="150">
-                    <DatePicker x:Name="dpDate" Focusable="False" DisplayDateStart="{Binding Now}" SelectedDate="{Binding Now}" />
+                    <DatePicker x:Name="dpDate" Focusable="False" DisplayDateStart="{Binding Now}" SelectedDate="{Binding Now, Mode=TwoWay}" />
                 </Viewbox>
 
                 <Button Content="{DynamicResource s_but}" Command="{Binding LoadFindRoutes}" Margin="0,10,0,0" />

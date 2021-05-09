@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Wpf67.Model
 {
@@ -20,7 +21,7 @@ namespace Wpf67.Model
         }
         #endregion
         int _id_bus, _id_tr, _count;
-        string _model;
+        string _model, _named_transporter;
 
         public int id_bus
         {
@@ -46,6 +47,18 @@ namespace Wpf67.Model
                 OnPropertyChanged();
             }
         }
+        public string NamedTransporter
+        {
+            get => _named_transporter;
+            set
+            {
+                if (value == _named_transporter)
+                    return;
+
+                _named_transporter = value;
+                OnPropertyChanged();
+            }
+        }
         public string model
         {
             get => _model;
@@ -63,19 +76,24 @@ namespace Wpf67.Model
             get => _count;
             set
             {
+               
                 if (value == _count)
                     return;
-
-                _count = value;
-                OnPropertyChanged();
+                if (value > 0 && value < 101)
+                {
+                    _count = value;
+                    OnPropertyChanged();
+                }
+                else MessageBox.Show("Количество мест должно находится в диапазоне от 1 до 100 включительно");
             }
         }
-        public Bus(int id_bus, int id_transporter, string model, int count_seats)
+        public Bus(int id_bus, int id_transporter, string model, int count_seats, string named_tr)
         {
-            this.id_bus = id_bus;
-            this.id_transporter = id_transporter;
-            this.model = model;
-            this.count_seats = count_seats;
+            _id_bus = id_bus;
+            _id_tr= id_transporter;
+            _model = model;
+            _count = count_seats;
+            _named_transporter = named_tr;
         }
 
         public override string ToString()

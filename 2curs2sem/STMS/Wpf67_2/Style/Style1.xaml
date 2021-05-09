@@ -124,7 +124,7 @@
 
     <Style x:Key="TextBoxTime" TargetType="TextBox">
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Width" Value="40"/>
+        <Setter Property="Width" Value="650"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
@@ -166,6 +166,13 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="DataNoChangeDB" TargetType="DataGridCell">
+        <Setter Property="Background" Value="#f7f7f7"></Setter>
+        <Setter Property="Foreground" Value="Gray"></Setter>
+        
+        <!---e6e6e6-->
     </Style>
 
 </ResourceDictionary>

@@ -8,13 +8,13 @@ namespace Wpf67.Model
 {
     class ChoiseSeat
     {
-        string _beginCity, _endCity;
+        string _id_user_tickets, _id_user, _id_ticket;
         string _beginTime, _endTime;
 
-        public string BeginCity { get => _beginCity; set { _beginCity = value; } }
-        public string EndCity { get => _endCity; set { _endCity = value; } }
-        public string BeginTime { get => _beginTime; set { _beginTime = value; } }
-        public string EndTime { get => _endTime; set { _endTime = value; } }
+        public string IdUserTicket { get => _id_user_tickets; set { _id_user_tickets = value; } }
+       //public string EndCity { get => _endCity; set { _endCity = value; } }
+        public string IdUser { get => _beginTime; set { _beginTime = value; } }
+        public string IdTicket { get => _endTime; set { _endTime = value; } }
 
 
         decimal _cost;
@@ -80,8 +80,8 @@ namespace Wpf67.Model
             _model_bus = modelBus;
             _named_tr = namedTransporter;
             _cost = cost;
-            _beginCity = bcity;
-            _endCity = ecity;
+            _id_user_tickets = bcity;
+         //   _endCity = ecity;
             _beginTime = btime;
             _endTime = etime;
 

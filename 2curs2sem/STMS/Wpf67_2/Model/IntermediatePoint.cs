@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Wpf67.Model
@@ -22,8 +23,8 @@ namespace Wpf67.Model
 
         int _id_intermediate_point, _id_city, _id_route_bus;
         decimal _cost;
-        string _time_arrive;
-
+        string _time_arrive, _name_city, _name_route_bus;
+        string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";
 
         public int id_intermediate_point
         {
@@ -80,7 +81,7 @@ namespace Wpf67.Model
             {
                 if (value == _cost)
                     return;
-
+                if (value >= 100 || value<=0) return;
                 _cost = value;
                 OnPropertyChanged();
             }
@@ -95,18 +96,58 @@ namespace Wpf67.Model
             {
                 if (value == _time_arrive)
                     return;
-
+               
+                if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase))
+                {
+                    _time_arrive = value;
+                }
+                else
+                {
+                    Console.WriteLine("Некорректное время");
+                }
                 _time_arrive = value;
                 OnPropertyChanged();
             }
         }
-        public IntermediatePoint(int id_intermediate_point, int id_city, int id_route_bus, string time_arrive, decimal cost)
+        public string NameCity
+        {
+            get
+            {
+                return _name_city;
+            }
+            set
+            {
+                if (value == _name_city)
+                    return;
+
+                _name_city = value;
+                OnPropertyChanged();
+            }
+        }
+        public string NameRouteBus
+        {
+            get
+            {
+                return _name_route_bus;
+            }
+            set
+            {
+                if (value == _name_route_bus)
+                    return;
+
+                _name_route_bus = value;
+                OnPropertyChanged();
+            }
+        }
+        public IntermediatePoint(int id_intermediate_point, int id_city, int id_route_bus, string time_arrive, decimal cost, string name_city, string name_route_bus)
         {
             this.id_intermediate_point = id_intermediate_point;
             this.id_city = id_city;
             this.id_route_bus = id_route_bus;
             this.cost = cost;
             this.time_arrive = time_arrive;
+            this._name_city = name_city;
+            this._name_route_bus = name_route_bus;
         }
 
         public override string ToString()

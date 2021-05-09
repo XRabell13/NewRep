@@ -25,8 +25,7 @@ namespace Wpf67.ViewModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        public string Svoi { get; set; } = "СВЯЗАНО";
-
+      
         DataBaseLoad baseLoad = new DataBaseLoad();
 
         private User _selectUser;
@@ -76,6 +75,7 @@ namespace Wpf67.ViewModel
         public Bus SelectBus { get => _selectBus; set { _selectBus = value; } }
 
         private ObservableCollection<Bus> _buses = new ObservableCollection<Bus>();
+     
         public ObservableCollection<Bus> Buses
         {
             get => _buses;
@@ -145,12 +145,27 @@ namespace Wpf67.ViewModel
         List<User> usersUpdate = new List<User>();
         List<UserInfo> usersInfoUpdate = new List<UserInfo>();
         List<City> citiesUpdate = new List<City>();
+        List<City> citiesValidate = new List<City>();
         List<Bus> busesUpdate = new List<Bus>();
+        List<Bus> busesValidate = new List<Bus>();
         List<IntermediatePoint> intermediatePointsUpdate = new List<IntermediatePoint>();
+        List<IntermediatePoint> intermediatePointsValidate = new List<IntermediatePoint>();
         List<RouteBus> routeBusesUpdate = new List<RouteBus>();
+        List<RouteBus> routeBusesValidate = new List<RouteBus>();
         List<Ticket> ticketsUpdate = new List<Ticket>();
         List<Transporter> transportersUpdate = new List<Transporter>();
-     
+
+        private Visibility _visibility = Visibility.Collapsed;
+        public Visibility VisibilityProgressBar
+        {
+            get => _visibility;
+            set
+            {
+                _visibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         public AdminWindowVM()
         {
            
@@ -172,17 +187,26 @@ namespace Wpf67.ViewModel
         }
         void LoadDataBase()
         {
+        
                ClearAllCollection();
                 foreach (var u in baseLoad.GetUsers())
                 {
-                
                     _users.Add(u);
                 }
                 foreach (var u in baseLoad.GetBuses())
                 {
                     _buses.Add(u);
+               
                 }
-                foreach (var u in baseLoad.GetCities())
+              foreach (var u in baseLoad.GetBuses())
+            {
+                busesValidate.Add(u);
+            }
+            foreach (var u in baseLoad.GetCities())
+            {
+               citiesValidate.Add(u);
+            }
+            foreach (var u in baseLoad.GetCities())
                 {
 
                   _cities.Add(u);
@@ -191,11 +215,19 @@ namespace Wpf67.ViewModel
                 {
                     _ipoints.Add(u);
                 }
-                foreach (var u in baseLoad.GetRouteBuses())
+            foreach (var u in baseLoad.GetInterPoints())
+            {
+                intermediatePointsValidate.Add(u);
+            }
+            foreach (var u in baseLoad.GetRouteBuses())
                 {
                     _routeBuses.Add(u);
                 }
-                foreach (var u in baseLoad.GetTickets())
+            foreach (var u in baseLoad.GetRouteBuses())
+            {
+                routeBusesValidate.Add(u);
+            }
+            foreach (var u in baseLoad.GetTickets())
                 {
                     _tickets.Add(u);
                 }
@@ -207,7 +239,7 @@ namespace Wpf67.ViewModel
                 {
                     _usersInfo.Add(u);
                 }
-            
+         
         }
         void ClearAllCollection()
         {
@@ -219,6 +251,10 @@ namespace Wpf67.ViewModel
             _tickets.Clear();
             _usersInfo.Clear();
             _transporter.Clear();
+            busesValidate.Clear();
+            citiesValidate.Clear();
+            intermediatePointsValidate.Clear();
+            routeBusesValidate.Clear();
         }
 
       
@@ -228,6 +264,7 @@ namespace Wpf67.ViewModel
         {
             get
             {
+               
                 return butLoad = butLoad ??
                   new MyCommand(Load, CanLoad);
             }
@@ -239,6 +276,7 @@ namespace Wpf67.ViewModel
         }
         private void Load()
         {
+            VisibilityProgressBar = Visibility.Visible;
             if (usersUpdate.Count > 0 || usersInfoUpdate.Count > 0 || citiesUpdate.Count > 0 ||
                   busesUpdate.Count > 0 || transportersUpdate.Count > 0 || intermediatePointsUpdate.Count > 0
                   || ticketsUpdate.Count > 0 || routeBusesUpdate.Count > 0)
@@ -283,7 +321,7 @@ namespace Wpf67.ViewModel
             }
             else
                 MessageBox.Show("Изменений не обнаружено.");
-
+            VisibilityProgressBar = Visibility.Collapsed;
         }
 
         #region Delete
@@ -509,6 +547,12 @@ namespace Wpf67.ViewModel
             if (sender as City != null)
             {
                 City row = sender as City;
+                foreach (City c in _cities)
+                    if (c.name_city == row.name_city)
+                    {
+                        MessageBox.Show(row.name_city + " уже существует под id = " + row.id_city);
+                        return;
+                    }
                 citiesUpdate.Add(row);
             }
         }
@@ -537,7 +581,49 @@ namespace Wpf67.ViewModel
             if (sender as Bus != null)
             {
                 Bus row = sender as Bus;
-                busesUpdate.Add(row);
+                int i = 0, j = 0;
+                bool isError =true;
+                foreach (var rb in _transporter)
+                {
+                    if (rb.id == row.id_transporter)
+                        foreach (var ip in _buses)
+                        {
+                            if (ip.id_bus == row.id_bus)
+                            {
+                                _buses[j].NamedTransporter = rb.named;
+                                isError = false;
+                                break;
+                            }
+                            j++;
+                        }
+                    i++;
+                }
+
+                if (!isError)
+                {
+                    busesUpdate.Add(row);
+                }
+                else 
+                { 
+                    MessageBox.Show("Неверный ID перевозчика");
+                        int k = 0;
+                        foreach (var b in busesValidate)
+                            if (b.id_bus == row.id_bus)
+                            {
+                                foreach (var bus in _buses) 
+                                {
+                                    if (bus.id_bus == row.id_bus)
+                                    {
+                                        _buses[k].id_transporter = b.id_transporter;
+                                    }
+                                    k++;
+                                }
+                                break;
+                            }
+                         
+                  //  MessageBox.Show(_buses[0].NamedTransporter);
+                   
+                }
             }
         }
 
@@ -590,12 +676,101 @@ namespace Wpf67.ViewModel
         //objects is changed.
         private void ipoints_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+
             if (sender as IntermediatePoint != null)
             {
                 IntermediatePoint row = sender as IntermediatePoint;
-                intermediatePointsUpdate.Add(row);
+                int i = 0, j = 0;
+                bool isErrorCity = true, isErrorRouteBus=true;
+
+                foreach (var city in _cities)
+                {
+                    if (city.id_city == row.id_city)
+                        foreach (var ip in _ipoints)
+                        {
+                            if (ip.id_city == row.id_city)
+                            {
+                                _ipoints[j].NameCity = city.name_city;
+                                isErrorCity = false;
+                                break;
+                            }
+                            j++;
+                        }
+                    i++;
+                }
+              int  ii = 0, jj = 0;
+                foreach (var rb in _routeBuses)
+                {
+
+                   MessageBox.Show("rb click");
+                    if (rb.id_route == row.id_route_bus)
+                        foreach (var ip in _ipoints)
+                        {
+                            if (ip.id_route_bus == row.id_route_bus)
+                            {
+                                MessageBox.Show("NameRoute: "+_ipoints[jj]+"\n\n"+rb.name_route);
+                                _ipoints[jj].NameRouteBus = rb.name_route;
+                                isErrorRouteBus = false;
+                                break;
+                            }
+                            jj++;
+                        }
+                    ii++;
+                }
+
+               // MessageBox.Show(isErrorCity.ToString() +"\n"+isErrorRouteBus);
+                if (!isErrorCity && !isErrorRouteBus)
+                {
+                   intermediatePointsUpdate.Add(row);
+                }
+                else
+                {
+                    if (!isErrorCity)
+                    {
+                        MessageBox.Show("Неверный ID города");
+                      //  MessageBox.Show("Город валидации" + intermediatePointsValidate[0].id_route_bus.ToString());
+                        int k = 0;
+                        foreach (var b in intermediatePointsValidate)
+                            if (b.id_intermediate_point == row.id_intermediate_point)
+                            {
+                                foreach (var ipoint in _ipoints)
+                                {
+                                    if (ipoint.id_intermediate_point == row.id_intermediate_point)
+                                    {
+                                        _ipoints[k].id_city = b.id_city;
+                                      
+                                    }
+                                    k++;
+                                }
+                                break;
+                            }
+                    }
+
+                    if (!isErrorRouteBus)
+                    {
+                        MessageBox.Show("Неверный ID рейса");
+                        int k = 0;
+                        foreach (var b in intermediatePointsValidate)
+                            if (b.id_intermediate_point == row.id_intermediate_point)
+                            {
+                                foreach (var ipoint in _ipoints)
+                                {
+                                    if (ipoint.id_intermediate_point == row.id_intermediate_point)
+                                    {
+                                        _ipoints[k].id_route_bus = b.id_route_bus;
+                                        MessageBox.Show("ID route: " + b.id_route_bus);
+                                    }
+                                    k++;
+                                }
+                                break;
+                            }
+                    }
+                }
+
+
             }
-        }
+                
+                }
 
         private void RouteBus_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -618,9 +793,18 @@ namespace Wpf67.ViewModel
         //objects is changed.
         private void routeBus_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+          //  int i = 0;
             if (sender as RouteBus != null)
             {
                 RouteBus row = sender as RouteBus;
+          //      foreach (var rb in _routeBuses)
+           //     {
+           //         if (rb.id_route == row.id_route)
+           //         {
+           //             _routeBuses[i].name_route = _routeBuses
+            //        }
+            //        i++;
+            //    }
                 routeBusesUpdate.Add(row);
             }
         }
