@@ -15,33 +15,66 @@
         
         
     </UserControl.Resources>
-    <Grid>
-        <DataGrid x:Name="dg_users_info" AutoGenerateColumns="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Рейс" Binding="{Binding id_user}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Откуда" Binding="{Binding passport}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Куда" Binding="{Binding email, Mode=TwoWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Дата отправления" Binding="{Binding telephone, Mode=TwoWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Время отправления" Binding="{Binding telephone, Mode=TwoWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Номер места" Binding="{Binding telephone, Mode=TwoWay}" IsReadOnly="True"/>
-               
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Дополнительно"  Margin="0" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer>
 
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Удалить"  Margin="0" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+            <ListBox HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0" Name="FindRouteListBox" ItemsSource="{Binding FindRoutes}" SelectedItem="{Binding SelectRoute}" Background="WhiteSmoke" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Width="auto" Height="20" Background="DarkSlateGray"/>
+                            <Grid ShowGridLines="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel>
 
-            </DataGrid.Columns>
-        </DataGrid>
+
+                                </StackPanel>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource fr_from}" Grid.Row="0" Grid.Column="0"> <LineBreak/><TextBlock Text="     "/>
+                                    <TextBlock  Text="{Binding BeginCity}"  /></TextBlock>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource fr_in}" Grid.Row="0" Grid.Column="1" ><LineBreak/><TextBlock Text="       "/><TextBlock Text="{Binding EndCity}" /></TextBlock>
+                                <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="2" Text="{DynamicResource fr_cost}" />
+                                <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}"><TextBlock Text=" Br"/></TextBlock>
+
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="0" Text="{Binding BeginTime}"  />
+                                <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="1" Text="{Binding EndTime}" />
+
+                                <Expander  Header="{DynamicResource fr_def}" FontSize="16" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" >
+                                    <StackPanel  >
+                                        <TextBlock Margin="10,0" Text="{DynamicResource fr_transporter}"><TextBlock Text="      "/><TextBlock  Text="{Binding NamedTransporter}"/></TextBlock>
+
+                                        <TextBlock Margin="10,0" Text="{DynamicResource fr_bus}"> <TextBlock Text="      "/><TextBlock  Text="{Binding ModelBus}"/></TextBlock>
+
+                                    </StackPanel>
+                                </Expander>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+
+
+        <StackPanel Grid.Column="0" Grid.Row='1' Background="WhiteSmoke">
+            <Button Content="{DynamicResource mt_cancel}" Command="{Binding CancelTrip}" />
+        </StackPanel>
+
+
     </Grid>
 </UserControl>

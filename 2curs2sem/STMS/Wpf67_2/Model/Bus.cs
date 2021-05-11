@@ -76,7 +76,6 @@ namespace Wpf67.Model
             get => _count;
             set
             {
-               
                 if (value == _count)
                     return;
                 if (value > 0 && value < 101)
@@ -98,7 +97,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_bus + " id transporter: " + id_transporter + " model: " + model;
+            return  model +", " +_named_transporter;
         }
     }
 }

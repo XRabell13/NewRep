@@ -197,7 +197,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_route.ToString() + " " + name_route;
+            return  name_route + ", " + _name_bus;
         }
 
 

@@ -21,8 +21,22 @@ namespace Wpf67.Model
         #endregion
         int _id_ticket, _id_route, _num_seat;
         bool _status_seat;
-        string _date_departure;//DateTime
-     
+        string _date_departure, _name_route;//DateTime
+        public string NameRoute
+        {
+            get
+            {
+                return _name_route;
+            }
+            set
+            {
+                if (value == _name_route)
+                    return;
+
+                _name_route = value;
+                OnPropertyChanged();
+            }
+        }
         public int id_ticket
         {
             get
@@ -99,13 +113,14 @@ namespace Wpf67.Model
             }
         }//DateTime
 
-        public Ticket(int id_t, int id_route, string date_departure, int num_seat, bool status_seat)
+        public Ticket(int id_t, int id_route, string date_departure, int num_seat, bool status_seat, string name_route)
         {
             this.id_ticket = id_t;
             this.id_route = id_route;
             this.num_seat = num_seat;
             this.status_seat = status_seat;
             this.date_departure = date_departure;
+            this.NameRoute = name_route;
         }
 
         public override string ToString()

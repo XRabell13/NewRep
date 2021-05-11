@@ -28,8 +28,7 @@
 
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Background="WhiteSmoke">
-            <Button Content="{DynamicResource admin_save}" Command="{Binding ButLoad}" />
-            <ProgressBar Height="20" Margin="10,0" Minimum="0" Maximum="100" Name="pbStatus" IsIndeterminate="True" Visibility="{Binding VisibilityProgressBar, Mode=OneWay}"/>
+            <Button Content="{DynamicResource admin_save}" Command="{Binding ButLoad}"/>
         </StackPanel>
 
         <TabControl Grid.Row="0" Grid.Column="1">
@@ -118,7 +117,7 @@
                         <DataGridTextColumn Header="name bus" Binding="{Binding NameBus, Mode=OneWay}" CellStyle="{DynamicResource DataNoChangeDB}" />
                         <DataGridTextColumn Header="time departure" Binding="{Binding time_departure, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="timetable" Binding="{Binding timetable}"/>
-                        <DataGridTextColumn Header="id departure point" Binding="{Binding id_departure_point}" />
+                        <DataGridTextColumn Header="id departure point" Binding="{Binding id_departure_point, Mode=TwoWay}" />
                         <DataGridTextColumn Header="name departure point" Binding="{Binding NameDeparturePoint, Mode=OneWay}" CellStyle="{DynamicResource DataNoChangeDB}" />
                         
                         <DataGridTextColumn Header="id end city" Binding="{Binding id_end_city, Mode=TwoWay}"/>
@@ -133,6 +132,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="id ticket" Binding="{Binding id_ticket}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}" />
                         <DataGridTextColumn Header="id route" Binding="{Binding id_route, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
+                        <DataGridTextColumn Header="name route" Binding="{Binding NameRoute, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="date departure" Binding="{Binding date_departure, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="number seat" Binding="{Binding num_seat, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="status seat" Binding="{Binding status_seat}" />
@@ -158,12 +158,12 @@
                     <Expander Header="{DynamicResource admin_add_bus}">
                         <StackPanel>
                             <TextBlock Text="{DynamicResource add_tr_named}"/>
-                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Transporters}" SelectedItem="{Binding SelectTransporter}" IsEditable="True"></ComboBox>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Transporters}" SelectedItem="{Binding SelectAddTransporter, Mode=TwoWay}" IsEditable="True"></ComboBox>
                              <TextBlock Text="{DynamicResource add_bus_model}"/>
-                            <TextBox Style="{DynamicResource TextBoxInfoBD}"></TextBox>
-                            <TextBlock Text="{DynamicResource add_bus_count}"/>
-                            <TextBox Style="{DynamicResource TextBoxInfoBD}"></TextBox>
-                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
+                                <TextBox Style="{DynamicResource TextBoxInfoBD}" Text="{Binding ModelBus, Mode=TwoWay}"/>
+                                <TextBlock Text="{DynamicResource add_bus_count}"/>
+                                <TextBox Style="{DynamicResource TextBoxInfoBD}" Text="{Binding CountSeats, Mode=TwoWay}"/>
+                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" Command="{Binding AddBus}"/>
                             </StackPanel>
                     </Expander>
                     <Expander Header="{DynamicResource admin_add_cities}">
@@ -176,9 +176,9 @@
                         <Expander Header="{DynamicResource admin_add_route_bus}">
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource add_routebus_name}"/>
-                                <TextBox x:Name="NameRouteBus" Style="{DynamicResource TextBoxInfoBD}" Text="{Binding NameRouteBus}"/>
+                                <TextBox x:Name="NameRouteBus" Style="{DynamicResource TextBoxInfoBD}" Text="{Binding NameRouteBus, Mode=TwoWay}"/>
                                 <TextBlock  Text="{DynamicResource add_routebus_bus}"/>
-                                <ComboBox  Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Buses}" SelectedItem="{Binding SelectAddBus}" IsEditable="True"></ComboBox>
+                                <ComboBox  Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Buses}" SelectedItem="{Binding SelectAddBus, Mode=TwoWay}" IsEditable="True"></ComboBox>
                                 <TextBlock Text="{DynamicResource add_routebus_timetable}"/>
                                 <StackPanel x:Name="StackPanelDays">
                                     <CheckBox x:Name="checkBox1" IsChecked="{Binding CheckMonday, Mode=TwoWay}" Height="20" Content="{DynamicResource add_monday}" />
@@ -191,7 +191,7 @@
                                 </StackPanel>
                                 <TextBlock Text="{DynamicResource add_routebus_time_departure}"/>
 
-                                <TextBox Style="{DynamicResource TextBoxTime}" Text="{Binding TimeDeparture}"/>
+                                <TextBox Style="{DynamicResource TextBoxTime}" Text="{Binding TimeDeparture, Mode=TwoWay}"/>
 
                                 <TextBlock Text="{DynamicResource add_routebus_departure_point}"/>
                                 <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectBeginCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
@@ -204,16 +204,14 @@
                         <Expander Header="{DynamicResource admin_add_intermediate_point}">
                             <StackPanel>
                                 <TextBlock Text="{DynamicResource add_ip_city}"/>
-                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity}" IsEditable="True"></ComboBox>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
                                 <TextBlock Text="{DynamicResource add_ip_route_bus}"/>
-                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding RouteBuses}" SelectedItem="{Binding SelectRouteBuses}" IsEditable="True"></ComboBox>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding RouteBuses}" SelectedItem="{Binding SelectRouteBuses, Mode=TwoWay}" IsEditable="True"></ComboBox>
                                 <TextBlock Text="{DynamicResource add_ip_time_arrive}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{DynamicResource TextBoxTime}" ></TextBox>
-                                    <TextBlock Text=":"/>
-                                    <TextBox Style="{DynamicResource TextBoxTime}" ></TextBox>
+                                    <TextBox Style="{DynamicResource TextBoxTime}" />
                                 </StackPanel>
-                                <TextBlock Text="{DynamicResource add_ip_cost}"/>
+                                <TextBlock Text="{DynamicResource add_ip_cost}" />
                                 <TextBox Style="{DynamicResource TextBoxInfoBD}" ></TextBox>
                                 <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
                             </StackPanel>

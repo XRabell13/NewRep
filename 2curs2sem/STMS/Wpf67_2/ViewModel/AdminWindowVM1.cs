@@ -13,6 +13,7 @@ using Wpf67.Command;
 using Wpf67.DataBase;
 using Wpf67.Model;
 
+
 namespace Wpf67.ViewModel
 {
     partial class AdminWindowVM
@@ -32,6 +33,9 @@ namespace Wpf67.ViewModel
         private RouteBus _selectRouteBusForIp;
         public RouteBus SelectRouteBusIp { get => _selectRouteBusForIp; set { _selectRouteBusForIp = value; } }
 
+        private Transporter _selectAddTransporter;
+        public Transporter SelectAddTransporter { get => _selectAddTransporter; set { _selectAddTransporter = value; } }
+
         private Bus _selectAddBus;
         public Bus SelectAddBus { get => _selectAddBus; set { _selectAddBus = value; } }
 
@@ -41,20 +45,33 @@ namespace Wpf67.ViewModel
             {
                 string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";
                 
-                    if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase))
-                    {
+                    if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase) || value==null)
                         _time_departure = value;
-                    }
                     else
-                    {
-                        Console.WriteLine("Некорректное время");
-                    }
+                        MessageBox.Show("Некорректное время");
             } 
         }
 
         string _newCity;
-        string _textCompany, _textTelephone, _textAddress;
+        string _textCompany, _textTelephone, _textAddress, _modelBus;
+        int _countSeats;
 
+        public int CountSeats
+        {
+            get => _countSeats;
+            set
+            {
+                _countSeats = value;
+            }
+        }
+        public string ModelBus
+        {
+            get => _modelBus;
+            set
+            {
+                _modelBus = value;
+            }
+        }
         public string TextCompany
         {
             get => _textCompany;
@@ -68,7 +85,12 @@ namespace Wpf67.ViewModel
             get => _textTelephone;
             set
             {
-                _textTelephone = value;
+                string pattern = @"^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$";
+
+                if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase) || value == null)
+                   _textTelephone = value;
+                else
+                    MessageBox.Show("Некорректный телефон");
             }
         }
         public string TextAddress
@@ -92,10 +114,11 @@ namespace Wpf67.ViewModel
             get => _name_route_bus;
             set
             {
-                _name_route_bus = value;//.Replace("'","\"").Replace("`","\"");
+                _name_route_bus = value;
             }
         }
 
+        #region Days
         bool _check_monday;
         public bool CheckMonday
         {
@@ -166,9 +189,21 @@ namespace Wpf67.ViewModel
               
             }
         }
+        #endregion
 
-
-
+        private Visibility _visibility = Visibility.Collapsed;
+        public Visibility VisibilityProgressBar
+        {
+            get => _visibility;
+            set
+            {
+                _visibility = value;
+                OnPropertyChanged();
+            }
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////// COMMANDS ////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         private MyCommand addCity;
@@ -222,10 +257,10 @@ namespace Wpf67.ViewModel
             if (timetable != "" && NameRouteBus!=null && SelectAddBus!=null && TimeDeparture!=null && SelectBeginCity!=null && SelectEndCity!=null)
             {
                 baseLoad.AddRouteBus(NameRouteBus,SelectAddBus.id_bus, TimeDeparture,timetable,SelectBeginCity.id_city, SelectEndCity.id_city);
-                timetable = NameRouteBus  = TimeDeparture = null;
+                NameRouteBus = TimeDeparture = null;
                 SelectBeginCity = SelectEndCity = null;
-                SelectAddBus = null; 
                 LoadDataBase();
+              
             }
             else
                 return;
@@ -253,12 +288,42 @@ namespace Wpf67.ViewModel
                 baseLoad.AddTransporter(TextCompany, TextAddress, TextTelephone);
                 TextTelephone = TextAddress = TextCompany = null;
                 LoadDataBase();
+            
             }
             else
                 return;
 
         }
-        //Сокращения дней недели: пн, вт, ср, чт, пт, сб, вс.
+
+        private MyCommand addBus;
+        public MyCommand AddBus
+        {
+            get
+            {
+                return addBus = addBus ??
+                  new MyCommand(adBus, CanAddBus);
+            }
+        }
+        private bool CanAddBus()
+        {
+
+            return true;
+        }
+        private void adBus()
+        {
+            if (SelectAddTransporter!=null && ModelBus!=null && CountSeats > 0 && CountSeats <101)
+            {
+                baseLoad.AddBuss(SelectAddTransporter.id.ToString(), ModelBus, CountSeats.ToString());
+                SelectAddTransporter = null;
+                ModelBus = null;
+                CountSeats = 0;
+                LoadDataBase();
+              
+            }
+            else
+                return;
+
+        }
 
         private string GetTimetable()
         {

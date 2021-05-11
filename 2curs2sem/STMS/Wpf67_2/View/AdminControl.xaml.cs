@@ -24,5 +24,6 @@ namespace Wpf67.View
         {
             InitializeComponent();
         }
+
     }
 }

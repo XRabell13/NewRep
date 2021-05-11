@@ -93,7 +93,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id.ToString() + " " + named;
+            return named;
         }
     }
 }

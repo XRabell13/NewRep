@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Wpf67.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -16,7 +15,8 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <ScrollViewer>
-        <ListBox HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0" Name="FindRouteListBox" ItemsSource="{Binding FindRoutes}" SelectedItem="{Binding SelectRoute}" Background="WhiteSmoke" >
+
+            <ListBox x:Name="FindRouteListBox" Visibility="{Binding ShowListBox}" HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding FindRoutes}" SelectedItem="{Binding SelectRoute}" Background="WhiteSmoke" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -59,9 +59,15 @@
             </ListBox.ItemTemplate>
         </ListBox>
         </ScrollViewer>
-        <StackPanel Grid.Column="0" Grid.Row='1' Background="WhiteSmoke">
-            <Button Style="{DynamicResource butNext}" Content="{DynamicResource fr_next}" Command="{Binding NextPage}"/>
 
+        <StackPanel Visibility="{Binding ShowNoRoutes}">
+            <TextBlock Text="Поездок нет"/>
+        </StackPanel>
+       
+
+<!--Попробовать через ДатаТриггер селать так, что если ЛистБокс имеет видимость коллапсед,то кнопка тоже коллапсед -->
+        <StackPanel Grid.Column="0" Grid.Row='1' Background="WhiteSmoke">
+            <Button Content="{DynamicResource fr_next}" Command="{Binding NextPage}" Visibility="{Binding ShowListBox}" Style="{DynamicResource ButSelectRoute}" />
         </StackPanel>
       
 

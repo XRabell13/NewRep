@@ -52,15 +52,19 @@ namespace Wpf67.DataBase
         {
             try
             {
-               
                 string sql1 = "INSERT INTO `route_bus` (`name_route`, `id_bus`, `time_departure`, `timetable`, `id_departure_point`, `id_end_city`) "+
-                    "VALUES ('"+name_route+"', '"+id_bus+"', '"+time_departure+"', '"+timetable+"', '"+id_departure_point+"', '"+id_end_city+"'); ";
+                    "VALUES (@name_route, '"+id_bus+"', '"+time_departure+"', '"+timetable+"', '"+id_departure_point+"', '"+id_end_city+"'); ";
                 MessageBox.Show(sql1);
-                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-             //   myCommand.Parameters.AddWithValue(" @name_city_begin", name_route);
+             
+                    MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+
+                MessageBox.Show("1");
+                myCommand.Parameters.AddWithValue("@name_route", name_route);
+                MessageBox.Show("2");
                 Open();
-                myCommand.ExecuteNonQuery();
-                Close();
+                    myCommand.ExecuteNonQuery();
+                    Close();
+                MessageBox.Show("3");
                 return true;
                 
             }
@@ -76,14 +80,39 @@ namespace Wpf67.DataBase
         {
             try
             {
-
                 string sql1 = "INSERT INTO `transporters` (`named`, `adress`, `telephone`)"+
-                    " VALUES (@name_route, @address, @tel); ";
-                MessageBox.Show(sql1);
+                    " VALUES (@named, @address, @tel); ";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-                myCommand.Parameters.AddWithValue("@name_route", named_transporter);
+
+                myCommand.Parameters.AddWithValue("@named", named_transporter);
                 myCommand.Parameters.AddWithValue("@address", address);
                 myCommand.Parameters.AddWithValue("@tel", telephone);
+                Open();
+                myCommand.ExecuteNonQuery();
+                Close();
+                return true;
+
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                //   MessageBox.Show("Ошибка добавления данных");
+                return false;
+            }
+        }
+
+        public bool AddBuss(string id_transporter, string model_bus, string count_seats)
+        {
+            try
+            {
+
+                string sql1 = "INSERT INTO `bus` (`id_transporter`, `model`, `count_seats`) VALUES (@id_transporter, @model_bus, @count_seats);";
+              
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@id_transporter", id_transporter);
+                myCommand.Parameters.AddWithValue("@model_bus", model_bus);
+                myCommand.Parameters.AddWithValue("@count_seats", count_seats);
+             
                 Open();
                 myCommand.ExecuteNonQuery();
                 Close();
@@ -247,11 +276,10 @@ namespace Wpf67.DataBase
         public void DeleteTransporter(Transporter transporters)
         {
             Open();
-            string sql1 = "DELETE FROM `users` WHERE `id_user`='" + transporters.id + "';";
+            string sql1 = "DELETE FROM `transporters` WHERE `id_transporter`='" + transporters.id + "';";
 
             try
             {
-
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 myCommand.ExecuteNonQuery();
 
@@ -380,7 +408,7 @@ namespace Wpf67.DataBase
         #endregion
 
         #region GetTables
-        public List<FindRoute> GetFindRoutes(string bc, string ec, DateTime date)
+        public List<FindRoute> GetFindRoutes(string bc, string ec,  string date)
         {
            List<FindRoute> findRoutes = new List<FindRoute>();
             if (chekInternet.IsConnected())
@@ -394,7 +422,7 @@ namespace Wpf67.DataBase
                         //Convert.ToString(ip.cost).Replace(",", ".")
                         string sql1 = "select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost" +
                             " from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus" +
-                            " and route_bus.timetable like '%" + Convert.ToInt32(date.DayOfWeek) + "%' and route_bus.name_route like '%" + bc + "%'" +
+                            " and route_bus.timetable like '%" + date + "%' and route_bus.name_route like '%" + bc + "%'" +
                             "join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%" + ec + "%'" +
                             "join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter";
                         MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -578,12 +606,20 @@ namespace Wpf67.DataBase
                 {
                     //select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city, ci
                     //select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city
+
+
+                    /*select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, 
+                    route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from
+                    route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city;*/
+
+
                     string sql1 = "select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, " +
                     "route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from" +
                     " route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city;";
-                    string sql2 = "select cities.name_city from cities join route_bus on cities.id_city=route_bus.id_end_city;";
-                    int i = 0;
-                    List<string> endCities = new List<string>();
+
+                    string sql2 = "select DISTINCT cities.id_city, cities.name_city from cities join route_bus on cities.id_city=route_bus.id_end_city;";
+                  
+                    Dictionary<int, string> endCities = new Dictionary<int, string>();
                     MySqlCommand myCommand = new MySqlCommand(sql1, conn),
                         myCommand1 = new MySqlCommand(sql2, conn);
 
@@ -599,15 +635,17 @@ namespace Wpf67.DataBase
                     reader.Close();
 
                     reader1 = myCommand1.ExecuteReader();
+
+
                     while (reader1.Read())
-                        endCities.Add(reader1[0].ToString());
+                        endCities.Add(Convert.ToInt32(reader1[0]), reader1[1].ToString());
+
+                    int count = endCities.Count;
                     foreach (var rb in routeBuses)
-                    {
-                        rb.InsertEndCity(endCities[i]);
-                        i++;
-                    }
+                        rb.InsertEndCity(endCities[rb.id_end_city]);
 
                     Close();
+
                     reader1.Close();
                 }
                 catch (Exception a) { MessageBox.Show(a.Message + "\n"+a.StackTrace); }
@@ -628,13 +666,13 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-                string sql1 = "SELECT * from tickets;";
+                string sql1 = "SELECT tickets.id_ticket, tickets.id_route_bus, tickets.date_departure, tickets.num_seat, tickets.status_seat, route_bus.name_route from tickets join route_bus on tickets.id_route_bus = route_bus.id_route;";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
                     tickets.Add(new Ticket(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
-                    reader[2].ToString().Substring(0, 10), Convert.ToInt32(reader[3].ToString()), Convert.ToBoolean(reader[4].ToString().ToLower())));
+                    reader[2].ToString().Substring(0, 10), Convert.ToInt32(reader[3].ToString()), Convert.ToBoolean(reader[4].ToString().ToLower()), reader[5].ToString()));
                 Close();
                 reader.Close();
                 return tickets;

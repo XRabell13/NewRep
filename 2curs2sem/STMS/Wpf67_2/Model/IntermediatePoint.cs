@@ -152,7 +152,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return id_intermediate_point.ToString() + " id city: " + id_city;
+            return  _name_route_bus + ", " + _name_city + ", " + time_arrive;
         }
     }
 }

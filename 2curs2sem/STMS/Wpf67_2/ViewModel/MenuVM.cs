@@ -166,7 +166,6 @@ namespace Wpf67.ViewModel
             Wpf67.Properties.Settings.Default.Save();
             CodeBehind.ButExitAccount();
             CodeBehind.LoadView(ViewType.Authorization);
-             MessageBox.Show("Вы вышли.");
             }
             else if (Result == MessageBoxResult.No)
             {

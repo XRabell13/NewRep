@@ -28,10 +28,5 @@ namespace Wpf67.View
             this.DataContext =   new SearchVM();
          
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           // grid1.Visibility = Visibility.Visible;
-        }
     }
 }
