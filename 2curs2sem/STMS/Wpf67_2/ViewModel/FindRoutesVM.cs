@@ -57,7 +57,7 @@ namespace Wpf67.ViewModel
             _endCity = endCity;
             _dateTime = date;
 
-           FindRoutes = db.GetFindRoutes(beginCity,endCity,GetDay(date));
+           FindRoutes = db.GetFindRoutes(beginCity,endCity,GetDay(date), date);
             if (FindRoutes.Count == 0)
             {
                 ShowListBox = Visibility.Collapsed;

@@ -40,15 +40,19 @@ namespace Wpf67.ViewModel
         public Bus SelectAddBus { get => _selectAddBus; set { _selectAddBus = value; } }
 
         string _time_departure;
-      public string TimeDeparture { get => _time_departure; 
-            set 
+      public string TimeDeparture { get => _time_departure;
+            set
             {
-                string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";
-                
-                    if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase) || value==null)
-                        _time_departure = value;
-                    else
-                        MessageBox.Show("Некорректное время");
+              
+                string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";//
+
+                if (Regex.IsMatch(value, pattern, RegexOptions.None))
+                {
+                    _time_departure = value;
+               
+                }
+                else
+                    MessageBox.Show("Некорректное время");
             } 
         }
 
@@ -114,6 +118,7 @@ namespace Wpf67.ViewModel
             get => _name_route_bus;
             set
             {
+                
                 _name_route_bus = value;
             }
         }
@@ -222,7 +227,7 @@ namespace Wpf67.ViewModel
         }
         private void adCity()
         {
-            if (_newCity != null && _newCity != "")
+            if (!string.IsNullOrWhiteSpace(_newCity))
             {
                 foreach (var a in _cities)
                     if (a.name_city == _newCity)
@@ -232,7 +237,7 @@ namespace Wpf67.ViewModel
                     }
             }
             else
-                return;
+            { MessageBox.Show("Заполните поле"); }
             baseLoad.AddCities(_newCity);
             LoadDataBase();
         }
@@ -254,18 +259,31 @@ namespace Wpf67.ViewModel
         private void adRouteBus()
         {
             string timetable = GetTimetable();
-            if (timetable != "" && NameRouteBus!=null && SelectAddBus!=null && TimeDeparture!=null && SelectBeginCity!=null && SelectEndCity!=null)
+
+            int id;
+            if (!string.IsNullOrWhiteSpace(timetable) && !string.IsNullOrWhiteSpace(NameRouteBus) && SelectAddBus != null && !string.IsNullOrWhiteSpace(TimeDeparture) && SelectBeginCity != null && SelectEndCity != null)
             {
-                baseLoad.AddRouteBus(NameRouteBus,SelectAddBus.id_bus, TimeDeparture,timetable,SelectBeginCity.id_city, SelectEndCity.id_city);
-                NameRouteBus = TimeDeparture = null;
-                SelectBeginCity = SelectEndCity = null;
+                id = baseLoad.AddRouteBusID(NameRouteBus, SelectAddBus.id_bus, TimeDeparture, timetable, SelectBeginCity.id_city, SelectEndCity.id_city);
+
+                if (id!=-1) AddTickets(id);
+                
                 LoadDataBase();
-              
+
             }
             else
-                return;
+            { MessageBox.Show("Заполните данными все поля"); }
+
+           
            
         }
+
+        private void AddTickets(int id)
+        { 
+            //здесь вызываем через новую функцію через запрос sql обьект routeBus получаем, после с ним работаем в функции, что уже вроде как норм прописана в файле с работой с бд
+           
+        
+        }
+
 
         private MyCommand addTransporter;
         public MyCommand AddTransporter
@@ -283,7 +301,7 @@ namespace Wpf67.ViewModel
         }
         private void adTransporter()
         {
-                if (TextAddress!=null && TextTelephone!=null&&TextCompany!=null)
+                if (!string.IsNullOrWhiteSpace(TextAddress) && !string.IsNullOrWhiteSpace(TextTelephone) && !string.IsNullOrWhiteSpace(TextCompany))
             {
                 baseLoad.AddTransporter(TextCompany, TextAddress, TextTelephone);
                 TextTelephone = TextAddress = TextCompany = null;
@@ -291,7 +309,7 @@ namespace Wpf67.ViewModel
             
             }
             else
-                return;
+            { MessageBox.Show("Заполните данными все поля"); }
 
         }
 
@@ -311,7 +329,7 @@ namespace Wpf67.ViewModel
         }
         private void adBus()
         {
-            if (SelectAddTransporter!=null && ModelBus!=null && CountSeats > 0 && CountSeats <101)
+            if (SelectAddTransporter!=null && !string.IsNullOrWhiteSpace(ModelBus) && CountSeats > 0 && CountSeats <101)
             {
                 baseLoad.AddBuss(SelectAddTransporter.id.ToString(), ModelBus, CountSeats.ToString());
                 SelectAddTransporter = null;

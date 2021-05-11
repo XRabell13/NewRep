@@ -799,8 +799,9 @@ namespace Wpf67.ViewModel
             if (sender as RouteBus != null)
             {
                 RouteBus row = sender as RouteBus;
-                int j = 0;
-                bool isErrorBeginCity = true, isErrorEndCity = true;
+                int i = 0;
+                bool isErrorBeginCity = true, isErrorEndCity = true, isErrorBus=true;
+                string typeError = null;
 
                 foreach (var city in _cities)
                     if (city.id_city == row.id_departure_point)
@@ -808,71 +809,112 @@ namespace Wpf67.ViewModel
                         {
                             if (ip.id_route == row.id_route)
                             {
-                               _routeBuses[j].NameDeparturePoint = city.name_city;
+                               _routeBuses[i].NameDeparturePoint = city.name_city;
                                 isErrorBeginCity = false;
                                 break;
                             }
-                            j++;
+                            i++;
                         }
                     
 
-                int  jj = 0;
+                int  j = 0;
                 foreach (var city in _cities)
                     if (city.id_city == row.id_end_city)
                         foreach (var ip in _routeBuses)
                         {
                             if (ip.id_route == row.id_route)
                             {
-                                _routeBuses[jj].NameEndCity = city.name_city;
+                                _routeBuses[j].NameEndCity = city.name_city;
                                 isErrorEndCity = false;
+                                break;
+                            }
+                            j++;
+                        }
+
+                int jj = 0;
+                foreach (var bus in _buses)
+                    if (bus.id_bus == row.id_bus)
+                        foreach (var ip in _routeBuses)
+                        {
+                            if (ip.id_route == row.id_route)
+                            {
+                                _routeBuses[jj].NameBus = bus.model;
+                                isErrorBus = false;
                                 break;
                             }
                             jj++;
                         }
-                   
 
 
-                if (!isErrorBeginCity && !isErrorEndCity)
+                if (isErrorBeginCity) typeError = "ErrorBeginCity";
+                if (isErrorBus) typeError = "ErrorBus";
+                if (isErrorEndCity) typeError = "ErrorEndCity";
+
+
+                if (typeError==null)
                 {
                    routeBusesUpdate.Add(row);
                 }
                 else
                 {
-                    if (!isErrorBeginCity)
+                    switch (typeError)
                     {
-                        MessageBox.Show("Неверный ID города");
-                        int k = 0;
-                        foreach (var b in routeBusesValidate)
-                            if (b.id_route == row.id_route)
+                        case "ErrorBeginCity":
                             {
-                                foreach (var ipoint in _routeBuses)
-                                {
-                                    if (ipoint.id_route == row.id_route)
+                                MessageBox.Show("Неверный ID пункта отправления");
+                                int k = 0;
+                                foreach (var b in routeBusesValidate)
+                                    if (b.id_route == row.id_route)
                                     {
-                                        MessageBox.Show(b.id_departure_point.ToString());
-                                        _routeBuses[k].id_departure_point = b.id_departure_point;
-                                        MessageBox.Show(_routeBuses[k].id_departure_point.ToString());
+                                        foreach (var ipoint in _routeBuses)
+                                        {
+                                            if (ipoint.id_route == row.id_route)
+                                            {
+                                                _routeBuses[k].id_departure_point = b.id_departure_point;
+                                             
+                                            }
+                                            k++;
+                                        }
+                                        break;
                                     }
-                                    k++;
-                                }
                                 break;
                             }
-                    }
-                    if (!isErrorEndCity)
-                    {
-                        MessageBox.Show("Неверный ID города");
-                        int k = 0;
-                        foreach (var b in routeBusesValidate)
-                            if (b.id_route == row.id_route)
+                        case "ErrorEndCity":
                             {
-                                foreach (var ipoint in _routeBuses)
-                                {
-                                    if (ipoint.id_route == row.id_route)
+                                MessageBox.Show("Неверный ID пункта прибытия");
+                                int k = 0;
+                                foreach (var b in routeBusesValidate)
+                                    if (b.id_route == row.id_route)
                                     {
-                                        _routeBuses[k].id_end_city = b.id_end_city;
+                                        foreach (var ipoint in _routeBuses)
+                                        {
+                                            if (ipoint.id_route == row.id_route)
+                                            {
+                                                _routeBuses[k].id_end_city = b.id_end_city;
+                                            }
+                                            k++;
+                                        }
+                                        break;
                                     }
-                                    k++;
-                                }
+                                break;
+                            }
+                        case "ErrorBus":
+                            {
+                                MessageBox.Show("Неверный ID автобуса");
+                                int k = 0;
+                                foreach (var b in routeBusesValidate)
+                                    if (b.id_route == row.id_route)
+                                    {
+                                        foreach (var ipoint in _routeBuses)
+                                        {
+                                            if (ipoint.id_route == row.id_route)
+                                            {
+                                                _routeBuses[k].id_bus = b.id_bus;
+                                            }
+                                            k++;
+                                        }
+                                        break;
+                                    }
                                 break;
                             }
                     }
