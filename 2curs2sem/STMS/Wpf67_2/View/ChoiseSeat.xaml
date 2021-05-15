@@ -6,13 +6,38 @@
              xmlns:local="clr-namespace:Wpf67.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <ListBox Style="{DynamicResource ListBoxСhoiseSeat}" ItemsSource="{Binding ListButtons}" SelectedValue="{Binding SelectLitButton}">
-            <ListBox.ItemTemplate>
+    <Grid Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="{DynamicResource cs_choice_seat}" Visibility="{Binding ShowListBox}" Grid.Column="0" Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+        <TextBlock Text="{DynamicResource cs_no_seat}" Visibility="{Binding ShowListBox}" Grid.Column="0" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+
+        <ListBox Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListButtons}" SelectedItem="{Binding SelectListButton}"  Visibility="{Binding ShowListBox}" Background="LightGray">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" Width="600" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding NumberSeat}" IsEnabled="{Binding StatusSeat}"></Button>
+                    <TextBlock Text="{Binding NumberSeat, Mode=OneTime}" Style="{DynamicResource TBSelectSeat}"/>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
+            </ItemsControl.ItemTemplate>
         </ListBox>
+
+        <StackPanel Visibility="{Binding ShowListBox}" Grid.Column="0" Grid.Row='3' Background="LightGray" >
+            <Button Content="{DynamicResource fr_next}" />
+        </StackPanel>
+
+        <TextBlock Text="{DynamicResource cs_no_seats}" Visibility="{Binding ShowNoTickets}"  Grid.Column="0" Grid.Row="2" TextAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
+
+
     </Grid>
 </UserControl>

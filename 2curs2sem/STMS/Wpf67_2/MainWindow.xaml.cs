@@ -28,7 +28,7 @@ namespace Wpf67
     {
        // void ShowMessage(string message);
         void LoadView(ViewType typeView);
-        void LoadViewWhithParam(ViewType typeView, string begin, string end, DateTime date);
+        void LoadViewWhithParam(ViewType typeView, object param1, object param2, object param3, object param4);
         void ButExitAccount();
         void ButEnterAccount();
     }
@@ -40,10 +40,11 @@ namespace Wpf67
         Registration,
         Search,
         FindRoutes,
-        BookInf,
         MyTrips,
         NoAuthorizationTrips,
-        AdminWin
+        AdminWin,
+        ChoiseSeat,
+        ReserveTicket
     }
     public partial class MainWindow : Window, IMMCodeBehind
     {
@@ -158,21 +159,41 @@ namespace Wpf67
             }
         }
 
-      public void LoadViewWhithParam(ViewType typeView, string begin, string end, DateTime date)
+      public void LoadViewWhithParam(ViewType typeView, object param1, object param2, object param3, object param4)
         {
             switch (typeView)
             {
                 case ViewType.FindRoutes:
                     {
                         FindRoutes view = new FindRoutes();
-                        FindRoutesVM vm = new FindRoutesVM(begin,end,date);
+                        FindRoutesVM vm = new FindRoutesVM(this, Convert.ToString(param1),Convert.ToString(param2), (DateTime)param3);
                         view.DataContext = vm;
                         this.OutWin.Content = view;
                         break;
                     }
+                case ViewType.ChoiseSeat:
+                    {// // RouteBus routeB, string beginCity, string endCity, DateTime date)
+                        try
+                        {
+                            ChoiseSeat view = new ChoiseSeat();
+                            ChoiseSeatVM vm = new ChoiseSeatVM(this, Convert.ToInt32(param1), Convert.ToString(param2), Convert.ToString(param3), (DateTime)param4);
+                            view.DataContext = vm;
+                            this.OutWin.Content = view;
+                        }
+                        catch (Exception a) { MessageBox.Show(a.Message +"\n\n"+a.StackTrace); }
+                        break;
+                    }
+                case ViewType.ReserveTicket:
+                    {
+                     
+                        break;
+                    }
+
             }
 
         }
+
+
         /*
         private void LanguageChanged(Object sender, EventArgs e)
         {
@@ -199,8 +220,8 @@ namespace Wpf67
             }
 
         }*/
-     
-       
+
+
         public void ButExitAccount()
         {
                 Collapse_AuthorizationButtons();

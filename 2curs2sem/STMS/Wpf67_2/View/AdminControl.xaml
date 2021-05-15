@@ -193,27 +193,31 @@
 
                                 <TextBox Style="{DynamicResource TextBoxTime}" Text="{Binding TimeDeparture, Mode=TwoWay}"/>
 
+                                <TextBlock Text="{DynamicResource add_ip_time_arrive}"/>
+                                <TextBox Style="{DynamicResource TextBoxTime}" Text="{Binding TimeArriveRoute, Mode=TwoWay}"/>
+
                                 <TextBlock Text="{DynamicResource add_routebus_departure_point}"/>
                                 <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectBeginCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
                                 <TextBlock Text="{DynamicResource add_routebus_end_point}"/>
                                 <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectEndCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource fr_cost}"/>
+                                <TextBox x:Name="CostRouteBus" Style="{DynamicResource TextBoxInfoBD}" Text="{Binding CostRouteBus, Mode=TwoWay}"/>
                                 <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" Command="{Binding AddRouteBus}" />
                             </StackPanel>
                         </Expander>
                      
                         <Expander Header="{DynamicResource admin_add_intermediate_point}">
                             <StackPanel>
-                                <TextBlock Text="{DynamicResource add_ip_city}"/>
-                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
+                                
                                 <TextBlock Text="{DynamicResource add_ip_route_bus}"/>
-                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding RouteBuses}" SelectedItem="{Binding SelectRouteBuses, Mode=TwoWay}" IsEditable="True"></ComboBox>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding RouteBuses}" SelectedItem="{Binding SelectRouteForPoint, Mode=TwoWay}" IsEditable="True"></ComboBox>
+                                <TextBlock Text="{DynamicResource add_ip_city}"/>
+                                <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectCityPoint, Mode=TwoWay}" IsEditable="True"></ComboBox>
                                 <TextBlock Text="{DynamicResource add_ip_time_arrive}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBox Style="{DynamicResource TextBoxTime}" />
-                                </StackPanel>
+                                <TextBox Style="{DynamicResource TextBoxTime}" Text="{Binding TimeArrivePoint, Mode=TwoWay}" />
                                 <TextBlock Text="{DynamicResource add_ip_cost}" />
-                                <TextBox Style="{DynamicResource TextBoxInfoBD}" ></TextBox>
-                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" />
+                                <TextBox Style="{DynamicResource TextBoxInfoBD}" Text="{Binding CostPoint, Mode=TwoWay}" />
+                                <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" Command="{Binding AddIntermediatePoint}"/>
                             </StackPanel>
                         </Expander>
                     </StackPanel>

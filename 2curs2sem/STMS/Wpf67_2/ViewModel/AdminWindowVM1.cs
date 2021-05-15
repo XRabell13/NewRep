@@ -25,13 +25,13 @@ namespace Wpf67.ViewModel
         public City SelectEndCity { get => _selectEndCity; set { _selectEndCity = value; } }
 
         private City _selectIPCity;
-        public City SelectIPCity { get => _selectIPCity; set { _selectIPCity = value; } }
+        public City SelectCityPoint { get => _selectIPCity; set { _selectIPCity = value; } }
 
         private IntermediatePoint _selectAddIp;
         public IntermediatePoint SelectAddIp { get => _selectAddIp; set { _selectAddIp = value; } }
 
         private RouteBus _selectRouteBusForIp;
-        public RouteBus SelectRouteBusIp { get => _selectRouteBusForIp; set { _selectRouteBusForIp = value; } }
+        public RouteBus SelectRouteForPoint { get => _selectRouteBusForIp; set { _selectRouteBusForIp = value; } }
 
         private Transporter _selectAddTransporter;
         public Transporter SelectAddTransporter { get => _selectAddTransporter; set { _selectAddTransporter = value; } }
@@ -39,7 +39,7 @@ namespace Wpf67.ViewModel
         private Bus _selectAddBus;
         public Bus SelectAddBus { get => _selectAddBus; set { _selectAddBus = value; } }
 
-        string _time_departure;
+        string _time_departure, _time_arrive_point, _time_arrive_route;
       public string TimeDeparture { get => _time_departure;
             set
             {
@@ -55,10 +55,66 @@ namespace Wpf67.ViewModel
                     MessageBox.Show("Некорректное время");
             } 
         }
+        public string TimeArriveRoute
+        {
+            get => _time_arrive_route;
+            set
+            {
 
+                string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";//
+
+                if (Regex.IsMatch(value, pattern, RegexOptions.None))
+                {
+                    _time_arrive_route = value;
+
+                }
+                else
+                    MessageBox.Show("Некорректное время");
+            }
+        }
+        public string TimeArrivePoint
+        {
+            get => _time_arrive_point;
+            set
+            {
+
+                string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";//
+
+                if (Regex.IsMatch(value, pattern, RegexOptions.None))
+                {
+                    _time_arrive_point = value;
+
+                }
+                else
+                    MessageBox.Show("Некорректное время");
+            }
+        }
         string _newCity;
         string _textCompany, _textTelephone, _textAddress, _modelBus;
         int _countSeats;
+        decimal _cost_point, _cost_route;
+        //CostRouteBus
+        public decimal CostRouteBus
+        {
+            get => _cost_route;
+            set
+            {
+                if (value < 100 && value > 0)
+                    _cost_route= value;
+                else MessageBox.Show("Неверная цена");
+            }
+        }
+
+        public decimal CostPoint
+        {
+            get => _cost_point;
+            set
+            {
+                if (value < 100 && value > 0)
+                    _cost_point = value;
+                else MessageBox.Show("Неверная цена");
+            }
+        }
 
         public int CountSeats
         {
@@ -235,11 +291,14 @@ namespace Wpf67.ViewModel
                         MessageBox.Show(_newCity + " уже существует в базе данных под id_city = " + a.id_city);
                         return;
                     }
+                baseLoad.AddCities(_newCity);
+                LoadDataBase();
             }
             else
-            { MessageBox.Show("Заполните поле"); }
-            baseLoad.AddCities(_newCity);
-            LoadDataBase();
+            { 
+                MessageBox.Show("Заполните поле"); 
+            }
+           
         }
 
         private MyCommand addRouteBus;
@@ -260,30 +319,25 @@ namespace Wpf67.ViewModel
         {
             string timetable = GetTimetable();
 
-            int id;
-            if (!string.IsNullOrWhiteSpace(timetable) && !string.IsNullOrWhiteSpace(NameRouteBus) && SelectAddBus != null && !string.IsNullOrWhiteSpace(TimeDeparture) && SelectBeginCity != null && SelectEndCity != null)
+           
+            if (!string.IsNullOrWhiteSpace(timetable) && !string.IsNullOrWhiteSpace(NameRouteBus) 
+                && SelectAddBus != null && !string.IsNullOrWhiteSpace(TimeDeparture) && SelectBeginCity != null && SelectEndCity != null)
             {
-                id = baseLoad.AddRouteBusID(NameRouteBus, SelectAddBus.id_bus, TimeDeparture, timetable, SelectBeginCity.id_city, SelectEndCity.id_city);
+                RouteBus routeB = baseLoad.AddRouteBusID(NameRouteBus, SelectAddBus.id_bus, TimeDeparture, timetable, SelectBeginCity.id_city, SelectEndCity.id_city);
 
-                if (id!=-1) AddTickets(id);
-                
+                if (routeB != null)
+                {
+                    MessageBox.Show(routeB.id_route.ToString());
+                    baseLoad.AddIntermediatePoint(routeB.id_end_city.ToString(), routeB.id_route.ToString(), _time_arrive_route, _cost_route.ToString());
+                    baseLoad.AddTicketsForNewRoute(routeB);
+                }
                 LoadDataBase();
 
             }
             else
             { MessageBox.Show("Заполните данными все поля"); }
-
-           
            
         }
-
-        private void AddTickets(int id)
-        { 
-            //здесь вызываем через новую функцію через запрос sql обьект routeBus получаем, после с ним работаем в функции, что уже вроде как норм прописана в файле с работой с бд
-           
-        
-        }
-
 
         private MyCommand addTransporter;
         public MyCommand AddTransporter
@@ -324,9 +378,9 @@ namespace Wpf67.ViewModel
         }
         private bool CanAddBus()
         {
-
             return true;
         }
+
         private void adBus()
         {
             if (SelectAddTransporter!=null && !string.IsNullOrWhiteSpace(ModelBus) && CountSeats > 0 && CountSeats <101)
@@ -339,7 +393,33 @@ namespace Wpf67.ViewModel
               
             }
             else
-                return;
+            { MessageBox.Show("Заполните все поля"); }   
+
+        }
+
+        private MyCommand _addIntermediatePoint;
+        public MyCommand AddIntermediatePoint
+        {
+            get
+            {
+                return _addIntermediatePoint = _addIntermediatePoint ??
+                  new MyCommand(addIntermediatePoint, canAddIntermediatePoint);
+            }
+        }
+        private bool canAddIntermediatePoint()
+        {
+            return true;
+        }
+
+        private void addIntermediatePoint()
+        {
+            if (SelectCityPoint !=null && SelectRouteForPoint !=null &&  !string.IsNullOrWhiteSpace(TimeArrivePoint) && CostPoint!=0)
+            {
+                baseLoad.AddIntermediatePoint(SelectCityPoint.id_city.ToString(), SelectRouteForPoint.id_route.ToString(), TimeArrivePoint, CostPoint.ToString());
+                LoadDataBase();
+            }
+            else
+            { MessageBox.Show("Заполните все поля"); }
 
         }
 

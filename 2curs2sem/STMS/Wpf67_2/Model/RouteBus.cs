@@ -190,7 +190,17 @@ namespace Wpf67.Model
             this._name_bus = _name_bus;
             this._name_departure_point = _name_departure_point;
         }
-
+        public RouteBus(int id_route, string name_route, int id_b, string time_departure, string timetable, int id_departure_point, int id_end_city)
+        {
+            this.id_bus = id_b;
+            this.id_route = id_route;
+            this.id_departure_point = id_departure_point;
+            this.id_end_city = id_end_city;
+            this.timetable = timetable;
+            this.time_departure = time_departure;
+            this.name_route = name_route;
+        
+        }
         public void InsertEndCity(string end_city)=>
             _name_end_city = end_city;
         

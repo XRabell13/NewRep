@@ -48,7 +48,7 @@
                                     <TextBlock  Text="{Binding BeginCity}"  /></TextBlock>
                                 <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource fr_in}" Grid.Row="0" Grid.Column="1" ><LineBreak/><TextBlock Text="       "/><TextBlock Text="{Binding EndCity}" /></TextBlock>
                                 <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="2" Text="{DynamicResource fr_cost}" />
-                            <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}"><TextBlock Text=" Br"/></TextBlock>
+                            <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}"><TextBlock Text=" BYN"/></TextBlock>
 
                             <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="0" Text="{Binding BeginTime}"  />
                         <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="1" Text="{Binding EndTime}" />
@@ -68,12 +68,8 @@
         </ListBox>
         </ScrollViewer>
 
-        <StackPanel Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="1">
-            <TextBlock Text="Рейсы по данному маршруту не обнаружены!"/>
-        </StackPanel>
-       
-
-<!--Попробовать через ДатаТриггер селать так, что если ЛистБокс имеет видимость коллапсед,то кнопка тоже коллапсед -->
+            <TextBlock  Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="1" Text="{DynamicResource fr_noRoutes}" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"/>
+     
         <StackPanel Grid.Column="0" Grid.Row='2' Background="LightGray" >
             <Button Content="{DynamicResource fr_next}" Command="{Binding NextPage}" Visibility="{Binding ShowListBox}" Style="{DynamicResource ButSelectRoute}" />
         </StackPanel>

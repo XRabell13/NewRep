@@ -161,6 +161,9 @@
     <Compile Include="ViewModel\RegistrationVM.cs" />
     <Compile Include="Settings\Language.cs" />
     <Compile Include="Settings\Theme.cs" />
+    <Compile Include="View\ReserveTicket.xaml.cs">
+      <DependentUpon>ReserveTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\SearchVM.cs" />
     <Compile Include="ViewModel\TicketVM.cs" />
     <Compile Include="View\AdminControl.xaml.cs">
@@ -208,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\lang.be-BY.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReserveTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

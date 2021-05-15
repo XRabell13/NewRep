@@ -90,6 +90,19 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="TBSelectSeat" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="Foreground" Value="Black"/>
+
+    </Style>
+
     <!-- DataGrid -->
     <Style TargetType="DataGrid">
         <Setter Property="Background" Value="#827397"/>
@@ -151,6 +164,7 @@
     </Style>
 
 
+
     <Style x:Key="ButSelectRoute" TargetType="Button">
         <Setter Property="TextOptions.TextHintingMode" Value="Animated" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundWhite}" />
@@ -191,9 +205,6 @@
             </DataTrigger>
         </Style.Triggers>
         
-        
-        
-        
     </Style>
 
     <Style x:Key="ComboBoxInfoBD" TargetType="ComboBox">
@@ -219,6 +230,8 @@
         <Setter Property="Foreground" Value="Gray"></Setter>
         
         <!---e6e6e6-->
+        
+        
     </Style>
 
 </ResourceDictionary>

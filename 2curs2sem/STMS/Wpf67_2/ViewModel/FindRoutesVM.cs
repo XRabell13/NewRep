@@ -11,6 +11,7 @@ namespace Wpf67.ViewModel
 {
     public class FindRoutesVM
     {
+        
         string _beginCity, _endCity;
 
         Visibility _showListBox;
@@ -29,6 +30,8 @@ namespace Wpf67.ViewModel
                 _showNoRoutes = value;
             }
         }
+
+        private IMMCodeBehind mainWindow;
 
         DateTime _dateTime;
         DateTime Date { get => _dateTime; set { _dateTime = value; } }
@@ -51,8 +54,9 @@ namespace Wpf67.ViewModel
 
         DataBase.DataBaseLoad db = new DataBase.DataBaseLoad();
 
-        public FindRoutesVM(string beginCity, string endCity, DateTime date)
+        public FindRoutesVM(IMMCodeBehind mainWindow, string beginCity, string endCity, DateTime date)
         {
+            this.mainWindow = mainWindow;
             _beginCity = beginCity;
             _endCity = endCity;
             _dateTime = date;
@@ -105,8 +109,8 @@ namespace Wpf67.ViewModel
         }
         private void ShowNextPage()
         {
-                MessageBox.Show(_selectRoute.ToString());
-            //    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, _dateTime);
+            // RouteBus routeB, string beginCity, string endCity, DateTime date)
+            mainWindow.LoadViewWhithParam(ViewType.ChoiseSeat,_selectRoute.IdRoute,_beginCity,_endCity,Date);
           
         }
     }

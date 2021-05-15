@@ -28,6 +28,8 @@ namespace Wpf67.DataBase
      */
     class DataBaseLoad : Connect
     {
+
+        #region Add
         public bool AddCities(string name_cities)
         {
             try
@@ -74,7 +76,7 @@ namespace Wpf67.DataBase
                 return false;
             }
         }
-        public int AddRouteBusID(string name_route, int id_bus, string time_departure, string timetable, int id_departure_point, int id_end_city)
+        public RouteBus AddRouteBusID(string name_route, int id_bus, string time_departure, string timetable, int id_departure_point, int id_end_city)
         {
             int id = -1;
             try
@@ -98,14 +100,14 @@ namespace Wpf67.DataBase
                     id = Convert.ToInt32(reader[0]);
                 Close();
 
-                return id;
+                return new RouteBus(id,name_route,id_bus,time_departure,timetable,id_departure_point,id_end_city);
 
             }
             catch (Exception a)
             {
                 MessageBox.Show(a.Message + "\n" + a.StackTrace);
                 //   MessageBox.Show("Ошибка добавления данных");
-                return id;
+                return null;
             }
         }
         public bool AddTransporter(string named_transporter, string address, string telephone)
@@ -159,20 +161,42 @@ namespace Wpf67.DataBase
             }
         }
 
+        public bool AddIntermediatePoint(string id_city, string id_route, string time_arrive, string cost)
+        {
+            try
+            {
+                string sql1 = "INSERT INTO `intermediate_point` (`id_city`, `id_route_bus`, `time_arrive`, `cost`) VALUES( '"+id_city+"', '"+id_route+"', '"+time_arrive+"', '"+cost.Replace(",",".")+"'); ";
+
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+              
+                Open();
+                myCommand.ExecuteNonQuery();
+                Close();
+                return true;
+
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                //   MessageBox.Show("Ошибка добавления данных");
+                return false;
+            }
+        }
+
         public bool AddTicketsForNewRoute(RouteBus routeBus)
         {
             try
             {
 
                 string sql1 = "INSERT INTO `tickets` (`id_route_bus`, `date_departure`, `num_seat`, `status_seat`) VALUES ";
-                string sql2 = "('"+routeBus.id_bus+"', '#', '@', '0'),";
+                string sql2 = "('"+routeBus.id_route+"', '#', '@', '0'),";
 
                 string searchBus = "select bus.count_seats from bus where bus.state_number = " + routeBus.id_bus + ";";
-                string date = "";
+             
                 DateTime dateTime;
-                int count_seats;
-                MySqlCommand myCommand = new MySqlCommand(searchBus, conn);
-                MySqlDataReader reader, reader1;
+                int count_seats = 0;
+                MySqlCommand myCommand = new MySqlCommand(searchBus, conn), myCommand1;
+                MySqlDataReader reader;
 
                 string[] days = routeBus.timetable.Split(new char[] { ' ' });
 
@@ -189,10 +213,11 @@ namespace Wpf67.DataBase
                 }
 
                 Open();
-
                 reader = myCommand.ExecuteReader();
+                while(reader.Read())
                 count_seats = Convert.ToInt32(reader[0]);
-                //7
+                reader.Close();
+           
                 for (int j = 0; j <= 7; j++)
                 {
                     dateTime = DateTime.Now.AddDays(j);
@@ -203,22 +228,27 @@ namespace Wpf67.DataBase
                         }
                     
                 }
-                sql1 += sql2;
-                sql1.Remove(sql1.Length);
+              
+                sql1 = sql1.Remove(sql1.LastIndexOf(","));
                 sql1 += ";";
 
+                myCommand1 = new MySqlCommand(sql1, conn);
+                myCommand1.ExecuteNonQuery();
+
                 Close();
-                MessageBox.Show(sql1);
+
                 return true;
 
             }
             catch (Exception a)
             {
                 MessageBox.Show(a.Message + "\n" + a.StackTrace);
-                //   MessageBox.Show("Ошибка добавления данных");
+                MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
+
+#endregion
 
         #region Update
         public void UpdateCities(List<City> cities)
@@ -713,15 +743,6 @@ namespace Wpf67.DataBase
             {
                 try
                 {
-                    //select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city, ci
-                    //select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city
-
-
-                    /*select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, 
-                    route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from
-                    route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city;*/
-
-
                     string sql1 = "select route_bus.id_route, route_bus.name_route, route_bus.id_bus, route_bus.time_departure, " +
                     "route_bus.timetable, route_bus.id_departure_point, route_bus.id_end_city, bus.model, cities.name_city from" +
                     " route_bus join bus on route_bus.id_bus = bus.state_number join cities on route_bus.id_departure_point = cities.id_city;";
@@ -791,6 +812,33 @@ namespace Wpf67.DataBase
             else
             {
                 MessageBox.Show("Не удалось получить таблицу Ticket");
+                Close();
+                return null;
+            }
+
+        }
+
+        public List<ChoiseSeat> GetTickets(int id, DateTime date)
+        {
+            List<ChoiseSeat> Seats = new List<ChoiseSeat>();
+            Open();
+            if (status)
+            {
+
+                string sql1 = "select tickets.num_seat, tickets.status_seat from tickets where tickets.id_route_bus = '" + id + "' and tickets.date_departure = '" + date.Year + "." + date.Month + "." + date.Day + "'" +
+                    "  and tickets.status_seat = 0";
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                MySqlDataReader reader;
+                reader = myCommand.ExecuteReader();
+                while (reader.Read())
+                    Seats.Add(new ChoiseSeat(Convert.ToInt32(reader[0]), Convert.ToBoolean(reader[1])));
+                Close();
+                reader.Close();
+                return Seats;
+            }
+            else
+            {
+                MessageBox.Show("Не удалось получить таблицу Tickets");
                 Close();
                 return null;
             }

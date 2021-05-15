@@ -22,7 +22,7 @@ namespace Wpf67.Model
         int _id_route;
         string _model_bus, _named_tr;
 
-        public int IdCity
+        public int IdRoute
         {
             get => _id_route;
             set
@@ -90,7 +90,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return IdCity + " " + NamedTransporter;
+            return IdRoute + " " + NamedTransporter;
         }
     }
 }
