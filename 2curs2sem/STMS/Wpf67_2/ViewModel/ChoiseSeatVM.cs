@@ -12,26 +12,27 @@ namespace Wpf67.ViewModel
     class ChoiseSeatVM
     {
         DataBase.DataBaseLoad db = new DataBase.DataBaseLoad();
-        List<ChoiseSeat> _listButton;
-       public List<ChoiseSeat> ListButtons
+        List<Ticket> _listButton;
+       public List<Ticket> ListTickets
         {
             get => _listButton;
             set => _listButton = value;
         }
 
-        ChoiseSeat _selectListButton;
-        public ChoiseSeat SelectListButton
+        Ticket _selectListButton;
+        public Ticket SelectTicket
         {
             get => _selectListButton;
             set 
             {
                 _selectListButton = value;
-                MessageBox.Show(value.NumberSeat.ToString());
             }
         }
         IMMCodeBehind mainWindow;
 
-        string _beginCity, _endCity;
+        string _beginCity, _endCity, _btime, _etime, _date;
+        decimal _cost;
+       
         public string BeginCity { get => _beginCity; set { _beginCity = value; } }
         public string EndCity { get => _endCity; set { _endCity = value; } }
 
@@ -52,13 +53,18 @@ namespace Wpf67.ViewModel
             }
         }
 
-        public ChoiseSeatVM(IMMCodeBehind mainWindow, int id_route, string beginCity, string endCity, DateTime date)
+        public ChoiseSeatVM(IMMCodeBehind mainWindow, int id_route, string beginCity, string endCity, DateTime date, decimal cost, string btime, string etime)
         {
             this.mainWindow = mainWindow;
             _beginCity = beginCity;
             _endCity = endCity;
-            ListButtons = db.GetTickets(id_route, date);
-            if (ListButtons.Count == 0)
+            _cost = cost;
+            _btime = btime;
+            _etime = etime;
+            _date = date.ToString().Remove(10);
+            ListTickets = db.GetTickets(id_route, date);
+
+            if (ListTickets.Count == 0)
             {
                 ShowListBox = Visibility.Collapsed;
                 ShowNoTickets = Visibility.Visible;
@@ -85,8 +91,9 @@ namespace Wpf67.ViewModel
         }
         private void ShowNextPage()
         {
-
-            mainWindow.LoadViewWhithParam(ViewType.ReserveTicket, null, null, null, null);
+            if (SelectTicket != null)
+                mainWindow.LoadViewWhithParam(ViewType.ReserveTicket, _beginCity, _endCity, _cost, _btime, _etime, SelectTicket.num_seat, _date, SelectTicket.id_ticket, EndCity);
+            else MessageBox.Show("Выберите место для поездки");
 
         }
 

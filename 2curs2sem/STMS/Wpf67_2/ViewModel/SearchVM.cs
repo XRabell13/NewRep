@@ -113,7 +113,7 @@ namespace Wpf67.ViewModel
             try
             {
                 if (_selectCityFrom != null && SelectCityIn != null)
-                    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, Now, null);
+                    mainWindow.LoadViewWhithParam(ViewType.FindRoutes, _selectCityFrom.name_city, _selectCityIn.name_city, Now, null,null,null,null,null,null);
                 
                 else MessageBox.Show("Введите данные");
             }

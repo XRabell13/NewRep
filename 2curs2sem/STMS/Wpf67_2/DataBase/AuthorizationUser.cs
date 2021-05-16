@@ -15,11 +15,12 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-                string sql1 = "select nick from users where nick='" + nick + "';";
+                string sql1 = "select nick from users where nick=@nick;";
                 bool find_user = false;
               
 
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@nick", nick);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
@@ -46,22 +47,23 @@ namespace Wpf67.DataBase
             }
         }
 
-        public bool IsTrueLogin(string login)
+      /*  public bool IsTrueLogin(string login)
         {
             string s1 = "'", s2 = "\"";
             if (login.IndexOf(s1) == -1 && login.IndexOf(s2) == -1) return true;
             else return false;
-        }
+        }*/
 
         public bool IsTruePassword(string nick, string password)
         {
             Open();
             if (status)
             {
-                string sql1 = "select nick, u_password from users where nick='" + nick + "';";
+                string sql1 = "select nick, u_password from users where nick=@nick;";
                 bool pass_valide = false;
 
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@nick", nick);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
@@ -96,10 +98,12 @@ namespace Wpf67.DataBase
             if (status)
             {
                // MessageBox.Show("GetUserId");
-                string sql1 = "select id_user from users where nick='" + login + "';";
+                string sql1 = "select id_user from users where nick=@login;";
                 int id;
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
+                myCommand.Parameters.AddWithValue("@login", login);
+
                 reader = myCommand.ExecuteReader();
                 if (reader.Read())
                 {
@@ -128,9 +132,11 @@ namespace Wpf67.DataBase
             if (status)
             {
                // MessageBox.Show("IsAdmin?");
-                string sql1 = "select isAdmin from users where nick='" + login + "';";
+                string sql1 = "select isAdmin from users where nick=@login;";
                 bool isAdmin = false;
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@login", login);
+
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 if (reader.Read())

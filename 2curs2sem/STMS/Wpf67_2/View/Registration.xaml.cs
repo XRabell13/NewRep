@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,9 +37,13 @@ namespace Wpf67.View
 
         public Registration()
         {
-            InitializeComponent();
-            codeBehind = (MainWindow)Application.Current.MainWindow;
-        }
+            try
+            {
+                InitializeComponent();
+                codeBehind = (MainWindow)Application.Current.MainWindow;
+            }
+            catch (Exception a) { MessageBox.Show(a.Message + "\n"+a.StackTrace); }
+            }
 
         private void But_Regist_Click(object sender, RoutedEventArgs e)
         {
@@ -57,8 +63,6 @@ namespace Wpf67.View
             {
                 if (regist.RegistUser(login, password1, password2) && login.Length >= 2)
                 {
-                    telephone.Replace(" ", "");
-                    email.Replace(" ", "");
                     if (!(telephone.Length == 0 && email.Length == 0))
                     {
                         int id = authoriz.GetUserId(login);
@@ -75,7 +79,6 @@ namespace Wpf67.View
                                             codeBehind.LoadView(ViewType.Search);
                                             codeBehind.ButEnterAccount();
                                         });
-
                         }
                         else
                             MessageBox.Show("Ошибка ввода учётных данных");
@@ -88,14 +91,21 @@ namespace Wpf67.View
 
         bool CheckValidInfo(string login, string pas1, string pas2, string mail, string tel)
         {
-            if (this.login == null)
+            string pattern = @"^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$";
+           
+            if (login == null)
             {
                 MessageBox.Show("Введите логин");
                 return false;
             }
-            if (this.login.Length < 4)
+            if (login.Length < 4)
             {
-                MessageBox.Show("Логин должен быть боллее 4-х символов");
+                MessageBox.Show("Логин должен быть более 4-х символов");
+                return false;
+            }
+            if (login.Length > 44)
+            {
+                MessageBox.Show("Логин должен быть меньше 44-х символов");
                 return false;
             }
             if (pas1 == null)
@@ -110,7 +120,7 @@ namespace Wpf67.View
             }
             if (pas1.Length < 4 || pas2.Length < 4)
             {
-                MessageBox.Show("Пароль должен быть боллее 4-х символов");
+                MessageBox.Show("Пароль должен быть более 4-х символов");
                 return false;
             }
             if (!pas1.Equals(pas2))
@@ -118,32 +128,26 @@ namespace Wpf67.View
                 MessageBox.Show("Пароли не совпадают");
                 return false;
             }
-            if (mail == null)
+            try
             {
-                MessageBox.Show("Введите email");
-                return false;
+                MailAddress m = new MailAddress(mail);
             }
-            if (mail.Length == 0)
-            {
-                MessageBox.Show("Введите email");
-                return false;
-            }
-            if (!mail.Contains("@") || !mail.Contains("."))
+            catch (FormatException)
             {
                 MessageBox.Show("email введен некорректно");
                 return false;
             }
-            if (telephone == null || telephone.Length == 0)
+            if (email.Length > 100)
             {
-                MessageBox.Show("Введите телефон");
+                MessageBox.Show("email введен некорректно");
                 return false;
             }
-            if (!(telephone.Length > 13 || (!telephone.Contains(" ") && telephone.Length > 12)))
+                if (!Regex.IsMatch(tel, pattern, RegexOptions.IgnoreCase))
             {
-                MessageBox.Show("Телефон введен некорректно");
+                MessageBox.Show("Некорректный телефон");
                 return false;
             }
-
+         
             return true;
         }
     
@@ -154,19 +158,22 @@ namespace Wpf67.View
         }
         private void tbPass1_PasswordChanged(object sender, RoutedEventArgs e)
         {
+          
             password1 = ((PasswordBox)sender).Password;
         }
         private void tbPass2_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            password2 = ((PasswordBox)sender).Password;
+          
+                password2 = ((PasswordBox)sender).Password;
         }
         private void tbEmail_SelectionChanged(object sender, RoutedEventArgs e)
         {
+          
             email = ((TextBox)sender).Text;
         }
         private void tbTelephone_TextChanged(object sender, RoutedEventArgs e)
         {
-            telephone = ((TextBox)sender).Text;
+                telephone = ((TextBox)sender).Text;
         }
 
        

@@ -160,6 +160,74 @@ namespace Wpf67.DataBase
                 return false;
             }
         }
+        public bool AddUserInfo(string first_name, string last_name, string patronymic, string passport)
+        {
+            try
+            {//Wpf67.Properties.Settings.Default.UserId
+                //INSERT INTO `users_info` (`id_user`, `first_name`, `last_name`, `patronymic`, `_passport`, `email`, `telephone`) VALUES (NULL, 'sdf', 'sdf', 'sf', 'sdf', 'sf', 'sd');
+                //UPDATE tickets SET `status_seat`= 1 WHERE `id_ticket`='"+id_ticket+"';
+                /*
+                 "INSERT INTO `users_info` (`id_user`, `first_name`, `last_name`, `patronymic`, `_passport`, `email`, `telephone`)" +
+                    " VALUES (`" + Wpf67.Properties.Settings.Default.UserId + "`, `" + first_name + "`, `" + last_name + "`," +
+                    " `" + patronymic + "`, `" + passport + "`, `" + email + "`, `" + telephone + "`);";
+                 */
+                string sql1 = "  Update users_info set users_info.first_name='"+first_name+"', users_info.last_name='"+last_name+"',"+
+                    " users_info.patronymic = '"+patronymic+"', users_info._passport = '"+passport+"' where users_info.id_user = " + Wpf67.Properties.Settings.Default.UserId;
+             
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+         
+                Open();
+                myCommand.ExecuteNonQuery();
+                Close();
+                return true;
+
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                //   MessageBox.Show("Ошибка добавления данных");
+                return false;
+            }
+        }
+        public bool AddUserTicket(string id_user, string id_ticket, string id_end_point)
+        {
+            Open();
+            MySqlTransaction transaction = conn.BeginTransaction();
+            MySqlCommand command = conn.CreateCommand();
+            command.Transaction = transaction;
+            try
+            {
+            string sql1 = "select intermediate_point.id_intermediate_point from intermediate_point join cities on intermediate_point.id_city=cities.id_city where cities.name_city = '"+id_end_point+"'";
+            MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+            MySqlDataReader reader = myCommand.ExecuteReader();
+           
+                int id_epoint = 0;
+
+                while (reader.Read())
+                    id_epoint = Convert.ToInt32(reader[0]);
+                reader.Close();
+
+                command.CommandText = "INSERT INTO `user_tickets` (`id_user`, `id_ticket`, `id_end_point`, `date_reserve`) VALUES ('" + id_user + "', '" + id_ticket + "', '" + id_epoint + "', " +
+                    "'" + DateTime.Now + "');";
+                command.ExecuteNonQuery();
+
+                command.CommandText =  "UPDATE tickets SET `status_seat`= 1 WHERE `id_ticket`='"+id_ticket+"';";
+                command.ExecuteNonQuery();
+
+                // подтверждаем транзакцию
+                transaction.Commit();
+
+            }
+            catch (Exception a)
+            {
+                transaction.Rollback();
+            //    MessageBox.Show(a.Message + "\n" + a.StackTrace);
+               MessageBox.Show("Ошибка добавления данных");
+                return false;
+            }
+            Close();
+            return true;
+        }
 
         public bool AddIntermediatePoint(string id_city, string id_route, string time_arrive, string cost)
         {
@@ -177,8 +245,8 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-                MessageBox.Show(a.Message + "\n" + a.StackTrace);
-                //   MessageBox.Show("Ошибка добавления данных");
+              //  MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
@@ -596,7 +664,7 @@ namespace Wpf67.DataBase
 
         public ObservableCollection<User> GetUsers()
         {
-            ObservableCollection<User> users = new ObservableCollection<User>();
+           ObservableCollection<User> users = new ObservableCollection<User>();
             Open();
             if (status)
             {
@@ -818,23 +886,23 @@ namespace Wpf67.DataBase
 
         }
 
-        public List<ChoiseSeat> GetTickets(int id, DateTime date)
+        public List<Ticket> GetTickets(int id, DateTime date)
         {
-            List<ChoiseSeat> Seats = new List<ChoiseSeat>();
+            List<Ticket> Tickets = new List<Ticket>();
             Open();
             if (status)
             {
 
-                string sql1 = "select tickets.num_seat, tickets.status_seat from tickets where tickets.id_route_bus = '" + id + "' and tickets.date_departure = '" + date.Year + "." + date.Month + "." + date.Day + "'" +
+                string sql1 = "select * from tickets where tickets.id_route_bus = '" + id + "' and tickets.date_departure = '" + date.Year + "." + date.Month + "." + date.Day + "'" +
                     "  and tickets.status_seat = 0";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
                 reader = myCommand.ExecuteReader();
                 while (reader.Read())
-                    Seats.Add(new ChoiseSeat(Convert.ToInt32(reader[0]), Convert.ToBoolean(reader[1])));
+                    Tickets.Add(new Ticket(Convert.ToInt32(reader[0]), Convert.ToInt32(reader[1]),Convert.ToString(reader[2]),Convert.ToInt32(reader[3]), Convert.ToBoolean(reader[4]), null));
                 Close();
                 reader.Close();
-                return Seats;
+                return Tickets;
             }
             else
             {

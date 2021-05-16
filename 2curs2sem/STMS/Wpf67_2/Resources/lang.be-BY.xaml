@@ -77,7 +77,7 @@
     <v:String x:Key="reg_text1">Ужо зарэгістраваныя?</v:String>
     <v:String x:Key="reg_text2">Тады</v:String>
     <v:String x:Key="reg_text3">увайсці.</v:String>
-    <v:String x:Key="reg_log1">Лагін не павінен утрымоўваць сімвалы: ' &quot;</v:String>
+    <v:String x:Key="reg_log1">Максімальная даўжыня лагіна 44 сімвала</v:String>
     <v:String x:Key="reg_pass2">Пароль павінен змяшчаць больш за 4 сімвалы</v:String>
 
     <!-- Search UserControl -->

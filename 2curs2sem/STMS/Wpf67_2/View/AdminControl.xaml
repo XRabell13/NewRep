@@ -135,7 +135,7 @@
                         <DataGridTextColumn Header="name route" Binding="{Binding NameRoute, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="date departure" Binding="{Binding date_departure, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="number seat" Binding="{Binding num_seat, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
-                        <DataGridTextColumn Header="status seat" Binding="{Binding status_seat}" />
+                        <DataGridTextColumn Header="status seat" Binding="{Binding status_seat, Mode=TwoWay}"  IsReadOnly="True"  CellStyle="{DynamicResource DataNoChangeDB}"/>
 
                     </DataGrid.Columns>
                 </DataGrid>

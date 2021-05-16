@@ -49,9 +49,7 @@ namespace Wpf67
                 (ThreadStart)delegate ()
                 {
                     AuthorizationUser autUser = new AuthorizationUser();
-                    if (autUser.IsTrueLogin(tb_login.Text))
-                    {
-                       
+                     
                         if (autUser.IsTruePassword(tb_login.Text, box_password1.Password))
                         {
                             int id = autUser.GetUserId(tb_login.Text);
@@ -65,9 +63,7 @@ namespace Wpf67
                         }
                         else
                             MessageBox.Show("Проверьте пароль");
-                    }
-                    else
-                        MessageBox.Show("Проверьте логин");
+                   
                 });
            
         }

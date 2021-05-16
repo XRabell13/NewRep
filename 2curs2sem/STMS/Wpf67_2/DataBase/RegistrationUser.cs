@@ -14,17 +14,18 @@ namespace Wpf67.DataBase
 
         public bool RegistUser(string login, string password1, string password2)
         {
-            if (check.IsTrueLogin(login))
-            {
+            
                 if (!check.CheckLogin(login))
                 {
                     if (password1.Equals(password2))
                     {
                         if (password1.Length >= 4)
                         {
-                            string sql1 = "INSERT INTO `users` (`nick`, `u_password`,`isAdmin`) VALUES ('" + login + "', '" + password1.GetHashCode() + "','" + 0 + "');";
+                            string sql1 = "INSERT INTO `users` (`nick`, `u_password`,`isAdmin`) VALUES (@login, '" + password1.GetHashCode() + "','" + 0 + "');";
                             MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-                            Open();
+                            myCommand.Parameters.AddWithValue("@login", login);
+
+                        Open();
                             myCommand.ExecuteNonQuery();
                             Close();
                             return true;
@@ -42,16 +43,19 @@ namespace Wpf67.DataBase
                     }
                 }
                 else MessageBox.Show("Данный логин используется другим пользователем");
-            }
-            else MessageBox.Show("Введены недопустимые символы");
+           
             return false;
         }
         public bool AddUserInfo(int id, string passport, string telephone, string email)
         {
-            string sql1 = "INSERT INTO `users_info` (`id_user`,`_passport`, `email`, `telephone`) VALUES ('" + id + "', '"  + passport + "','" + email + "', '" + telephone.Replace(" ", "") + "');";
+            string sql1 = "INSERT INTO `users_info` (`id_user`,`_passport`, `email`, `telephone`) VALUES ('" + id + "', @passport, @email, @telephone);";
             try
             {
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                myCommand.Parameters.AddWithValue("@passport", passport);
+                myCommand.Parameters.AddWithValue("@email", email);
+                myCommand.Parameters.AddWithValue("@telephone", telephone);
+         
                 Open();
                 myCommand.ExecuteNonQuery();
                 Close();

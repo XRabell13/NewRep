@@ -11,18 +11,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <!--<RowDefinition Height="30"/>-->
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Background="WhiteSmoke" Visibility="{Binding ShowListBox}">
+      <!--  <StackPanel Orientation="Horizontal" Background="WhiteSmoke" Visibility="{Binding ShowListBox}">
             <TextBlock Text="Сортировка по "/>
             <ComboBox />
-            
-            
-        </StackPanel>
+        </StackPanel>-->
 
-        <ScrollViewer Visibility="{Binding ShowListBox}" Grid.Row="1" Grid.Column="0">
+        <ScrollViewer Visibility="{Binding ShowListBox}" Grid.Row="0" Grid.Column="0">
 
             <ListBox x:Name="FindRouteListBox"  HorizontalContentAlignment="Stretch"  ItemsSource="{Binding FindRoutes}" SelectedItem="{Binding SelectRoute}" Background="WhiteSmoke" >
             <ListBox.ItemTemplate>
@@ -68,9 +66,9 @@
         </ListBox>
         </ScrollViewer>
 
-            <TextBlock  Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="1" Text="{DynamicResource fr_noRoutes}" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock  Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="0" Text="{DynamicResource fr_noRoutes}" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"/>
      
-        <StackPanel Grid.Column="0" Grid.Row='2' Background="LightGray" >
+        <StackPanel Grid.Column="0" Grid.Row='1' Background="LightGray" >
             <Button Content="{DynamicResource fr_next}" Command="{Binding NextPage}" Visibility="{Binding ShowListBox}" Style="{DynamicResource ButSelectRoute}" />
         </StackPanel>
       

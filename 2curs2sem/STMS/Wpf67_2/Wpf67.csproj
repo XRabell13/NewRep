@@ -161,6 +161,7 @@
     <Compile Include="ViewModel\RegistrationVM.cs" />
     <Compile Include="Settings\Language.cs" />
     <Compile Include="Settings\Theme.cs" />
+    <Compile Include="ViewModel\ReserveTicketVM.cs" />
     <Compile Include="View\ReserveTicket.xaml.cs">
       <DependentUpon>ReserveTicket.xaml</DependentUpon>
     </Compile>

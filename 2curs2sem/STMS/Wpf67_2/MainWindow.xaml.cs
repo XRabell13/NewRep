@@ -28,7 +28,7 @@ namespace Wpf67
     {
        // void ShowMessage(string message);
         void LoadView(ViewType typeView);
-        void LoadViewWhithParam(ViewType typeView, object param1, object param2, object param3, object param4);
+        void LoadViewWhithParam(ViewType typeView, object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9);
         void ButExitAccount();
         void ButEnterAccount();
     }
@@ -159,7 +159,7 @@ namespace Wpf67
             }
         }
 
-      public void LoadViewWhithParam(ViewType typeView, object param1, object param2, object param3, object param4)
+      public void LoadViewWhithParam(ViewType typeView, object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9)
         {
             switch (typeView)
             {
@@ -172,11 +172,12 @@ namespace Wpf67
                         break;
                     }
                 case ViewType.ChoiseSeat:
-                    {// // RouteBus routeB, string beginCity, string endCity, DateTime date)
+                    {
                         try
                         {
                             ChoiseSeat view = new ChoiseSeat();
-                            ChoiseSeatVM vm = new ChoiseSeatVM(this, Convert.ToInt32(param1), Convert.ToString(param2), Convert.ToString(param3), (DateTime)param4);
+                            ChoiseSeatVM vm = new ChoiseSeatVM(this, Convert.ToInt32(param1), Convert.ToString(param2), Convert.ToString(param3), (DateTime)param4, Convert.ToDecimal(param5), 
+                                Convert.ToString(param6), Convert.ToString(param7));
                             view.DataContext = vm;
                             this.OutWin.Content = view;
                         }
@@ -185,7 +186,15 @@ namespace Wpf67
                     }
                 case ViewType.ReserveTicket:
                     {
-                     
+                        try
+                        {
+                            ReserveTicket view = new ReserveTicket();
+                            ReserveTicketVM vm = new ReserveTicketVM(this, Convert.ToString(param1), Convert.ToString(param2), Convert.ToDecimal(param3), 
+                                Convert.ToString(param4), Convert.ToString(param5), Convert.ToInt32(param6), Convert.ToString(param7), Convert.ToString(param8), Convert.ToString(param9));
+                            view.DataContext = vm;
+                            this.OutWin.Content = view;
+                        }
+                        catch (Exception a) { MessageBox.Show(a.Message + "\n\n" + a.StackTrace); }
                         break;
                     }
 

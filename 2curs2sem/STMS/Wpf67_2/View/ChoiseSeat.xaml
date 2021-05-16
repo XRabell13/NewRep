@@ -19,7 +19,7 @@
         <TextBlock Text="{DynamicResource cs_choice_seat}" Visibility="{Binding ShowListBox}" Grid.Column="0" Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
         <TextBlock Text="{DynamicResource cs_no_seat}" Visibility="{Binding ShowListBox}" Grid.Column="0" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
 
-        <ListBox Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListButtons}" SelectedItem="{Binding SelectListButton}"  Visibility="{Binding ShowListBox}" Background="LightGray">
+        <ListBox Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListTickets}" SelectedItem="{Binding SelectTicket}"  Visibility="{Binding ShowListBox}" Background="LightGray">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" Width="600" VerticalAlignment="Center"/>
@@ -27,13 +27,13 @@
             </ListBox.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding NumberSeat, Mode=OneTime}" Style="{DynamicResource TBSelectSeat}"/>
+                    <TextBlock Text="{Binding num_seat, Mode=OneTime}" Style="{DynamicResource TBSelectSeat}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListBox>
 
         <StackPanel Visibility="{Binding ShowListBox}" Grid.Column="0" Grid.Row='3' Background="LightGray" >
-            <Button Content="{DynamicResource fr_next}" />
+            <Button Content="{DynamicResource fr_next}" Command="{Binding NextPage}"/>
         </StackPanel>
 
         <TextBlock Text="{DynamicResource cs_no_seats}" Visibility="{Binding ShowNoTickets}"  Grid.Column="0" Grid.Row="2" TextAlignment="Center" VerticalAlignment="Center" FontSize="22"/>
