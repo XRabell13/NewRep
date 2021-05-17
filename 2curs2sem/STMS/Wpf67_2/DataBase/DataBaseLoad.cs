@@ -683,7 +683,7 @@ namespace Wpf67.DataBase
            
             try
             {
-                MessageBox.Show(id_user_ticket+"\n"+id_ticket);
+              
                 command.CommandText = "DELETE FROM `user_tickets` WHERE `id_user_tickets`='" + id_user_ticket + "';";
        
                 command.ExecuteNonQuery();
