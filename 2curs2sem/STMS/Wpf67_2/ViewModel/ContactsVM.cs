@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wpf67.Command;
+using System.Diagnostics;
 
 namespace Wpf67.ViewModel
 {
@@ -23,7 +24,7 @@ namespace Wpf67.ViewModel
 
         
         private MyCommand loadContacts;
-        public MyCommand LoadContactsPage
+        public MyCommand ClickLinkVK
         {
             get
             {
@@ -37,7 +38,8 @@ namespace Wpf67.ViewModel
         }
         private void ShowContactsPage()
         {
-           mainWindow.LoadView(ViewType.Contacts);
+            Process.Start("https://vk.com/xrabell13"); //открытие ссылки в браузере
         }
+
     }
 }

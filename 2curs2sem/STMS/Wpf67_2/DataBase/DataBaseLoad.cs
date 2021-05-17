@@ -717,25 +717,9 @@ namespace Wpf67.DataBase
                 {
                     if (status)
                     {
-                        /*
-                         select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost
-                             from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
-                            and route_bus.timetable like 'Пт' and route_bus.name_route like '%Минск АВ-Центральный%'
-                            join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Молодечно%'
-                            join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter
-
-
-
-                        select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost
-                                 from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
-                                 and route_bus.timetable like '%" + date + "%' and route_bus.name_route like '%Минск АВ-Центральный%'
-                                join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Нарочь%'
-                                join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter;
-                         */
-                        //Convert.ToString(ip.cost).Replace(",", ".")
+                       
                         string sql1;
-                        //string[] begincity = bc.Trim().Split(new char[] { ' ' });
-                     
+                    
                      if (dateTime.Date == DateTime.Now.Date)
                         sql1 = "select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost" +
                             " from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus" +

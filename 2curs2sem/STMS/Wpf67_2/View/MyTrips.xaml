@@ -6,21 +6,13 @@
              xmlns:local="clr-namespace:Wpf67.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style TargetType="DataGrid">
-            <Setter Property="Background" Value="LightGray" />
-            <Setter Property="FontSize" Value="18" />
-            
-        </Style>
-        
-        
-    </UserControl.Resources>
+
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <!--<RowDefinition Height="30"/>-->
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -28,9 +20,9 @@
             <TextBlock Text="Сортировка по "/>
             <ComboBox />
         </StackPanel>-->
-
-        <ScrollViewer Visibility="{Binding ShowListBox}" Grid.Row="0" Grid.Column="0">
-
+        <TextBlock Text="{DynamicResource mt_title}" Grid.Column="0" Grid.Row="0"  FontSize="35" TextAlignment="Center" Background="WhiteSmoke"/>
+        <ScrollViewer Visibility="{Binding ShowListBox}" Grid.Row="1" Grid.Column="0">
+          
             <ListBox x:Name="FindRouteListBox"  HorizontalContentAlignment="Stretch"  ItemsSource="{Binding MyTrips}" SelectedItem="{Binding SelectTrip}" Background="WhiteSmoke" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -74,9 +66,9 @@
             </ListBox>
         </ScrollViewer>
 
-        <TextBlock  Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="0" Text="{DynamicResource fr_noRoutes}" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock  Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="1" Text="{DynamicResource fr_noRoutes}" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"/>
 
-        <StackPanel Grid.Column="0" Grid.Row='1' Background="LightGray" >
+        <StackPanel Grid.Column="0" Grid.Row='2' Background="LightGray" >
             <Button Content="{DynamicResource mt_cancel}" Command="{Binding CancelTrip}" Visibility="{Binding ShowListBox}" Style="{DynamicResource ButSelectRoute}" />
         </StackPanel>
 
