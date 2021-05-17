@@ -61,6 +61,7 @@ namespace Wpf67.ViewModel
             _endCity = endCity;
             _dateTime = date;
 
+            db.UpdateOldTickets();
            FindRoutes = db.GetFindRoutes(beginCity,endCity,GetDay(date), date);
             if (FindRoutes.Count == 0)
             {

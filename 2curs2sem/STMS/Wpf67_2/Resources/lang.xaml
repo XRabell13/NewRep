@@ -168,6 +168,10 @@
 
 
     <v:String x:Key="mt_cancel">Отменить</v:String>
+    <v:String x:Key="mt_date">Дата: </v:String>
+    <v:String x:Key="mt_number_seat">Номер места: </v:String>
+    <v:String x:Key="mt_route">Рейс: </v:String>
+    <v:String x:Key="mt_in">Пункт прибытия: </v:String>
     <!--
     <v:String x:Key="city_name">ID</v:String>
     <v:String x:Key="intermediate_point">ID</v:String>

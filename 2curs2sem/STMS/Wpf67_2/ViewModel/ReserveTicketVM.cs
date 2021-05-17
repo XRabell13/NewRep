@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Wpf67.Command;
@@ -15,18 +16,48 @@ namespace Wpf67.ViewModel
         string _first_name, _last_name, _patronymic, _passport, _select_route_bus, id_ticket, id_end_point;
 
         public string FirstName
-        { get => _first_name; set => _first_name = value; }
+        { get => _first_name; 
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    if (value.Length < 45) 
+                        _first_name = value;
+                
+            }
+        }
         public string LastName
-        { get => _last_name; set => _last_name = value; }
+        {
+            get => _last_name;
+            set
+            {
+                if(!string.IsNullOrWhiteSpace(value))
+                if(value.Length<45)
+                _last_name = value;
+            }
+        }
         public string Patronymic
-        { get => _patronymic; set => _patronymic = value; }
+        { get => _patronymic; set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    if (value.Length < 45) _patronymic = value;
+            }
+        }
         public string Passport
         {
             get => _passport;
             set
             {
-                if(value.Length<10)
-                _passport = value;
+               // string pattern = @"^((АВ|ВМ|НВ|КН|МР|МС|КВ|РР|SP|DP)[0-9]{7})?$";//
+                string pattern = @"^([A-z]{2}[0-9]{7})?$";//
+
+                if (Regex.IsMatch(value, pattern, RegexOptions.None))
+                {
+                    _passport = value;
+
+                }
+                else
+                    MessageBox.Show("Некорректный номер или серия паспорта");
+             
             }
         }
         public string SelectRouteBus
@@ -64,8 +95,7 @@ namespace Wpf67.ViewModel
                 mainWindow.LoadView(ViewType.MyTrips);
             }
             else MessageBox.Show("Заполните все поля");
-            // RouteBus routeB, string beginCity, string endCity, DateTime date)
-           // mainWindow.LoadViewWhithParam(ViewType.ChoiseSeat, _selectRoute.IdRoute, _beginCity, _endCity, Date, null,null,null);
+          
 
         }
 

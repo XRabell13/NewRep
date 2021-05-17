@@ -113,10 +113,10 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="id" Binding="{Binding id_route}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="name route" Binding="{Binding name_route, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="id bus" Binding="{Binding id_bus, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="id bus" Binding="{Binding id_bus, Mode=TwoWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="name bus" Binding="{Binding NameBus, Mode=OneWay}" CellStyle="{DynamicResource DataNoChangeDB}" />
                         <DataGridTextColumn Header="time departure" Binding="{Binding time_departure, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="timetable" Binding="{Binding timetable}"/>
+                        <DataGridTextColumn Header="timetable" Binding="{Binding timetable}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="id departure point" Binding="{Binding id_departure_point, Mode=TwoWay}" />
                         <DataGridTextColumn Header="name departure point" Binding="{Binding NameDeparturePoint, Mode=OneWay}" CellStyle="{DynamicResource DataNoChangeDB}" />
                         
@@ -200,7 +200,7 @@
                                 <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectBeginCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
                                 <TextBlock Text="{DynamicResource add_routebus_end_point}"/>
                                 <ComboBox Style="{DynamicResource ComboBoxInfoBD}" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectEndCity, Mode=TwoWay}" IsEditable="True"></ComboBox>
-                                <TextBlock Text="{DynamicResource fr_cost}"/>
+                                <TextBlock Text="{DynamicResource add_ip_cost}"/>
                                 <TextBox x:Name="CostRouteBus" Style="{DynamicResource TextBoxInfoBD}" Text="{Binding CostRouteBus, Mode=TwoWay}"/>
                                 <Button Style="{DynamicResource ButAddInfoDB}" Content="{DynamicResource admin_add}" Command="{Binding AddRouteBus}" />
                             </StackPanel>

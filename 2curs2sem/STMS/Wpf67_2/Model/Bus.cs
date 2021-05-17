@@ -97,7 +97,7 @@ namespace Wpf67.Model
 
         public override string ToString()
         {
-            return  model +", " +_named_transporter;
+            return  model +", "+count_seats+" мест, " +_named_transporter;
         }
     }
 }

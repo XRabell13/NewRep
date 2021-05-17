@@ -7,25 +7,6 @@ using Wpf67.Model;
 
 namespace Wpf67.DataBase
 {
-    /*
-      select *
-   from route_bus 
-   join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
-   and route_bus.timetable like '%1%'
-   and route_bus.name_route like '%Минск%' 
-   join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Радошковичи%' 
-   join bus on route_bus.id_bus = bus.state_number 
-   join transporters on transporters.id_transporter = bus.id_transporter
- 
-    select *
-   from route_bus 
-   join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
-   and route_bus.timetable like '%1%'
-   and route_bus.name_route like '%Минск АВ-Центральный%' 
-   join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Радошковичи%' 
-   join bus on route_bus.id_bus = bus.state_number 
-   join transporters on transporters.id_transporter = bus.id_transporter
-     */
     class DataBaseLoad : Connect
     {
 
@@ -71,8 +52,8 @@ namespace Wpf67.DataBase
             }
             catch(Exception a)
             {
-                MessageBox.Show(a.Message +"\n"+ a.StackTrace);
-             //   MessageBox.Show("Ошибка добавления данных");
+             //   MessageBox.Show(a.Message +"\n"+ a.StackTrace);
+               MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
@@ -105,8 +86,8 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-                MessageBox.Show(a.Message + "\n" + a.StackTrace);
-                //   MessageBox.Show("Ошибка добавления данных");
+                //MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                  MessageBox.Show("Ошибка добавления данных");
                 return null;
             }
         }
@@ -129,8 +110,8 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-                MessageBox.Show(a.Message + "\n" + a.StackTrace);
-                //   MessageBox.Show("Ошибка добавления данных");
+                //MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                  MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
@@ -155,22 +136,15 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-                MessageBox.Show(a.Message + "\n" + a.StackTrace);
-                //   MessageBox.Show("Ошибка добавления данных");
+              //  MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                   MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
         public bool AddUserInfo(string first_name, string last_name, string patronymic, string passport)
         {
             try
-            {//Wpf67.Properties.Settings.Default.UserId
-                //INSERT INTO `users_info` (`id_user`, `first_name`, `last_name`, `patronymic`, `_passport`, `email`, `telephone`) VALUES (NULL, 'sdf', 'sdf', 'sf', 'sdf', 'sf', 'sd');
-                //UPDATE tickets SET `status_seat`= 1 WHERE `id_ticket`='"+id_ticket+"';
-                /*
-                 "INSERT INTO `users_info` (`id_user`, `first_name`, `last_name`, `patronymic`, `_passport`, `email`, `telephone`)" +
-                    " VALUES (`" + Wpf67.Properties.Settings.Default.UserId + "`, `" + first_name + "`, `" + last_name + "`," +
-                    " `" + patronymic + "`, `" + passport + "`, `" + email + "`, `" + telephone + "`);";
-                 */
+            {
                 string sql1 = "  Update users_info set users_info.first_name='"+first_name+"', users_info.last_name='"+last_name+"',"+
                     " users_info.patronymic = '"+patronymic+"', users_info._passport = '"+passport+"' where users_info.id_user = " + Wpf67.Properties.Settings.Default.UserId;
              
@@ -184,8 +158,8 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-                MessageBox.Show(a.Message + "\n" + a.StackTrace);
-                //   MessageBox.Show("Ошибка добавления данных");
+                //MessageBox.Show(a.Message + "\n" + a.StackTrace);
+                  MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
         }
@@ -286,9 +260,9 @@ namespace Wpf67.DataBase
                 count_seats = Convert.ToInt32(reader[0]);
                 reader.Close();
            
-                for (int j = 0; j <= 7; j++)
+                for (int j = 0; j <= 7; j++)//загрузка билетов на неделю вперед
                 {
-                    dateTime = DateTime.Now.AddDays(j);
+                    dateTime = DateTime.Now.AddDays(j+1);//+1 чтобы оно не добавляло билеты на тот день, в который было загружено
                     if (dayOfWeek.ContainsKey(Convert.ToInt32(dateTime.DayOfWeek)))
                         for (int i = 1; i <= count_seats; i++)
                         {
@@ -461,6 +435,66 @@ namespace Wpf67.DataBase
             }
             Close();
         }
+        public void UpdateOldTickets()
+        {
+            Open();
+
+            DateTime dateTime = DateTime.Now, date;
+            string sql1 = "update tickets set tickets.date_departure = '@', tickets.status_seat=0 where tickets.id_ticket=#;";
+            string sql2 = "select tickets.id_ticket, tickets.date_departure from tickets where tickets.date_departure < CURDATE()";
+            string sql3 = "";
+           
+            List<string> id_tickets = new List<string>();
+            List<DateTime> date_departure = new List<DateTime>();
+            MySqlDataReader reader;
+            MySqlCommand myCommand, myCommand1;
+            bool canUpdate = true;
+            try
+                {
+                while (canUpdate)
+                {
+                    myCommand = new MySqlCommand(sql2, conn);
+                    reader = myCommand.ExecuteReader();
+
+                   while (reader.Read())
+                    {
+                        id_tickets.Add(Convert.ToString(reader[0]));
+                        date_departure.Add(Convert.ToDateTime(reader[1]));
+                    }
+                    reader.Close();
+                  
+                    if (id_tickets.Count!=0)
+                    {
+                      
+                        if (!string.IsNullOrWhiteSpace(id_tickets[0])) 
+                        {
+                           
+                            for (int i = 0; i < id_tickets.Count; i++)
+                            {
+                                date = date_departure[i].AddDays(7).Date;
+                                sql3 += sql1.Replace("#", id_tickets[i]).Replace("@", date.Year + "." + date.Month + "." + date.Day) + " ";
+                            }
+                        myCommand1 = new MySqlCommand(sql3, conn);
+                        myCommand1.ExecuteNonQuery();
+
+                   
+                        id_tickets.Clear();
+                        date_departure.Clear();
+                        sql3 = "";
+                        }
+                        else canUpdate = false;
+                    }
+                    else canUpdate = false;
+                  }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка  \n " + ex.Message +"\n"+ ex.StackTrace);
+                }
+            
+            Close();
+        }
+
         #endregion
 
         #region Delete
@@ -596,6 +630,80 @@ namespace Wpf67.DataBase
 
             Close();
         }
+        public void DeleteOldUserTickets()
+        {
+          
+            Open();
+            DateTime dateTime = DateTime.Now;
+            string sql1 = "select user_tickets.id_user_tickets from user_tickets join tickets on user_tickets.id_ticket=tickets.id_ticket join route_bus on tickets.id_route_bus=route_bus.id_route " +
+                " where tickets.date_departure <'" + dateTime.Year + "." + dateTime.Month + "." + dateTime.Day + "'";
+          
+            string sql2 = "DELETE FROM `user_tickets` WHERE `id_user_tickets`=@;", sql3="";
+            List<string> id_tickets = new List<string>();
+            MySqlDataReader reader;
+            try
+            {
+
+                MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                MySqlCommand myCommand1;
+                reader = myCommand.ExecuteReader();
+                while (reader.Read())
+                    id_tickets.Add(Convert.ToString(reader[0]));
+                reader.Close();
+
+                if (id_tickets.Count != 0) 
+                {
+                    for (int i = 0; i < id_tickets.Count; i++)
+                    {
+                       sql3 += sql2.Replace("@", id_tickets[0])+" ";
+                    
+                    }
+                    myCommand1 = new MySqlCommand(sql3, conn);
+                    myCommand1.ExecuteNonQuery();
+                  
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
+        public void DeleteUserTicket(string id_user_ticket, string id_ticket)
+        {
+            Open();
+
+           
+            MySqlTransaction transaction = conn.BeginTransaction();
+         
+            MySqlCommand command = conn.CreateCommand();
+           
+            command.Transaction = transaction;
+           
+            try
+            {
+                MessageBox.Show(id_user_ticket+"\n"+id_ticket);
+                command.CommandText = "DELETE FROM `user_tickets` WHERE `id_user_tickets`='" + id_user_ticket + "';";
+       
+                command.ExecuteNonQuery();
+               
+                command.CommandText = "UPDATE tickets SET `status_seat`= 0 WHERE `id_ticket`='" + id_ticket + "';";
+                command.ExecuteNonQuery();
+
+                // подтверждаем транзакцию
+                transaction.Commit();
+               
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                MessageBox.Show("Ошибка удаления данных");
+                MessageBox.Show("Ошибка  \n " + ex.Message);
+            }
+
+            Close();
+        }
         #endregion
 
         #region GetTables
@@ -615,21 +723,31 @@ namespace Wpf67.DataBase
                             and route_bus.timetable like 'Пт' and route_bus.name_route like '%Минск АВ-Центральный%'
                             join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Молодечно%'
                             join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter
+
+
+
+                        select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost
+                                 from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus
+                                 and route_bus.timetable like '%" + date + "%' and route_bus.name_route like '%Минск АВ-Центральный%'
+                                join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%Нарочь%'
+                                join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter;
                          */
                         //Convert.ToString(ip.cost).Replace(",", ".")
                         string sql1;
+                        //string[] begincity = bc.Trim().Split(new char[] { ' ' });
+                     
                      if (dateTime.Date == DateTime.Now.Date)
                         sql1 = "select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost" +
                             " from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus" +
                             " and route_bus.timetable like '%" + date + "%' and route_bus.name_route like '%" + bc + "%'" +
-                            "join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%" + ec + "%'" +
+                            "join cities on cities.id_city = intermediate_point.id_city and cities.name_city = '" + ec + "'" +
                             "join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter where route_bus.time_departure >'" +
                            DateTime.Now.ToShortTimeString() + "';";
                       
                         else sql1 = "select route_bus.id_route, intermediate_point.time_arrive, bus.model,  transporters.named,  route_bus.time_departure,  intermediate_point.cost" +
                                 " from route_bus join intermediate_point on route_bus.id_route = intermediate_point.id_route_bus" +
                                 " and route_bus.timetable like '%" + date + "%' and route_bus.name_route like '%" + bc + "%'" +
-                                "join cities on cities.id_city = intermediate_point.id_city and cities.name_city LIKE '%" + ec + "%'" +
+                                "join cities on cities.id_city = intermediate_point.id_city and cities.name_city = '" + ec + "'" +
                                 "join bus on route_bus.id_bus = bus.state_number join transporters on transporters.id_transporter = bus.id_transporter;";
 
                         MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -651,7 +769,7 @@ namespace Wpf67.DataBase
                     }
                     else
                     {
-                        MessageBox.Show("Не удалось найти рейсы. Пожалкйста, попробуйте позже.");
+                        MessageBox.Show("Не удалось найти рейсы. Пожалуйста, попробуйте позже.");
                         Close();
                         return null;
                     }
@@ -864,8 +982,7 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-                //DATE - формат YYYY-MM-DD
-              //  MessageBox.Show(DateTime.Now.Year + "."+DateTime.Now.Month+"."+DateTime.Now.Day); подходит если 2021.12.2
+                
                 string sql1 = "SELECT tickets.id_ticket, tickets.id_route_bus, tickets.date_departure, tickets.num_seat, tickets.status_seat, route_bus.name_route from tickets join route_bus on tickets.id_route_bus = route_bus.id_route;";
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
                 MySqlDataReader reader;
@@ -938,7 +1055,38 @@ namespace Wpf67.DataBase
             }
 
         }
-        #endregion 
+
+          public List<MyTrip> GetUserTrips(string id)
+        {
+             List<MyTrip> Tickets = new List<MyTrip>();
+              Open();
+              if (status)
+              {
+             
+                string sql1 = "select route_bus.name_route, cities.name_city, route_bus.time_departure, intermediate_point.time_arrive, intermediate_point.cost,"+
+                    " tickets.date_departure, tickets.num_seat, user_tickets.id_user_tickets,  user_tickets.id_ticket from user_tickets join tickets on user_tickets.id_ticket = tickets.id_ticket " +
+                    "join route_bus on route_bus.id_route = tickets.id_route_bus join intermediate_point on intermediate_point.id_intermediate_point = user_tickets.id_end_point"+
+                    " join cities on cities.id_city = intermediate_point.id_city where user_tickets.id_user="+id;
+                  MySqlCommand myCommand = new MySqlCommand(sql1, conn);
+                  MySqlDataReader reader;
+                  reader = myCommand.ExecuteReader();
+                  while (reader.Read())
+                      Tickets.Add(new MyTrip(Convert.ToString(reader[0]), Convert.ToString(reader[1]), Convert.ToString(reader[2]), Convert.ToString(reader[3]), 
+                          Convert.ToDecimal(reader[4]),Convert.ToString(reader[5]).Remove(10), Convert.ToString(reader[6]), Convert.ToString(reader[7]), Convert.ToString(reader[8])));
+                  Close();
+                  reader.Close();
+                  return Tickets;
+              }
+              else
+              {
+                  MessageBox.Show("Не удалось получить таблицу Tickets");
+                  Close();
+                  return null;
+              }
+
+    }
+      
+        #endregion
 
     }
 }

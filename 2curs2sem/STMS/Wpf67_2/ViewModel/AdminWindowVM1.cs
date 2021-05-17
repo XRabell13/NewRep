@@ -327,7 +327,6 @@ namespace Wpf67.ViewModel
 
                 if (routeB != null)
                 {
-                    MessageBox.Show(routeB.id_route.ToString());
                     baseLoad.AddIntermediatePoint(routeB.id_end_city.ToString(), routeB.id_route.ToString(), _time_arrive_route, _cost_route.ToString());
                     baseLoad.AddTicketsForNewRoute(routeB);
                 }

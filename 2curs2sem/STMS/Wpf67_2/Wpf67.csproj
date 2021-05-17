@@ -143,6 +143,7 @@
     <Compile Include="Model\Bus.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\IntermediatePoint.cs" />
+    <Compile Include="Model\MyTrip.cs" />
     <Compile Include="Model\RouteBus.cs" />
     <Compile Include="Model\Ticket.cs" />
     <Compile Include="Model\Transporter.cs" />

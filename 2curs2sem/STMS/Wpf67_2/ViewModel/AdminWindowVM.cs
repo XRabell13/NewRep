@@ -162,6 +162,8 @@ namespace Wpf67.ViewModel
         {
            
             AllCollectionChanged();
+            baseLoad.DeleteOldUserTickets();
+            baseLoad.UpdateOldTickets();
             LoadDataBase();
             
 
