@@ -153,7 +153,7 @@
     <v:String x:Key="rt_last_name">Фамилия</v:String>
     <v:String x:Key="rt_patronymic">Отчество</v:String>
     <v:String x:Key="rt_passport">Паспорт</v:String>
-    <v:String x:Key="rt_passport_info">Серия и номер паспорта</v:String>
+    <v:String x:Key="rt_passport_info">Серия(латиницей) и номер паспорта</v:String>
     <v:String x:Key="rt_info">Выбранный рейс</v:String>
     <v:String x:Key="rt_but_reserve">Забронировать</v:String>
 

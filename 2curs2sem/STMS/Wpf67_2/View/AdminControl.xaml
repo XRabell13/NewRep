@@ -37,7 +37,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="id"  Binding="{Binding id}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="login" Binding="{Binding login}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
-                        <DataGridTextColumn Header="password" Binding="{Binding password}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
+                       <!-- <DataGridTextColumn Header="password" Binding="{Binding password}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>-->
                         <DataGridTextColumn Header="isAdmin" Binding="{Binding isAdmin}" />
 
                     </DataGrid.Columns>
