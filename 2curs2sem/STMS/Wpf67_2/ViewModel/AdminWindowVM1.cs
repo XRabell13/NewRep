@@ -78,7 +78,7 @@ namespace Wpf67.ViewModel
             set
             {
 
-                string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";//
+                string pattern = @"^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$";
 
                 if (Regex.IsMatch(value, pattern, RegexOptions.None))
                 {
@@ -147,7 +147,7 @@ namespace Wpf67.ViewModel
             {
                 string pattern = @"^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$";
 
-                if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase) || value == null)
+                if (Regex.IsMatch(value, pattern, RegexOptions.IgnoreCase) || value == null)//
                    _textTelephone = value;
                 else
                     MessageBox.Show("Некорректный телефон");
@@ -356,10 +356,12 @@ namespace Wpf67.ViewModel
         {
                 if (!string.IsNullOrWhiteSpace(TextAddress) && !string.IsNullOrWhiteSpace(TextTelephone) && !string.IsNullOrWhiteSpace(TextCompany))
             {
-                baseLoad.AddTransporter(TextCompany, TextAddress, TextTelephone);
-                TextTelephone = TextAddress = TextCompany = null;
-                LoadDataBase();
-            
+                try
+                {
+                    baseLoad.AddTransporter(TextCompany, TextAddress, TextTelephone);
+                    LoadDataBase();
+                }
+                catch (Exception a) { MessageBox.Show(a.Message + "\n"+a.StackTrace); }
             }
             else
             { MessageBox.Show("Заполните данными все поля"); }
