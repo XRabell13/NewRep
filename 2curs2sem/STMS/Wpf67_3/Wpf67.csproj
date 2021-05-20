@@ -132,12 +132,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddDataWin.xaml.cs">
-      <DependentUpon>AddDataWin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AdminWindow.xaml.cs">
-      <DependentUpon>AdminWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DataBase\AuthorizationUser.cs" />
     <Compile Include="Model\ChoiseSeat.cs" />
     <Compile Include="Model\FindRoute.cs" />
@@ -162,8 +156,6 @@
     <Compile Include="ViewModel\MyTripsVM.cs" />
     <Compile Include="ViewModel\NoAuthorizationTripsVM.cs" />
     <Compile Include="ViewModel\RegistrationVM.cs" />
-    <Compile Include="Settings\Language.cs" />
-    <Compile Include="Settings\Theme.cs" />
     <Compile Include="ViewModel\ReserveTicketVM.cs" />
     <Compile Include="View\ReserveTicket.xaml.cs">
       <DependentUpon>ReserveTicket.xaml</DependentUpon>
@@ -200,20 +192,6 @@
     <Compile Include="View\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
-    <Page Include="AddDataWin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AdminWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\lang.be-BY.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,14 +260,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Settings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -335,9 +305,7 @@
     <Resource Include="img\bus_icon.ico" />
     <Resource Include="img\normal_select.cur" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataBase\Administrator\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="NETWORKLIST">
       <Guid>{DCB00D01-570F-4A9B-8D69-199FDBA5723B}</Guid>

@@ -6,8 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Globalization;
-using Wpf67.Settings;
-
 namespace Wpf67
 {
     /// <summary>

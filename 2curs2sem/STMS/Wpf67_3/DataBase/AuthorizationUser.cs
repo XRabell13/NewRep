@@ -47,13 +47,6 @@ namespace Wpf67.DataBase
             }
         }
 
-      /*  public bool IsTrueLogin(string login)
-        {
-            string s1 = "'", s2 = "\"";
-            if (login.IndexOf(s1) == -1 && login.IndexOf(s2) == -1) return true;
-            else return false;
-        }*/
-
         public bool IsTruePassword(string nick, string password)
         {
             Open();
@@ -97,7 +90,7 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-               // MessageBox.Show("GetUserId");
+
                 string sql1 = "select id_user from users where nick=@login;";
                 int id;
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
@@ -131,7 +124,7 @@ namespace Wpf67.DataBase
             Open();
             if (status)
             {
-               // MessageBox.Show("IsAdmin?");
+             
                 string sql1 = "select isAdmin from users where nick=@login;";
                 bool isAdmin = false;
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);

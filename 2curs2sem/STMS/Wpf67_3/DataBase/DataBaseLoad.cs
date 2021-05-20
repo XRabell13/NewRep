@@ -52,7 +52,6 @@ namespace Wpf67.DataBase
             }
             catch(Exception a)
             {
-             //   MessageBox.Show(a.Message +"\n"+ a.StackTrace);
                MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
@@ -86,7 +85,6 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-                //MessageBox.Show(a.Message + "\n" + a.StackTrace);
                   MessageBox.Show("Ошибка добавления данных");
                 return null;
             }
@@ -109,8 +107,7 @@ namespace Wpf67.DataBase
 
             }
             catch (Exception a)
-            {
-                //MessageBox.Show(a.Message + "\n" + a.StackTrace);
+            {  
                   MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
@@ -136,7 +133,7 @@ namespace Wpf67.DataBase
             }
             catch (Exception a)
             {
-              //  MessageBox.Show(a.Message + "\n" + a.StackTrace);
+              
                    MessageBox.Show("Ошибка добавления данных");
                 return false;
             }
@@ -145,11 +142,15 @@ namespace Wpf67.DataBase
         {
             try
             {
-                string sql1 = "  Update users_info set users_info.first_name='"+first_name+"', users_info.last_name='"+last_name+"',"+
-                    " users_info.patronymic = '"+patronymic+"', users_info._passport = '"+passport+"' where users_info.id_user = " + Wpf67.Properties.Settings.Default.UserId;
+                string sql1 = "  Update users_info set users_info.first_name=@first_name, users_info.last_name=@last_name,"+
+                    " users_info.patronymic = @patronymic, users_info._passport = @passport where users_info.id_user = " + Wpf67.Properties.Settings.Default.UserId;
              
                 MySqlCommand myCommand = new MySqlCommand(sql1, conn);
-         
+                myCommand.Parameters.AddWithValue("@first_name", first_name);
+                myCommand.Parameters.AddWithValue("@last_name", last_name);
+                myCommand.Parameters.AddWithValue("@patronymic", patronymic);
+                myCommand.Parameters.AddWithValue("@passport", passport);
+
                 Open();
                 myCommand.ExecuteNonQuery();
                 Close();
