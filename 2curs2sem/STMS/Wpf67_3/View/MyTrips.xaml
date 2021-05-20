@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Wpf67.View.MyTrips"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf67.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <!--  <StackPanel Orientation="Horizontal" Background="WhiteSmoke" Visibility="{Binding ShowListBox}">
+            <TextBlock Text="Сортировка по "/>
+            <ComboBox />
+        </StackPanel>-->
+        <TextBlock Text="{DynamicResource mt_title}" Grid.Column="0" Grid.Row="0"  FontSize="35" TextAlignment="Center" Background="WhiteSmoke"/>
+        <ScrollViewer Visibility="{Binding ShowListBox}" Grid.Row="1" Grid.Column="0">
+          
+            <ListBox x:Name="FindRouteListBox"  HorizontalContentAlignment="Stretch"  ItemsSource="{Binding MyTrips}" SelectedItem="{Binding SelectTrip}" Background="WhiteSmoke" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Width="auto" Height="20" Background="DarkSlateGray"/>
+                            <Grid ShowGridLines="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel>
+
+
+                                </StackPanel>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource mt_route}" Grid.Row="0" Grid.Column="0"> <LineBreak/><TextBlock Text="     "/>
+                                    <TextBlock  Text="{Binding BeginCity}"  /></TextBlock>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Text="{DynamicResource mt_in}" Grid.Row="0" Grid.Column="1" ><LineBreak/><TextBlock Text="       "/><TextBlock Text="{Binding EndCity}" /></TextBlock>
+                                <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="0" Grid.Column="2" Text="{DynamicResource fr_cost}" />
+                                <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="2" Text="{Binding Cost}"><TextBlock Text=" BYN"/></TextBlock>
+
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="0" Text="{Binding BeginTime}"  />
+                                <TextBlock  Style="{DynamicResource TextBlockRouteBus}" Grid.Row="1" Grid.Column="1" Text="{Binding EndTime}" />
+
+                                <TextBlock   Style="{DynamicResource TextBlockRouteBus}" Grid.Row="2" Grid.Column="0" Text="{DynamicResource mt_date}"><LineBreak/><TextBlock Text="     "/>
+                                    <TextBlock  Text="{Binding DateArrive}"  /></TextBlock>
+                                <TextBlock Style="{DynamicResource TextBlockRouteBus}" Grid.Row="2" Grid.Column="1" Text="{DynamicResource mt_number_seat}"><LineBreak/><TextBlock Text="     "/>
+                                    <TextBlock  Text="{Binding NumberSeat}"  /></TextBlock>
+
+
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+
+        <TextBlock  Visibility="{Binding ShowNoRoutes}" Grid.Column="0" Grid.Row="1" Text="{DynamicResource fr_noRoutes}" FontSize="24" TextAlignment="Center" VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Column="0" Grid.Row='2' Background="LightGray" >
+            <Button Content="{DynamicResource mt_cancel}" Command="{Binding CancelTrip}" Visibility="{Binding ShowListBox}" Style="{DynamicResource ButSelectRoute}" />
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

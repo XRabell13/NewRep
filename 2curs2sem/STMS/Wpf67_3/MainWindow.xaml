@@ -1,0 +1,58 @@
+﻿<Window x:Class="Wpf67.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf67" xmlns:controls="clr-namespace:Wpf67.View"
+        mc:Ignorable="d"
+        Title="{DynamicResource main_window}" Height="720" Width="1050" MinHeight="550" MinWidth="850"
+        Icon="img/bus_icon.ico"
+         Cursor="img/normal_select.cur"
+        WindowStartupLocation="CenterScreen"
+        >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+           <!-- <RowDefinition Height="20"/>-->
+        </Grid.RowDefinitions>
+        <Canvas Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="0"  Background="LightGray"/>
+        <Grid  Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Command="{Binding LoadSearchPage, Mode=OneTime}"  Grid.Column="0" Content="{DynamicResource m_search}"/>
+
+            <Button Command="{Binding LoadMyTripsPage, Mode=OneTime}" x:Name="butTrips" Grid.Column="1"  Content="{DynamicResource m_trips}" />
+            <Button Command="{Binding LoadAdminWin, Mode=OneTime}" x:Name="butAdminWin"  Grid.Column="1"  Content="{DynamicResource admin_win}" Visibility="Collapsed"/>
+
+            <Button Command="{Binding LoadContactsPage, Mode=OneTime}" Grid.Column="2"  Content="{DynamicResource m_contacts}"/>
+
+            <Button x:Name="butLogin" Command="{Binding  LoadAuthorizationPage, Mode=OneTime}" Grid.Column="4"  Content="{DynamicResource m_comein}"/>
+            <Button x:Name="butExit" Command="{Binding  ExitAccount, Mode=OneTime}" Grid.Column="4"  Content="{DynamicResource m_logout}" Visibility="Collapsed"/>
+            
+            
+        </Grid>
+       <!-- <Menu DockPanel.Dock="Top" Background="{x:Null}" Grid.Column="0" Grid.Row="2" >
+            <MenuItem x:Name="menuLanguage" Header="{DynamicResource m_menu_Language}" />
+        </Menu>-->
+     
+        <ContentPresenter Grid.Column="0" Grid.Row="1" x:Name="OutWin" Visibility="Visible"/>
+      <!--  <ListBox Name="placesList" Grid.Column="0" Grid.Row="1" MaxHeight="250" Visibility="Collapsed">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <controls:FindReise></controls:FindReise>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+-->
+    </Grid>
+</Window>
