@@ -110,12 +110,13 @@ namespace Wpf67.ViewModel
         }
         private void ShowNextPage()
         {
-            if (Wpf67.Properties.Settings.Default.Authoriz)
-                //int id_route, string beginCity, string endCity, DateTime date, int cost, string btime, string etime
-                //    mainWindow.LoadViewWhithParam(ViewType.ReserveTicket, _beginCity, _endCity, _selectRoute.Cost, _selectRoute.EndTime, _selectRoute.BeginTime, null, null);
-                mainWindow.LoadViewWhithParam(ViewType.ChoiseSeat, SelectRoute.IdRoute, BeginCity, EndCity, Date, _selectRoute.Cost, _selectRoute.BeginTime, _selectRoute.EndTime,null,null);
-            else MessageBox.Show("Для бронирования билета необходимо зарегистрироваться.");
-          
+            if (!Wpf67.Properties.Settings.Default.IsAdmin)
+            {
+                if (Wpf67.Properties.Settings.Default.Authoriz)
+                    mainWindow.LoadViewWhithParam(ViewType.ChoiseSeat, SelectRoute.IdRoute, BeginCity, EndCity, Date, _selectRoute.Cost, _selectRoute.BeginTime, _selectRoute.EndTime, null, null);
+                else MessageBox.Show("Для бронирования билета необходимо зарегистрироваться.");
+            }
+            else MessageBox.Show("Для бронирования билета необходимо перейти в учетную запись обычного пользователя.");
         }
     }
 }

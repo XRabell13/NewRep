@@ -76,7 +76,7 @@
                         <DataGridTextColumn Header="id transporter" Binding="{Binding id_transporter, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="named transporter" Binding="{Binding NamedTransporter, Mode=OneWay}" IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
                         <DataGridTextColumn Header="model" Binding="{Binding model, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="count seats" Binding="{Binding count_seats, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="count seats" Binding="{Binding count_seats, Mode=TwoWay}"  IsReadOnly="True" CellStyle="{DynamicResource DataNoChangeDB}"/>
 
                     </DataGrid.Columns>
                 </DataGrid>
