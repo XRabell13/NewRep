@@ -13,8 +13,8 @@ namespace Wpf67.ViewModel
     {
         IMMCodeBehind mainWindow;
         DataBase.DataBaseLoad db = new DataBase.DataBaseLoad();
-        string _first_name, _last_name, _patronymic, _passport, _select_route_bus, id_ticket, id_end_point;
-
+        string _first_name, _last_name, _patronymic, _passport, _select_route_bus;
+        Model.ReserveTicket reserveTicket;
         public string FirstName
         { get => _first_name; 
             set
@@ -67,8 +67,7 @@ namespace Wpf67.ViewModel
             this.mainWindow = mainWindow;
           
             SelectRouteBus = beginCity + " - " + endCity + "\nДата: "+ date +" "+ btime+" - "+etime +"\nМесто: "+num_seat+". Цена: " + cost;
-            this.id_ticket = id_ticket;
-            id_end_point = id_epoint;
+            reserveTicket = new Model.ReserveTicket(id_epoint, id_ticket);
         }
 
 
@@ -91,7 +90,7 @@ namespace Wpf67.ViewModel
             {
 
                 db.AddUserInfo(FirstName,LastName,Patronymic,Passport);
-                db.AddUserTicket(Wpf67.Properties.Settings.Default.UserId.ToString(),id_ticket,id_end_point);
+                db.AddUserTicket(Wpf67.Properties.Settings.Default.UserId.ToString(), reserveTicket.id_ut,reserveTicket.id_epoint);
                 mainWindow.LoadView(ViewType.MyTrips);
             }
             else MessageBox.Show("Заполните все поля");

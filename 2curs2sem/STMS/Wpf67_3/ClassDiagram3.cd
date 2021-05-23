@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Wpf67.App" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAIAAAAAAAAAAQAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAKAAAAAAAAAQAAQgAAAAAAAABAABAggAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Authorization" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>View\Authorization.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.RegistrationVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACAAAAAAAAAAAAAIkAkAAIAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\RegistrationVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Command.MyCommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAACAAAAAQQAAAAAAAAAAAAAAAAAAAAAAEI=</HashCode>
+      <FileName>Command\MyCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.DataBase.AuthorizationUser" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAACAAgAAAAAAEAAAAAA=</HashCode>
+      <FileName>DataBase\AuthorizationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.DataBase.Connect" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAIAAAAAAgAAAIAAQAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>DataBase\Connect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.DataBase.DataBaseLoad" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KACKEgAAEAEACSIEBAgAwACAwAAImoCAkQgACAAAgII=</HashCode>
+      <FileName>DataBase\DataBaseLoad.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.DataBase.RegistrationUser" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAIAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataBase\RegistrationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Model.Bus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAIAAAEMgAAIAAChAAAAAAAAACAAAAJAAA=</HashCode>
+      <FileName>Model\Bus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.ChoiseSeat" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAASAAAAAAAAAAAgAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ChoiseSeat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Model.City" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQEIAAAAAAAgAAAAAEAAAAAAAQAAIA=</HashCode>
+      <FileName>Model\City.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.FindRoute" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAwAAUQCAAAgAECAQAEBAEAAAgAAAAAIAAAAABAAA=</HashCode>
+      <FileName>Model\FindRoute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Model.IntermediatePoint" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAADAAEAAEIAAAAAABgAAQkAEIAAAAEAQAA4A=</HashCode>
+      <FileName>Model\IntermediatePoint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.MyTrip">
+    <Position X="5.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAECQAAUQCAAAgIABAAAEBAAAAAgAAAAAIAAAABAAAA=</HashCode>
+      <FileName>Model\MyTrip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Model.ReserveTicket">
+    <Position X="17.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Model\ReserveTicket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Model.RouteBus" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAQBAAMAEQCAIMMAQACAIAhAQAABAAAAAEDAAAAAA=</HashCode>
+      <FileName>Model\RouteBus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.Ticket" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACSAAQAAAACAAEoAAACQIAgCAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Model\Ticket.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.Transporter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEIABAAAAAgAAAAAAIAQAAAATAAgA=</HashCode>
+      <FileName>Model\Transporter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.User" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAEEIABAAAAAgAAAAAgAAAAAIgAAEgA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.UserInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAIAkIAAAAAAQgAAAAAAAIAAAAASAAAE=</HashCode>
+      <FileName>Model\UserInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.Model.UserTicket" Collapsed="true">
+    <Position X="14.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAEAAAAAAAAAAAAAgAAIBAEAAAAAAA=</HashCode>
+      <FileName>Model\UserTicket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Properties.Resources" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.Properties.Settings" Collapsed="true">
+    <Position X="16.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAIAgACAABAAAAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.View.AdminControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\AdminControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.ChoiseSeat" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ChoiseSeat.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.Contacts" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Contacts.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.FindRoutes" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\FindRoutes.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.MyTrips" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MyTrips.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.NoAuthorizationTrips" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\NoAuthorizationTrips.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.Registration" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAQAAAAAAAAAAhAASAIAAAAAAAAAAgAQAAQgCgGAA=</HashCode>
+      <FileName>View\Registration.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.View.Search" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Search.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.ViewModel.ReserveTicket" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ReserveTicket.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.ViewModel.AdminWindowVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>M1VMhK0KNH3yHxLWc65glRidilCaxb+tIaorLSc0+qY=</HashCode>
+      <FileName>ViewModel\AdminWindowVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.ViewModel.AuthorizationVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAACAgAAAAAQAAAhAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\AuthorizationVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.ViewModel.ChoiseSeatVM" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAWACAwAwAABAAAkACAVAgAAEABAAAAgAEAAEA=</HashCode>
+      <FileName>ViewModel\ChoiseSeatVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.ViewModel.ContactsVM" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAABAAAAAAAAAAAAAAIAAAhAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>ViewModel\ContactsVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.ViewModel.FindRoutesVM" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBAgAAA0AAAwAgAAAAAAkACABAgBAAAhAAAAgAAAAEA=</HashCode>
+      <FileName>ViewModel\FindRoutesVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.ViewModel.MenuVM" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AmKAAhAQACAAKAgAADAQAAAAREMQAAQAGAEAICQAAAo=</HashCode>
+      <FileName>ViewModel\MenuVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.ViewModel.MyTripsVM" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAEAAAAAARBAAAAEAAgACApAAFAAAAABAAAAAAAEA=</HashCode>
+      <FileName>ViewModel\MyTripsVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.ViewModel.NoAuthorizationTripsVM" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAAAACIAAACAgAAAAAUAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\NoAuthorizationTripsVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.ViewModel.ReserveTicketVM" Collapsed="true">
+    <Position X="11.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAhGAABIAwAAAAABAAAAAABAhAAAABAAAAAAQAAIg=</HashCode>
+      <FileName>ViewModel\ReserveTicketVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wpf67.ViewModel.SearchVM" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAIgEQAGJAIAEQAAAghCIAAAAAAAAAACAAAAg=</HashCode>
+      <FileName>ViewModel\SearchVM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wpf67.ViewModel.TicketVM" Collapsed="true">
+    <Position X="11.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\TicketVM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Wpf67.IMMCodeBehind" Collapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAAggAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Wpf67.ViewType" Collapsed="true">
+    <Position X="9.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAgAAAAgAgAAAAAAIEAAAAAAAAAAAAAAAACAAAAkAIA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

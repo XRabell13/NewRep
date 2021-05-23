@@ -59,7 +59,7 @@ namespace Wpf67.DataBase
                 Open();
                 myCommand.ExecuteNonQuery();
                 Close();
-               // MessageBox.Show("Add New UserInfo");
+              
                 return true;
             }
             catch
