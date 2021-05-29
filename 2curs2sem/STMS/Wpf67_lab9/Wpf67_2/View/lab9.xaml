@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Wpf67.ViewModel.lab9"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf67"
+               xmlns:localBut1="clr-namespace:Wpf67.View"
+               xmlns:localBut2="clr-namespace:Wpf67.View"
+            
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" MouseLeftButtonDown="Control_MouseDown"><!-- bubble-->
+            <local:MyUserControl1 Tap="Control_MouseDown">
+                <Ellipse x:Name="ellipse1" Width="120" Height="60" Fill="Black"   MouseLeftButtonDown="Control_MouseDown"/>
+            </local:MyUserControl1>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" PreviewMouseLeftButtonDown="Control_MouseDown1">
+            <!-- tunnel -->
+            <local:MyUserControl2 Tapp="Control_MouseDown1">
+                <Ellipse x:Name="ellipse2" Width="120" Height="60" Fill="Green" PreviewMouseLeftButtonDown="Control_MouseDown1" />
+            </local:MyUserControl2>
+        </Grid>
+
+        <TextBlock Foreground="Black" x:Name="textBlock1" Grid.Column="1" Padding="10" FontSize="12"/>
+        <TextBlock Foreground="Black" x:Name="textBlock2" Grid.Column="1" Grid.Row="1" Padding="10" FontSize="12"/>
+    </Grid>
+</UserControl>

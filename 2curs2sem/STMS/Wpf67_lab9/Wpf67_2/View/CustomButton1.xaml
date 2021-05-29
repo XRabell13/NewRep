@@ -1,0 +1,14 @@
+﻿<ContentControl x:Class="Wpf67.View.CustomButton1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:localBut1="clr-namespace:Wpf67.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="180">
+    <Grid>
+        <Button x:Name="button1" Width="80" Height="50" Background="Black"  Margin="10" >
+            <Ellipse Width="60" Height="30" Fill="gray"  />
+        </Button>
+    </Grid>
+</ContentControl>
