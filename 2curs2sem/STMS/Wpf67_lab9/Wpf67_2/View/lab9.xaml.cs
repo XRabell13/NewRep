@@ -39,6 +39,10 @@ namespace Wpf67.ViewModel
             textBlock2.Text = textBlock2.Text + sender.ToString() + "\n";
 
         }
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(myS.LengthData.ToString() +"\n"+myS.TextData);
+        }
 
 
 
@@ -60,23 +64,28 @@ namespace Wpf67.ViewModel
             MessageBox.Show("F");
             textBlock1.Text = textBlock1.Text + "sender: " + sender.ToString() + "\n";
         }
+        private void Exit_Executed(object sender, ExecutedRoutedEventArgs e) => Window.GetWindow(this).Close();
+        
 
-        public class WindowCommands
+    }
+
+    public class WindowCommands
+    {
+
+        static WindowCommands()
         {
-            static WindowCommands()
-            {
 
-                InputGestureCollection inputs = new InputGestureCollection();
-                inputs.Add(new KeyGesture(Key.R, ModifierKeys.Control, "Ctrl + R"));
-                exit = new RoutedUICommand("Exit", "Exit", typeof(MainWindow), inputs);
-            }
-            // Создание команды requery
-            private static RoutedUICommand exit;
+            InputGestureCollection inputs = new InputGestureCollection();
+            inputs.Add(new KeyGesture(Key.R, ModifierKeys.Control, "Ctrl + R"));
+            exit = new RoutedUICommand("Exit", "Exit", typeof(MainWindow), inputs);
+        }
 
-            public static RoutedUICommand Exit
-            {
-                get { return exit; }
-            }
+        // Создание команды requery
+        private static RoutedUICommand exit;
+
+        public static RoutedUICommand Exit
+        {
+            get { return exit; }
         }
     }
 }

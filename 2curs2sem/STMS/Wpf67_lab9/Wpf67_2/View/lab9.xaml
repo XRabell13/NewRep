@@ -6,9 +6,16 @@
              xmlns:local="clr-namespace:Wpf67"
                xmlns:localBut1="clr-namespace:Wpf67.View"
                xmlns:localBut2="clr-namespace:Wpf67.View"
+               xmlns:localClose="clr-namespace:Wpf67.ViewModel"
             
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="localClose:WindowCommands.Exit" Executed="Exit_Executed"/>
+    </UserControl.CommandBindings>
+    
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -40,7 +47,36 @@
             </local:MyUserControl2>
         </Grid>
 
+        <Grid Grid.Row="1" Grid.Column="3">
+            <local:MyUserControl3 x:Name="myS" LengthData="{Binding ElementName=textL, Path=Text.Length}" TextData="{Binding ElementName=textL, Path=Text}"/>
+
+            <TextBox x:Name="textL"
+                             FontFamily="Helvetica"
+                             FontWeight="Light"
+                             FontSize="14"
+                             BorderThickness="2"
+                             HorizontalContentAlignment="Left"
+                             TextWrapping="Wrap"
+                             Text="Text"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="4">
+            <Button x:Name="button1"
+                        Width="100" 
+                        Height="40" 
+                        Content="Lentgh" 
+                        Click="button1_Click"/>
+        </Grid>
         <TextBlock Foreground="Black" x:Name="textBlock1" Grid.Column="1" Padding="10" FontSize="12"/>
         <TextBlock Foreground="Black" x:Name="textBlock2" Grid.Column="1" Grid.Row="1" Padding="10" FontSize="12"/>
+
+        <Button Grid.Row="0" Grid.Column="4" x:Name="CloseButton"
+                        Height="30" 
+                        Width="30" 
+                        Content="X"
+                        BorderBrush="{x:Null}"
+                       
+                Command="localClose:WindowCommands.Exit"
+                        />
+        
     </Grid>
 </UserControl>
