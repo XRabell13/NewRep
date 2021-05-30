@@ -1,0 +1,194 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!-- Main window -->
+    <v:String x:Key="main_window">БелТранспорт</v:String>
+    <v:String x:Key="m_home">Главная</v:String>
+    <v:String x:Key="m_search">Поиск</v:String>
+    <v:String x:Key="m_trips">Мои поездки</v:String>
+    <v:String x:Key="m_contacts">Контакты</v:String>
+    <v:String x:Key="m_profile">Профиль</v:String>
+    <v:String x:Key="m_comein">Вход</v:String>
+    <v:String x:Key="m_registration">Регистрация</v:String>
+    <v:String x:Key="m_login">Авторизация</v:String>
+    <v:String x:Key="m_logout">Выйти</v:String>
+    <v:String x:Key="m_settings">Настройки</v:String>
+    <!-- Admin window -->
+    <v:String x:Key="admin_title">Окно администратора</v:String>
+    <v:String x:Key="admin_load">Перезагрузить</v:String>
+
+
+    <v:String x:Key="admin_users">Пользователи</v:String>
+    <v:String x:Key="admin_info_users">Информация о пользователях</v:String>
+    <v:String x:Key="admin_transporters">Перевозчики</v:String>
+    <v:String x:Key="admin_bus">Автобусы</v:String>
+    <v:String x:Key="admin_cities">Города</v:String>
+    <v:String x:Key="admin_intermediate_point">Промежуточные пункты</v:String>
+    <v:String x:Key="admin_route_bus">Рейсы</v:String>
+    <v:String x:Key="admin_tickets">Билеты</v:String>
+    <v:String x:Key="admin_del">Удаление данных</v:String>
+    <v:String x:Key="admin_add">Добавить</v:String>
+    <v:String x:Key="admin_save">Загрузить</v:String>
+    <v:String x:Key="admin_win">База данных</v:String>
+
+    <!-- Admin window command delete-->
+
+    <v:String x:Key="admin_del_user">Удалить пользователя</v:String>
+    <v:String x:Key="admin_del_inf_user">Удалить информацию о пользователе</v:String>
+    <v:String x:Key="admin_del_transporters">Удалить перевозчика</v:String>
+    <v:String x:Key="admin_del_bus">Удалить автобус</v:String>
+    <v:String x:Key="admin_del_cities">Удалить город</v:String>
+    <v:String x:Key="admin_del_intermediate_point">Удалить промежуточный пункт</v:String>
+    <v:String x:Key="admin_del_route_bus">Удалить рейс</v:String>
+    <v:String x:Key="admin_del_tickets">Удалить билеты</v:String>
+    <v:String x:Key="admin_del_">Удалить</v:String>
+
+    <!-- Admin window command add-->
+
+    <v:String x:Key="admin_add_user">Добавить пользователя</v:String>
+    <v:String x:Key="admin_add_transporters">Добавить перевозчика</v:String>
+    <v:String x:Key="admin_add_bus">Добавить автобус</v:String>
+    <v:String x:Key="admin_add_cities">Добавить город</v:String>
+    <v:String x:Key="admin_add_intermediate_point">Добавить промежуточный пункт</v:String>
+    <v:String x:Key="admin_add_route_bus">Добавить рейс</v:String>
+    <v:String x:Key="admin_add_">Добавить информацию</v:String>
+
+
+    <v:String x:Key="add_tr_named">Название компании перевозчика</v:String>
+    <v:String x:Key="add_tr_adress">Адрес</v:String>
+    <v:String x:Key="add_tr_telephone">Телефон (например: +375299794333)</v:String>
+    
+    <v:String x:Key="add_bus_transporter">Перевозчик</v:String>
+    <v:String x:Key="add_bus_model">Модель автобуса</v:String>
+    <v:String x:Key="add_bus_count">Количество мест</v:String>
+
+    <v:String x:Key="add_city_name">Название пункта</v:String>
+
+    <v:String x:Key="add_routebus_name">Наименование рейса</v:String>
+    <v:String x:Key="add_routebus_bus">Автобус</v:String>
+    <v:String x:Key="add_routebus_time_departure">Время отправления(ч:м)</v:String>
+    <v:String x:Key="add_routebus_time_hour">Час</v:String>
+    <v:String x:Key="add_routebus_time_minute">Минута</v:String>
+    <v:String x:Key="add_routebus_timetable">График</v:String>
+    <v:String x:Key="add_routebus_departure_point">Пункт отправления</v:String>
+    <v:String x:Key="add_routebus_end_point">Пункт прибытия</v:String>
+
+
+
+    <v:String x:Key="add_monday">Понедельник</v:String>
+    <v:String x:Key="add_tuesday">Вторник</v:String>
+    <v:String x:Key="add_wednesday">Среда</v:String>
+    <v:String x:Key="add_thursday">Четверг</v:String>
+    <v:String x:Key="add_friday">Пятница</v:String>
+    <v:String x:Key="add_saturday">Суббота</v:String>
+    <v:String x:Key="add_sunday">Воскресенье</v:String>
+
+
+
+    <v:String x:Key="add_ip_city">Промежуточный пункт</v:String>
+    <v:String x:Key="add_ip_route_bus">Рейс</v:String>
+    <v:String x:Key="add_ip_time_arrive">Время прибытия (ч:м)</v:String>
+    <v:String x:Key="add_ip_cost">Цена (разделитель точка (12.21))</v:String>
+  
+
+  
+
+    <!-- NoAuthorizationTrips window-->
+    <v:String x:Key="nat_text1">Для просмотра забронированных билетов необходимо</v:String>
+    <v:String x:Key="nat_text2">войти!</v:String>
+    <v:String x:Key="nat_text3">Нет аккаунта? Тогда</v:String>
+    <v:String x:Key="nat_text4">зарегистрироваться.</v:String>
+
+
+    <!-- Authorization UserControl -->
+    <v:String x:Key="au_title">Авторизация</v:String>
+    <v:String x:Key="au_login">Логин</v:String>
+    <v:String x:Key="au_pass1">Пароль</v:String>
+    <v:String x:Key="au_but">Войти</v:String>
+    <v:String x:Key="au_text1">Еще не зарегистрированы?</v:String>
+    <v:String x:Key="au_text2">Тогда</v:String>
+    <v:String x:Key="au_text3">зарегистрироваться.</v:String>
+
+    <!-- Authorization UserControl -->
+    <v:String x:Key="reg_title">Регистрация</v:String>
+    <v:String x:Key="reg_login">Логин</v:String>
+    <v:String x:Key="reg_pass1">Пароль</v:String>
+    <v:String x:Key="reg_but">Зарегистрироваться</v:String>
+    <v:String x:Key="reg_text1">Уже зарегистрированы?</v:String>
+    <v:String x:Key="reg_text2">Тогда</v:String>
+    <v:String x:Key="reg_text3">войти.</v:String>
+    <v:String x:Key="reg_log1">Максимальная длина логина 44 символа</v:String>
+    <v:String x:Key="reg_pass2">Пароль должен содержать больше 4 символов</v:String>
+    <!-- Search UserControl -->
+    <v:String x:Key="s_title">Поиск</v:String>
+    <v:String x:Key="s_from">Откуда</v:String>
+    <v:String x:Key="s_to">Куда</v:String>
+    <v:String x:Key="s_date">Выберите дату поездки</v:String>
+    <v:String x:Key="s_but">Найти рейсы</v:String>
+    
+    <!-- FindRouteBus UserControl -->
+    <v:String x:Key="fr_cost">Цена</v:String>
+    <v:String x:Key="fr_next">Выбрать</v:String>
+    <v:String x:Key="fr_def">Дополнительно</v:String>
+    <v:String x:Key="fr_intermediate_points">Промежуточные пункты</v:String>
+    <v:String x:Key="fr_transporter">Перевозчик: </v:String>
+    <v:String x:Key="fr_bus">Автобус: </v:String>
+
+    <v:String x:Key="fr_from"> Откуда: </v:String>
+    <v:String x:Key="fr_in"> Куда: </v:String>
+    <v:String x:Key="fr_noRoutes">Рейсы не найдены!</v:String>
+    
+    <!-- ChoiseSeat UserControl -->
+    <v:String x:Key="cs_choice_seat">Выберите место</v:String>
+    <v:String x:Key="cs_no_seats">Извините, но свободных мест нет!</v:String>
+    <v:String x:Key="cs_no_seat">Если в списке ниже нет места с каким-то номером, то оно уже занято.</v:String>
+    
+    <!-- ReserveTicket UserControl -->
+    <v:String x:Key="rt_title">Бронирование билета на рейс</v:String>
+    <v:String x:Key="rt_first_name">Имя</v:String>
+    <v:String x:Key="rt_last_name">Фамилия</v:String>
+    <v:String x:Key="rt_patronymic">Отчество</v:String>
+    <v:String x:Key="rt_passport">Паспорт</v:String>
+    <v:String x:Key="rt_passport_info">Серия(латиницей) и номер паспорта</v:String>
+    <v:String x:Key="rt_info">Выбранный рейс</v:String>
+    <v:String x:Key="rt_but_reserve">Забронировать</v:String>
+
+    <!-- DataGrid -->
+    <v:String x:Key="id_city">ID</v:String>
+    <v:String x:Key="id_intermediate_point">ID</v:String>
+    <v:String x:Key="id_transporter">ID</v:String>
+    <v:String x:Key="id_bus">ID</v:String>
+    <v:String x:Key="id_user">ID</v:String>
+    <v:String x:Key="id_route_bus">ID</v:String>
+    <v:String x:Key="id_ticket">ID</v:String>
+
+
+    <v:String x:Key="mt_title">Мои поездки</v:String>
+    <v:String x:Key="mt_cancel">Отменить</v:String>
+    <v:String x:Key="mt_date">Дата: </v:String>
+    <v:String x:Key="mt_number_seat">Номер места: </v:String>
+    <v:String x:Key="mt_route">Рейс: </v:String>
+    <v:String x:Key="mt_in">Пункт прибытия: </v:String>
+
+    <!-- Contects UserControl -->
+
+    <v:String x:Key="c_title">Контакты</v:String>
+    <v:String x:Key="c_text1">Вы можете связаться по интересующим Вас вопросам </v:String>
+    <v:String x:Key="c_text2">по поводу приложения или его работы через:</v:String>
+    <v:String x:Key="c_text3">Email</v:String>
+    <v:String x:Key="c_text4">VK</v:String>
+
+    <v:String x:Key="m_menu_Language">Язык</v:String>
+    <v:String x:Key="m_menu_Theme">Тема</v:String>
+
+    <v:String x:Key="undo">Отменить</v:String>
+    <!--
+    <v:String x:Key="city_name">ID</v:String>
+    <v:String x:Key="intermediate_point">ID</v:String>
+    <v:String x:Key="id_transporter">ID</v:String>
+    <v:String x:Key="id_bus">ID</v:String>
+    <v:String x:Key="id_user">ID</v:String>
+    <v:String x:Key="id_route_bus">ID</v:String>
+    <v:String x:Key="id_ticket">ID</v:String>-->
+
+</ResourceDictionary>

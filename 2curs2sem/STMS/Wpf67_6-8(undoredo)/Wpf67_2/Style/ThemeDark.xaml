@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Wpf67.Resources">
+    
+    <Style TargetType="ListBox">
+        <Setter Property="Background" Value="DimGray"/>
+        </Style>
+
+        <Style TargetType="Canvas">
+            <Setter Property="Background" Value="DimGray"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="DarkOrange"/>
+        </Style>
+    
+
+    <Style TargetType="TabControl">
+        <Setter Property="Foreground" Value="DarkSlateGray"/>
+    </Style>
+    <Style TargetType="TabItem">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Background" Value="DimGray"/>
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="DarkSlateGray"/>
+    </Style>
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="DimGray"/>
+    </Style>
+    <Style TargetType="ScrollViewer">
+        <Setter Property="Background" Value="DimGray"/>
+    </Style>
+    <Style x:Key="TextColor" TargetType="TextBlock">
+        <Setter Property="Control.FontSize" Value="22" />
+        <Setter Property="Control.VerticalAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="Control.Width" Value="Auto" />
+        <Setter Property="Foreground" Value="NavajoWhite"></Setter>
+    </Style>
+    <Style x:Key="TextColorMenu" TargetType="Menu">
+     
+        <Setter Property="Foreground" Value="NavajoWhite"></Setter>
+    </Style>
+
+    <Style x:Key="ButTheme" TargetType="Button">
+        <Setter Property="Control.FontSize" Value="16" />
+        <Setter Property="Foreground" Value="NavajoWhite"></Setter>
+        <Setter Property="Background" Value="DimGray"></Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="ForegroundText" Color="NavajoWhite" />
+    <SolidColorBrush x:Key="ForegroundText1" Color="NavajoWhite" />
+</ResourceDictionary>
