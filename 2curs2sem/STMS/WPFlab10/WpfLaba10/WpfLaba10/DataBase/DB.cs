@@ -262,7 +262,7 @@ namespace WpfLaba10.DataBase
 
 
 
-        public void CreateAirplane(int id_prod, string type, string model, int count_seats, byte[] pictureByteArray)
+        public void CreateAirplane(int id_prod, string type, string model, int count_seats, byte[] pictureByteArray) //  использование процедуры
         {
 
             Open();
@@ -314,7 +314,7 @@ namespace WpfLaba10.DataBase
                 Close();
             }
         }
-        public void DeleteProduser(int id_prod)
+        public void DeleteProduser(int id_prod) // транзакции
         {
 
             Open();
@@ -467,52 +467,7 @@ namespace WpfLaba10.DataBase
             Close();
             return b;
              }
-                /*  string sql1 = "UPDATE Airplane SET ID_produser ='" + ID_produser+ "', _Type='" + Type + "', Model='"+Model+"', "+
-                  "Count_seats='"+Count_seats+"', Photo="+Array+" WHERE ID_airplane='" + ID_airplane + "';";
-                  try
-                  {
-                      SqlCommand myCommand = new SqlCommand(sql1, cn_connection);
-                      myCommand.ExecuteNonQuery();
-
-                  }
-                  catch (Exception ex)
-                  {
-                      MessageBox.Show("Ошибка  \n " + ex.Message);
-                  }*/
-
-
-        /*  public ObservableCollection<Airplane> GetAirplanes()
-          {
-              ObservableCollection<Airplane> produsers = new ObservableCollection<Airplane>();
-
-              string sql1 = "SELECT * from Airplane;";
-              SqlCommand myCommand = new SqlCommand(sql1, cn_connection);
-              SqlDataReader reader;
-
-              Open();
-              if (status)
-              {
-                  reader = myCommand.ExecuteReader();
-
-                  while (reader.Read())
-                  {
-                      //  MessageBox.Show(reader[2].ToString() + reader[3].ToString());
-                      produsers.Add(new Airplane(Convert.ToInt32(reader[0].ToString()), Convert.ToInt32(reader[1].ToString()),
-                        reader[2].ToString(), reader[3].ToString(), Convert.ToInt32(reader[4].ToString()), Convert.ToDateTime(reader[5])),(Picture)reader[6]);
-                  }
-
-                  reader.Close();
-                  Close();
-                  return produsers;
-              }
-              else
-              {
-                  MessageBox.Show("Не удалось получить таблицу Produser");
-                  Close();
-                  return null;
-              }
-
-          }*/
+            
 
         public List<Airplane> GetAirplanes()
         {
@@ -604,172 +559,7 @@ namespace WpfLaba10.DataBase
             }
         }
 
-        /*
-         * 
-        public static void CreateAdvert(string fullName, string shortName, int animalAge, decimal animalWeight, string kindOfAnimal, string description, byte[] pictureByteArray)
-        {
-
-            cn_connection = GetDBConnection();
-            try
-            {
-                SqlCommand command = new SqlCommand();
-                command.Connection = cn_connection;
-                command.CommandText = @"INSERT INTO Advert ([Advert_FullName], [Advert_ShortName], [Advert_AnimalAge], [Advert_AnimalWeight], [Advert_KindOfAnimal], [Advert_Description], [Advert_Image], [Advert_CreationDate]) 
-                                        VALUES (@Advert_FullName,@Advert_ShortName,@Advert_AnimalAge, @Advert_AnimalWeight, @Advert_KindOfAnimal, @Advert_Description, @Advert_Image, GETDATE())";
-
-                command.Parameters.Add("@Advert_FullName", SqlDbType.VarChar, 40);
-                command.Parameters.Add("@Advert_ShortName", SqlDbType.VarChar, 20);
-                command.Parameters.Add("@Advert_AnimalAge", SqlDbType.Int);
-                command.Parameters.Add("@Advert_AnimalWeight", SqlDbType.Float);
-                command.Parameters.Add("@Advert_KindOfAnimal", SqlDbType.VarChar, 20);
-                command.Parameters.Add("@Advert_Description", SqlDbType.VarChar, 2000);
-                command.Parameters.Add("@Advert_Image", SqlDbType.VarBinary);
-
-                command.Parameters["@Advert_FullName"].Value = fullName;
-                command.Parameters["@Advert_ShortName"].Value = shortName;
-                command.Parameters["@Advert_AnimalAge"].Value = animalAge;
-                command.Parameters["@Advert_AnimalWeight"].Value = animalWeight;
-                command.Parameters["@Advert_KindOfAnimal"].Value = kindOfAnimal;
-                command.Parameters["@Advert_Description"].Value = description;
-                command.Parameters["@Advert_Image"].Value = pictureByteArray;
-
-                command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-        public static void EditAdvert(int id, string fullName, string shortName, int animalAge, decimal animalWeight, string kindOfAnimal, string description, byte[] pictureByteArray)
-        {
-            cn_connection = GetDBConnection();
-            SqlTransaction sqlTransaction = null;
-            try
-            {
-                SqlCommand command = new SqlCommand();
-                sqlTransaction = cn_connection.BeginTransaction();
-                command.Connection = cn_connection;
-                command.Transaction = sqlTransaction;
-                command.CommandText = @"UPDATE Advert SET Advert_FullName = @Advert_FullName, Advert_ShortName = @Advert_ShortName, 
-                                        Advert_AnimalAge = @Advert_AnimalAge, Advert_AnimalWeight = @Advert_AnimalWeight, Advert_KindOfAnimal = @Advert_KindOfAnimal, 
-                                        Advert_Description = @Advert_Description, Advert_Image = @Advert_Image WHERE Advert_ID = @Advert_ID";
-
-                command.Parameters.Add("@Advert_ID", SqlDbType.Int);
-                command.Parameters.Add("@Advert_FullName", SqlDbType.VarChar, 40);
-                command.Parameters.Add("@Advert_ShortName", SqlDbType.VarChar, 20);
-                command.Parameters.Add("@Advert_AnimalAge", SqlDbType.Int);
-                command.Parameters.Add("@Advert_AnimalWeight", SqlDbType.Float);
-                command.Parameters.Add("@Advert_KindOfAnimal", SqlDbType.VarChar, 20);
-                command.Parameters.Add("@Advert_Description", SqlDbType.VarChar, 2000);
-                command.Parameters.Add("@Advert_Image", SqlDbType.VarBinary);
-
-                command.Parameters["@Advert_ID"].Value = id;
-                command.Parameters["@Advert_FullName"].Value = fullName;
-                command.Parameters["@Advert_ShortName"].Value = shortName;
-                command.Parameters["@Advert_AnimalAge"].Value = animalAge;
-                command.Parameters["@Advert_AnimalWeight"].Value = animalWeight;
-                command.Parameters["@Advert_KindOfAnimal"].Value = kindOfAnimal;
-                command.Parameters["@Advert_Description"].Value = description;
-                command.Parameters["@Advert_Image"].Value = pictureByteArray;
-
-                command.ExecuteNonQuery();
-                if (shortName.Length < 5)
-                {
-                    MessageBox.Show("ShortName должно быть >=5 символам! Сработала транзакция");
-                    sqlTransaction.Rollback();
-                }
-                else sqlTransaction.Commit();
-
-            }
-            catch (Exception e)
-            {
-                try
-                {
-                    sqlTransaction.Rollback();
-                    MessageBox.Show(e.Message);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-            }
-        }
-
-        public static void DeleteAdvert(int id)
-        {
-            cn_connection = GetDBConnection();
-            try
-            {
-                SqlCommand command = new SqlCommand();
-                command.Connection = cn_connection;
-                command.CommandText = @"DELETE Advert WHERE Advert_ID = @Advert_ID";
-                command.Parameters.Add("@Advert_ID", SqlDbType.Int);
-                command.Parameters["@Advert_ID"].Value = id;
-
-                command.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
-        public static List<Advert> GetAdverts()
-        {
-            List<Advert> adverts = new List<Advert>();
-            cn_connection = GetDBConnection();
-            try
-            {
-                SqlCommand command = new SqlCommand();
-                command.Connection = cn_connection;
-                command.CommandText = @"Select Advert_ID, Advert_FullName, Advert_ShortName, Advert_AnimalAge, Advert_AnimalWeight, Advert_KindOfAnimal, Advert_Description, Advert_Image, Advert_Creator, Advert_CreationDate From Advert";
-
-
-                SqlDataReader info = command.ExecuteReader();
-                object advertCreator = null, id = null, fullName = null, shortName = null, animalAge = null, animalWeight = null, kindOfAnimal = null, description = null, image = null, creationDate = null;
-
-                while (info.Read())
-                {
-                    id = info["Advert_ID"];
-                    fullName = info["Advert_FullName"];
-                    shortName = info["Advert_ShortName"];
-                    animalAge = info["Advert_AnimalAge"];
-                    animalWeight = info["Advert_AnimalWeight"];
-                    kindOfAnimal = info["Advert_KindOfAnimal"];
-                    image = info["Advert_Image"];
-                    description = info["Advert_Description"];
-                    advertCreator = info["Advert_Creator"];
-                    creationDate = info["Advert_CreationDate"];
-                    adverts.Add(
-                        new Advert()
-                        {
-                            ID = Convert.ToInt32(id),
-                            FullName = Convert.ToString(fullName),
-                            ShortName = Convert.ToString(shortName),
-                            AnimalAge = Convert.ToInt32(animalAge),
-                            AnimalWeight = Convert.ToDecimal(animalWeight),
-                            KindOfAnimal = Convert.ToString(kindOfAnimal),
-                            Image = new Picture() { PictureByteArray = (byte[])image },
-                            Description = Convert.ToString(description),
-                            AdvertCreator = Convert.ToString(advertCreator),
-                            CreationDate = Convert.ToString(creationDate)
-                        }
-                    );
-                }
-                Parallel.ForEach(adverts, el => {
-                    el.ImageSource = ImageConverter.ImageSourceFromBitmap(el.Image.Source);
-                    el.ImageSource.Freeze();
-                });
-                return adverts;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                return adverts;
-            }
-        }*/
+       
 
     }
 }
