@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:backgroundTint="@color/purple_200"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="backThirtyActivity"
+                android:background="@color/purple_200"
+                app:srcCompat="?attr/homeAsUpIndicator" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/textView00"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/name" />
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/name" />
+
+        <TextView
+            android:id="@+id/textView01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/last_name" />
+        <TextView
+            android:id="@+id/textViewLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/last_name" />
+
+        <TextView
+            android:id="@+id/textView011"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/email" />
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/email" />
+
+        <TextView
+            android:id="@+id/textView012"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/tel" />
+        <TextView
+            android:id="@+id/textViewTel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/tel" />
+
+        <TextView
+            android:id="@+id/textView013"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/link_net" />
+        <TextView
+            android:id="@+id/textViewLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/link_net" />
+        <TextView
+            android:id="@+id/textView015"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/img" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_name"
+            tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/textView02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:layout_marginTop="@dimen/margin_top"
+            android:textSize="@dimen/textSize_h2"
+            android:text="@string/education" />
+
+        <TextView
+            android:id="@+id/textViewEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/education" />
+
+        <TextView
+            android:id="@+id/textView03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/education_name" />
+
+        <TextView
+            android:id="@+id/textViewStudyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/education_name" />
+
+        <TextView
+            android:id="@+id/textView04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/faculty" />
+
+        <TextView
+            android:id="@+id/textViewFaculty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/faculty" />
+
+        <TextView
+            android:id="@+id/textView05"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/speciality" />
+
+        <TextView
+            android:id="@+id/textViewSpeciality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/speciality" />
+
+        <TextView
+            android:id="@+id/textView06"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/begin_study" />
+
+        <TextView
+            android:id="@+id/textViewBeginStudy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/begin_study" />
+
+        <TextView
+            android:id="@+id/textView07"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/end_study" />
+
+        <TextView
+            android:id="@+id/textViewEndStudy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/end_study" />
+
+        <TextView
+            android:id="@+id/textH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/place_job"
+            android:layout_marginTop="@dimen/margin_top"
+            android:textSize="@dimen/textSize_h2"
+            />
+
+
+        <TextView
+            android:id="@+id/textView08"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/org_name" />
+
+        <TextView
+            android:id="@+id/textViewOrgName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/org_name" />
+
+        <TextView
+            android:id="@+id/textView09"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/post_name" />
+
+        <TextView
+            android:id="@+id/textViewPostName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+            android:text="@string/post_name" />
+
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/begin_job" />
+
+        <TextView
+            android:id="@+id/textViewBeginJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/begin_job" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/end_job" />
+        <TextView
+            android:id="@+id/textViewEndJob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/margin_left"
+
+            android:text="@string/end_job" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save_but"
+            android:background="@color/purple_200"
+            android:onClick="saveData"
+            android:layout_marginTop="@dimen/margin_top"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">OOP_Lab4</string>
+    <string name="next_but">Далее</string>
+    <string name="save_but">Сохранить</string>
+    <string name="name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="education">Образование</string>
+    <string-array name="level_education">
+        <item>Высшее</item>
+        <item>Среднее</item>
+        <item>Без образования</item>
+    </string-array>
+    <string name="experience_job">У меня есть опыт работы</string>
+    <string name="education_name">Название учебного заведения</string>
+    <string name="faculty">Факультет</string>
+    <string name="speciality">Специальность</string>
+    <string name="begin_study">Начало обучения</string>
+    <string name="end_study">Конец обучения</string>
+    <string name="place_job">Место работы</string>
+    <string name="org_name">Название организации</string>
+    <string name="post_name">Должность</string>
+    <string name="begin_job">Начало работы</string>
+    <string name="end_job">Окончание работы</string>
+    <string name="plus_job">Добавить еще одно место работы</string>
+    <string name="date_add">Выберите дату</string>
+    <string name="email">Email</string>
+    <string name="tel">Телефон</string>
+    <string name="img">Фото</string>
+    <string name="link_net">Укажите ссылку на соцсети, где можно с вами связаться</string>
+    <string name="photo_add">Добавить фото</string>
+    <string name="add_data">Добавить элемент списка</string>
+
+
+    <dimen name="margin_left">12dp</dimen>
+    <dimen name="margin_top">12dp</dimen>
+    <dimen name="textSize_h2">18dp</dimen>
+</resources>
