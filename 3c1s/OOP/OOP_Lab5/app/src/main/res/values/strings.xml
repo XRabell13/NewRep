@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">AllTheRecipes</string>
+    <string name="addRecipe">Добавить рецепт</string>
+    <string name="search">Поиск</string>
+    <string name="sort">Сортировка</string>
+    <string name="save_but">Сохранить</string>
+    <string name="add_photo_but">Выбрать фото</string>
+    <string name="but_back">Назад</string>
+
+    <string name="nameRecipe">Название рецепта</string>
+    <string name="description">Рецепт приготовления</string>
+    <string name="timeCook">Примерное время готовки</string>
+    <string name="ingredients">Ингридиенты</string>
+    <string name="category">Категория</string>
+    <string name="photo">Фото</string>
+
+
+    <string name="edit">Редактировать</string>
+    <string name="delete">Удалить</string>
+
+
+
+    <dimen name="margin_left">12dp</dimen>
+    <dimen name="margin_top">12dp</dimen>
+    <dimen name="textSize_h2">18dp</dimen>
+</resources>
