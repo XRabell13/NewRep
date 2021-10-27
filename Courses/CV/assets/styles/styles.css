@@ -1,0 +1,36 @@
+header{
+    border-bottom: 2px solid red;
+    border-left: 4px solid red;
+    background: greenyellow;
+    padding-left: 40px;
+}
+header div{
+    display: inline-block;
+}
+
+header img{
+    margin-top: 20px;
+    width:40%;
+}
+
+section{
+    
+    border-bottom: 2px solid red;
+    border-left: 4px solid red;
+}
+
+section h2{
+    padding-left: 40px;  
+}
+
+section p{
+    padding-left: 80px;
+}
+
+section p a{
+    text-decoration: none;
+}
+
+section:last-child p{
+    padding-left: 40px;
+}
